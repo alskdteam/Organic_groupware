@@ -10,4 +10,5 @@ public class SemiProjectApplication {
 		SpringApplication.run(SemiProjectApplication.class, args);
 	}
 
+	// merge test - 도아
 }
