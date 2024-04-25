@@ -11,4 +11,5 @@ public class SemiProjectApplication {
 	}
 
 	// merge test - 도아
+	// merger test2 - 도아
 }
