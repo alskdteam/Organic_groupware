@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 15vw;
+            background-color: #ffffff;
+            overflow-y: auto;
+            border-top-right-radius: 60px;
+            margin-top: 15px;
+            height: 100vh;
+            border-top: 1.3px solid #e1e1e1;
+            border-right: 1px solid #e1e1e1;
+            position: fixed;
+            /* box-sizing: border-box;  */
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+    /*여기서 시작*/
+        #logo{
+            margin: 20px;
+            scale: 90%;
+        }
+    /*    wrap1*/
+    /*    사진*/
+        .s_picture {
+            width: 155px;
+            height: 176px;
+            border-radius: 40px; /* 테두리를 둥글게 만듭니다. */
+            border: 1.5px solid #e1e1e1; /* 테두리의 두께와 색상을 설정합니다. */
+        }
+        .s_wrap1{
+            display: flex;
+            justify-content: center;
+        }
+        /*이름*/
+        #s_name{
+            text-align: center;
+            margin-top: 20px;
+        }
+    /*    wrap2*/
+    /*    시계*/
+        .s_time{
+            width: 150px;
+            height: 30px;
+            border: 1.5px solid #e1e1e1; /* 테두리의 두께와 색상을 설정합니다. */
+            margin: 5px;
+        }
+        /*출퇴근*/
+        .s_commute{
+            width: 150px;
+            height: 30px;
+            border: 1.5px solid #e1e1e1; /* 테두리의 두께와 색상을 설정합니다. */
+            margin: 5px;
+        }
+
+        .s_button1{
+            width: 70px;
+            height: 40px;
+            border-radius: 30px; /* 테두리를 둥글게 만듭니다. */
+            border: 1.5px solid #e1e1e1; /* 테두리의 두께와 색상을 설정합니다. */
+            margin: 5px;
+        }
+        .s_button2{
+            width: 70px;
+            height: 40px;
+            border-radius: 30px; /* 테두리를 둥글게 만듭니다. */
+            border: 1.5px solid #e1e1e1; /* 테두리의 두께와 색상을 설정합니다. */
+            margin: 5px;
+        }
+        .s_wrap2-1{
+            display: flex;
+            justify-content: center;
+        }
+        .s_flex2-2{
+            display: flex;
+        }
+
+    /*    wrap3*/
+        .s_wrap3{
+            display: flex;
+            justify-content: center;
+            padding-top: 30px;
+        }
+
+        /*목록 버튼*/
+
+
+        /*v1*/
+        #nav-v1{width:150px;text-align:center;}
+        .menu-v1{
+            line-height:2;
+            border-top:1px solid #e1e1e1;
+            margin-bottom: 9px;
+        }
+        /*호버색*/
+        .menu-v1:hover{background-color: #1db30a;}
+        .menu-v1:hover>a{color:white;font-weight:bold;}
+        .menu-v1 .submenu{
+            margin-top:7px;
+            background-color:#fff;
+            display:none;
+        }
+        .menu-v1 .submenu li:hover{
+            background-color:#1db30a;color:white;font-weight:bold;
+        }
+
+        /*v2*/
+
+        .menu-v2 .submenu{
+            position:absolute;
+            width:150px;
+            left:149px;
+            border:1px solid #222;
+            background-color:#222;
+            color:white;
+            top:-1px;
+            display:none;
+        }
+
+        .menu-v2 .submenu>li:hover{
+            background-color:white;
+            color:#222;
+        }
+        /*목록 동그라미 가리기*/
+        #nav-v1,
+        .submenu {
+            list-style-type: none;
+        }
+
+        /*목록 폰트 사이즈*/
+        .menu-v1 a, .submenu a {
+            font-size: 15px;
+        }
+
+        /*목록 보더길이*/
+        .menu-v1, .submenu {
+            width: 130px; /* Set a specific width */
+        }
+        /*목록 보더 길이 위에랑 같이 줄여야 함*/
+        a{text-decoration:none;color:inherit;}
+        .clear{clear:both;}
+        #container{background-color:#fff;width:130px;}
+
+        /*내림 아이콘*/
+        .icon_list {
+            width: 0;
+            height: 0;
+            border-left: 5.5px solid transparent; /* 왼쪽 테두리 */
+            border-right: 5.5px solid transparent; /* 오른쪽 테두리 */
+            border-top: 10px solid #1db30a; /* 윗쪽 테두리 */
+            margin-left: 20px;
+            margin-top: 7px;
+        }
+
+        /*픽토그램*/
+        .list-icon{
+            width: 18px;
+            height: 18px;
+            margin-top: 6px;
+
+        }
+
+        a{
+            display: flex;
+            gap: 10px;
+        }
+
+        .m_button, .m_button2, .m_button3, .m_button4 {
+            width: 100px;
+            height: 70px;
+            background-color: #1db30a;
+        }
+
+        .wrap4{
+            display: flex;
+            justify-content: center;
+        }
+        .m_flex1{
+            display: none;
+        }
+
+        @media screen and (max-width: 375px) {
+
+            .m_s_wrap1{
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .s_wrap2-1{
+                margin-top: 30px;
+            }
+
+            .s_wrap3{
+                display: none;
+            }
+
+            .m_button, .m_button2, .m_button3, .m_button4 {
+                width: 300px;
+                height: 70px;
+                background-color: #1db30a;
+                display: block;
+                margin: 10px;
+            }
+            .m_flex1{
+                display: block;
+            }
+
+
+
+        }
+
+    </style>
+
+
+
+
+
+    <!-- 뷰포트 스크립트 -->
+    <script>
+        window.addEventListener('resize', function() {
+            if (window.innerWidth <= 375) {
+                document.querySelector('.sidebar').style.width = '375px';
+                
+            } else {
+            }
+        });
+
+    </script>
+</head>
+<body>
+<div class="sidebar">
+
+    <img src="/img/sidebar/logo.png" id="logo">
+    <div class="m_s_wrap1">
+
+        <div class="s_wrap1">
+            <div class="s_flex1">
+                <div class="s_picture">
+
+                </div>
+                <p id="s_name">아무개 사원</p>
+            </div>
+        </div>
+
+        <div class="s_wrap2">
+            <div class="s_flex2">
+                <div class="s_wrap2-1">
+                    <div class="s_flex2-1">
+                        <div class="s_time">
+
+                        </div>
+
+                        <div class="s_commute">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="s_wrap2-1">
+                    <div class="s_flex2-2">
+                        <div class="s_button1"></div>
+                        <div class="s_button2"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="s_wrap3">
+
+        <div class="s_flex3">
+
+            <div id="container">
+                <!--세로형 1-->
+                <ul id="nav-v1">
+
+                    <li class="menu-v1">
+                            <a href="#" onclick="location.href='/login/main'">
+                                <img src="/img/sidebar/icon-schedule.png" class="list-icon">
+                                운영관리
+                                <div class="icon_list"></div>
+                            </a>
+                    </li>
+
+                    <li class="menu-v1">
+
+                            <a href="#" >
+                                <img src="/img/sidebar/icon-car.png" class="list-icon">
+                                차량관리
+                                <div class="icon_list"></div>
+
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="#" onclick="location.href='/subpage/car'">차량예약</a></li>
+                                <li><a href="#">차량예약 현황</a></li>
+                            </ul>
+                    </li>
+
+                    <li class="menu-v1">
+                            <a href="#">
+                                <img src="/img/sidebar/icon-electronic.png" class="list-icon">
+                                전자결재
+                                <div class="icon_list"></div>
+
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="#" onclick="location.href='/subpage/edoc'">결재리스트</a></li>
+                                <li><a href="#">문서처리</a></li>
+                                <li><a href="#">진행문서함</a></li>
+                            </ul>
+
+                    </li>
+
+
+                    <li class="menu-v1">
+                        <div class="l_wrap">
+                            <a href="#" onclick="location.href='/subpage/profile'">
+                                <img src="/img/sidebar/icon-user.png" class="list-icon">
+                                내프로필
+                                <div class="icon_list"></div>
+                            </a>
+                        </div>
+
+                    </li>
+
+                </ul>
+
+<!--                리스트 스크립트-->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // 메뉴 v1
+                        var menuV1 = document.querySelectorAll('.menu-v1');
+                        menuV1.forEach(function(item) {
+                            item.addEventListener('mouseover', function() {
+                                this.children[1].style.display = 'block';
+                            });
+                            item.addEventListener('mouseleave', function() {
+                                this.children[1].style.display = 'none';
+                            });
+                        });
+                    });
+                </script>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="wrap4">
+        <div class="m_flex1">
+            <div class="m_button" onclick="location.href='/m_subpage/m_main'">버튼</div>
+            <div class="m_button2" onclick="location.href='/m_subpage/m_car'">버튼</div>
+            <div class="m_button3" onclick="location.href='/m_subpage/m_edoc'">버튼</div>
+            <div class="m_button4" onclick="location.href='/m_subpage/m_profile'">버튼</div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
