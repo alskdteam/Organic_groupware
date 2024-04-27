@@ -343,6 +343,23 @@
                         </div>
 
                     </li>
+                    
+
+                        <li sec:authorize="hasAnyAuthority('ADMIN')" class="menu-v1">
+
+                            <a href="#" >
+                                <img src="/img/sidebar/icon-car.png" class="list-icon">
+                                관리기능
+                                <div class="icon_list"></div>
+
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="#" onclick="location.href='/admin/page'">관리1</a></li>
+                                <li><a href="#">관리2</a></li>
+                            </ul>
+                            
+                        </li>
+                    
 
                 </ul>
 
