@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            width: 100vw;
+            height: 9vh;
+        }
+
+        .h_flex1 {
+            display: flex;
+            height: 81px;
+            justify-content: flex-end; /* 객체를 우측으로 정렬 */
+            align-items: center; /* 세로 방향 가운데 정렬 */
+            gap: 20px; /* 객체 간격 설정 */
+        }
+
+        #h_alarm, #h_toDoList{
+            width: 15px;
+            height: 20px;
+        }
+
+        .h_logout_wrap{
+            margin-top: 0px;
+        }
+
+        #h_logout {
+            top: 20px;
+            padding: 4px 5px 4px 5px;
+            border: 1px solid black;
+            font-size: 14px;
+            border-radius: 8px; /* 둥근 정도 조절 */
+            align-self: center; /* 가운데 정렬 */
+        }
+
+        .h_profile {
+            width: 50px; /* 원의 지름 설정 */
+            height: 50px; /* 원의 지름 설정 */
+            background-color: #e6e6e6; /* 배경색 설정 */
+            border-radius: 50%; /* 동그란 원으로 만들기 */
+            margin-right: 30px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="h_wrap1">
+        <div class="h_flex1">
+            <img src="/img/header/ararm.png" id="h_alarm">
+            <img src="/img/header/toDoList.png" id="h_toDoList">
+            <div class="h_logout_wrap">
+                <form th:action="@{/auth/logout}" th:method="post">
+                    <button id="h_logout">로그아웃</button>
+                </form>
+            </div>
+            <div class="h_profile"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
