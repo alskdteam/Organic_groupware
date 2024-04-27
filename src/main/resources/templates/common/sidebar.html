@@ -343,6 +343,23 @@
                         </div>
 
                     </li>
+                    
+
+                        <li sec:authorize="hasAnyAuthority('ADMIN')" class="menu-v1">
+
+                            <a href="#" >
+                                <img src="/img/sidebar/icon-car.png" class="list-icon">
+                                관리기능
+                                <div class="icon_list"></div>
+
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="#" onclick="location.href='/admin/page'">관리1</a></li>
+                                <li><a href="#">관리2</a></li>
+                            </ul>
+                            
+                        </li>
+                    
 
                 </ul>
 
@@ -369,10 +386,10 @@
 
     <div class="wrap4">
         <div class="m_flex1">
-            <div class="m_button" onclick="location.href='m_main'">버튼</div>
-            <div class="m_button2" onclick="location.href='m_car'">버튼</div>
-            <div class="m_button3" onclick="location.href='m_edoc'">버튼</div>
-            <div class="m_button4" onclick="location.href='m_profile'">버튼</div>
+            <div class="m_button" onclick="location.href='/m_subpage/m_main'">버튼</div>
+            <div class="m_button2" onclick="location.href='/m_subpage/m_car'">버튼</div>
+            <div class="m_button3" onclick="location.href='/m_subpage/m_edoc'">버튼</div>
+            <div class="m_button4" onclick="location.href='/m_subpage/m_profile'">버튼</div>
         </div>
     </div>
 

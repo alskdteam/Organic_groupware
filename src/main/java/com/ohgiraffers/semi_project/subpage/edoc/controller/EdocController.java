@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class EdocController {
 
     @GetMapping("/edoc")
-    public void edoc(Model model) {
+    public void edoc() {
     }
 
 }
