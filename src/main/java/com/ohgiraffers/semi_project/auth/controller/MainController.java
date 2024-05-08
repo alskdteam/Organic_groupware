@@ -11,7 +11,7 @@ public class MainController {
     @Autowired
     private AuthService authService;
 
-    @GetMapping(value = {"/", "/login"})
+    @GetMapping(value = {"/", "/login", "/main"})
     public String main() {
         return "main";
     }
@@ -33,4 +33,6 @@ public class MainController {
         return "/user/user";
     }
 
+    //
+    //
 }
