@@ -304,6 +304,22 @@
                     </li>
 
                     <li class="menu-v1">
+                        <a href="#" onclick="location.href='/subpage/account'">
+                            <img src="/img/sidebar/icon-schedule.png" class="list-icon">
+                            거래관리
+                            <div class="icon_list"></div>
+                        </a>
+                    </li>
+                    
+                    <li class="menu-v1">
+                        <a href="#" onclick="location.href='/subpage/item'">
+                            <img src="/img/sidebar/icon-schedule.png" class="list-icon">
+                            물품관리
+                            <div class="icon_list"></div>
+                        </a>
+                    </li>
+
+                    <li class="menu-v1">
 
                             <a href="#" >
                                 <img src="/img/sidebar/icon-car.png" class="list-icon">
@@ -313,7 +329,7 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="#" onclick="location.href='/subpage/car'">차량예약</a></li>
-                                <li><a href="#">차량예약 현황</a></li>
+                                <li><a href="#"  onclick="location.href='/subpage/car_situation'">차량대여 현황</a></li>
                             </ul>
                     </li>
 
@@ -326,8 +342,7 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="#" onclick="location.href='/subpage/edoc'">결재리스트</a></li>
-                                <li><a href="#">문서처리</a></li>
-                                <li><a href="#">진행문서함</a></li>
+                                <li><a href="#" onclick="location.href='/subpage/edoc_correction'">문서처리</a></li>
                             </ul>
 
                     </li>
@@ -347,17 +362,16 @@
 
                         <li sec:authorize="hasAnyAuthority('ADMIN')" class="menu-v1">
 
-                            <a href="#" >
-                                <img src="/img/sidebar/icon-car.png" class="list-icon">
-                                관리기능
-                                <div class="icon_list"></div>
 
-                            </a>
-                            <ul class="submenu">
-                                <li><a href="#" onclick="location.href='/admin/page'">관리1</a></li>
-                                <li><a href="#">관리2</a></li>
-                            </ul>
-                            
+
+                            <div class="l_wrap">
+                                <a href="#" onclick="location.href='/admin/page'">
+                                    <img src="/img/sidebar/icon-user.png" class="list-icon">
+                                    관리기능
+                                    <div class="icon_list"></div>
+                                </a>
+                            </div>
+
                         </li>
                     
 

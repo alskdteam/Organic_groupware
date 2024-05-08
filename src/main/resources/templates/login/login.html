@@ -2,16 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
-<form th:action="@{/login/login}" method="post">
-    ID: <input type="text" name="user"> <br>
-    PWD: <input type="password" name="pass"> <br>
-    <button type="submit">로그인</button>
-</form>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="/css/login.css">
 
-<a href="/user/signup">회원가입</a>
+</head>
+
+<body>
+
+<section class="login-form">
+
+    <div class="img-logo">
+        <img src="https://github.com/alskdteam/semi_project_java/assets/158136952/d554fce7-e2b2-47a2-9aa6-f68e0e55b5e4" width="400px">
+    </div>
+
+    <form th:action="@{/login/login}" th:method="post">
+        <div class="int-area">
+            <input type="text" name="user" id="user"
+                   autocomplete="off" placeholder="사원번호"><br><br>
+
+        </div>
+
+        <div class="int-area">
+            <input type="password" name="pass" id="pass"
+                   autocomplete="off" placeholder="비밀번호">
+
+        </div>
+        <br>
+
+        <div class="btn-area">
+            <button  type="submit" class="btn" >로그인</button>
+        </div>
+
+
+    </form>
+
+</section>
+
 
 
 </body>

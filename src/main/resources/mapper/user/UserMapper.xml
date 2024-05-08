@@ -5,19 +5,19 @@
 <mapper namespace="com.ohgiraffers.semi_project.user.model.dao.UserMapper">
 
     <insert id="regist" parameterType="com.ohgiraffers.semi_project.user.model.dto.SignupDTO">
-        INSERT INTO TBL_USER
+        INSERT INTO Employee
         (
-            USER_ID,
-            USER_NAME,
-            PASSWORD,
-            USER_ROLE
+        USER_ID,
+        USER_NAME,
+        PASSWORD,
+        USER_ROLE
         )
         VALUES
         (
-            #{userId},
-            #{userName},
-            #{userPass},
-            #{role}
+        #{userId},
+        #{userName},
+        #{userPass},
+        #{role}
         )
     </insert>
 
@@ -31,14 +31,14 @@
 
     <select id="findByUsername" resultMap="login">
         SELECT
-            USER_NO,
-            USER_ID,
-            USER_NAME,
-            PASSWORD,
-            USER_ROLE
+        USER_NO,
+        USER_ID,
+        USER_NAME,
+        PASSWORD,
+        USER_ROLE
         FROM
-            TBL_USER
+        Employee
         WHERE
-            USER_ID = #{ username }
+        USER_ID = #{ username }
     </select>
 </mapper>
