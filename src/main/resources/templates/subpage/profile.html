@@ -28,6 +28,7 @@
             }
         }
     </style>
+
 </head>
 <body>
 <div class="container">
@@ -42,17 +43,113 @@
 
             <!--            여기서부터 시작 위에는 건들지 마세요-->
             <div class="layer">
-                <h1>프로필 입니다.</h1>
-                <p>
-                    <br><br>
-                    어떤 생각이나 일을 글자로 나타낸 것이다.
+                <div class="layer">
+                    <div class="flex">
+                        <!--                        프로필 영역-->
+                        <div class="profile" >
+                            <!--여기서 시작-->
+                            <div class="flex2">
 
-                    한국어 단어 '글'은 고대 한국어에서는 향찰로 文尸라고 기록했을 정도로 오래된 단어다. 삼국사기에서는 고구려어로 추정되는 지명에서 斤尸라는 어형을 확인할 수 있는데, '글'의 어원이 된 단어의 음차로 보인다. 중세 한국어에서는 '글ᄫᅡᆯ'(오늘날 '글월'의 원형)이라고 부르기도 했다. 계약서를 만들 목적으로 나무나 바위에 새긴 글을 뜻하는 契의 상고한어 음가를 차용했다는 설도 있으나 증명되지 않았다.
+                                <h3>프로필</h3>
+                                <div class="c_profile">
+                                    <!--여기서 시작-->
+                                    <div class="picture">
+                                        <div class="c_picture">
+                                            <div class="profile_picture">
 
-                    음성 정보인 언어를 글자의 형태로 기록하게 됨에 따라 인류의 정보량은 폭발적으로 증가하였다. 글은 인류가 이만큼 발전하는데 굉장히 공헌을 한 도구이다. 그때문에 단순히 글자로 기록된 정보란 의미에서 나아가 학식을 나타내는 말로 확대되기도 하였다. 그리고 글 좀 쓴다고 한다는 표현은 의도를 갖고 편찬된 문학이나 비문학 텍스트를 가리키는 말이 되었다.
+                                            </div>
+                                            <div class="profile_frame"></div>
+                                            <div class="edit_button">
+                                                프로필 편집
+                                            </div>
+                                        </div>
+                                        <div class="profile_edit">
 
-                    숫자 등으로 표시되는 회계정보도 글의 일종이다.
-                </p>
+                                        </div>
+                                    </div>
+                                    <div class="imformation">
+
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                        <!--                        버튼 영역-->
+                        <div class="button">
+                            <!--여기서 시작-->
+                            <!-- 스크롤 이동 버튼 1 -->
+                            <button class="scroll_button" data-target=".calender">Calendar</button>
+                            <button class="scroll_button" data-target=".memo">Memo</button>
+                            <button class="scroll_button" data-target=".employee">Employee</button>
+                        </div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                var scrollButtons = document.querySelectorAll('.scroll_button');
+
+                                scrollButtons.forEach(function(button) {
+                                    button.addEventListener('click', function() {
+                                        var target = document.querySelector(this.getAttribute('data-target'));
+                                        if (target) {
+                                            target.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+
+
+
+                        <!--                        캘린더 영역-->
+                        <div class="calender" tabindex="0">
+                            <div class="flex2">
+                                <h3>캘린더</h3>
+                                <div class="c_calender">
+                                    <!--여기서 시작-->
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <!--                        메모 영역-->
+                        <div class="memo" tabindex="0">
+
+                            <div class="flex2">
+                                <h3>메모</h3>
+                                <div class="c_memo">
+                                    <p>memo</p>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <!--                        조회 영역-->
+                        <div class="employee" tabindex="0">
+
+                            <div class="flex3">
+                                <h3>사원조회</h3>
+
+                                <div class="c_employee">
+                                    <!--                                    여기서 시작-->
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
