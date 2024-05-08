@@ -10,19 +10,27 @@
             window.location.href= "/main";
         }
     </script>
+    <style>
+        .wrap{
+            display: none;
+        }
+
+    </style>
 </head>
 <body>
-    <h1 style="text-align: center">회원가입</h1>
-    <form th:action="@{/user/signup}" th:method="post">
-        ID : <input type="text" name="userId"> <br>
-        이름 : <input type="text" name="userName"> <br>
-        PWD : <input type="password" name="userPass"> <br>
-        권한 :
+<h1 style="text-align: center">회원가입</h1>
+<form th:action="@{/user/signup}" th:method="post">
+    ID : <input type="text" name="userId"> <br>
+    <!--        이름 : <input type="text" name="userName"> <br>-->
+    PWD : <input type="password" name="userPass"> <br>
+
+    <div class="wrap">
         <select name="role">
-            <option value="USER">일반회원</option>
+            <option value="USER"  selected >일반회원</option>
             <option value="ADMIN">관리자</option>
         </select> <br>
-        <button>회원가입</button>
-    </form>
+    </div>
+    <button>회원가입</button>
+</form>
 </body>
 </html>
