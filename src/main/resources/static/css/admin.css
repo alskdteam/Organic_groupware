@@ -1,0 +1,476 @@
+/* main.css */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+body {
+    background-color: #fbfbfb;
+    overflow-y: auto;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-y: auto;
+}
+
+.content {
+    flex: 1;
+}
+
+.area {
+    background-color: white;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border: 1.3px solid #e1e1e1;
+    margin-left: 16.5vw;
+    width: calc(100% - 16.5vw);
+    height: 2300px;
+}
+
+/* 여기서 부터 시작 위에는 건들지 마세요*/
+.area{
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+.layer{
+    width: 78vw;
+    height: 2150px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 스크롤 이동 버튼 */
+
+.button{
+    width: 60vw;
+    height: 103px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.scroll_button {
+    width: 162px;
+    height: 103px;
+    border: 1px solid #ffffff;
+    border-radius: 20px; /* 테두리를 둥글게 만듭니다 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 드롭쉐도우 추가 */
+    background-color: #ffffff; /* 배경색 설정 */
+    transition: border-color 0.3s; /* 호버 효과에 대한 전환 설정 */
+
+    /* 버튼이 호버 되었을 때의 스타일 */
+    &:hover {
+        border: 2px solid #00FF00; /* 초록색 테두리 추가 */
+    }
+}
+
+
+/*공지사항*/
+.announcement{
+    width: 60vw;
+    height: 405px;
+    border: 1px solid #BFBFBF;
+    border-radius: 30px;
+    margin-bottom: 90px;
+    position: relative; /* 부모 요소로 설정 */
+    display: flex;
+    justify-content: center;
+    overflow: hidden; /* 자식 요소의 넘치는 부분 가리기 */
+    transition: height 0.6s ease-in-out; /* 부드러운 애니메이션 효과 추가 */
+}
+
+/* 클릭시 세로길이 늘어나는*/
+.announcement:focus-within {
+    height: 700px;
+}
+
+/*공지사항 메인 컨텐츠*/
+.c_announcement {
+    background-color: white; /* 배경색 지정 */
+    border: 1px solid #BFBFBF; /* 테두리 설정 */
+    border-radius: 30px; /* 테두리 반지름 설정 */
+    width: 55vw;
+    height: 600px;
+    margin-top: 50px;
+}
+
+/*사원조회 영역*/
+.employee{
+    width: 60vw;
+    height: 405px;
+    border: 1px solid #BFBFBF;
+    border-radius: 30px;
+    margin-bottom: 90px;
+
+    position: relative; /* 부모 요소로 설정 */
+    display: flex;
+    justify-content: center;
+    overflow: hidden; /* 자식 요소의 넘치는 부분 가리기 */
+    transition: height 0.6s ease-in-out; /* 부드러운 애니메이션 효과 추가 */
+}
+
+/* 클릭시 세로길이 늘어나는*/
+.employee:focus-within {
+    height: 700px;
+}
+/*사원조회 메인 컨텐츠*/
+.c_employee {
+    background-color: white; /* 배경색 지정 */
+    border: 1px solid #BFBFBF; /* 테두리 설정 */
+    border-radius: 30px; /* 테두리 반지름 설정 */
+    width: 55vw;
+    height: 600px;
+    margin-top: 50px;
+}
+
+/*전자결재 영역*/
+.edoc{
+    width: 60vw;
+    height: 370px;
+    border: 1px solid #BFBFBF;
+    border-radius: 30px;
+    margin-bottom: 90px;
+
+    position: relative; /* 부모 요소로 설정 */
+    display: flex;
+    justify-content: center;
+    overflow: hidden; /* 자식 요소의 넘치는 부분 가리기 */
+    transition: height 0.6s ease-in-out; /* 부드러운 애니메이션 효과 추가 */
+}
+
+/* 클릭시 세로길이 늘어나는*/
+.edoc:focus-within {
+    height: 700px;
+}
+/*사원조회 메인 컨텐츠*/
+.c_edoc {
+    background-color: white; /* 배경색 지정 */
+    border: 1px solid #BFBFBF; /* 테두리 설정 */
+    border-radius: 30px; /* 테두리 반지름 설정 */
+    width: 55vw;
+    height: 600px;
+    margin-top: 50px;
+}
+
+/* 여기서부터 시작 */
+
+.chart table {
+    width: 90%;
+    margin-top: 15px;
+    margin-left: 40px;
+    background-color: white;
+}
+
+
+.chart th, .chart td {
+    border: 1px solid #dddddd; /* 테이블 셀 경계 선 설정 */
+    padding: 8px;
+    text-align: left;
+    border-left: none;
+    border-right: none;
+
+}
+
+.chart th {
+    background-color: #4CAF50; /* 테이블 헤더 배경색 설정 */
+    color: white;
+}
+
+.chart tbody tr:last-child td {
+    border-bottom: 2px solid white; /* 마지막 행에 밑줄 추가 */
+    border-left: ;
+}
+.chart th, .c_employee td {
+    border: 1px solid #dddddd; /* 테이블 셀 경계 선 설정 */
+    padding: 8px;
+    text-align: left;
+    border-left: none;
+    border-right: none;
+}
+
+.chart th {
+    background-color: #4CAF50; /* 테이블 헤더 배경색 설정 */
+    color: white;
+}
+
+.e_list {
+
+    background-color: white; /* 배경색 지정 */
+    border: 1px solid #BFBFBF; /* 테두리 설정 */
+    border-radius: 30px; /* 테두리 반지름 설정 */
+    width: 55vw;
+    height: 600px;
+    margin-top: 50px;
+
+}
+.e-listline {
+    position: relative;
+    top: 210px;
+    width: 500px;
+
+}
+.e-listbox {
+    position: relative;
+    top: 200px;
+    left: 100px;
+}
+.e-list {
+
+    font-size: 18px;
+    border: none;
+    margin: 5px;
+
+}
+.search {
+    display: flex;
+    position: relative;
+    width: 300px;
+    height: 40px;
+    border: 1px solid #b3b3b3;
+    background-color: #f6f6f6;
+    left: 700px;
+}
+
+.e-search_input {
+    font-size: 17px;
+    position:relative;
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #4CAF50;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+    left: px;
+    top: px;
+}
+.e-search_button {
+    position: relative;
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #4CAF50;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.e-title {
+    position: relative;
+    left: 50px;
+    top: 30px;
+}
+.under-line {
+    position: relative;
+    align-items: bottom;
+    top: 100px;
+    color: black;
+    width: 960px;
+}
+
+
+.c_employee table {
+    width: 90%;
+    margin-top: 150px;
+    margin-left: 40px;
+    background-color: white;
+}
+
+
+.c_employee th, .c_employee td {
+    border: 1px solid #dddddd; /* 테이블 셀 경계 선 설정 */
+    padding: 8px;
+    text-align: left;
+    border-left: none;
+    border-right: none;
+
+}
+
+.c_employee th {
+    background-color: #4CAF50; /* 테이블 헤더 배경색 설정 */
+    color: white;
+}
+
+.c_employee tbody tr:last-child td {
+    border-bottom: 2px solid white; /* 마지막 행에 밑줄 추가 */
+    border-left: ;
+}
+.c_employee th, .c_employee td {
+    border: 1px solid #dddddd; /* 테이블 셀 경계 선 설정 */
+    padding: 8px;
+    text-align: left;
+    border-left: none;
+    border-right: none;
+}
+
+.c_employee th {
+    background-color: #4CAF50; /* 테이블 헤더 배경색 설정 */
+    color: white;
+}
+
+.c_announcement tbody tr:last-child td {
+    border-bottom: 2px solid white; /* 마지막 행에 밑줄 추가 */
+    border-left: ;
+}
+
+
+.searchForm {
+    position: relative;
+    left: 250px;
+    display: flex;
+    max-width: 300px;
+
+}
+.searchInput{
+    flex: 1;
+    padding: 12px;
+    border: 2px solid green;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+}
+
+.searchButton {
+    background-color: white;
+    color: #fff;
+    border: 2px solid green;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    padding: 8px 12px;
+    cursor: pointer;
+    left: 50px;
+    margin-right: 15px;
+}
+
+.searchInput {
+    width: 120px;
+    height: 17px;
+    margin: 0px;
+}
+.img-container {
+    position: relative;
+    left: 100px;
+    top: 100px;
+    width: 100%;
+
+}
+
+/*공지사항*/
+.semi-title {
+    position: relative;
+    left: 80px;
+    top: 40px;
+}
+
+a {
+    text-decoration: none; /* 텍스트의 밑줄 제거 */
+
+}
+
+
+.c_announcement table {
+    width: 90%;
+    margin-top: 70px;
+    margin-left: 40px;
+
+}
+
+.c_announcement th, .c_announcement td {
+    border: 1px solid #dddddd; /* 테이블 셀 경계 선 설정 */
+    padding: 8px;
+    text-align: left;
+    border-left: none;
+    border-right: none;
+
+}
+
+.c_announcement th {
+    background-color: #4CAF50; /* 테이블 헤더 배경색 설정 */
+    color: white;
+}
+
+.c_announcement tbody tr:last-child td {
+    border-bottom: 2px solid white; /* 마지막 행에 밑줄 추가 */
+    border-left: ;
+}
+
+/* 여기서 부터 시작 위에는 건들지 마세요*/
+
+.e-approval{
+    position: relative;
+    left: 70px;
+    top: 15px;
+}
+.buttonlist{
+
+    width: 100%;
+    height: 100px;
+    border-bottom: 2px solid #848484; /* h1 요소의 아래쪽에 2px 두께의 검은색 선을 추가합니다. */
+
+}
+
+.c_buttonlist {
+    position: relative;
+    width: 80px;
+    height: 32px;
+    border: 2px solid black; /* 1px 두께의 검은색 테두리 설정 */
+    border-radius: 0px; /* 둥근 사각형으로 테두리 모양을 설정 */
+    background-color: white; /* 연한 회색 배경색 설정 */
+    margin: 14px 0;
+    font-size: 13pt;
+    text-align: center; /* 텍스트를 가운데 정렬합니다. */
+    line-height: 32px; /* 버튼의 높이와 동일하게 텍스트의 높이를 맞춥니다. */
+    left: 60px;
+    margin: 3px;
+    top: 50px;
+    cursor: pointer;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+.chart{
+    width: 100%;
+    height: 350px;
+    background-color: white;
+}
+
+.page_number{
+    width: 55vw;
+    height: 65px;
+    border-top: 4px solid #848484;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.s_button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black; /* 1px 두께의 검은색 테두리 설정 */
+    background-color: #f0f0f0; /* 연한 회색 배경색 설정 */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* 마우스 커서를 포인터로 설정하여 클릭 가능한 요소임을 표시합니다. */
+    margin: 3px; /* 버튼 간 간격을 설정합니다. */
+
+}
+
+.flex{
+
+    align-items:  /* 수직 가운데 정렬 */
+}
+
+
