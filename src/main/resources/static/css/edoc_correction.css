@@ -1,0 +1,78 @@
+/* main.css */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fbfbfb;
+    overflow-y: auto;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-y: auto;
+}
+
+.content {
+    flex: 1;
+}
+
+.area {
+    background-color: white;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border: 1.3px solid #e1e1e1;
+    margin-left: 16.5vw;
+    width: calc(100% - 16.5vw);
+    height: 900px;
+}
+
+/* 여기서 부터 시작 위에는 건들지 마세요*/
+.area{
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.layer{
+    width: 70vw;
+    height: 800px;
+}
+
+.layer h1 {
+    border-bottom: 4px solid #e3e3e3; /* h1 요소의 아래쪽에 2px 두께의 검은색 선을 추가합니다. */
+    padding-bottom: 10px;
+}
+
+.button{
+    display: flex;
+    gap: 7px;
+    border-bottom: 4px solid #848484; /* h1 요소의 아래쪽에 2px 두께의 검은색 선을 추가합니다. */
+}
+
+.c_button {
+    width: 68px;
+    height: 32px;
+    border: 1px solid black; /* 1px 두께의 검은색 테두리 설정 */
+    border-radius: 11px; /* 둥근 사각형으로 테두리 모양을 설정 */
+    background-color: #f0f0f0; /* 연한 회색 배경색 설정 */
+    margin: 14px 0;
+
+    font-size: 10pt;
+    text-align: center; /* 텍스트를 가운데 정렬합니다. */
+    line-height: 32px; /* 버튼의 높이와 동일하게 텍스트의 높이를 맞춥니다. */
+
+}
+
+.chart{
+    width: 70vw;
+    height: 440px;
+    background-color: #f6f6f6;
+    margin-top: 40px;
+}
+
+
+/* 여기서시작 */
