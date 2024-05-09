@@ -70,7 +70,7 @@ body {
 .chart{
     width: 70vw;
     height: 440px;
-    background-color: #f6f6f6;
+
 }
 
 .page_number{
@@ -80,6 +80,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.s_button:hover {
+    background-color: #4CAF50; /* 변경하고자 하는 색상으로 설정 */
+    color: white;
+
 }
 
 .search {
@@ -120,8 +125,41 @@ body {
     width: 66px;
     height: 26px;
     cursor: pointer; /* 마우스 커서를 포인터로 설정하여 클릭 가능한 요소임을 표시합니다. */
-    background-color: #010101;
+    background-color: #4CAF50;
     color: white;
     align-items: center; /* 세로 중앙 정렬 */
     text-align: center;
 }
+
+/*전체 버튼 색 변경*/
+.button .c_button:first-child {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+/*테이블 변경*/
+
+table{
+    width: 70vw;
+    border-collapse: collapse;
+}
+
+th{
+    text-align: left;
+    font-size: 15px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid #8d8d8d;
+}
+
+td{
+    font-size: 14px;
+    padding-top: 11.3px;
+    padding-bottom: 11.3px;
+    border-bottom: 0.5px solid #c5c5c5;
+}
+
+
+
+
