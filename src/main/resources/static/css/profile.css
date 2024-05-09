@@ -248,7 +248,7 @@ body {
     width: 170px;
     height: 210px;
     background-color: #999999;
-    background-image: url('사진의_경로.jpg'); /* 여기에 실제 사진의 경로를 입력하세요 */
+    /*/background-image: url('사진의_경로.jpg');* /* 여기에 실제 사진의 경로를 입력하세요 */
     background-size: cover; /* 사진이 요소에 꽉 차도록 설정 */
     box-shadow: 10px 10px 0px 0px rgb(114, 114, 114);
 

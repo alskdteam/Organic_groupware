@@ -41,4 +41,5 @@
         WHERE
         USER_ID = #{ username }
     </select>
+
 </mapper>
