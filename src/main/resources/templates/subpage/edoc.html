@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/edoc.css">
+    <script src="/js/pageButton.js"></script>
 
     <style>
-
         @media screen and (max-width: 375px) {
             .container {
                 flex-direction: column;
@@ -44,24 +43,41 @@
             <div class="layer">
                 <h1>전자결재 리스트</h1>
                 <div class="button">
-                    <div class="c_button">전체</div>
-                    <div class="c_button">진행중</div>
-                    <div class="c_button">반려</div>
-                    <div class="c_button">진행중</div>
-                    <div class="c_button">내결재함</div>
+                    <button class="c_button" onclick="location.href='/subpage/edoc'">전체</button>
+                    <button class="c_button">진행중</button>
+                    <button class="c_button">반려</button>
+                    <button class="c_button">진행중</button>
+                    <button class="c_button">내결재함</button>
                 </div>
 
                 <div class="chart">
-
+                    <table>
+                        <tr>
+                            <th>번호</th>
+                            <th>기안일</th>
+                            <th>제목</th>
+                            <th>기안자</th>
+                            <th>세부사항</th>
+                            <th>결재확인</th>
+                        </tr>
+                        <tbody id="tableBody">
+                        <tr th:each="list, iterStat : ${employeeAndEdocList}" id="row_${iterStat.index}">
+                            <td th:text="${list.edoc_id}"></td>
+                            <td th:text="${list.Drafting_date}"></td>
+                            <td th:text="${list.edoc_templete}"></td>
+                            <td th:text="${list.employeeDTO.user_name}"></td>
+                            <td th:text="${list.edoc_title}"></td>
+                            <td th:text="${list.edoc_status}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
+
                 <div class="page_number">
                     <div class="flex">
-                        <div class="s_button">&lt;</div>
-                        <div class="s_button">1</div>
-                        <div class="s_button">2</div>
-                        <div class="s_button">3</div>
-                        <div class="s_button">&gt;</div>
-
+                        <div class="s_button" onclick="changePage(1)">1</div>
+                        <div class="s_button" onclick="changePage(2)">2</div>
+                        <div class="s_button" onclick="changePage(3)">3</div>
                     </div>
                 </div>
                 <div class="search">
@@ -70,28 +86,9 @@
                         <div class="search_button" onclick="search()">검색</div>
                     </div>
                 </div>
-
             </div>
 
-            <script>
-                function search() {
-                    // 검색 버튼을 눌렀을 때 실행되는 검색 기능을 구현합니다.
-                    alert("검색 기능이 실행됩니다.");
-                    // 이 부분에 실제 검색 기능을 구현하면 됩니다.
-                }
-            </script>
-
-
-
-
-
-
-
-
-
-
         </div>
-
     </div>
 </div>
 </body>
