@@ -51,6 +51,16 @@
 
                     <div class="chart">
                         <!-- 여기만 건들기-->
+                        <table>
+                            <tr>
+                                <th>차종</th>
+                                <th>대여여부</th>
+                            </tr>
+                            <tr th:each="car : ${carList}">
+                                <td th:text="${car.Vehicle_name}"></td>
+                                <td th:text="${car.car_rentalStatus}"></td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="page_number">
                         <div class="flex">
