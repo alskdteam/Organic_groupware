@@ -45,22 +45,123 @@
                 <div class="layer">
                     <h1>차량예약</h1>
                     <div class="button">
-                        <div class="c_button">차량예약</div>
-
+                        <div class="c_button" id="carbtn">차량예약</div>
                     </div>
 
                     <div class="chart">
                         <!-- 여기만 건들기-->
-                        <table>
-                            <tr>
-                                <th>차종</th>
-                                <th>대여여부</th>
-                            </tr>
-                            <tr th:each="car : ${carList}">
-                                <td th:text="${car.Vehicle_name}"></td>
-                                <td th:text="${car.car_rentalStatus}"></td>
-                            </tr>
-                        </table>
+                        <div class="carrr">
+
+                            <table>
+                                <tr>
+                                    <th>차종</th>
+                                    <th>대여여부</th>
+                                </tr>
+                                <tr th:each="car : ${carList}">
+                                    <td th:text="${car.Vehicle_name}"></td>
+                                    <td th:text="${car.car_rentalStatus}"></td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+
+                       <form action="/subpage/car" method="post">
+                            <!-- 모달 내용 -->
+                            <div id="myModal" class="modal">
+
+                                <!-- 모달 내용 -->
+                                <div class="modal-content">
+                                    <h1 style="text-align: center">차량 예약</h1>
+                                    <br>
+                                    <p>항목 선택</p>
+                                    <p>
+                                        <select style="height: 30px; width: 400px;">
+                                            <option value="option1">ABC123</option>
+                                            <option value="option2">DEF456</option>
+                                            <option value="option3">GHI789</option>
+                                            <option value="option4">JKL012</option>
+                                            <option value="option5">MNO345</option>
+                                        </select>
+                                    </p>
+                                    <p>대여일</p>
+                                    <p> <input type="datetime-local" style="height: 30px; width: 400px; "></p>
+                                    <p>반납 예정일</p>
+                                    <p><input type="datetime-local" style="height: 30px; width: 400px;"></p>
+                                    <p>대여자</p>
+                                    <p><input type="text" style="height: 30px; width: 400px;"></p>
+                                    <p>대여 용도</p>
+                                    <p><input type="text" style="height: 30px; width: 400px;"></p>
+                                    <p>행선지</p>
+                                    <p><input type="text" style="height: 30px; width: 400px;"></p>
+                                    <div class="buttons">
+                                        <button id="addBtn" style="background-color: #b8e7b8">추가</button>
+                                        <button id="cancelBtn">취소</button>
+                                    </div>
+                                    </p>
+                                </div>
+
+                            </div>
+                     </form>
+
+
+
+                        <script>
+                            // 모달 요소 가져오기
+                            var modal = document.getElementById("myModal");
+
+                            // 모달 열기 버튼 가져오기
+                            var btn = document.getElementById("carbtn");
+
+                            // 모달 닫기 버튼 가져오기
+                            var span = document.getElementsByClassName("buttons")[0];
+
+                            // 모달 열기 버튼을 클릭하면 모달 보이기
+                            btn.onclick = function() {
+                                modal.style.display = "block";
+                            }
+
+                            // 모달 닫기 버튼을 클릭하면 모달 닫기
+                            span.onclick = function() {
+                                modal.style.display = "none";
+                            }
+
+                            document.getElementById('cancelBtn').addEventListener('click', function(event) {
+                                // 기본 동작(폼 제출) 막기
+                                event.preventDefault();
+
+                                // 모달 닫기
+                                var modal = document.getElementById("myModal");
+                                modal.style.display = "none";
+                            });
+
+                            document.getElementById('addBtn').addEventListener('click', function() {
+                                // '추가' 버튼의 기능을 여기에 추가합니다.
+                                alert("차량예약이 완료 되었습니다.");
+                            });
+
+
+                            // 모달 밖의 영역을 클릭하면 모달 닫기
+                            window.onclick = function(event) {
+                                if (event.target == modal) {
+                                    modal.style.display = "none";
+                                }
+                            }
+
+                            fetch("/subpage/registcarMan")
+                                .then(res => res.json())
+                                .then(data => {
+                                    const car_managementId = document.getElementById('car_managementId');
+
+                                    for(let index in data) {
+                                        const $option = document.createElement("option");
+                                        $option.value = data[index].code;
+                                        $option.textContent = data[index].name;
+                                        car_managementId.appendChild($option);
+                                    }
+
+                                })
+                        </script>
                     </div>
                     <div class="page_number">
                         <div class="flex">
@@ -99,3 +200,4 @@
 </div>
 </body>
 </html>
+
