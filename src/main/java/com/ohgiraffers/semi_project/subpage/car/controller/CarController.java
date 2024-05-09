@@ -5,13 +5,17 @@ import com.ohgiraffers.semi_project.subpage.car.model.service.CarService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/subpage")
@@ -41,6 +45,18 @@ public class CarController {
 
         return "/subpage/car";
     }
+
+//    @GetMapping(value = "registcarMan")
+
+//    @PostMapping("/car")
+//    public String addCar(CarDTO newCar, RedirectAttributes rttr, Locale locale){
+//
+//        carService.registCarMang(newCar);
+//
+//        /* locale : 지역(나라) 에 대한 정보 다국어 처리와 관련 된 정보 */
+//        logger.info("Locale : {}", locale);
+//        rttr.addFlashAttribute("successMessage", messageSource.getMessage("registCarMang", new Object[]{newCar.getUSER_NO(), newCar.getVehicle_name()}, locale));
+//    }
 
 
     

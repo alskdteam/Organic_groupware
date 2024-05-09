@@ -20,4 +20,7 @@ public class CarService {
         return userMapper.findAllCars();
 
     }
+
+    public void registCarMang(CarDTO newCar) {
+    }
 }
