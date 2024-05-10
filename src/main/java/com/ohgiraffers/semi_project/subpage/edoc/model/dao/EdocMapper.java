@@ -1,6 +1,6 @@
 package com.ohgiraffers.semi_project.subpage.edoc.model.dao;
 
-import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocAndEmployeeDTO;
+import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFormDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -9,5 +9,8 @@ import java.util.List;
 public interface EdocMapper {
 
 
-    List<EdocAndEmployeeDTO> findAllEmployeeAndEdocList();
+
+    List<EdocFormDTO> selectEdocForm();
 }
+
+
