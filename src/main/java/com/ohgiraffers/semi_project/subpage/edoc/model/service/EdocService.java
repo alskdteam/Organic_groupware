@@ -17,6 +17,7 @@ public class EdocService {
         this.edocMapper = edocMapper;
     }
 
+
     public List<EdocAndEmployeeDTO> findAllEmployeeAndEdoc() {
 
         return edocMapper.findAllEmployeeAndEdocList();
