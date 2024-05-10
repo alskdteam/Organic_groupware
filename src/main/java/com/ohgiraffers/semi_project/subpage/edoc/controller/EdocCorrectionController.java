@@ -1,9 +1,9 @@
 package com.ohgiraffers.semi_project.subpage.edoc.controller;
 
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFormDTO;
-import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFromEdocCtDTO;
 import com.ohgiraffers.semi_project.subpage.edoc.model.service.EdocService;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -13,28 +13,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-
-//문서처리 리스트 조회 컨트롤러
 @Controller
 @RequestMapping("/subpage")
-public class EdocController {
+public class EdocCorrectionController {
+
 
     private final EdocService edocService;
 
 
     @Autowired
-    public EdocController(EdocService edocService, MessageSource messageSource) {
+    public EdocCorrectionController(EdocService edocService, MessageSource messageSource) {
         this.edocService = edocService;
     }
 
-    @GetMapping("/edoc")
+
+//    문서처리 양식
+
+    @GetMapping("/edoc_correction")
     public String edoc(Model model) {
-//        List<EdocDTO> edocList = edocService.selectEdoc();
-        List<EdocFromEdocCtDTO> edocList = edocService.selectEdoc();
+        List<EdocFormDTO> edocFormList = edocService.selectEdocForm();
 
-        model.addAttribute("edocList", edocList);
+        model.addAttribute("edocFormList", edocFormList);
 
-        return "subpage/edoc";
+        return "subpage/edoc_correction";
     }
 
 

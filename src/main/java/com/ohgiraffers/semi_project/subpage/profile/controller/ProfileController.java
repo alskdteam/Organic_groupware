@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProfileController {
 
     @GetMapping("/profile")
-    public void car() {}
+    public void profile() {}
 
 
 }

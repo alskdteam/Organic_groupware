@@ -5,17 +5,17 @@ public class NoticeDTO {
     private int notice_id;
     private String notice_title;
     private String notice_content;
-    private String notice_creationDate;
+    private String notice_creation_date;
     private String user_no;
 
     public NoticeDTO() {
     }
 
-    public NoticeDTO(int notice_id, String notice_title, String notice_content, String notice_creationDate, String user_no) {
+    public NoticeDTO(int notice_id, String notice_title, String notice_content, String notice_creation_date, String user_no) {
         this.notice_id = notice_id;
         this.notice_title = notice_title;
         this.notice_content = notice_content;
-        this.notice_creationDate = notice_creationDate;
+        this.notice_creation_date = notice_creation_date;
         this.user_no = user_no;
     }
 
@@ -44,11 +44,11 @@ public class NoticeDTO {
     }
 
     public String getNotice_creationDate() {
-        return notice_creationDate;
+        return notice_creation_date;
     }
 
-    public void setNotice_creationDate(String notice_creationDate) {
-        this.notice_creationDate = notice_creationDate;
+    public void setNotice_creationDate(String notice_creation_date) {
+        this.notice_creation_date = notice_creation_date;
     }
 
     public String getUser_no() {
@@ -65,7 +65,7 @@ public class NoticeDTO {
                 "notice_id=" + notice_id +
                 ", notice_title='" + notice_title + '\'' +
                 ", notice_content='" + notice_content + '\'' +
-                ", notice_creationDate='" + notice_creationDate + '\'' +
+                ", notice_creation_date='" + notice_creation_date + '\'' +
                 ", user_no='" + user_no + '\'' +
                 '}';
     }

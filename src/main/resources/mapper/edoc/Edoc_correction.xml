@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semi_project.subpage.edoc.model.dao.EdocMapper">
+
+    <resultMap id="edocAndEdocFormDTO" type="com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFormDTO">
+        <id property="edoc_form_no" column="edoc_form_no"/>
+        <result property="form_name" column="form_name"/>
+        <result property="form_explanation" column="form_explanation"/>
+    </resultMap>
+
+
+    <select id="selectEdocForm" resultMap="edocAndEdocFormDTO">
+
+        select
+            *
+        from
+            edoc_form
+        
+
+    </select>
+</mapper>

@@ -27,7 +27,7 @@ body {
     border: 1.3px solid #e1e1e1;
     margin-left: 16.5vw;
     width: calc(100% - 16.5vw);
-    height: 900px;
+    height: 1300px;
 }
 
 /* 여기서 부터 시작 위에는 건들지 마세요*/
@@ -39,7 +39,7 @@ body {
 
 .layer{
     width: 70vw;
-    height: 800px;
+    height: 1200px;
 }
 
 .layer h1 {
@@ -90,6 +90,7 @@ body {
 
 
 .search {
+    margin-top: 20px;
     display: flex;
     justify-content: center; /* 수직 중앙 정렬 */
     align-items: center; /* 수평 중앙 정렬 */
@@ -160,6 +161,7 @@ table{
 .chart table th {
     border-bottom: 1px solid #8d8d8d; /* th에만 하단 테두리를 적용합니다. */
 }
+
 
 
 

@@ -5,11 +5,11 @@
 <mapper namespace="com.ohgiraffers.semi_project.subpage.main.model.dao.MainMapper">
 
     <resultMap id="noticeResultMap" type="com.ohgiraffers.semi_project.subpage.main.model.dto.NoticeDTO">
-        <id property="notice_id" column="Notice_id"/>
-        <result property="notice_title" column="Notice_title"/>
-        <result property="notice_content" column="Notice_content"/>
-        <result property="notice_creationDate" column="Notice_creationDate"/>
-        <result property="user_no" column="USER_NO"/>
+        <id property="notice_id" column="notice_id"/>
+        <result property="notice_title" column="notice_title"/>
+        <result property="notice_content" column="notice_content"/>
+        <result property="notice_creationDate" column="notice_creation_date"/>
+        <result property="user_no" column="user_no"/>
     </resultMap>
 
     <select id="selectNoticeList" resultMap="noticeResultMap">
@@ -17,7 +17,7 @@
         select
             Notice_id,
             Notice_content,
-            Notice_creationDate
+            Notice_creation_date
         from
             Notice;
 

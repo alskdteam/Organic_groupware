@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semi_project.subpage.edoc.model.dao.EdocMapper">
+
+    <insert id="registNewEdoc" parameterType="com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFormCtDTO">
+        INSERT INTO edoc_form_ct (
+        start_date,
+        end_date,
+        employee_di,
+        employee_de,
+        reason_return,
+        drafting_date,
+        title,
+        content,
+        purpose,
+        edoc_status,
+        employee_name,
+        user_id,
+        edoc_form_no
+        ) VALUES (
+        #{start_date},
+        #{end_date},
+        #{employee_di},
+        #{employee_de},
+        #{reason_return},
+        #{drafting_date},
+        #{title},
+        #{content},
+        #{purpose},
+        #{edoc_status},
+        #{employee_name},
+        #{user_id},
+        #{edoc_form_no}
+        )
+    </insert>
+
+</mapper>
