@@ -12,8 +12,6 @@ public class AuthController {
     @GetMapping("/login/login")
     public void main() {}
 
-    @GetMapping("/login/main")
-    public void login() {}
 
     @GetMapping("/fail")
     public ModelAndView loginFail(ModelAndView mv, @RequestParam String message) {

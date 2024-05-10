@@ -1,0 +1,69 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="/css/item.css">
+
+    <style>
+
+        @media screen and (max-width: 375px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .content {
+                display: none;
+            }
+            #sidebar {
+                width: 100%;
+                /* 사이드바 틀 높이 */
+                height: 838px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 사이드바 -->
+    <div th:replace="common/sidebar.html" id="sidebar"></div>
+    <!-- 메인 컨텐츠 -->
+    <div class="content">
+        <!-- 헤더 추가 -->
+        <div th:replace="common/header.html" id="header"></div>
+
+        <div class="area">
+
+            <!--            여기서부터 시작 위에는 건들지 마세요-->
+            <div class="layer">
+                <h1>문서 양식 수정</h1>
+
+                <div class="chart">
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
