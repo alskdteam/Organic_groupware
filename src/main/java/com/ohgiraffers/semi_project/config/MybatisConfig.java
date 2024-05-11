@@ -13,13 +13,13 @@ import java.util.Locale;
 public class MybatisConfig {
 
 
-    @Bean
-    public ReloadableResourceBundleMessageSource messageSource() {
-        ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
-        source.setBasename("classpath:/messages/message");
-        source.setDefaultEncoding("UTF-8");
-        /* 제공하지 않는 언어로 요청 시 MessageSource에서 사용할 default 언어 한국 */
-        Locale.setDefault(Locale.KOREA);
-        return source;
-    }
+//    @Bean
+//    public ReloadableResourceBundleMessageSource messageSource() {
+//        ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
+//        source.setBasename("classpath:/messages/message");
+//        source.setDefaultEncoding("UTF-8");
+//        /* 제공하지 않는 언어로 요청 시 MessageSource에서 사용할 default 언어 한국 */
+//        Locale.setDefault(Locale.KOREA);
+//        return source;
+//    }
 }
