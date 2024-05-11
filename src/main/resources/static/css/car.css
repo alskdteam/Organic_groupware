@@ -65,12 +65,18 @@ body {
     text-align: center; /* 텍스트를 가운데 정렬합니다. */
     line-height: 32px; /* 버튼의 높이와 동일하게 텍스트의 높이를 맞춥니다. */
 
+    cursor: pointer;
 }
 
-.chart{
+.c_button:hover {
+    background-color: #4CAF50; /* 변경하고자 하는 색상으로 설정 */
+    color: white;
+
+}
+
+.carrr{
     width: 70vw;
     height: 440px;
-    background-color: #f6f6f6;
 }
 
 .page_number{
@@ -120,10 +126,15 @@ body {
     width: 66px;
     height: 26px;
     cursor: pointer; /* 마우스 커서를 포인터로 설정하여 클릭 가능한 요소임을 표시합니다. */
-    background-color: #010101;
+    background-color: #4CAF50;
     color: white;
     align-items: center; /* 세로 중앙 정렬 */
     text-align: center;
+}
+.s_button:hover {
+    background-color: #4CAF50; /* 변경하고자 하는 색상으로 설정 */
+    color: white;
+
 }
 /* 차량 예약 alert*/
 
@@ -142,12 +153,12 @@ body {
 
 /* 모달 내용 스타일 */
 .modal-content {
-    background-color: rgb(174,246,175);
+    background-color: rgb(200, 245, 200);
     margin: 15% auto; /* 중앙에 위치 */
     padding: 20px;
     border: 1px solid #888;
     width: 30%; /* 너비 조정 */
-    height: 80%;
+    height: 100%;
     border-radius: 15px;
 }
 
@@ -177,40 +188,22 @@ button {
     cursor: pointer;
 }
 
-/*공지사항*/
-.semi-title {
-    position: relative;
-    left: 80px;
-    top: 40px;
+/* 표 css*/
+table{
+    width: 70vw;
+    border-collapse: collapse;
 }
 
-a {
-    text-decoration: none; /* 텍스트의 밑줄 제거 */
 
+.carrr table th,
+.carrr table td {
+    padding: 8px; /* 셀의 여백 설정 (원하는 값으로 조정 가능) */
+    border-bottom: 0.5px solid #c5c5c5;
+    text-align: left; /* 셀 안의 텍스트 가운데 정렬 */
+    font-size: 13px;
+    height: 40px;
 }
 
-.carrr table {
-    width: 90%;
-    margin-top: 70px;
-    margin-left: 40px;
-
-}
-
-.carrr th, .carrr td {
-    border: 1px solid #dddddd; /* 테이블 셀 경계 선 설정 */
-    padding: 8px;
-    text-align: left;
-    border-left: none;
-    border-right: none;
-
-}
-
-.carrr th {
-    background-color: #4CAF50; /* 테이블 헤더 배경색 설정 */
-    color: white;
-}
-
-.carrr tbody tr:last-child td {
-    border-bottom: 2px solid white; /* 마지막 행에 밑줄 추가 */
-
+.carrr table th {
+    border-bottom: 1px solid #8d8d8d; /* th에만 하단 테두리를 적용합니다. */
 }

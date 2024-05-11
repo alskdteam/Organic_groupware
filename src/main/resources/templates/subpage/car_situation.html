@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/car_situation.css">
+    <script src="/js/pageButton.js"></script>
 
     <style>
 
@@ -49,14 +50,36 @@
                 </div>
 
                 <div class="chart">
+                    <div class="cars">
+                        <table>
+                         <tr>
+                            <th>번호</th>
+                            <th>차종</th>
+                            <th>예약날짜</th>
+                            <th>반납예정일</th>
+                            <th>취소/반납</th>
+                        </tr>
+                        <tbody id="tableBody" >
+                         <tr th:each="cars: ${carsList}" id="row_${iterStat.index}">
+                            <td th:text="${cars.car_managementId}"></td>
+                            <td th:text="${cars.Vehicle_name}"></td>
+                             <td th:text="${#dates.format(cars.Vehicle_reservationDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                             <td th:text="${#dates.format(cars.Vehicle_returnDueDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                             <td th:text="${cars.Vehicle_returnStatus}"></td>
+                        </tr>
+                        </tbody>
+                         </table>
+                     </div>
+
+
 
                 </div>
                 <div class="page_number">
                     <div class="flex">
                         <div class="s_button">&lt;</div>
-                        <div class="s_button">1</div>
-                        <div class="s_button">2</div>
-                        <div class="s_button">3</div>
+                        <div class="s_button" onclick="changePage(1)">1</div>
+                        <div class="s_button" onclick="changePage(2)">2</div>
+                        <div class="s_button" onclick="changePage(3)">3</div>
                         <div class="s_button">&gt;</div>
 
                     </div>

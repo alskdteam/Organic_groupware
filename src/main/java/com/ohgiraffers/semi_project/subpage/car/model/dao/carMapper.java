@@ -8,5 +8,10 @@ import java.util.List;
 @Mapper
 public interface carMapper {
 
+//      void registCar(CarDTO newCar);
+
+
     List<CarDTO> findAllCars();
+
+    List<CarDTO> findAllCarss();
 }

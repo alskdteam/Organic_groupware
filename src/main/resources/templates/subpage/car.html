@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/car.css">
-
+    <script src="/js/pageButton.js"></script>
     <style>
 
         @media screen and (max-width: 375px) {
@@ -57,16 +57,20 @@
                                     <th>차종</th>
                                     <th>대여여부</th>
                                 </tr>
-                                <tr th:each="car : ${carList}">
-                                    <td th:text="${car.Vehicle_name}"></td>
-                                    <td th:text="${car.car_rentalStatus}"></td>
-                                </tr>
+                                <tbody id="tableBody" >
+                                    <tr th:each="car: ${carList}" id="row_${iterStat.index}">
+                                        <td th:text="${car.Vehicle_name}"></td>
+                                        <td th:text="${car.car_rentalStatus}"></td>
+                                    </tr>
+                                </tbody>
                             </table>
 
                         </div>
 
 
-                       <form action="/subpage/car" method="post">
+
+
+                       <form id="reser" action="/subpage/car" method="post">
                             <!-- 모달 내용 -->
                             <div id="myModal" class="modal">
 
@@ -74,39 +78,88 @@
                                 <div class="modal-content">
                                     <h1 style="text-align: center">차량 예약</h1>
                                     <br>
-                                    <p>항목 선택</p>
-                                    <p>
-                                        <select style="height: 30px; width: 400px;">
-                                            <option value="option1">ABC123</option>
-                                            <option value="option2">DEF456</option>
-                                            <option value="option3">GHI789</option>
-                                            <option value="option4">JKL012</option>
-                                            <option value="option5">MNO345</option>
-                                        </select>
-                                    </p>
-                                    <p>대여일</p>
-                                    <p> <input type="datetime-local" style="height: 30px; width: 400px; "></p>
-                                    <p>반납 예정일</p>
-                                    <p><input type="datetime-local" style="height: 30px; width: 400px;"></p>
-                                    <p>대여자</p>
-                                    <p><input type="text" style="height: 30px; width: 400px;"></p>
-                                    <p>대여 용도</p>
-                                    <p><input type="text" style="height: 30px; width: 400px;"></p>
-                                    <p>행선지</p>
-                                    <p><input type="text" style="height: 30px; width: 400px;"></p>
-                                    <div class="buttons">
-                                        <button id="addBtn" style="background-color: #b8e7b8">추가</button>
-                                        <button id="cancelBtn">취소</button>
-                                    </div>
-                                    </p>
+                                    <form id="reservationForm">
+                                        <p>차종 선택</p>
+                                        <p>
+                                            <select id="Vehicle_name" style="height: 30px; width: 400px;">
+                                                <option value="option1">기아 카니발</option>
+                                                <option value="option2">기아 K5</option>
+                                                <option value="option3">현대 그랜저</option>
+                                                <option value="option4">쉐보레 말리부</option>
+                                                <option value="option5">벤츠 E클래스</option>
+                                            </select>
+                                        </p>
+                                        <p>대여일</p>
+                                        <p> <input type="datetime-local" id="Vehicle_reservationDate" style="height: 30px; width: 400px; "></p>
+                                        <p>반납 예정일</p>
+                                        <p><input type="datetime-local" id="Vehicle_returnDueDate" style="height: 30px; width: 400px;"></p>
+                                        <p>대여자</p>
+                                        <p><input type="text" id="USER_NO" style="height: 30px; width: 400px;"></p>
+                                        <p>대여 용도</p>
+                                        <p><input type="text" id="Vehicle_purpose" style="height: 30px; width: 400px;"></p>
+                                        <p>행선지</p>
+                                        <p><input type="text" id="Vehicle_address" style="height: 30px; width: 400px;"></p>
+                                        <div class="buttons">
+                                            <button id="addBtn" style="background-color: #4CAF50" type="submit">추가</button>
+                                            <button id="cancelBtn">취소</button>
+                                        </div>
+                                        </p>
+                                    </form>
+
                                 </div>
 
                             </div>
-                     </form>
+<!--                     </form>-->
 
 
 
                         <script>
+
+                            document.getElementById('addBtn').addEventListener('click', function() {
+                                // 각 입력 요소의 값을 가져와서 변수에 저장
+                                var Vehicle_name = document.getElementById('Vehicle_nameInput').value;
+                                var Vehicle_reservationDate = document.getElementById('Vehicle_reservationDateIdInput').value;
+                                var Vehicle_returnDueDate = document.getElementById('Vehicle_returnDueDateInput').value;
+                                var USER_NO = document.getElementById('USER_NOInput').value;
+                                var Vehicle_purpose = document.getElementById('Vehicle_purposeInput').value;
+                                var Vehicle_address = document.getElementById('Vehicle_addressInput').value;
+                                // 나머지 필드들도 위와 같이 가져옴
+
+                                // DTO 객체 생성 및 값 할당
+                                var carDTO = {
+                                    Vehicle_name: Vehicle_name,
+                                    Vehicle_reservationDate: Vehicle_reservationDate,
+                                    Vehicle_returnDueDate: Vehicle_returnDueDate,
+                                    USER_NO: USER_NO,
+                                    Vehicle_purpose: Vehicle_purpose,
+                                    Vehicle_address: Vehicle_address,
+                                    // 나머지 필드들도 마찬가지로 할당
+                                };
+
+                                // AJAX 요청을 통해 서버로 DTO 객체 전송
+                                fetch('/subpage/car', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(carDTO)
+                                })
+                                    .then(response => {
+                                        if (response.ok) {
+                                            alert('차량 예약이 완료되었습니다.');
+                                            // 성공적으로 예약된 경우 추가적인 동작 수행
+                                        } else {
+                                            alert('차량 예약에 실패했습니다.');
+                                            // 실패한 경우 처리
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                    });
+                            });
+
+
+
                             // 모달 요소 가져오기
                             var modal = document.getElementById("myModal");
 
@@ -135,10 +188,36 @@
                                 modal.style.display = "none";
                             });
 
-                            document.getElementById('addBtn').addEventListener('click', function() {
-                                // '추가' 버튼의 기능을 여기에 추가합니다.
-                                alert("차량예약이 완료 되었습니다.");
-                            });
+
+
+
+
+                            
+
+                            // document.getElementById('addBtn').addEventListener('click', function() {
+                            //     // '추가' 버튼의 기능을 여기에 추가합니다.
+                            //     alert("차량예약이 완료 되었습니다.");
+                            // });
+                            //
+                            // fetch("/subpage/car")
+                            //     .then(res => res.json())
+                            //     .then(data => {
+                            //         const car_managementId = document.getElementById('car_managementId');
+                            //
+                            //         for(let index in data) {
+                            //             const $option = document.createElement("option");
+                            //             $option.value = data[index].code;
+                            //             $option.textContent = data[index].name;
+                            //             car_managementId.appendChild($option);
+                            //         }
+                            //
+                            //     })
+
+                            
+
+
+
+
 
 
                             // 모달 밖의 영역을 클릭하면 모달 닫기
@@ -148,29 +227,14 @@
                                 }
                             }
 
-                            fetch("/subpage/registcarMan")
-                                .then(res => res.json())
-                                .then(data => {
-                                    const car_managementId = document.getElementById('car_managementId');
 
-                                    for(let index in data) {
-                                        const $option = document.createElement("option");
-                                        $option.value = data[index].code;
-                                        $option.textContent = data[index].name;
-                                        car_managementId.appendChild($option);
-                                    }
-
-                                })
                         </script>
                     </div>
                     <div class="page_number">
                         <div class="flex">
-                            <div class="s_button">&lt;</div>
-                            <div class="s_button">1</div>
-                            <div class="s_button">2</div>
-                            <div class="s_button">3</div>
-                            <div class="s_button">&gt;</div>
-
+                            <div class="s_button" onclick="changePage(1)">1</div>
+                            <div class="s_button" onclick="changePage(2)">2</div>
+                            <div class="s_button" onclick="changePage(3)">3</div>
                         </div>
                     </div>
                     <div class="search">
@@ -182,18 +246,6 @@
 
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
 
     </div>
