@@ -78,7 +78,7 @@
                                 <div class="modal-content">
                                     <h1 style="text-align: center">차량 예약</h1>
                                     <br>
-                                    <form id="reservationForm">
+<!--                                    <form id="reservationForm">-->
                                         <p>차종 선택</p>
                                         <p>
                                             <select id="Vehicle_name" style="height: 30px; width: 400px;">
@@ -94,7 +94,7 @@
                                         <p>반납 예정일</p>
                                         <p><input type="datetime-local" id="Vehicle_returnDueDate" style="height: 30px; width: 400px;"></p>
                                         <p>대여자</p>
-                                        <p><input type="text" id="USER_NO" style="height: 30px; width: 400px;"></p>
+                                        <p><input type="number" id="USER_NO" style="height: 30px; width: 400px;"></p>
                                         <p>대여 용도</p>
                                         <p><input type="text" id="Vehicle_purpose" style="height: 30px; width: 400px;"></p>
                                         <p>행선지</p>
@@ -104,61 +104,16 @@
                                             <button id="cancelBtn">취소</button>
                                         </div>
                                         </p>
-                                    </form>
+<!--                                    </form>-->
 
                                 </div>
 
                             </div>
-<!--                     </form>-->
+                     </form>
 
 
 
                         <script>
-
-                            document.getElementById('addBtn').addEventListener('click', function() {
-                                // 각 입력 요소의 값을 가져와서 변수에 저장
-                                var Vehicle_name = document.getElementById('Vehicle_nameInput').value;
-                                var Vehicle_reservationDate = document.getElementById('Vehicle_reservationDateIdInput').value;
-                                var Vehicle_returnDueDate = document.getElementById('Vehicle_returnDueDateInput').value;
-                                var USER_NO = document.getElementById('USER_NOInput').value;
-                                var Vehicle_purpose = document.getElementById('Vehicle_purposeInput').value;
-                                var Vehicle_address = document.getElementById('Vehicle_addressInput').value;
-                                // 나머지 필드들도 위와 같이 가져옴
-
-                                // DTO 객체 생성 및 값 할당
-                                var carDTO = {
-                                    Vehicle_name: Vehicle_name,
-                                    Vehicle_reservationDate: Vehicle_reservationDate,
-                                    Vehicle_returnDueDate: Vehicle_returnDueDate,
-                                    USER_NO: USER_NO,
-                                    Vehicle_purpose: Vehicle_purpose,
-                                    Vehicle_address: Vehicle_address,
-                                    // 나머지 필드들도 마찬가지로 할당
-                                };
-
-                                // AJAX 요청을 통해 서버로 DTO 객체 전송
-                                fetch('/subpage/car', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify(carDTO)
-                                })
-                                    .then(response => {
-                                        if (response.ok) {
-                                            alert('차량 예약이 완료되었습니다.');
-                                            // 성공적으로 예약된 경우 추가적인 동작 수행
-                                        } else {
-                                            alert('차량 예약에 실패했습니다.');
-                                            // 실패한 경우 처리
-                                        }
-                                    })
-                                    .catch(error => {
-                                        console.error('Error:', error);
-                                    });
-                            });
-
-
 
                             // 모달 요소 가져오기
                             var modal = document.getElementById("myModal");
@@ -189,32 +144,52 @@
                             });
 
 
+                            document.getElementById('addBtn').addEventListener('click', function() {
+                                // 각 입력 요소의 값을 가져와서 변수에 저장
+                                var Vehicle_name = document.getElementById('Vehicle_name').value;
+                                var Vehicle_reservationDate = document.getElementById('Vehicle_reservationDate').value;
+                                var Vehicle_returnDueDate = document.getElementById('Vehicle_returnDueDate').value;
+                                var USER_NO = parseInt(document.getElementById('USER_NO').value);
+                                var Vehicle_purpose = document.getElementById('Vehicle_purpose').value;
+                                var Vehicle_address = document.getElementById('Vehicle_address').value;
 
+                                console.log(USER_NO);
 
+                                // DTO 객체 생성
+                                var carDTO = {
+                                    Vehicle_name: Vehicle_name,
+                                    Vehicle_reservationDate: Vehicle_reservationDate,
+                                    Vehicle_returnDueDate: Vehicle_returnDueDate,
+                                    USER_NO: USER_NO,
+                                    Vehicle_purpose: Vehicle_purpose,
+                                    Vehicle_address: Vehicle_address
+                                };
 
-                            
-
-                            // document.getElementById('addBtn').addEventListener('click', function() {
-                            //     // '추가' 버튼의 기능을 여기에 추가합니다.
-                            //     alert("차량예약이 완료 되었습니다.");
-                            // });
-                            //
-                            // fetch("/subpage/car")
-                            //     .then(res => res.json())
-                            //     .then(data => {
-                            //         const car_managementId = document.getElementById('car_managementId');
-                            //
-                            //         for(let index in data) {
-                            //             const $option = document.createElement("option");
-                            //             $option.value = data[index].code;
-                            //             $option.textContent = data[index].name;
-                            //             car_managementId.appendChild($option);
-                            //         }
-                            //
-                            //     })
-
-                            
-
+                                // AJAX 요청 보내기
+                                fetch('/subpage/car', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(carDTO)
+                                })
+                                    .then(response => {
+                                        if (response.ok) {
+                                            alert('차량 예약이 완료되었습니다.');
+                                            // 성공적으로 예약된 경우 추가적인 동작 수행
+                                        } else {
+                                            alert('차량 예약에 실패했습니다.');
+                                            throw new Error("응답이 실패했습니다.")
+                                            // 실패한 경우 처리
+                                        }
+                                        // 모달 닫기
+                                        var modal = document.getElementById("myModal");
+                                        modal.style.display = "none";
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                    });
+                            });
 
 
 
@@ -252,4 +227,3 @@
 </div>
 </body>
 </html>
-
