@@ -27,7 +27,7 @@ body {
     border: 1.3px solid #e1e1e1;
     margin-left: 16.5vw;
     width: calc(100% - 16.5vw);
-    height: 900px;
+    height: 1500px;
 }
 
 /* 여기서 부터 시작 위에는 건들지 마세요*/
@@ -47,8 +47,87 @@ body {
     padding-bottom: 10px;
 }
 
-.chart{
+.chart1{
     width: 70vw;
-    height: 440px;
-    background-color: #f6f6f6;
+    height: 60px;
+    display: flex;
+
+    margin-top: 40px;
+}
+.chart2{
+    width: 70vw;
+    height: 1150px;
+
+    display: flex;
+}
+
+.wrap1{
+    width: 15vw;
+    height: 60px;
+    border: 1px solid rgb(206, 206, 206);
+
+}
+.wrap2{
+    width: 55vw;
+    height: 60px;
+    border: 1px solid rgb(206, 206, 206);
+
+}
+.wrap3{
+    width: 15vw;
+    height: 1100px;
+    border: 1px solid rgb(206, 206, 206);
+}
+.wrap4{
+    width: 55vw;
+    height: 1100px;
+    border: 1px solid rgb(206, 206, 206);
+    display: flex;
+    justify-content: center;
+
+}
+
+#text{
+    font-size: 16px;
+    margin: 20px;
+}
+
+.tableContent{
+    width: 52vw;
+    height: 1050px;
+    margin-top: 20px;
+
+}
+
+/* 사인관련 */
+
+.signature-container {
+    padding-top: 10px;
+    width: 52vw;
+    height: 150px;
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+
+.employee_sign, .admin_sign {
+    width: 130px;
+    height: 140px;
+}
+
+.employee_sign {
+    background-color: aqua;
+}
+
+.admin_sign {
+    background-color: rgb(79, 177, 177);
+}
+
+/* 전송버튼 */
+
+.submitBox{
+    width: 70vw;
+    height: 40px;
+    display: flex;
+    justify-content: end;
 }
