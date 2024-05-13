@@ -4,38 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.semi_project.subpage.car.model.dao.carMapper">
 
-
-    <!--    <insert id="car" parameterType="com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO">-->
-    <!--        INSERT INTO Car-->
-    <!--        (-->
-    <!--        USER_NO,-->
-    <!--        car_managementId,-->
-    <!--        car_number,-->
-    <!--        car_rentalStatus,-->
-    <!--        Vehicle_returnStatus,-->
-    <!--        Vehicle_purpose,-->
-    <!--        Vehicle_address,-->
-    <!--        Vehicle_reservationDate,-->
-    <!--        Vehicle_returnDueDate,-->
-    <!--        Vehicle_number,-->
-    <!--        Vehicle_name-->
-    <!--        )-->
-    <!--        VALUES-->
-    <!--        (-->
-    <!--        #{USER_NO},-->
-    <!--        #{car_managementId},-->
-    <!--        #{car_number},-->
-    <!--        #{car_rentalStatus},-->
-    <!--        #{Vehicle_returnStatus},-->
-    <!--        #{Vehicle_purpose},-->
-    <!--        #{Vehicle_address},-->
-    <!--        #{Vehicle_reservationDate},-->
-    <!--        #{Vehicle_returnDueDate},-->
-    <!--        #{Vehicle_number},-->
-    <!--        #{Vehicle_name},-->
-    <!--        )-->
-    <!--    </insert>-->
-
     <resultMap id="car" type="com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO">
         <id property="USER_NO" column="USER_NO"/>
         <result property="car_managementId" column="car_managementId"/>
@@ -58,6 +26,68 @@
         CAR b
         JOIN
         Vehicle a on (a.Vehicle_number = b.car_number)
+    </select>
+
+
+        <insert id="registCar" parameterType="com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO"
+        useGeneratedKeys="true" keyProperty="code">
+            INSERT INTO Car
+            (
+            USER_NO,
+            car_managementId,
+            car_number,
+            car_rentalStatus,
+            Vehicle_returnStatus,
+            Vehicle_purpose,
+            Vehicle_address,
+            Vehicle_reservationDate,
+            Vehicle_returnDueDate,
+            Vehicle_number,
+            Vehicle_name
+            )
+            VALUES
+            (
+            #{USER_NO},
+            #{car_managementId},
+            #{car_number},
+            #{car_rentalStatus},
+            #{Vehicle_returnStatus},
+            #{Vehicle_purpose},
+            #{Vehicle_address},
+            #{Vehicle_reservationDate},
+            #{Vehicle_returnDueDate},
+            #{Vehicle_number},
+            #{Vehicle_name}
+            )
+        </insert>
+
+    <resultMap id="cars" type="com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO">
+        <id property="USER_NO" column="USER_NO"/>
+        <result property="car_managementId" column="car_managementId"/>
+        <result property="car_number" column="car_number"/>
+        <result property="car_rentalStatus" column="car_rentalStatus"/>
+        <result property="Vehicle_returnStatus" column="Vehicle_returnStatus"/>
+        <result property="Vehicle_purpose" column="Vehicle_purpose"/>
+        <result property="Vehicle_address" column="Vehicle_address"/>
+        <result property="Vehicle_reservationDate" column="Vehicle_reservationDate"/>
+        <result property="Vehicle_returnDueDate" column="Vehicle_returnDueDate"/>
+        <result property="Vehicle_number" column="Vehicle_number"/>
+        <result property="Vehicle_name" column="Vehicle_name"/>
+    </resultMap>
+
+
+
+    <select id="findAllCarss" resultMap="cars">
+        SELECT
+        a.car_managementId,
+        b.Vehicle_name,
+        a.Vehicle_reservationDate,
+        a.Vehicle_returnDueDate,
+        a.Vehicle_returnStatus
+        FROM
+        CAR a
+        JOIN
+        Vehicle b on (b.Vehicle_number = a.car_number)
     </select>
 
 </mapper>

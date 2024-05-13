@@ -5,5 +5,6 @@ spring:
     username: organic
     password: organic
 
+
 mybatis:
   mapper-locations: mapper/**/*.xml

@@ -1,8 +1,12 @@
 package com.ohgiraffers.semi_project.subpage.car.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class CarDTO {
+
 
     // 차량예약 차량 조회 에 관한 DTO 생성 (car)
     private int USER_NO;                    // 사원번호
@@ -12,7 +16,9 @@ public class CarDTO {
     private String Vehicle_returnStatus;    // 차량반납
     private String Vehicle_purpose;         // 차량용도
     private String Vehicle_address;         // 주소
-    private Date Vehicle_reservationDate;   //차량예약날짜
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date Vehicle_reservationDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")//차량예약날짜
     private Date Vehicle_returnDueDate;     //차량반납예정일
     //차량 조회 에 관한 DTO 생성 (Vehicle)
     private String Vehicle_number;          // 차량번호
