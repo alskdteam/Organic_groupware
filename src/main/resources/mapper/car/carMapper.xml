@@ -7,7 +7,7 @@
     <resultMap id="car" type="com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO">
         <id property="USER_NO" column="USER_NO"/>
         <result property="car_managementId" column="car_managementId"/>
-        <result property="car_number" column="car_number"/>
+<!--        <result property="car_number" column="car_number"/>-->
         <result property="car_rentalStatus" column="car_rentalStatus"/>
         <result property="Vehicle_returnStatus" column="Vehicle_returnStatus"/>
         <result property="Vehicle_purpose" column="Vehicle_purpose"/>
@@ -25,7 +25,7 @@
         FROM
         CAR b
         JOIN
-        Vehicle a on (a.Vehicle_number = b.car_number)
+        Vehicle a on (a.Vehicle_name = b.Vehicle_name)
     </select>
 
 
@@ -35,28 +35,24 @@
             (
             USER_NO,
             car_managementId,
-            car_number,
             car_rentalStatus,
             Vehicle_returnStatus,
             Vehicle_purpose,
             Vehicle_address,
             Vehicle_reservationDate,
             Vehicle_returnDueDate,
-            Vehicle_number,
             Vehicle_name
             )
             VALUES
             (
             #{USER_NO},
             #{car_managementId},
-            #{car_number},
             #{car_rentalStatus},
             #{Vehicle_returnStatus},
             #{Vehicle_purpose},
             #{Vehicle_address},
             #{Vehicle_reservationDate},
             #{Vehicle_returnDueDate},
-            #{Vehicle_number},
             #{Vehicle_name}
             )
         </insert>
@@ -64,7 +60,7 @@
     <resultMap id="cars" type="com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO">
         <id property="USER_NO" column="USER_NO"/>
         <result property="car_managementId" column="car_managementId"/>
-        <result property="car_number" column="car_number"/>
+<!--        <result property="car_number" column="car_number"/>-->
         <result property="car_rentalStatus" column="car_rentalStatus"/>
         <result property="Vehicle_returnStatus" column="Vehicle_returnStatus"/>
         <result property="Vehicle_purpose" column="Vehicle_purpose"/>
@@ -87,7 +83,7 @@
         FROM
         CAR a
         JOIN
-        Vehicle b on (b.Vehicle_number = a.car_number)
+        Vehicle b on (b.Vehicle_name = a.Vehicle_name)
     </select>
 
 </mapper>

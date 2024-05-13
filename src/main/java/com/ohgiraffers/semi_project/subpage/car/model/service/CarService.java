@@ -24,15 +24,15 @@ public class CarService {
 
     @Transactional
     public void registCarMang(CarDTO newCar) {
-
-
-
+        userMapper.registCar(newCar); // 데이터베이스에 새 차량 정보 추가
     }
+
 
     public List<CarDTO> findAllCarss() {
         return userMapper.findAllCarss();
     }
 
     public void addCar(CarDTO newCar) {
+        userMapper.registCar(newCar);   // 데이터베이스에 새 차량 정보 추가
     }
 }

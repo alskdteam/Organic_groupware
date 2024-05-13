@@ -22,11 +22,11 @@
     </insert>
 
     <resultMap id="login" type="com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO">
-        <id property="userCode" column="USER_NO"/>
-        <result property="userId" column="USER_ID"/>
-        <result property="userName" column="USER_NAME"/>
-        <result property="password" column="PASSWORD"/>
-        <result property="userRole" column="USER_ROLE"/>
+        <id property="userCode" column="user_no"/>
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="password" column="password"/>
+        <result property="userRole" column="user_role"/>
     </resultMap>
 
     <select id="findByUsername" resultMap="login">
