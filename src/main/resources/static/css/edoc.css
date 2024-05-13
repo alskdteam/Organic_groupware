@@ -47,6 +47,7 @@ body {
     padding-bottom: 10px;
 }
 
+
 .button{
     display: flex;
     gap: 7px;
@@ -86,6 +87,7 @@ body {
     color: white;
 
 }
+
 
 .search {
     display: flex;
@@ -145,19 +147,18 @@ table{
     border-collapse: collapse;
 }
 
-th{
-    text-align: left;
-    font-size: 15px;
-    padding-top: 13px;
-    padding-bottom: 13px;
-    border-bottom: 1px solid #8d8d8d;
+
+.chart table th,
+.chart table td {
+    padding: 8px; /* 셀의 여백 설정 (원하는 값으로 조정 가능) */
+    border-bottom: 0.5px solid #c5c5c5;
+    text-align: left; /* 셀 안의 텍스트 가운데 정렬 */
+    font-size: 13px;
+    height: 40px;
 }
 
-td{
-    font-size: 14px;
-    padding-top: 11.3px;
-    padding-bottom: 11.3px;
-    border-bottom: 0.5px solid #c5c5c5;
+.chart table th {
+    border-bottom: 1px solid #8d8d8d; /* th에만 하단 테두리를 적용합니다. */
 }
 
 

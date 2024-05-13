@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/main.css">
-
+    <script src="/js/mainPageButton.js"></script>
     <style>
 
         @media screen and (max-width: 375px) {
@@ -52,14 +52,28 @@
                                 <h3>공지사항</h3>
 
                                 <div class="chart">
+                                    <table>
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>내용</th>
+                                            <th>등록일</th>
+                                        </tr>
+                                        <tbody id="tableBody">
+                                        <tr th:each="list, iterStat : ${selectNotice}" id="row_${iterStat.index}">
+                                            <td th:text="${list.notice_id}"></td>
+                                            <td th:text="${list.notice_content}"></td>
+                                            <td th:text="${list.notice_creationDate}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
 
                                 </div>
 
                                 <div class="page_number">
                                     <div class="flex3">
-                                        <div class="s_button"> &lt; </div> <!-- &lt;는 <를 나타냅니다. -->
-                                        <div class="s_button"> 1 </div>
-                                        <div class="s_button"> &gt; </div> <!-- &gt;는 >를 나타냅니다. -->
+                                        <div class="s_button" onclick="changePage(1)">1</div>
+                                        <div class="s_button" onclick="changePage(2)">2</div>
+                                        <div class="s_button" onclick="changePage(3)">3</div>
                                     </div>
                                 </div>
 

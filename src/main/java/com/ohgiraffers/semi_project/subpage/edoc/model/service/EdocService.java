@@ -1,7 +1,7 @@
 package com.ohgiraffers.semi_project.subpage.edoc.model.service;
 
 import com.ohgiraffers.semi_project.subpage.edoc.model.dao.EdocMapper;
-import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocAndEmployeeDTO;
+import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +17,11 @@ public class EdocService {
         this.edocMapper = edocMapper;
     }
 
-    public List<EdocAndEmployeeDTO> findAllEmployeeAndEdoc() {
+//    문서처리 양식 조회
 
-        return edocMapper.findAllEmployeeAndEdocList();
+    public List<EdocFormDTO> selectEdocForm() {
+        return edocMapper.selectEdocForm();
     }
+
+
 }
