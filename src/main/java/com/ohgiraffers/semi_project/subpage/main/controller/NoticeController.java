@@ -1,6 +1,5 @@
 package com.ohgiraffers.semi_project.subpage.main.controller;
 
-import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocAndEmployeeDTO;
 import com.ohgiraffers.semi_project.subpage.edoc.model.service.EdocService;
 import com.ohgiraffers.semi_project.subpage.main.model.dto.NoticeDTO;
 import com.ohgiraffers.semi_project.subpage.main.model.service.MainService;
