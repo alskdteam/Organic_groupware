@@ -1,17 +1,20 @@
 package com.ohgiraffers.semi_project.subpage.car.model.dao;
 
-import com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO;
+
+import com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO;
+import com.ohgiraffers.semi_project.subpage.car.model.dto.VehicleDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+
 @Mapper
 public interface carMapper {
 
-      void registCar(CarDTO newCar);
 
+    List<CarJoinDTO> findAllCar();
 
-    List<CarDTO> findAllCars();
+    List<CarJoinDTO> findAllSiCar();
 
-    List<CarDTO> findAllCarss();
+    List<VehicleDTO> findAllVehicle();
 }

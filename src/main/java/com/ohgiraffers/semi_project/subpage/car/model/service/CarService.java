@@ -1,38 +1,38 @@
 package com.ohgiraffers.semi_project.subpage.car.model.service;
 
+
 import com.ohgiraffers.semi_project.subpage.car.model.dao.carMapper;
 import com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO;
+import com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO;
+import com.ohgiraffers.semi_project.subpage.car.model.dto.VehicleDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class CarService {
 
-    private final carMapper userMapper;
+    private final carMapper carMapper;
 
     @Autowired
-    public CarService(carMapper userMapper) {this.userMapper = userMapper;}
+    public CarService(carMapper carMapper) {this.carMapper = carMapper;}
 
-    public List<CarDTO> findAllCars() {
+    public List<CarJoinDTO> findAllCar() {
 
-        return userMapper.findAllCars();
-
+        return carMapper.findAllCar();
     }
 
-    @Transactional
-    public void registCarMang(CarDTO newCar) {
-        userMapper.registCar(newCar); // 데이터베이스에 새 차량 정보 추가
+    public List<CarJoinDTO> findAllSiCar() {
+
+        return carMapper.findAllSiCar();
     }
 
 
-    public List<CarDTO> findAllCarss() {
-        return userMapper.findAllCarss();
+    public List<VehicleDTO> findAllVehicle() {
+
+        return carMapper.findAllVehicle();
     }
 
-    public void addCar(CarDTO newCar) {
-        userMapper.registCar(newCar);   // 데이터베이스에 새 차량 정보 추가
-    }
+     public void registCar(CarDTO carDTO){}
 }
