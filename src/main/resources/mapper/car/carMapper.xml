@@ -60,9 +60,29 @@
     </select>
 
 
-    <insert id="registCar" parameterType="com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO">
-
+    <insert id="registCar" parameterType="com.ohgiraffers.semi_project.subpage.car.model.dto.RegistDTO">
+        INSERT INTO car
+        (
+        user_no,
+        vehicle_return_status,
+        vehicle_purpose,
+        vehicle_address,
+        vehicle_reservation_date,
+        vehicle_return_due_date,
+        vehicle_name
+        )
+        VALUES
+        (
+        #{user_no},
+        #{vehicle_return_status},
+        #{vehicle_purpose},
+        #{vehicle_address},
+        #{vehicle_reservation_date},
+        #{vehicle_return_due_date},
+        #{vehicle_name}
+        )
     </insert>
+
 
 
 
