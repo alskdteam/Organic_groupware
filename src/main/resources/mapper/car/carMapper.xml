@@ -4,86 +4,103 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.semi_project.subpage.car.model.dao.carMapper">
 
-    <resultMap id="car" type="com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO">
-        <id property="USER_NO" column="USER_NO"/>
-        <result property="car_managementId" column="car_managementId"/>
-<!--        <result property="car_number" column="car_number"/>-->
-        <result property="car_rentalStatus" column="car_rentalStatus"/>
-        <result property="Vehicle_returnStatus" column="Vehicle_returnStatus"/>
-        <result property="Vehicle_purpose" column="Vehicle_purpose"/>
-        <result property="Vehicle_address" column="Vehicle_address"/>
-        <result property="Vehicle_reservationDate" column="Vehicle_reservationDate"/>
-        <result property="Vehicle_returnDueDate" column="Vehicle_returnDueDate"/>
-        <result property="Vehicle_number" column="Vehicle_number"/>
-        <result property="Vehicle_name" column="Vehicle_name"/>
+
+    <resultMap id="employeeDTO" type="com.ohgiraffers.semi_project.subpage.car.model.dto.EmployeeDTO">
+        <id property="user_name" column="user_name"/>
+        <result property="user_number" column="user_number"/>
     </resultMap>
 
-    <select id="findAllCars" resultMap="car">
+    <resultMap id="carDTO" type="com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO">
+        <id property="car_management_id" column="car_management_id"/>
+        <result property="car_rental_status" column="car_rental_status"/>
+        <result property="vehicle_reservation_date" column="vehicle_reservation_date"/>
+        <result property="vehicle_return_due_date" column="vehicle_return_due_date"/>
+        <result property="vehicle_return_status" column="vehicle_return_status"/>
+        <result property="vehicle_purpose" column="vehicle_purpose"/>
+        <result property="vehicle_address" column="vehicle_address"/>
+    </resultMap>
+
+    <resultMap id="vehicleDTO" type="com.ohgiraffers.semi_project.subpage.car.model.dto.VehicleDTO">
+        <id property="vehicle_name" column="vehicle_name"/>
+        <result property="vehicle_number" column="vehicle_number"/>
+    </resultMap>
+
+    <select id="findAllVehicle" resultMap="vehicleDTO">
+        select
+            vehicle_name,
+            vehicle_number
+        from vehicle
+    </select>
+
+
+    
+    <resultMap id="carjoin" type="com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO">
+        <id property="car_management_id" column="car_management_id"/>
+        <result property="car_rental_status" column="car_rental_status"/>
+        <result property="vehicle_reservation_date" column="vehicle_reservation_date"/>
+        <result property="vehicle_return_due_date" column="vehicle_return_due_date"/>
+        <result property="vehicle_return_status" column="vehicle_return_status"/>
+        <result property="vehicle_purpose" column="vehicle_purpose"/>
+        <result property="vehicle_address" column="vehicle_address"/>
+        <association property="vehicleDTO" javaType="com.ohgiraffers.semi_project.subpage.car.model.dto.VehicleDTO">
+            <id property="vehicle_name" column="vehicle_name"/>
+            <result property="vehicle_number" column="vehicle_number"/>
+        </association>
+    </resultMap>
+
+    <select id="findAllCar" resultMap="carjoin">
         SELECT
-        a.Vehicle_name,
-        b.car_rentalStatus
+        a.vehicle_name,
+        a.vehicle_number,
+        b.car_rental_status
         FROM
         CAR b
         JOIN
-        Vehicle a on (a.Vehicle_name = b.Vehicle_name)
+        vehicle a on (a.vehicle_name = b.vehicle_name)
     </select>
 
 
-        <insert id="registCar" parameterType="com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO"
-        useGeneratedKeys="true" keyProperty="code">
-            INSERT INTO Car
-            (
-            USER_NO,
-            car_managementId,
-            car_rentalStatus,
-            Vehicle_returnStatus,
-            Vehicle_purpose,
-            Vehicle_address,
-            Vehicle_reservationDate,
-            Vehicle_returnDueDate,
-            Vehicle_name
-            )
-            VALUES
-            (
-            #{USER_NO},
-            #{car_managementId},
-            #{car_rentalStatus},
-            #{Vehicle_returnStatus},
-            #{Vehicle_purpose},
-            #{Vehicle_address},
-            #{Vehicle_reservationDate},
-            #{Vehicle_returnDueDate},
-            #{Vehicle_name}
-            )
-        </insert>
+    <insert id="registCar" parameterType="com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO">
 
-    <resultMap id="cars" type="com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO">
-        <id property="USER_NO" column="USER_NO"/>
-        <result property="car_managementId" column="car_managementId"/>
-<!--        <result property="car_number" column="car_number"/>-->
-        <result property="car_rentalStatus" column="car_rentalStatus"/>
-        <result property="Vehicle_returnStatus" column="Vehicle_returnStatus"/>
-        <result property="Vehicle_purpose" column="Vehicle_purpose"/>
-        <result property="Vehicle_address" column="Vehicle_address"/>
-        <result property="Vehicle_reservationDate" column="Vehicle_reservationDate"/>
-        <result property="Vehicle_returnDueDate" column="Vehicle_returnDueDate"/>
-        <result property="Vehicle_number" column="Vehicle_number"/>
-        <result property="Vehicle_name" column="Vehicle_name"/>
+    </insert>
+
+
+
+
+    <resultMap id="siCar" type="com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO">
+        <id property="car_management_id" column="car_management_id"/>
+        <result property="car_rental_status" column="car_rental_status"/>
+        <result property="vehicle_reservation_date" column="vehicle_reservation_date"/>
+        <result property="vehicle_return_due_date" column="vehicle_return_due_date"/>
+        <result property="vehicle_return_status" column="vehicle_return_status"/>
+        <result property="vehicle_purpose" column="vehicle_purpose"/>
+        <result property="vehicle_address" column="vehicle_address"/>
+        <association property="vehicleDTO" javaType="com.ohgiraffers.semi_project.subpage.car.model.dto.VehicleDTO">
+            <id property="vehicle_name" column="vehicle_name"/>
+            <result property="vehicle_number" column="vehicle_number"/>
+        </association>
+        <association property="employeeDTO" javaType="com.ohgiraffers.semi_project.subpage.car.model.dto.EmployeeDTO">
+            <id property="user_no" column="user_no"/>
+            <result property="user_name" column="user_name"/>
+        </association>
     </resultMap>
 
-
-
-    <select id="findAllCarss" resultMap="cars">
+    <select id="findAllSiCar" resultMap="siCar">
         SELECT
-        a.car_managementId,
-        b.Vehicle_name,
-        a.Vehicle_reservationDate,
-        a.Vehicle_returnDueDate,
-        a.Vehicle_returnStatus
+        a.car_management_id,
+        b.vehicle_name,
+        b.vehicle_number,
+        a.vehicle_reservation_date,
+        a.vehicle_return_due_date,
+        a.vehicle_return_status,
+        c.user_name
         FROM
         CAR a
         JOIN
-        Vehicle b on (b.Vehicle_name = a.Vehicle_name)
+        vehicle b ON b.vehicle_name = a.vehicle_name
+        JOIN
+        employee c ON c.user_no = a.user_no
     </select>
+
 
 </mapper>

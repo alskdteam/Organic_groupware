@@ -1,9 +1,8 @@
 package com.ohgiraffers.semi_project.subpage.car.model.dto;
 
-
 import java.sql.Date;
 
-public class CarDTO {
+public class CarJoinDTO {
 
     private int car_management_id;              // 차량관리ID
     private String car_rental_status;           // 차량대여여부
@@ -13,11 +12,13 @@ public class CarDTO {
     private String vehicle_purpose;             // 차량용도
     private String vehicle_address;             // 차량주소
 
+    private EmployeeDTO employeeDTO;
+    private VehicleDTO vehicleDTO;
 
-    public CarDTO() {
+    public CarJoinDTO() {
     }
 
-    public CarDTO(int car_management_id, String car_rental_status, Date vehicle_reservation_date, Date vehicle_return_due_date, String vehicle_return_status, String vehicle_purpose, String vehicle_address) {
+    public CarJoinDTO(int car_management_id, String car_rental_status, Date vehicle_reservation_date, Date vehicle_return_due_date, String vehicle_return_status, String vehicle_purpose, String vehicle_address, EmployeeDTO employeeDTO, VehicleDTO vehicleDTO) {
         this.car_management_id = car_management_id;
         this.car_rental_status = car_rental_status;
         this.vehicle_reservation_date = vehicle_reservation_date;
@@ -25,6 +26,8 @@ public class CarDTO {
         this.vehicle_return_status = vehicle_return_status;
         this.vehicle_purpose = vehicle_purpose;
         this.vehicle_address = vehicle_address;
+        this.employeeDTO = employeeDTO;
+        this.vehicleDTO = vehicleDTO;
     }
 
     public int getCar_management_id() {
@@ -83,9 +86,25 @@ public class CarDTO {
         this.vehicle_address = vehicle_address;
     }
 
+    public EmployeeDTO getEmployeeDTO() {
+        return employeeDTO;
+    }
+
+    public void setEmployeeDTO(EmployeeDTO employeeDTO) {
+        this.employeeDTO = employeeDTO;
+    }
+
+    public VehicleDTO getVehicleDTO() {
+        return vehicleDTO;
+    }
+
+    public void setVehicleDTO(VehicleDTO vehicleDTO) {
+        this.vehicleDTO = vehicleDTO;
+    }
+
     @Override
     public String toString() {
-        return "CarDTO{" +
+        return "CarJoinDTO{" +
                 "car_management_id=" + car_management_id +
                 ", car_rental_status='" + car_rental_status + '\'' +
                 ", vehicle_reservation_date=" + vehicle_reservation_date +
@@ -93,6 +112,8 @@ public class CarDTO {
                 ", vehicle_return_status='" + vehicle_return_status + '\'' +
                 ", vehicle_purpose='" + vehicle_purpose + '\'' +
                 ", vehicle_address='" + vehicle_address + '\'' +
+                ", employeeDTO=" + employeeDTO +
+                ", vehicleDTO=" + vehicleDTO +
                 '}';
     }
 }

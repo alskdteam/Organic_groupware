@@ -52,23 +52,25 @@
                 <div class="chart">
                     <div class="cars">
                         <table>
-                         <tr>
-                            <th>번호</th>
-                            <th>차종</th>
-                            <th>예약날짜</th>
-                            <th>반납예정일</th>
-                            <th>취소/반납</th>
-                        </tr>
-                        <tbody id="tableBody" >
-                         <tr th:each="cars: ${carsList}" id="row_${iterStat.index}">
-                            <td th:text="${cars.car_managementId}"></td>
-                            <td th:text="${cars.Vehicle_name}"></td>
-                             <td th:text="${#dates.format(cars.Vehicle_reservationDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-                             <td th:text="${#dates.format(cars.Vehicle_returnDueDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-                             <td th:text="${cars.Vehicle_returnStatus}"></td>
-                        </tr>
-                        </tbody>
-                         </table>
+                            <tr>
+                                <th>번호</th>
+                                <th>차종</th>
+                                <th>차량번호</th>
+                                <th>대여자</th>
+                                <th>예약날짜</th>
+                                <th>반납예정일</th>
+                                <th>취소/반납</th>
+                            </tr>
+                            <tr th:each="siCarJoin : ${siCarList}">
+                                <td th:text="${siCarJoin.car_management_id}"></td>
+                                <td th:text="${siCarJoin.vehicleDTO.vehicle_name}"></td>
+                                <td th:text="${siCarJoin.vehicleDTO.vehicle_number}"></td>
+                                <td th:text="${siCarJoin.employeeDTO.user_name}"></td>
+                                <td th:text="${siCarJoin.vehicle_reservation_date}"></td>
+                                <td th:text="${siCarJoin.vehicle_return_due_date}"></td>
+                                <td th:text="${siCarJoin.vehicle_return_status}"></td>
+                            </tr>
+                        </table>
                      </div>
 
 
