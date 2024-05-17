@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="/css/edoc.css">
+    <script src="/js/pageButton.js"></script>
+
+    <style>
+        @media screen and (max-width: 375px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .content {
+                display: none;
+            }
+            #sidebar {
+                width: 100%;
+                /* 사이드바 틀 높이 */
+                height: 838px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 사이드바 -->
+    <div th:replace="common/sidebar.html" id="sidebar"></div>
+    <!-- 메인 컨텐츠 -->
+    <div class="content">
+        <!-- 헤더 추가 -->
+        <div th:replace="common/header.html" id="header"></div>
+
+        <div class="area">
+
+            <!--            여기서부터 시작 위에는 건들지 마세요-->
+            <div class="layer">
+                <h1>전자결재 리스트</h1>
+                <div class="button">
+                    <button class="c_button" onclick="location.href='/subpage/edoc'">전체</button>
+                    <button class="c_button">진행중</button>
+                    <button class="c_button">반려</button>
+                    <button class="c_button">진행중</button>
+                    <button class="c_button">내결재함</button>
+                </div>
+
+                <div class="chart">
+                    <table>
+                        <tr>
+                            <th>번호</th>
+                            <th>기안일</th>
+                            <th>제목</th>
+                            <th>기안자</th>
+                            <th>세부사항</th>
+                            <th>결재확인</th>
+                        </tr>
+                        <tbody id="tableBody">
+                        <tr th:each="list, iterStat : ${employeeAndEdocList}" id="row_${iterStat.index}">
+                            <td th:text="${list.edoc_id}"></td>
+                            <td th:text="${list.Drafting_date}"></td>
+                            <td th:text="${list.edoc_templete}"></td>
+                            <td th:text="${list.employeeDTO.user_name}"></td>
+                            <td th:text="${list.edoc_title}"></td>
+                            <td th:text="${list.edoc_status}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="page_number">
+                    <div class="flex">
+                        <div class="s_button" onclick="changePage(1)">1</div>
+                        <div class="s_button" onclick="changePage(2)">2</div>
+                        <div class="s_button" onclick="changePage(3)">3</div>
+                    </div>
+                </div>
+                <div class="search">
+                    <div class="flex">
+                        <input type="text" class="search_input" placeholder="검색어를 입력하세요">
+                        <div class="search_button" onclick="search()">검색</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="/css/car_situation.css">
+    <script src="/js/pageButton.js"></script>
+
+    <style>
+
+        @media screen and (max-width: 375px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .content {
+                display: none;
+            }
+            #sidebar {
+                width: 100%;
+                /* 사이드바 틀 높이 */
+                height: 838px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 사이드바 -->
+    <div th:replace="common/sidebar.html" id="sidebar"></div>
+    <!-- 메인 컨텐츠 -->
+    <div class="content">
+        <!-- 헤더 추가 -->
+        <div th:replace="common/header.html" id="header"></div>
+
+        <div class="area">
+
+            <!--            여기서부터 시작 위에는 건들지 마세요-->
+            <div class="layer">
+                <h1>차량대여 현황</h1>
+                <div class="button">
+                    <div class="c_button" onclick="allBtn">전체</div>
+                    <div class="c_button" onclick="myBtn">내예약</div>
+                </div>
+
+                <div class="chart">
+                    <div class="cars">
+                        <table>
+                            <tr>
+                                <th>차종</th>
+                                <th>차량번호</th>
+                                <th>대여자</th>
+                                <th>예약날짜</th>
+                                <th>반납예정일</th>
+                                <th>취소/반납</th>
+                            </tr>
+                            <tbody id="tableBody">
+                                <tr th:each="siCarJoin : ${siCarList}" id="row_${iterStat.index}">
+                                    <td th:text="${siCarJoin.vehicleDTO.vehicle_name}"></td>
+                                    <td th:text="${siCarJoin.vehicleDTO.vehicle_number}"></td>
+                                    <td th:text="${siCarJoin.employeeDTO.user_name}"></td>
+                                    <td th:text="${siCarJoin.vehicle_reservation_date }"></td>
+                                    <td th:text="${siCarJoin.vehicle_return_due_date }"></td>
+                                    <td th:text="${siCarJoin.vehicle_return_status}"></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                     </div>
+                </div>
+                <div class="page_number">
+                    <div class="flex">
+                        <div class="s_button">&lt;</div>
+                        <div class="s_button" onclick="changePage(1)">1</div>
+                        <div class="s_button" onclick="changePage(2)">2</div>
+                        <div class="s_button" onclick="changePage(3)">3</div>
+                        <div class="s_button">&gt;</div>
+
+                    </div>
+                </div>
+                <div class="search">
+                    <div class="flex">
+                        <input type="text" class="search_input" placeholder="검색어를 입력하세요">
+                        <div class="search_button" onclick="search()">검색</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <script>
+                function search() {
+                    // 검색 버튼을 눌렀을 때 실행되는 검색 기능을 구현합니다.
+                    alert("검색 기능이 실행됩니다.");
+                    // 이 부분에 실제 검색 기능을 구현하면 됩니다.
+                }
+            </script>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

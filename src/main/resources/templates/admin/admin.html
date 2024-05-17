@@ -1,0 +1,368 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="/css/admin.css">
+
+    <style>
+
+        @media screen and (max-width: 375px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .content {
+                display: none;
+            }
+            #sidebar {
+                width: 100%;
+                /* 사이드바 틀 높이 */
+                height: 838px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <!-- 사이드바 -->
+    <div th:replace="common/sidebar.html" id="sidebar"></div>
+    <!-- 메인 컨텐츠 -->
+    <div class="content">
+        <!-- 헤더 추가 -->
+        <div th:replace="common/header.html" id="header"></div>
+
+        <div class="area">
+
+            <!--            여기서부터 시작 위에는 건들지 마세요-->
+            <div class="layer">
+                <div class="flex">
+
+                    <!-- 스크롤 버튼 영역-->
+                    <div class="button">
+                        <!-- 스크롤 이동 버튼 1 -->
+                        <button class="scroll_button" data-target=".announcement">공지사항</button>
+                        <button class="scroll_button" data-target=".employee">사원조회</button>
+                        <button class="scroll_button" data-target=".edoc">전자결재</button>
+                    </div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            var scrollButtons = document.querySelectorAll('.scroll_button');
+
+                            scrollButtons.forEach(function(button) {
+                                button.addEventListener('click', function() {
+                                    var target = document.querySelector(this.getAttribute('data-target'));
+                                    if (target) {
+                                        target.scrollIntoView({ behavior: 'smooth' });
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+
+                    <!--공지사항 영역-->
+                    <div class="announcement" tabindex="0">
+
+                        <div class="flex2">
+
+                            <div class="c_announcement">
+                                <!--여기서 시작-->
+
+                                <table><br>
+                                    <h1 class="semi-title">공지사항</h1>
+                                    <thead>
+                                    <tr>
+                                        <th>번호</th>
+                                        <th>제목</th>
+                                        <th>등록일</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><a href="notice.html">첫 번째 공지사항 제목</a></td>
+                                        <td>2024-05-06</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><a href="notice.html">두 번째 공지사항 제목</a></td>
+                                        <td>2024-05-07</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><a href="notice.html">세 번째 공지사항 제목</a></td>
+                                        <td>2024-05-07</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><a href="notice.html">네 번째 공지사항 제목</a></td>
+                                        <td>2024-05-07</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><a href="notice.html">다섯 번째 공지사항 제목</a></td>
+                                        <td>2024-05-07</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td><a href="notice.html">여섯 번째 공지사항 제목</a></td>
+                                        <td>2024-05-07</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td><a href="notice.html">일곱 번째 공지사항 제목</a></td>
+                                        <td>2024-05-07</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td><a href="notice.html">여덟 번째 공지사항 제목</a></td>
+                                        <td>2024-05-07</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td><a href="notice.html">아홉 번째 공지사항 제목</a></td>
+                                        <td>2024-05-07</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td><a href="notice.html">열 번째 공지사항 제목</a></td>
+                                        <td>2024-05-07</td>
+                                    </tr>
+
+
+                                    <!-- 추가적인 공지사항 행은 필요에 따라 추가 -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--사원조회 영역-->
+                    <div class="employee" tabindex="0">
+
+                        <div class="flex3">
+
+                            <div class="c_employee">
+                                <!--여기서 시작-->
+                                <div class="head-container">
+                                    <div class="wrap1">
+                                        <img src="https://github.com/alskdteam/semi_project_java/assets/158136952/3d4ec91f-ae4f-4ddf-987c-4e47a8a92ef1" id="logo">
+                                    </div>
+                                    <div class="wrap2">
+                                        <form action="/search" method="GET" class="searchForm">
+
+                                            <div class="wrap3">
+                                                <input type="text" class="searchInput-a" name="query" placeholder="부서검색" >
+                                                <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
+                                            </div>
+
+                                            <div class="wrap3">
+                                                <input type="text" class="searchInput-b" name="query" placeholder="이름검색" >
+                                                <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
+                                            </div>
+
+                                            <div class="wrap3">
+                                                <input type="text" class="searchInput-c" name="query" placeholder="직급검색" >
+                                                <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--employee 테이블-->
+                                <table><br>
+
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>부서</th>
+                                        <th>구성원명</th>
+                                        <th>직급</th>
+                                        <th>이메일</th>
+                                        <th>휴대폰</th>
+                                        <th>생년월일</th>
+                                        <th>입사일</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>대표</td>
+                                        <td>조평훈</td>
+                                        <td>대표이사</td>
+                                        <td>apple@organic.com</td>
+                                        <td>010-1234-5678</td>
+                                        <td>24.01.30</td>
+                                        <td>24.02.14</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>영업부</td>
+                                        <td>최규혁</td>
+                                        <td>부장</td>
+                                        <td>a@organic.com</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>영업부</td>
+                                        <td>이도아</td>
+                                        <td>과장</td>
+                                        <td>b@organic.com</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>생산부</td>
+                                        <td>전준규</td>
+                                        <td>대리</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>생산부</td>
+                                        <td>박찬우</td>
+                                        <td>사원</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>생산부</td>
+                                        <td>푸바오</td>
+                                        <td>사원</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                        <td>@</td>
+                                    </tr>
+
+
+                                    <!-- 추가적인 공지사항 행은 필요에 따라 추가 -->
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--전자결재 영역-->
+                    <div class="edoc" tabindex="0">
+                        <div class="flex2">
+                            <div class="c_edoc">
+                                <!--여기서 시작-->
+                                <h1 class="e-approval">전자결재 리스트</h1>
+                                <div class="search">
+                                    <input type="text" class="e-search_input" placeholder=" search">
+                                    <div class="e-search_button" onclick="search()">검색</div>
+                                </div>
+
+                                <div class="buttonlist">
+                                    <button class="c_buttonlist">전체</button>
+                                    <button class="c_buttonlist">진행중</button>
+                                    <button class="c_buttonlist">반려</button>
+                                    <button class="c_buttonlist">진행중</button>
+                                    <button class="c_buttonlist">내결재함</button>
+                                </div>
+
+                                <div class="chart">
+                                    <!--여기서 시작-->
+                                    <table><br>
+                                        <thead>
+                                        <tr>
+                                            <th>기안일</th>
+                                            <th>제목</th>
+                                            <th>기안자</th>
+                                            <th>결재자</th>
+                                            <th>진행상태</th>
+                                            <th>결재확인</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>24.05.12</td>
+                                            <td><a href="#">휴가신청서</a></td>
+                                            <td>이도아</td>
+                                            <td>최규혁</td>
+                                            <td>승인</td>
+                                            <td>확인</td>
+                                        </tr>
+                                        <tr>
+                                            <td>24.05.01</td>
+                                            <td><a href="#">결재서류</a></td>
+                                            <td>전준규</td>
+                                            <td>최규혁</td>
+                                            <td>진행중</td>
+                                            <td>보류</td>
+                                        </tr>
+                                        <tr>
+                                            <td>24.04.03</td>
+                                            <td><a href="#">임금인상 요청서</a></td>
+                                            <td>푸바오</td>
+                                            <td>최규혁</td>
+                                            <td>반려</td>
+                                            <td>불허</td>
+                                        </tr>
+                                        <tr>
+                                            <td>24.04.01</td>
+                                            <td><a href="#">text</a></td>
+                                            <td>text</td>
+                                            <td>text</td>
+                                            <td>text</td>
+                                            <td>text</td>
+                                        </tr>
+                                        <tr>
+                                            <td>24.03.23</td>
+                                            <td><a href="#">text</a></td>
+                                            <td>text</td>
+                                            <td>text</td>
+                                            <td>text</td>
+                                            <td>text</td>
+                                        </tr>
+                                        <tr>
+                                            <td>24.03.22</td>
+                                            <td><a href="#">text</a></td>
+                                            <td>text</td>
+                                            <td>text</td>
+                                            <td>text</td>
+                                            <td>text</td>
+                                        </tr>
+                                        <!-- 추가적인 리스트 행은 필요에 따라 추가 -->
+                                        </tbody>
+                                    </table>
+                                    </table>
+                                </div>
+                                <div class="page_number">
+                                    <div class="s_button">&lt;</div>
+                                    <div class="s_button">1</div>
+                                    <div class="s_button">2</div>
+                                    <div class="s_button">3</div>
+                                    <div class="s_button">&gt;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

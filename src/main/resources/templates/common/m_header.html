@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <style>
+        body {
+            width: 375px; /* 원하는 가로 크기로 설정 */
+            margin: 0 auto; /* 페이지를 수평 가운데 정렬 */
+            background-color: rgb(148, 148, 148);
+
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style-type: none;
+        }
+        a{ color: black;}
+
+        .menu {
+            max-width: 375px; /* Restricting the maximum width to match the body */
+            width: 100%;
+            margin: 0 auto;
+            background-color: rgb(239, 239, 239);
+        }
+        .menubar{
+            padding-top: 5px;
+        }
+        .mwrap {
+            width: 375px;
+            height: 81px;
+            background-color: white;
+            border-top-right-radius: 70px; /* 오른쪽 위 모서리만 둥글게 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .svg {
+            display: flex;
+            justify-content: flex-end; /* 요소를 오른쪽으로 정렬합니다 */
+            padding-right: 4%;
+        }
+        .mbt a{display: none;}
+
+
+        .menulist {
+            display: none;
+            position: absolute;
+            z-index: 2;
+            width: 100%; /* Set width to 100% to match the parent container */
+            max-width: 375px; /* Restricting the maximum width to match the body */
+            font-family: protendard, sans-serif;
+        }
+        .menulist li{
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px 0px;
+            border-top: 0.1px solid rgb(233, 233, 233);
+            text-align: center;
+            background-color: white;
+            color: black;
+            font-size: 1.em;
+            transition: background-color 0.3s ease;
+
+        }
+        .menulist li:hover {
+            background-color: rgb(234, 234, 234);
+            color: rgb(134, 134, 134);
+        }
+
+        .cbt{
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px 0px;
+            border-top: 0.1px solid rgb(233, 233, 233);
+            text-align: center;
+            background-color: white;
+            color: black;
+            font-size: 1.em;
+        }
+
+        .logo{
+            padding: 20px;
+        }
+
+        .circle {
+            width: 35px; /* 회색 원 도형의 너비 설정 */
+            height: 35px; /* 회색 원 도형의 높이 설정 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .layer{
+            background-color: rgb(255, 255, 255);
+        }
+
+        /* 추가된 스타일 */
+        .menulist .m_button,
+        .menulist .m_button2,
+        .menulist .m_button3,
+        .menulist .m_button4 {
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px 0px;
+            border-top: 0.1px solid rgb(233, 233, 233);
+            text-align: center;
+            background-color: white;
+            color: black;
+            font-size: 1.em;
+            cursor: pointer; /* 포인터 커서로 변경하여 클릭 가능한 요소임을 표시 */
+        }
+
+        .menulist .m_button:hover,
+        .menulist .m_button2:hover,
+        .menulist .m_button3:hover,
+        .menulist .m_button4:hover {
+            background-color: rgb(234, 234, 234);
+            color: rgb(134, 134, 134);
+        }
+    </style>
+</head>
+<body>
+<div class="menu">
+
+    <div class="mwrap">
+        <div class="logo"><a href="index.html"><img src="/img/m_header/logo.png"></a></div>
+        <div class="svg">
+            <div class="circle">
+                <div class="menubar" id="open"><img src="/img/m_header/menu.svg" alt=""></div>
+            </div>
+        </div>
+
+    </div>
+    <ul class="menulist" id="menubox">
+        <div class="m_button" onclick="location.href='/m_subpage/m_main'">운영관리</div>
+        <div class="m_button2" onclick="location.href='/m_subpage/m_car'">차량관리</div>
+        <div class="m_button3" onclick="location.href='/m_subpage/m_edoc'">전자결재</div>
+        <div class="m_button4" onclick="location.href='/m_subpage/m_profile'">내프로필</div>
+
+        <div class="cbt" id="close">Menu Close</div>
+    </ul>
+</div>
+<script>
+    document.getElementById('open').addEventListener('click', function () {
+        document.getElementById('menubox').style.width = '440px';
+        document.getElementById('menubox').style.display = 'block';
+    });
+    document.getElementById('close').addEventListener('click', function () {
+        document.getElementById('menubox').style.display = 'none';
+    });
+</script>
+</body>
+</html>
