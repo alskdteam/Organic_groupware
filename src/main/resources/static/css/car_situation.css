@@ -1,0 +1,160 @@
+/* main.css */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fbfbfb;
+    overflow-y: auto;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-y: auto;
+}
+
+.content {
+    flex: 1;
+}
+
+.area {
+    background-color: white;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border: 1.3px solid #e1e1e1;
+    margin-left: 16.5vw;
+    width: calc(100% - 16.5vw);
+    height: 900px;
+}
+
+/* 여기서 부터 시작 위에는 건들지 마세요*/
+.area{
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.layer{
+    width: 70vw;
+    height: 800px;
+}
+
+.layer h1 {
+    border-bottom: 4px solid #e3e3e3; /* h1 요소의 아래쪽에 2px 두께의 검은색 선을 추가합니다. */
+    padding-bottom: 10px;
+}
+
+.button{
+    display: flex;
+    gap: 7px;
+    border-bottom: 4px solid #848484; /* h1 요소의 아래쪽에 2px 두께의 검은색 선을 추가합니다. */
+}
+
+.c_button {
+    width: 68px;
+    height: 32px;
+    border: 1px solid black; /* 1px 두께의 검은색 테두리 설정 */
+    border-radius: 11px; /* 둥근 사각형으로 테두리 모양을 설정 */
+    background-color: #f0f0f0; /* 연한 회색 배경색 설정 */
+    margin: 14px 0;
+
+    font-size: 10pt;
+    text-align: center; /* 텍스트를 가운데 정렬합니다. */
+    line-height: 32px; /* 버튼의 높이와 동일하게 텍스트의 높이를 맞춥니다. */
+
+    cursor: pointer;    /* 마우스 커거를 포안터로 설정*/
+}
+.c_button:hover {
+    background-color: #4CAF50; /* 변경하고자 하는 색상으로 설정 */
+    color: white;
+
+}
+
+.chart{
+    width: 70vw;
+    height: 440px;
+    background-color: #f6f6f6;
+}
+
+.page_number{
+    width: 70vw;
+    height: 65px;
+    border-top: 4px solid #848484;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search {
+    display: flex;
+    justify-content: center; /* 수직 중앙 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+    width: 70vw;
+    height: 60px;
+    border: 1px solid #b3b3b3;
+    background-color: #f6f6f6;
+}
+
+.s_button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black; /* 1px 두께의 검은색 테두리 설정 */
+    background-color: #f0f0f0; /* 연한 회색 배경색 설정 */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* 마우스 커서를 포인터로 설정하여 클릭 가능한 요소임을 표시합니다. */
+    margin: 3px; /* 버튼 간 간격을 설정합니다. */
+}
+
+.flex{
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+.search_input {
+    width: 177px;
+    height: 26px;
+    margin-right: 5px; /* 검색칸과 검색 버튼 사이의 간격을 설정합니다. */
+    border: 1px solid #6b6b6b;
+}
+
+.search_button {
+    width: 66px;
+    height: 26px;
+    cursor: pointer; /* 마우스 커서를 포인터로 설정하여 클릭 가능한 요소임을 표시합니다. */
+    background-color: #4CAF50;
+    color: white;
+    align-items: center; /* 세로 중앙 정렬 */
+    text-align: center;
+}
+
+.s_button:hover {
+    background-color: #4CAF50; /* 변경하고자 하는 색상으로 설정 */
+    color: white;
+
+}
+
+
+/* 표 css*/
+table{
+    width: 70vw;
+    border-collapse: collapse;
+}
+
+
+.cars table th,
+.cars table td {
+    padding: 8px; /* 셀의 여백 설정 (원하는 값으로 조정 가능) */
+    border-bottom: 0.5px solid #c5c5c5;
+    text-align: left; /* 셀 안의 텍스트 가운데 정렬 */
+    font-size: 13px;
+    height: 40px;
+}
+
+.cars table th {
+    border-bottom: 1px solid #8d8d8d; /* th에만 하단 테두리를 적용합니다. */
+}

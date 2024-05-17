@@ -1,0 +1,121 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/mainPageButton.js"></script>
+    <style>
+
+        @media screen and (max-width: 375px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .content {
+                display: none;
+            }
+            #sidebar {
+                width: 100%;
+                /* 사이드바 틀 높이 */
+                height: 838px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 사이드바 -->
+    <div th:replace="common/sidebar.html" id="sidebar"></div>
+    <!-- 메인 컨텐츠 -->
+    <div class="content">
+        <!-- 헤더 추가 -->
+        <div th:replace="common/header.html" id="header"></div>
+
+        <div class="area">
+
+            <!--            여기서부터 시작 위에는 건들지 마세요-->
+            <div class="layer">
+                <div class="flex">
+                    <div class="announcement" tabindex="0">
+
+                        <div class="flex2">
+
+                            <div class="c_announcement">
+                                <!--여기서 시작-->
+                                <h3>공지사항</h3>
+
+                                <div class="chart">
+                                    <table>
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>내용</th>
+                                            <th>등록일</th>
+                                        </tr>
+                                        <tbody id="tableBody">
+                                        <tr th:each="list, iterStat : ${selectNotice}" id="row_${iterStat.index}">
+                                            <td th:text="${list.notice_id}"></td>
+                                            <td th:text="${list.notice_content}"></td>
+                                            <td th:text="${list.notice_creationDate}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <div class="page_number">
+                                    <div class="flex3">
+                                        <div class="s_button" onclick="changePage(1)">1</div>
+                                        <div class="s_button" onclick="changePage(2)">2</div>
+                                        <div class="s_button" onclick="changePage(3)">3</div>
+                                    </div>
+                                </div>
+
+                                <h4>댓글</h4>
+                                <div class="comment_list">
+
+                                </div>
+                                <div class="comment">
+                                    <div flex4>
+                                        <input type="text" class="comment_input" placeholder="댓글을 입력하세요">
+                                        <button class="comment_button">등록</button>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="dashboard">
+                        <!--여기서 시작-->
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+/* main.css */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fbfbfb;
+    overflow-y: auto;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-y: auto;
+}
+
+.content {
+    flex: 1;
+}
+
+.area {
+    background-color: white;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border: 1.3px solid #e1e1e1;
+    margin-left: 16.5vw;
+    width: calc(100% - 16.5vw);
+    height: 1500px;
+}
+
+/* 여기서 부터 시작 위에는 건들지 마세요*/
+.area{
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.layer{
+    width: 70vw;
+    height: 800px;
+}
+
+.layer h1 {
+    border-bottom: 4px solid #e3e3e3; /* h1 요소의 아래쪽에 2px 두께의 검은색 선을 추가합니다. */
+    padding-bottom: 10px;
+}
+
+.chart1{
+    width: 70vw;
+    height: 60px;
+    display: flex;
+
+    margin-top: 40px;
+}
+.chart2{
+    width: 70vw;
+    height: 1150px;
+
+    display: flex;
+}
+
+.wrap1{
+    width: 15vw;
+    height: 60px;
+    border: 1px solid rgb(206, 206, 206);
+
+}
+.wrap2{
+    width: 55vw;
+    height: 60px;
+    border: 1px solid rgb(206, 206, 206);
+
+}
+.wrap3{
+    width: 15vw;
+    height: 1100px;
+    border: 1px solid rgb(206, 206, 206);
+}
+.wrap4{
+    width: 55vw;
+    height: 1100px;
+    border: 1px solid rgb(206, 206, 206);
+    display: flex;
+    justify-content: center;
+
+}
+
+#text{
+    font-size: 16px;
+    margin: 20px;
+}
+
+.tableContent{
+    width: 52vw;
+    height: 1050px;
+    margin-top: 20px;
+
+}
+
+/* 사인관련 */
+
+.signature-container {
+    padding-top: 10px;
+    width: 52vw;
+    height: 150px;
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+
+.employee_sign, .admin_sign {
+    width: 130px;
+    height: 140px;
+}
+
+.employee_sign {
+    background-color: aqua;
+}
+
+.admin_sign {
+    background-color: rgb(79, 177, 177);
+}
+
+/* 전송버튼 */
+
+.submitBox{
+    width: 70vw;
+    height: 40px;
+    display: flex;
+    justify-content: end;
+}
