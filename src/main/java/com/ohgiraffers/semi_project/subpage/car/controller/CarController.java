@@ -3,7 +3,6 @@ package com.ohgiraffers.semi_project.subpage.car.controller;
 
 import com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO;
-import com.ohgiraffers.semi_project.subpage.car.model.dto.RegistDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.dto.VehicleDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.service.CarService;
 import org.apache.logging.log4j.LogManager;
@@ -39,6 +38,7 @@ public class CarController {
         List<CarJoinDTO> carJoinList = carService.findAllCar();
         model.addAttribute("carJoinList", carJoinList);
 
+        System.out.println("carJoinList = " + carJoinList);
 
         return "subpage/car";
     }
@@ -54,14 +54,10 @@ public class CarController {
 
 
     @PostMapping("car")
-    public String registCar(RegistDTO regist, RedirectAttributes rttr) {
+    public String registCar(@ModelAttribute CarDTO carDTO, RedirectAttributes rttr) {
 
+    carService.registCar(carDTO);
 
-
-    carService.registCar(regist);
-    rttr.addFlashAttribute("successMessage","차량예약에 성공하셨습니다.");
-
-        System.out.println("carJoinDTO = " + regist);
         return "redirect:/subpage/car_situation";
     }
 

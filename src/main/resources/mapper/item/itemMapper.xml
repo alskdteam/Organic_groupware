@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semi_project.subpage.item.model.dao.itemMapper">
+
+    <resultMap id="employeeDTO" type="com.ohgiraffers.semi_project.subpage.item.model.dto.EmployeeDTO">
+        <id property="user_name" column="user_name"/>
+        <result property="user_number" column="user_number"/>
+    </resultMap>
+
+    <resultMap id="ItemDTO" type="com.ohgiraffers.semi_project.subpage.item.model.dto.ItemDTO">
+        <id property="rental_id" column="rental_id"/>
+        <result property="rental_date" column="rental_date"/>
+        <result property="rental_return_date" column="rental_return_date"/>
+        <result property="rental_category" column="rental_category"/>
+        <result property="rental_purpose" column="rental_purpose"/>
+        <result property="postal_code" column="postal_code"/>
+    </resultMap>
+
+
+    <resultMap id="rentalDTO" type="com.ohgiraffers.semi_project.subpage.item.model.dto.rentalDTO">
+        <id property="item_number" column="item_number"/>
+        <result property="item_category" column="item_category"/>
+        <result property="item_name" column="item_name"/>
+        <result property="item_inventory" column="item_inventory"/>
+    </resultMap>
+
+
+    <resultMap id="ItemJoinDTO" type="com.ohgiraffers.semi_project.subpage.item.model.dto.ItemJoinDTO">
+        <id property="rental_id" column="rental_id"/>
+        <result property="rental_date" column="rental_date"/>
+        <result property="rental_return_date" column="rental_return_date"/>
+        <result property="rental_category" column="rental_category"/>
+        <result property="rental_purpose" column="rental_purpose"/>
+        <result property="postal_code" column="postal_code"/>
+        <association property="rentalDTO" javaType="com.ohgiraffers.semi_project.subpage.item.model.dto.rentalDTO">
+            <id property="item_number" column="item_number"/>
+            <result property="item_category" column="item_category"/>
+            <result property="item_name" column="item_name"/>
+            <result property="item_inventory" column="item_inventory"/>
+        </association>
+        <association property="employeeDTO" javaType="com.ohgiraffers.semi_project.subpage.item.model.dto.EmployeeDTO">
+            <id property="user_name" column="user_name"/>
+            <result property="user_number" column="user_number"/>
+        </association>
+
+    </resultMap>
+
+    <select id="findAllItem" resultMap="ItemJoinDTO">
+        SELECT
+        a.rental_id,
+        a.rental_date,
+        a.rental_return_date,
+        a.rental_category,
+        a.rental_purpose,
+        a.postal_code,
+        b.item_name,
+        c.user_name
+        FROM
+        RENTAL a
+        JOIN
+        ITEM b ON b.item_number = a.item_number
+        JOIN
+        employee c ON c.user_no = a.user_no
+    </select>
+</mapper>

@@ -70,7 +70,7 @@ public class SecurityConfig {
             logout.logoutSuccessUrl("/login/login");       // 로그아웃 시 이동할 페이지 설정
 
         }).sessionManagement( session -> {
-            session.maximumSessions(1); // session 의 허용 갯수 제한, -> 한 사용자가 여러 창을 띄워 동시에 여러 개 세션 활성화 방지.
+            session.maximumSessions(5); // session 의 허용 갯수 제한, -> 한 사용자가 여러 창을 띄워 동시에 여러 개 세션 활성화 방지.
             session.invalidSessionUrl("/"); // 세션이 만료 되었을 때 이동할 페이지
 
         }).rememberMe(remember -> {

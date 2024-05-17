@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
-    <link rel="stylesheet" href="/css/item.css">
+    <link rel="stylesheet" href="/css/item_correction.css">
+    <script src="/js/pageButton.js"></script>
 
     <style>
 
@@ -42,20 +43,44 @@
 
             <!--            여기서부터 시작 위에는 건들지 마세요-->
             <div class="layer">
-                <h1>물품대여</h1>
+                <h1>물품대여 현황</h1>
                 <div class="button">
-                    <div class="c_button">물품대여</div>
+                    <div class="c_button" id="itembtn">물품 대여</div>
                 </div>
 
                 <div class="chart">
+                    <div class="cars">
+                        <table>
+                            <tr>
+                                <th>번호</th>
+                                <th>구분</th>
+                                <th>물품명</th>
+                                <th>대여자</th>
+                                <th>물품 대여일</th>
+                                <th>물품반납일</th>
+                                <th>취소/반납</th>
+                            </tr>
+                            <tr th:each="itemjoin : ${rentalList}">
+                                <td th:text="${itemjoin.rental_id}"></td>
+                                <td th:text="${itemjoin.rental_category}"></td>
+                                <td th:text="${itemjoin.rentalDTO.item_name}"></td>
+                                <td th:text="${itemjoin.employeeDTO.user_name}"></td>
+                                <td th:text="${itemjoin.rental_date}"></td>
+                                <td th:text="${itemjoin.rental_return_date}"></td>
+                                <td th:text="${itemjoin.postal_code}"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
 
                 </div>
                 <div class="page_number">
                     <div class="flex">
                         <div class="s_button">&lt;</div>
-                        <div class="s_button">1</div>
-                        <div class="s_button">2</div>
-                        <div class="s_button">3</div>
+                        <div class="s_button" onclick="changePage(1)">1</div>
+                        <div class="s_button" onclick="changePage(2)">2</div>
+                        <div class="s_button" onclick="changePage(3)">3</div>
                         <div class="s_button">&gt;</div>
 
                     </div>

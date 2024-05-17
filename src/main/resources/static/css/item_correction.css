@@ -65,6 +65,12 @@ body {
     text-align: center; /* 텍스트를 가운데 정렬합니다. */
     line-height: 32px; /* 버튼의 높이와 동일하게 텍스트의 높이를 맞춥니다. */
 
+    cursor: pointer;    /* 마우스 커거를 포안터로 설정*/
+}
+.c_button:hover {
+    background-color: #4CAF50; /* 변경하고자 하는 색상으로 설정 */
+    color: white;
+
 }
 
 .chart{
@@ -120,11 +126,20 @@ body {
     width: 66px;
     height: 26px;
     cursor: pointer; /* 마우스 커서를 포인터로 설정하여 클릭 가능한 요소임을 표시합니다. */
-    background-color: #010101;
+    background-color: #4CAF50;
     color: white;
     align-items: center; /* 세로 중앙 정렬 */
     text-align: center;
 }
+
+.s_button:hover {
+    background-color: #4CAF50; /* 변경하고자 하는 색상으로 설정 */
+    color: white;
+
+}
+
+
+/* 표 css*/
 table{
     width: 70vw;
     border-collapse: collapse;
