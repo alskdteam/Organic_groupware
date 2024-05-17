@@ -64,7 +64,6 @@
         INSERT INTO car
         (
         user_no,
-        vehicle_return_status,
         vehicle_purpose,
         vehicle_address,
         vehicle_reservation_date,
@@ -74,7 +73,6 @@
         VALUES
         (
         #{user_no},
-        #{vehicle_return_status},
         #{vehicle_purpose},
         #{vehicle_address},
         #{vehicle_reservation_date},
@@ -107,7 +105,6 @@
 
     <select id="findAllSiCar" resultMap="siCar">
         SELECT
-        a.car_management_id,
         b.vehicle_name,
         b.vehicle_number,
         a.vehicle_reservation_date,

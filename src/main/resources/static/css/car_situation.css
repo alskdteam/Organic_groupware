@@ -76,7 +76,7 @@ body {
 .chart{
     width: 70vw;
     height: 440px;
-    background-color: #f6f6f6;
+    /*background-color: #f6f6f6;*/
 }
 
 .page_number{

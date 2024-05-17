@@ -57,16 +57,16 @@ public class CarController {
     public String registCar(RegistDTO regist, RedirectAttributes rttr) {
 
 
-
-    carService.registCar(regist);
-    rttr.addFlashAttribute("successMessage","차량예약에 성공하셨습니다.");
-
         System.out.println("carJoinDTO = " + regist);
+        carService.registCar(regist);
+        rttr.addFlashAttribute("successMessage","차량예약에 성공하셨습니다.");
+
+
         return "redirect:/subpage/car_situation";
     }
 
 
-
+//
 
 }
 

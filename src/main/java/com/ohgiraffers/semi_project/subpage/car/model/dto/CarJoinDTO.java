@@ -10,10 +10,10 @@ public class CarJoinDTO {
 
     private int car_management_id;              // 차량관리ID
     private String car_rental_status;           // 차량대여여부
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime vehicle_reservation_date;      // 차량예약날짜
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime vehicle_return_due_date;       // 차량반납예정일
+
+    private Date vehicle_reservation_date;      // 차량예약날짜
+
+    private Date vehicle_return_due_date;       // 차량반납예정일
     private String vehicle_return_status;       // 차량반납
     private String vehicle_purpose;             // 차량용도
     private String vehicle_address;             // 차량주소
@@ -24,7 +24,7 @@ public class CarJoinDTO {
     public CarJoinDTO() {
     }
 
-    public CarJoinDTO(int car_management_id, String car_rental_status, LocalDateTime vehicle_reservation_date, LocalDateTime vehicle_return_due_date, String vehicle_return_status, String vehicle_purpose, String vehicle_address, EmployeeDTO employeeDTO, VehicleDTO vehicleDTO) {
+    public CarJoinDTO(int car_management_id, String car_rental_status, Date vehicle_reservation_date, Date vehicle_return_due_date, String vehicle_return_status, String vehicle_purpose, String vehicle_address, EmployeeDTO employeeDTO, VehicleDTO vehicleDTO) {
         this.car_management_id = car_management_id;
         this.car_rental_status = car_rental_status;
         this.vehicle_reservation_date = vehicle_reservation_date;
@@ -52,19 +52,19 @@ public class CarJoinDTO {
         this.car_rental_status = car_rental_status;
     }
 
-    public LocalDateTime getVehicle_reservation_date() {
+    public Date getVehicle_reservation_date() {
         return vehicle_reservation_date;
     }
 
-    public void setVehicle_reservation_date(LocalDateTime vehicle_reservation_date) {
+    public void setVehicle_reservation_date(Date vehicle_reservation_date) {
         this.vehicle_reservation_date = vehicle_reservation_date;
     }
 
-    public LocalDateTime getVehicle_return_due_date() {
+    public Date getVehicle_return_due_date() {
         return vehicle_return_due_date;
     }
 
-    public void setVehicle_return_due_date(LocalDateTime vehicle_return_due_date) {
+    public void setVehicle_return_due_date(Date vehicle_return_due_date) {
         this.vehicle_return_due_date = vehicle_return_due_date;
     }
 
