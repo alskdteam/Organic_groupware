@@ -64,7 +64,6 @@
         INSERT INTO car
         (
         user_no,
-        vehicle_return_status,
         vehicle_purpose,
         vehicle_address,
         vehicle_reservation_date,
@@ -74,7 +73,6 @@
         VALUES
         (
         #{user_no},
-        #{vehicle_return_status},
         #{vehicle_purpose},
         #{vehicle_address},
         #{vehicle_reservation_date},
