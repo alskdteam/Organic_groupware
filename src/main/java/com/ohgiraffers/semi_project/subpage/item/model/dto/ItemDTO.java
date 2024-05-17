@@ -9,19 +9,19 @@ public class ItemDTO {
     private Date rental_return_date;    // 물품 대여 반납일
     private String rental_category;     // 물품항목
     private String rental_purpose;      // 물품 대여 용도(구분)
-    private String postal_code;         // 반납 여부
+    private String rental_status;         // 반납 여부
 
 
 
     public ItemDTO(){}
 
-    public ItemDTO(int rental_id, Date rental_date, Date rental_return_date, String rental_category, String rental_purpose, String postal_code) {
+    public ItemDTO(int rental_id, Date rental_date, Date rental_return_date, String rental_category, String rental_purpose, String rental_status) {
         this.rental_id = rental_id;
         this.rental_date = rental_date;
         this.rental_return_date = rental_return_date;
         this.rental_category = rental_category;
         this.rental_purpose = rental_purpose;
-        this.postal_code = postal_code;
+        this.rental_status = rental_status;
     }
 
     public int getRental_id() {
@@ -64,12 +64,12 @@ public class ItemDTO {
         this.rental_purpose = rental_purpose;
     }
 
-    public String getPostal_code() {
-        return postal_code;
+    public String getRental_status() {
+        return rental_status;
     }
 
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
+    public void setRental_status(String rental_status) {
+        this.rental_status = rental_status;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class ItemDTO {
                 ", rental_return_date=" + rental_return_date +
                 ", rental_category='" + rental_category + '\'' +
                 ", rental_purpose='" + rental_purpose + '\'' +
-                ", postal_code='" + postal_code + '\'' +
+                ", rental_status='" + rental_status + '\'' +
                 '}';
     }
 }

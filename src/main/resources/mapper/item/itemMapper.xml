@@ -15,7 +15,7 @@
         <result property="rental_return_date" column="rental_return_date"/>
         <result property="rental_category" column="rental_category"/>
         <result property="rental_purpose" column="rental_purpose"/>
-        <result property="postal_code" column="postal_code"/>
+        <result property="rental_status" column="rental_status"/>
     </resultMap>
 
 
@@ -33,7 +33,7 @@
         <result property="rental_return_date" column="rental_return_date"/>
         <result property="rental_category" column="rental_category"/>
         <result property="rental_purpose" column="rental_purpose"/>
-        <result property="postal_code" column="postal_code"/>
+        <result property="rental_status" column="rental_status"/>
         <association property="rentalDTO" javaType="com.ohgiraffers.semi_project.subpage.item.model.dto.rentalDTO">
             <id property="item_number" column="item_number"/>
             <result property="item_category" column="item_category"/>
@@ -54,7 +54,7 @@
         a.rental_return_date,
         a.rental_category,
         a.rental_purpose,
-        a.postal_code,
+        a.rental_status,
         b.item_name,
         c.user_name
         FROM
@@ -63,5 +63,32 @@
         ITEM b ON b.item_number = a.item_number
         JOIN
         employee c ON c.user_no = a.user_no
+    </select>
+    <insert id="registitem" parameterType="com.ohgiraffers.semi_project.subpage.item.model.dto.registRentalDTO">
+        INSERT INTO rental
+        (
+        rental_category,
+        rental_date,
+        rental_return_date,
+        user_no,
+        rental_purpose
+        )
+        VALUES
+        (
+        #{rental_category},
+        #{rental_date},
+        #{rental_return_date},
+        #{user_no},
+        #{rental_purpose}
+        )
+    </insert>
+    <resultMap id="findDTO" type="com.ohgiraffers.semi_project.subpage.item.model.dto.ItemDTO">
+        <result property="rental_category" column="rental_category"/>
+    </resultMap>
+
+    <select id="finditemList" resultMap="findDTO">
+        select
+        rental_category
+        from rental
     </select>
 </mapper>

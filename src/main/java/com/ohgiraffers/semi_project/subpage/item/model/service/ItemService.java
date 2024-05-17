@@ -3,6 +3,7 @@ package com.ohgiraffers.semi_project.subpage.item.model.service;
 import com.ohgiraffers.semi_project.subpage.item.model.dao.itemMapper;
 import com.ohgiraffers.semi_project.subpage.item.model.dto.ItemDTO;
 import com.ohgiraffers.semi_project.subpage.item.model.dto.ItemJoinDTO;
+import com.ohgiraffers.semi_project.subpage.item.model.dto.registRentalDTO;
 import com.ohgiraffers.semi_project.subpage.item.model.dto.rentalDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,13 @@ public class ItemService {
     public List<ItemJoinDTO> findAllItem() {
 
         return itemMapper.findAllItem();
+    }
+
+    public void registitem(registRentalDTO rentalDTO) {itemMapper.registitem(rentalDTO);
+    }
+
+    public List<ItemDTO> finditemList() {
+
+        return itemMapper.finditemList();
     }
 }
