@@ -57,11 +57,16 @@
                                 <th>차량번호</th>
                                 <th>대여여부</th>
                             </tr>
-                            <tr th:each="carJoin : ${carJoinList}">
-                                <td th:text="${carJoin.vehicleDTO.vehicle_name}"></td>
-                                <td th:text="${carJoin.vehicleDTO.vehicle_number}"></td>
-                                <td th:text="${carJoin.car_rental_status}"></td>
-                            </tr>
+
+
+                            <tbody id="tableBody">
+                                <tr th:each="carJoin : ${carJoinList}" id="row_${iterStat.index}">
+                                    <td th:text="${carJoin.vehicleDTO.vehicle_name}"></td>
+                                    <td th:text="${carJoin.vehicleDTO.vehicle_number}"></td>
+                                    <td th:text="${carJoin.car_rental_status}"></td>
+                                </tr>
+                            </tbody>
+
                         </table>
                     </div>
                 </div>
