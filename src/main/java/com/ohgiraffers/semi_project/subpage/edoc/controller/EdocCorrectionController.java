@@ -35,7 +35,6 @@ public class EdocCorrectionController {
 
         model.addAttribute("edocFormList", edocFormList);
 
-        System.out.println(edocFormList);
         return "subpage/edoc_correction";
     }
 
