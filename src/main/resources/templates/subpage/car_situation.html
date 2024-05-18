@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/car_situation.css">
+    <script src="/js/pageButton.js"></script>
 
     <style>
 
@@ -44,19 +45,42 @@
             <div class="layer">
                 <h1>차량대여 현황</h1>
                 <div class="button">
-                    <div class="c_button">전체</div>
-                    <div class="c_button">내예약</div>
+                    <div class="c_button" onclick="allBtn">전체</div>
+                    <div class="c_button" onclick="myBtn">내예약</div>
                 </div>
 
                 <div class="chart">
+                    <div class="cars">
+                        <table>
+                            <tr>
+                                <th>차종</th>
+                                <th>차량번호</th>
+                                <th>대여자</th>
+                                <th>예약날짜</th>
+                                <th>반납예정일</th>
+                                <th>취소/반납</th>
+                            </tr>
+                            <tbody id="tableBody">
+                                <tr th:each="siCarJoin : ${siCarList}" id="row_${iterStat.index}">
+                                    <td th:text="${siCarJoin.vehicleDTO.vehicle_name}"></td>
+                                    <td th:text="${siCarJoin.vehicleDTO.vehicle_number}"></td>
+                                    <td th:text="${siCarJoin.employeeDTO.user_name}"></td>
+                                    <td th:text="${siCarJoin.vehicle_reservation_date }"></td>
+                                    <td th:text="${siCarJoin.vehicle_return_due_date }"></td>
+                                    <td th:text="${siCarJoin.vehicle_return_status}"></td>
+                                </tr>
 
+                            </tbody>
+
+                        </table>
+                     </div>
                 </div>
                 <div class="page_number">
                     <div class="flex">
                         <div class="s_button">&lt;</div>
-                        <div class="s_button">1</div>
-                        <div class="s_button">2</div>
-                        <div class="s_button">3</div>
+                        <div class="s_button" onclick="changePage(1)">1</div>
+                        <div class="s_button" onclick="changePage(2)">2</div>
+                        <div class="s_button" onclick="changePage(3)">3</div>
                         <div class="s_button">&gt;</div>
 
                     </div>

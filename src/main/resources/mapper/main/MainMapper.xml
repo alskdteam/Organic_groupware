@@ -17,7 +17,7 @@
         select
             Notice_id,
             Notice_content,
-            Notice_creation_date
+            notice_creation_date
         from
             Notice;
 
