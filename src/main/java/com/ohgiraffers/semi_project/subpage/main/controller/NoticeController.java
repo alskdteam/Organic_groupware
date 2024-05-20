@@ -28,7 +28,7 @@ public class NoticeController {
 
         model.addAttribute("selectNotice", selectNotice);
 
-        System.out.println(selectNotice);
+//        System.out.println(selectNotice);
         return "login/main";
     }
 

@@ -1,7 +1,6 @@
 package com.ohgiraffers.semi_project.subpage.edoc.controller;
 
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFormCtDTO;
-import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFromEdocCtDTO;
 import com.ohgiraffers.semi_project.subpage.edoc.model.service.EdocService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
@@ -15,10 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/subpage")
@@ -48,7 +44,7 @@ public class EdocFormCtFunctionController {
         logger.info("Locale : {}", locale);
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("registMenu", null, locale));
 
-        return "subpage/edocFrom/SelectEdocList";
+        return "subpage/edocFrom/selectEdocList";
     }
 
 
