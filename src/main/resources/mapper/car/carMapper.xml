@@ -60,10 +60,10 @@
     </select>
 
 
-    <insert id="registCar" parameterType="com.ohgiraffers.semi_project.subpage.car.model.dto.RegistDTO">
+    <insert id="registCar" parameterType="com.ohgiraffers.semi_project.subpage.car.model.dto.RegistDTO" >
         INSERT INTO car
         (
-        user_no,
+        user_id,
         vehicle_purpose,
         vehicle_address,
         vehicle_reservation_date,
@@ -72,7 +72,7 @@
         )
         VALUES
         (
-        #{user_no},
+        #{user_id},
         #{vehicle_purpose},
         #{vehicle_address},
         #{vehicle_reservation_date},
@@ -98,7 +98,7 @@
             <result property="vehicle_number" column="vehicle_number"/>
         </association>
         <association property="employeeDTO" javaType="com.ohgiraffers.semi_project.subpage.car.model.dto.EmployeeDTO">
-            <id property="user_no" column="user_no"/>
+            <id property="user_id" column="user_id"/>
             <result property="user_name" column="user_name"/>
         </association>
     </resultMap>
@@ -116,7 +116,7 @@
         JOIN
         vehicle b ON b.vehicle_name = a.vehicle_name
         JOIN
-        employee c ON c.user_no = a.user_no
+        employee c ON c.user_id = a.user_id
     </select>
 
 
