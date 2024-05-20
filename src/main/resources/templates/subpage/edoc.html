@@ -74,6 +74,37 @@
                         </tr>
                         </tbody>
                     </table>
+
+                    <!-- Include jQuery -->
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script>
+                        $(document).ready(function() {
+                            // 테이블의 모든 행에 클릭 이벤트 추가
+                            $("#tableBody tr").on("click", function() {
+                                // 클릭된 행의 edoc_form_ct_no 값을 수집
+                                var edocFormCtNo = $(this).find("td:nth-child(1)").text();
+
+                                // Ajax 요청을 사용하여 edoc_form_ct_no 값을 컨트롤러로 전송
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/subpage/edocFrom/SelectEdocList",  // 컨트롤러의 엔드포인트 URL로 변경
+                                    data: JSON.stringify({ edoc_form_ct_no: edocFormCtNo }),
+                                    contentType: "application/json",
+                                    success: function(response) {
+                                        // 성공 시 처리할 내용
+                                        console.log("Data sent successfully:", response);
+                                        // 여기서 필요한 로직 추가
+                                        // window.location.href = "/subpage/edocFrom/SelectEdocList";
+                                    },
+                                    error: function(error) {
+                                        // 에러 시 처리할 내용
+                                        console.error("Error sending data:", error);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+
                 </div>
 
                 <div class="page_number">
