@@ -85,7 +85,7 @@
                                     <label for="employee_sign" style="margin: 10px; ">사인 파일 등록하기:</label>
                                     <input id="employee_sign" name="employee_sign" type="file" style=" margin: 10px">
                                     <br>
-                                    <input type="submit" value="전송" style="width: 60px; height: 30px; margin-left: 80%; border-radius: 5px; background-color: aliceblue;">
+                                    <input type="submit" value="전송" style="width: 60px; height: 30px; margin-left: 80%; border-radius: 5px; background-color: aliceblue;" disabled>
                                 </form>
                             </td>
                         </tr>
@@ -101,7 +101,7 @@
                         </tr>
                         <tr>
                             <td style="width: 175px; height: 50px;  border: 1px solid rgb(178,178,178);">
-                                <img th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" style="width: 175px; height: 174px"/>
+<!--                                <img th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" style="width: 175px; height: 174px"/>-->
 
                             </td>
                             <td style="width: 175px; height: 50px;  border: 1px solid rgb(178,178,178);"></td>
@@ -116,7 +116,7 @@
                             <p id="text">양식명</p>
                         </div>
                         <div class="wrap2">
-                            <p id="text">문서번호 :</p>
+                            <p id="text">문서번호</p>
                         </div>
                     </div>
                     <div class="chart2">

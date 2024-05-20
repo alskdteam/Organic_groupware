@@ -1,23 +1,12 @@
 package com.ohgiraffers.semi_project.subpage.edoc.model.service;
 
 import com.ohgiraffers.semi_project.subpage.edoc.model.dao.EdocMapper;
-import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFormCtDTO;
-import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFormDTO;
-import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFromEdocCtDTO;
-import com.ohgiraffers.semi_project.subpage.edoc.model.dto.UploadFileDTO;
+import com.ohgiraffers.semi_project.subpage.edoc.model.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public class EdocService {
@@ -30,10 +19,16 @@ public class EdocService {
     }
 
     //    문서 처리
-    @Transactional
-    public int registNewEdoc(EdocFormCtDTO newEdoc) {
+//    @Transactional
+//    public int registNewEdoc(EdocFormCtDTO newEdoc) {
+//
+//        return edocMapper.registNewEdoc(newEdoc);
+//    }
 
-        return edocMapper.registNewEdoc(newEdoc);
+    @Transactional
+    public EdocFormCtDTO registNewEdoc(EdocFormCtDTO newEdoc) {
+        edocMapper.registNewEdoc(newEdoc);
+        return newEdoc; // 데이베이스에 insert 한 값 들고가기
     }
 
 //    문서처리 양식 조회
@@ -55,10 +50,23 @@ public class EdocService {
         return edocMapper.selectFile(employeeName);
     }
 
-
+    // 결재리스트 조회
     public List<EdocFromEdocCtDTO> selectEdoc() {
 
         return edocMapper.selectAllEdoc();
+    }
+
+
+//    EdocList 조회 ( 서류 작성시)
+    public EdocFromEdocCtDTO selectEdocList(int i) {
+        return edocMapper.selectEdocList(i);
+    }
+
+
+// EdocList 조회( 결재리스트에서)
+    public SelectEdocListDTO selectEdocList2(String edocFormCtNo) {
+
+        return edocMapper.selectEdocList2(edocFormCtNo);
     }
 }
 

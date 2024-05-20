@@ -46,6 +46,8 @@
             font-size: 15px;
         }
 
+
+
     </style>
 </head>
 <body>
@@ -60,17 +62,17 @@
         <div class="area">
             <!--            여기서부터 시작 위에는 건들지 마세요-->
             <div class="layer">
-                <h1>회의록 작성</h1>
+                <h1>휴가신청서 작성</h1>
                 <div class="signBox">
                     <p id="singText" style="color: #999999; margin-top: 130px"> 서류작성을 먼저 한 후에 <br> 사인을 등록해 주십시오. </p>
 
-                    <table >
+                    <table>
                         <tr>
                             <th style="width: 350px; height: 20px; border: 1px solid rgb(178,178,178);">사인등록</th>
                         </tr>
                         <tr>
                             <td style="width: 350px; height: 50px;  border: 1px solid rgb(178,178,178);">
-                                <form  name="myForm2" action="/subpage/meeting" method="post" enctype="multipart/form-data">
+                                <form  name="myForm2" action="/subpage/uploadFile" method="post" enctype="multipart/form-data">
                                     <label for="edoc_form_ct_no" style="margin: 10px">문서 번호:</label>
                                     <input type="text" placeholder="필수사항" name="edoc_form_ct_no" >
                                     <br>
@@ -80,7 +82,7 @@
                                     <label for="user_id" style="margin: 10px">사원 번호:</label>
                                     <input type="text" placeholder="사용자 ID를 입력하세요" name="user_id" >
 
-                                    <input type="hidden" placeholder="필수사항" name="edoc_form_no" value="4">
+                                    <input type="hidden" placeholder="필수사항" name="edoc_form_no" value="1">
                                     <br>
                                     <label for="employee_sign" style="margin: 10px; ">사인 파일 등록하기:</label>
                                     <input id="employee_sign" name="employee_sign" type="file" style=" margin: 10px">
@@ -101,7 +103,7 @@
                         </tr>
                         <tr>
                             <td style="width: 175px; height: 50px;  border: 1px solid rgb(178,178,178);">
-<!--                                <img th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" style="width: 175px; height: 174px"/>-->
+                                <!--                                <img th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" style="width: 175px; height: 174px"/>-->
 
                             </td>
                             <td style="width: 175px; height: 50px;  border: 1px solid rgb(178,178,178);"></td>
@@ -116,7 +118,7 @@
                             <p id="text">양식명</p>
                         </div>
                         <div class="wrap2">
-                            <p id="text">문서번호</p>
+                            <p id="text">문서번호 </p>
                         </div>
                     </div>
                     <div class="chart2">
@@ -127,7 +129,7 @@
                             <div class="tableContent">
                                 <table id="table1">
                                     <tr>
-                                        <th rowspan="4" style="width: 30vw; font-size: 25px;">회의록</th>
+                                        <th rowspan="4" style="width: 30vw; font-size: 25px;">휴가 신청서</th>
                                         <th style="width: 8vw; height: 35px;">부서</th>
                                         <td style="width: 14vw; height: 35px;"><input type="text" placeholder="필수사항" name="employee_de" id="employee_de"></td>
                                     </tr>
@@ -173,7 +175,7 @@
                                     </tr>
                                 </table>
                                 <input type="hidden" name="edoc_status" value="진행중">
-                                <input type="hidden" placeholder="필수사항" name="edoc_form_no" value="4">
+                                <input type="hidden" placeholder="필수사항" name="edoc_form_no" value="1">
                                 <div class="submitWrap">
                                     <div class="submitBox">
                                         <input type="submit" value="전송" style="width: 100px; margin-right: 20px; border-radius: 10px; background-color: aliceblue;"  >

@@ -2,9 +2,10 @@ package com.ohgiraffers.semi_project.subpage.edoc.model.dto;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Arrays;
 import java.util.Date;
 
-public class EdocFromEdocCtDTO {
+public class SelectEdocListDTO {
 
 
     private int edoc_form_ct_no;
@@ -29,13 +30,15 @@ public class EdocFromEdocCtDTO {
     private String content;
     private String purpose;
 
+    private byte[] employee_sign;
+    private byte[] admin_sign;
+
     private EdocFormDTO edocFormDTO;
 
-
-    public EdocFromEdocCtDTO() {
+    public SelectEdocListDTO() {
     }
 
-    public EdocFromEdocCtDTO(int edoc_form_ct_no, int edoc_form_no, String employee_name, int user_id, String edoc_status, Date start_date, Date end_date, String employee_di, String employee_de, String reason_return, Date drafting_date, String title, String content, String purpose, EdocFormDTO edocFormDTO) {
+    public SelectEdocListDTO(int edoc_form_ct_no, int edoc_form_no, String employee_name, int user_id, String edoc_status, Date start_date, Date end_date, String employee_di, String employee_de, String reason_return, Date drafting_date, String title, String content, String purpose, byte[] employee_sign, byte[] admin_sign, EdocFormDTO edocFormDTO) {
         this.edoc_form_ct_no = edoc_form_ct_no;
         this.edoc_form_no = edoc_form_no;
         this.employee_name = employee_name;
@@ -50,6 +53,8 @@ public class EdocFromEdocCtDTO {
         this.title = title;
         this.content = content;
         this.purpose = purpose;
+        this.employee_sign = employee_sign;
+        this.admin_sign = admin_sign;
         this.edocFormDTO = edocFormDTO;
     }
 
@@ -165,6 +170,22 @@ public class EdocFromEdocCtDTO {
         this.purpose = purpose;
     }
 
+    public byte[] getEmployee_sign() {
+        return employee_sign;
+    }
+
+    public void setEmployee_sign(byte[] employee_sign) {
+        this.employee_sign = employee_sign;
+    }
+
+    public byte[] getAdmin_sign() {
+        return admin_sign;
+    }
+
+    public void setAdmin_sign(byte[] admin_sign) {
+        this.admin_sign = admin_sign;
+    }
+
     public EdocFormDTO getEdocFormDTO() {
         return edocFormDTO;
     }
@@ -175,7 +196,7 @@ public class EdocFromEdocCtDTO {
 
     @Override
     public String toString() {
-        return "EdocFromEdocCtDTO{" +
+        return "SelectEdocListDTO{" +
                 "edoc_form_ct_no=" + edoc_form_ct_no +
                 ", edoc_form_no=" + edoc_form_no +
                 ", employee_name='" + employee_name + '\'' +
@@ -190,6 +211,8 @@ public class EdocFromEdocCtDTO {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", purpose='" + purpose + '\'' +
+                ", employee_sign=" + Arrays.toString(employee_sign) +
+                ", admin_sign=" + Arrays.toString(admin_sign) +
                 ", edocFormDTO=" + edocFormDTO +
                 '}';
     }
