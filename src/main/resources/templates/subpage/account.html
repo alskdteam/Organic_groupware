@@ -46,11 +46,28 @@
                     <h1>거래처 관리</h1>
                     <div class="button">
                         <div class="c_button">거래처 등록</div>
-
                     </div>
 
                     <div class="chart">
+                            <!-- 여기만 건들기-->
+                            <div class="carrr">
+                                <table>
+                                    <tr>
+                                        <th>차종</th>
+                                        <th>차량번호</th>
+                                        <th>대여여부</th>
+                                    </tr>
 
+                                    <tbody id="tableBody">
+                                    <tr th:each="carJoin : ${carJoinList}" id="row_${iterStat.index}">
+                                        <td th:text="${carJoin.vehicleDTO.vehicle_name}"></td>
+                                        <td th:text="${carJoin.vehicleDTO.vehicle_number}"></td>
+                                        <td th:text="${carJoin.car_rental_status}"></td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
                     </div>
                     <div class="page_number">
                         <div class="flex">
