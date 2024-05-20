@@ -19,18 +19,19 @@ public class RegistDTO {
     private String vehicle_address;             // 차량주소
 
     private String vehicle_name;
-    private int user_no;
+
+    private int user_id;
 
     public RegistDTO() {
     }
 
-    public RegistDTO(Date vehicle_reservation_date, Date vehicle_return_due_date, String vehicle_purpose, String vehicle_address, String vehicle_name, int user_no) {
+    public RegistDTO(Date vehicle_reservation_date, Date vehicle_return_due_date, String vehicle_purpose, String vehicle_address, String vehicle_name, int user_id) {
         this.vehicle_reservation_date = vehicle_reservation_date;
         this.vehicle_return_due_date = vehicle_return_due_date;
         this.vehicle_purpose = vehicle_purpose;
         this.vehicle_address = vehicle_address;
         this.vehicle_name = vehicle_name;
-        this.user_no = user_no;
+        this.user_id = user_id;
     }
 
     public Date getVehicle_reservation_date() {
@@ -73,12 +74,12 @@ public class RegistDTO {
         this.vehicle_name = vehicle_name;
     }
 
-    public int getUser_no() {
-        return user_no;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUser_no(int user_no) {
-        this.user_no = user_no;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     @Override
@@ -89,7 +90,7 @@ public class RegistDTO {
                 ", vehicle_purpose='" + vehicle_purpose + '\'' +
                 ", vehicle_address='" + vehicle_address + '\'' +
                 ", vehicle_name='" + vehicle_name + '\'' +
-                ", user_no=" + user_no +
+                ", user_id=" + user_id +
                 '}';
     }
 }
