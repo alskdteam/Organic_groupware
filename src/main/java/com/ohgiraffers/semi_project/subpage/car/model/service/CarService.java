@@ -29,6 +29,14 @@ public class CarService {
         return carMapper.findAllSiCar();
     }
 
+//    public List<CarJoinDTO> findMySiCar(String id) {
+//
+//        return carMapper.findMySiCar(id);
+//        /*
+//        * select * from sicar where user_id = {id};
+//        * */
+//    }
+
 
     public List<VehicleDTO> findAllVehicle() {
 
