@@ -100,6 +100,7 @@
         <association property="employeeDTO" javaType="com.ohgiraffers.semi_project.subpage.car.model.dto.EmployeeDTO">
             <id property="user_id" column="user_id"/>
             <result property="user_name" column="user_name"/>
+            <result property="userCode" column="user_no"/>
         </association>
     </resultMap>
 
@@ -117,6 +118,25 @@
         vehicle b ON b.vehicle_name = a.vehicle_name
         JOIN
         employee c ON c.user_id = a.user_id
+    </select>
+
+
+    <select id="findAllSiMyCar" resultMap="siCar">
+        SELECT
+        b.vehicle_name,
+        b.vehicle_number,
+        a.vehicle_reservation_date,
+        a.vehicle_return_due_date,
+        a.vehicle_return_status,
+        c.user_name
+        FROM
+        CAR a
+        JOIN
+        vehicle b ON b.vehicle_name = a.vehicle_name
+        JOIN
+        employee c ON c.user_id = a.user_id
+        WHERE
+        c.user_no = ${userCode}
     </select>
 
 
