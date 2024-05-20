@@ -20,4 +20,6 @@ public interface carMapper {
     List<VehicleDTO> findAllVehicle();
 
     void registCar(RegistDTO regist);
+
+    List<CarJoinDTO> findAllSiMyCar(int userCode);
 }

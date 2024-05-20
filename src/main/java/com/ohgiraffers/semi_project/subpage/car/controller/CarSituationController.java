@@ -1,8 +1,10 @@
 package com.ohgiraffers.semi_project.subpage.car.controller;
 
 
+import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.service.CarService;
+import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +42,24 @@ public class CarSituationController {
 
         System.out.println("siCarList = " + siCarList);
 
+
         return "subpage/car_situation";
     }
 
+    @GetMapping("car_situation_mypage")
+    public String siCarMyList(Model model) {
 
+        Userdata userdata = new Userdata();
+        LoginUserDTO userDTO = userdata.getloginUserDTO();
+        int userCode = userDTO.getUserCode();
+
+
+        List<CarJoinDTO> siCarMyList = carService.findAllSiMyCar(userCode);
+        model.addAttribute("siCarMyList", siCarMyList);
+
+        System.out.println("siCarMyList = " + siCarMyList);
+
+
+        return "subpage/car_situation_mypage";
+    }
 }

@@ -43,5 +43,5 @@ function allBtn() {
 
 function myBtn() {
     //여기선 car_situation?type=my
-    window.location.href = "/subpage/car_situation?type=my"
+    window.location.href = "/subpage/car_situation_mypage"
 }

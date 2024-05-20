@@ -46,4 +46,9 @@ public class CarService {
      public void registCar(RegistDTO regist){
         carMapper.registCar(regist);
      }
+
+    public List<CarJoinDTO> findAllSiMyCar(int userCode) {
+
+        return carMapper.findAllSiMyCar(userCode);
+    }
 }
