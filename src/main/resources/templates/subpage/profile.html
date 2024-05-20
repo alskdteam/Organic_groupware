@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/profile.css">
-
+    <script src="/js/profile.js"></script>
     <style>
 
         @media screen and (max-width: 375px) {
@@ -59,11 +59,22 @@
 
                                             </div>
                                             <div class="profile_frame"></div>
-                                            <div class="edit_button">
+                                            <div class="edit_button" id="edit_btn">
                                                 프로필 편집
                                             </div>
                                         </div>
-                                        <div class="profile_edit">
+                                        <div class="profile_edit" >
+                                            <div class="write">
+                                                <br>
+                                                <p style="font-size: 25px; font-weight: normal">푸바오</p>
+                                                <p style="font-size: 20px">(주)organic</p><br>
+                                                <p style="font-size: 15px"> 서울시 구석진로 19, 7층(대나무 숲)<br>f.02-123-1234</p>
+                                                <br>
+                                                <p style="font-size: 13px">
+
+                                                </p>
+
+                                            </div>
 
                                         </div>
                                     </div>
@@ -78,6 +89,132 @@
                             </div>
 
                         </div>
+
+
+
+                        <!--모달 관련-->
+                        <form action="/subpage/profileEdit" method="post" name="myPageFrm" id="profileFrm" enctype="multipart/form-data" >
+                            <!-- 모달 내용 -->
+                            <div id="myModal" class="modal">
+
+                                <!-- 모달 내용 -->
+                                <div class="modal-content">
+                                    <div style="position: relative">
+                                        <p style="margin-top: 6px; text-align: center">프로필 편집</p>
+                                        <div class="circle" id="imagePreview"></div>
+
+                                        <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                                        <div class="btn1" id="selectButton">변경</div>
+
+                                        <div class="wrap_input">
+                                            <div>
+                                                <label for="name">이름</label> <br>
+                                                <input type="text" id="name" name="name">
+                                            </div>
+                                            <div>
+                                                <label for="english-name">영문 이름</label><br>
+                                                <input type="text" id="english-name" name="english-name">
+                                            </div>
+                                            <div>
+                                                <label for="phone">전화번호</label> <br>
+                                                <input type="tel" id="phone" name="phone">
+                                            </div>
+                                            <div>
+                                                <label for="email">이메일</label> <br>
+                                                <input type="email" id="email" name="email">
+                                            </div>
+                                        </div>
+
+                                        <div class="buttons">
+                                            <button id="addBtn" style="background-color: #4CAF50" type="submit">추가</button>
+                                            <button id="cancelBtn" type="button">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <script>
+                            document.getElementById('selectButton').addEventListener('click', function() {
+                                document.getElementById('imageInput').click();
+                            });
+
+                            document.getElementById('imageInput').addEventListener('change', function(event) {
+                                const file = event.target.files[0];
+                                if (file) {
+                                    const reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        const imagePreview = document.getElementById('imagePreview');
+                                        if (imagePreview) {
+                                            imagePreview.innerHTML = '<img src="' + e.target.result + '" alt="Profile Image">';
+                                        }
+                                    };
+                                    reader.readAsDataURL(file);
+                                }
+                            });
+
+                            // document.getElementById('profileFrm').addEventListener('submit', function(event) {
+                            //     event.preventDefault();
+                            //     const formData = new FormData(this);
+                            //     fetch('/subpage/profileEdit', {
+                            //         method: 'POST',
+                            //         body: formData
+                            //     }).then(response => response.json())
+                            //         .then(data => {
+                            //             // 서버 응답에 따른 처리
+                            //             console.log(data);
+                            //         }).catch(error => {
+                            //         console.error('Error:', error);
+                            //     });
+                            // });
+                        </script>
+
+
+
+
+                        <script>
+
+                            // 모달 요소 가져오기
+                            var modal = document.getElementById("myModal");
+
+                            // 모달 열기 버튼 가져오기
+                            var btn = document.getElementById("edit_btn");
+
+                            // 모달 닫기 버튼 가져오기
+                            var span = document.getElementsByClassName("buttons")[0];
+
+                            // 모달 열기 버튼을 클릭하면 모달 보이기
+                            btn.onclick = function() {
+                                modal.style.display = "block";
+                            }
+
+                            // 모달 닫기 버튼을 클릭하면 모달 닫기
+                            span.onclick = function() {
+                                modal.style.display = "none";
+                            }
+
+                            document.getElementById('cancelBtn').addEventListener('click', function(event) {
+                                // 기본 동작(폼 제출) 막기
+                                event.preventDefault();
+
+                                // 모달 닫기
+                                var modal = document.getElementById("myModal");
+                                modal.style.display = "none";
+                            });
+
+                            // 모달 밖의 영역을 클릭하면 모달 닫기
+                            window.onclick = function(event) {
+                                if (event.target == modal) {
+                                    modal.style.display = "none";
+                                }
+                            }
+
+                        </script>
+
+
+
+
+
                         <!--                        버튼 영역-->
                         <div class="button">
                             <!--여기서 시작-->
