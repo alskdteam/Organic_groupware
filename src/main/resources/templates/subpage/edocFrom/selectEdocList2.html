@@ -104,11 +104,11 @@
                         <tr>
                             <td style="width: 175px; height: 50px; border: 1px solid rgb(178, 178, 178);">
                                 <!-- base64ImageData가 null이 아닌 경우에만 이미지 표시 -->
-                                <img th:if="${base64ImageData != null}" th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" style="width: 175px; height: 174px"/>
+                                <img onerror="this.style.display='none'" th:if="${base64ImageData != null}" th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" style="width: 175px; height: 174px"/>
                             </td>
                             <td style="width: 175px; height: 50px; border: 1px solid rgb(178, 178, 178);">
                                 <!-- base64ImageData2가 null이 아닌 경우에만 이미지 표시 -->
-                                <img th:if="${base64ImageData2 != null}" th:src="'data:image/png;base64,' + ${base64ImageData2}" alt="Uploaded Image" style="width: 175px; height: 174px"/>
+                                <img onerror="this.style.display='none'" th:if="${base64ImageData2 != null}" th:src="'data:image/png;base64,' + ${base64ImageData2}" alt="Uploaded Image" style="width: 175px; height: 174px"/>
                             </td>
                         </tr>
                     </table>
