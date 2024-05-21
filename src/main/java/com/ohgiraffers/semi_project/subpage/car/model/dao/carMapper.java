@@ -7,6 +7,7 @@ import com.ohgiraffers.semi_project.subpage.car.model.dto.VehicleDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Mapper
@@ -22,4 +23,7 @@ public interface carMapper {
     void registCar(RegistDTO regist);
 
     List<CarJoinDTO> findAllSiMyCar(int userCode);
+
+
+    int registCarDTO(Map<String, Object> regist);
 }

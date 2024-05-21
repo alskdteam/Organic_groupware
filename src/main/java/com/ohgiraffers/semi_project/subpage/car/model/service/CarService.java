@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CarService {
@@ -50,5 +51,11 @@ public class CarService {
     public List<CarJoinDTO> findAllSiMyCar(int userCode) {
 
         return carMapper.findAllSiMyCar(userCode);
+    }
+
+
+    public int registCarDTO(Map<String, Object> regist) {
+        return carMapper.registCarDTO(regist);
+
     }
 }
