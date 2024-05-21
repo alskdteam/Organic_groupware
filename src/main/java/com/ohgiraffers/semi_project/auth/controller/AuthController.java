@@ -1,5 +1,6 @@
 package com.ohgiraffers.semi_project.auth.controller;
 
+import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

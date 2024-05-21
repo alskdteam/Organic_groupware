@@ -12,5 +12,5 @@ public interface itemMapper {
 
     void registitem(registRentalDTO rentalDTO);
 
-    List<ItemDTO> finditemList();
+    List<ItemJoinDTO> finditemList();
 }

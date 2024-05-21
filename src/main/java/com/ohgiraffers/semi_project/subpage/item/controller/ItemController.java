@@ -45,7 +45,7 @@ public class ItemController {
 
     @GetMapping(value = "item/find", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public List<ItemDTO> finditemList() {
+    public List<ItemJoinDTO> finditemList() {
 
 
         return itemService.finditemList();
@@ -58,7 +58,7 @@ public class ItemController {
         itemService.registitem(rentalDTO);
         rttr.addFlashAttribute("successMessage","차량예약에 성공하셨습니다.");
 
-        System.out.println("carJoinDTO = " + rentalDTO);
+
         return "redirect:/subpage/item";
     }
 }

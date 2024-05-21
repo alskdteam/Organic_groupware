@@ -26,7 +26,7 @@ public class ItemService {
     public void registitem(registRentalDTO rentalDTO) {itemMapper.registitem(rentalDTO);
     }
 
-    public List<ItemDTO> finditemList() {
+    public List<ItemJoinDTO> finditemList() {
 
         return itemMapper.finditemList();
     }
