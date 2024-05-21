@@ -65,7 +65,7 @@
         employee c ON c.user_id = a.user_id
     </select>
 
-    <insert id="registitem" parameterType="com.ohgiraffers.semi_project.subpage.item.model.dto.registRentalDTO">
+    <insert id="itemRental">
         INSERT INTO rental (
         rental_date,
         rental_return_date,
@@ -76,7 +76,7 @@
         SELECT
         #{rental_date},
         #{rental_return_date},
-        #{user_id},
+        #{userCode},
         #{rental_purpose},
         a.item_number
         FROM item a

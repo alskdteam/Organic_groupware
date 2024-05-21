@@ -1,23 +1,23 @@
 package com.ohgiraffers.semi_project.subpage.item.controller;
 
+import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.car.controller.CarController;
 import com.ohgiraffers.semi_project.subpage.item.model.dto.ItemDTO;
 import com.ohgiraffers.semi_project.subpage.item.model.dto.ItemJoinDTO;
 import com.ohgiraffers.semi_project.subpage.item.model.dto.registRentalDTO;
 import com.ohgiraffers.semi_project.subpage.item.model.service.ItemService;
+import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/subpage")
@@ -51,11 +51,19 @@ public class ItemController {
         return itemService.finditemList();
     }
     @PostMapping("item")
-    public String registitem(registRentalDTO rentalDTO, RedirectAttributes rttr) {
+    public String registitem( RedirectAttributes rttr, @RequestParam Map<String ,Object> itemRental) {
 
 
-        System.out.println("rerentalDTO = " + rentalDTO);
-        itemService.registitem(rentalDTO);
+        Userdata userdata = new Userdata();
+        LoginUserDTO userDTO = userdata.getloginUserDTO();
+        int userCode = Integer.parseInt(userDTO.getUserId());
+        itemRental.put("userCode", userCode);
+
+        System.out.println("regist = " + itemRental);
+
+        int result = itemService.itemRental(itemRental);
+
+
         rttr.addFlashAttribute("successMessage","차량예약에 성공하셨습니다.");
 
 

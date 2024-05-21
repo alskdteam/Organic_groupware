@@ -6,11 +6,15 @@ import com.ohgiraffers.semi_project.subpage.item.model.dto.registRentalDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
+
 @Mapper
 public interface itemMapper {
     List<ItemJoinDTO> findAllItem();
 
-    void registitem(registRentalDTO rentalDTO);
+    
 
     List<ItemJoinDTO> finditemList();
+
+    int itemRental(Map<String, Object> itemRental);
 }
