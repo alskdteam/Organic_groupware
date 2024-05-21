@@ -88,14 +88,14 @@
                             <br>
                             <p>항목 선택</p>
                             <p>
-                                <select name="rental_category" id="rental_category" style="height: 30px; width: 400px;"></select>
+                                <select name="item_name" id="item_name" style="height: 30px; width: 400px;"></select>
                             </p>
                             <p>대여일</p>
                             <p> <input type="date" name="rental_date" style="height: 30px; width: 400px; "></p>
                             <p>반납 예정일</p>
                             <p><input type="date" name="rental_return_date" style="height: 30px; width: 400px;"></p>
                             <p>대여자</p>
-                            <p><input type="number" name="user_no" style="height: 30px; width: 400px;"></p>
+                            <p><input type="number" name="user_id" style="height: 30px; width: 400px;"></p>
                             <p>대여 용도</p>
                             <p><input type="text" name="rental_purpose" style="height: 30px; width: 400px;"></p>
                             <div class="buttons">
@@ -149,14 +149,14 @@
                     fetch("/subpage/item/find")
                         .then(res => res.json())
                         .then(data => {
-                            const $rental_category = document.getElementById('rental_category');
+                            const $item_name = document.getElementById('item_name');
 
                             for(let item of data) { // 'of'를 사용하여 배열의 각 객체에 대해 반복
                                 const $option = document.createElement("option");
                                 // 'vehicle_name'을 option의 value로, 'vehicle_number'를 텍스트 내용으로 사용
-                                $option.value =item.rental_category;
-                                $option.textContent =item.rental_category;
-                                $rental_category.appendChild($option);
+                                $option.value =item.item_name;
+                                $option.textContent =item.item_name;
+                                $item_name.appendChild($option);
                             }
                         })
 
