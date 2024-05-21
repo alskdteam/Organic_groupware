@@ -13,7 +13,7 @@ public class MainController {
 
     @GetMapping(value = {"/", "/login", "/main"})
     public String main() {
-        return "main";
+        return "login/login";
     }
 
 //    @PostMapping("main")
@@ -23,10 +23,10 @@ public class MainController {
 //        return "login";
 //    }
 
-    @GetMapping("/admin/page")
-    public String adminPage() {
-        return "/admin/admin";
-    }
+//    @GetMapping("/admin/admin")
+//    public String adminPage() {
+//        return "/admin/admin";
+//    }
 
     @GetMapping("/user/page")
     public String userPage() {
