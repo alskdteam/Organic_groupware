@@ -93,31 +93,30 @@
 
 
                         <!--모달 관련-->
-                        <form action="/subpage/profileEdit" method="post" name="myPageFrm" id="profileFrm" enctype="multipart/form-data" >
-                            <!-- 모달 내용 -->
+                        <form action="/subpage/profileEdit" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
                             <div id="myModal" class="modal">
-
                                 <!-- 모달 내용 -->
                                 <div class="modal-content">
                                     <div style="position: relative">
                                         <p style="margin-top: 6px; text-align: center">프로필 편집</p>
                                         <div class="circle" id="imagePreview"></div>
 
-                                        <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                                        <!-- 파일 선택 input -->
+                                        <input type="file" id="profile_image" name="profile_image" accept="image/*" style="display: none;">
                                         <div class="btn1" id="selectButton">변경</div>
 
                                         <div class="wrap_input">
                                             <div>
-                                                <label for="name">이름</label> <br>
-                                                <input type="text" id="name" name="name">
+                                                <label for="user_name">이름</label> <br>
+                                                <input type="text" id="user_name" name="user_name">
                                             </div>
                                             <div>
-                                                <label for="english-name">영문 이름</label><br>
-                                                <input type="text" id="english-name" name="english-name">
+                                                <label for="english_name">영문 이름</label><br>
+                                                <input type="text" id="english_name" name="english_name">
                                             </div>
                                             <div>
-                                                <label for="phone">전화번호</label> <br>
-                                                <input type="tel" id="phone" name="phone">
+                                                <label for="phone_number">전화번호</label> <br>
+                                                <input type="tel" id="phone_number" name="phone_number">
                                             </div>
                                             <div>
                                                 <label for="email">이메일</label> <br>
@@ -136,10 +135,10 @@
 
                         <script>
                             document.getElementById('selectButton').addEventListener('click', function() {
-                                document.getElementById('imageInput').click();
+                                document.getElementById('profile_image').click();
                             });
 
-                            document.getElementById('imageInput').addEventListener('change', function(event) {
+                            document.getElementById('profile_image').addEventListener('change', function(event) {
                                 const file = event.target.files[0];
                                 if (file) {
                                     const reader = new FileReader();
@@ -152,22 +151,23 @@
                                     reader.readAsDataURL(file);
                                 }
                             });
-
-                            // document.getElementById('profileFrm').addEventListener('submit', function(event) {
-                            //     event.preventDefault();
-                            //     const formData = new FormData(this);
-                            //     fetch('/subpage/profileEdit', {
-                            //         method: 'POST',
-                            //         body: formData
-                            //     }).then(response => response.json())
-                            //         .then(data => {
-                            //             // 서버 응답에 따른 처리
-                            //             console.log(data);
-                            //         }).catch(error => {
-                            //         console.error('Error:', error);
-                            //     });
-                            // });
                         </script>
+
+<!--                            // document.getElementById('profileFrm').addEventListener('submit', function(event) {-->
+<!--                            //     event.preventDefault();-->
+<!--                            //     const formData = new FormData(this);-->
+<!--                            //     fetch('/subpage/profileEdit', {-->
+<!--                            //         method: 'POST',-->
+<!--                            //         body: formData-->
+<!--                            //     }).then(response => response.json())-->
+<!--                            //         .then(data => {-->
+<!--                            //             // 서버 응답에 따른 처리-->
+<!--                            //             console.log(data);-->
+<!--                            //         }).catch(error => {-->
+<!--                            //         console.error('Error:', error);-->
+<!--                            //     });-->
+<!--                            // });-->
+
 
 
 
