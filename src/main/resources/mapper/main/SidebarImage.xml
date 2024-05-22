@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semi_project.subpage.main.model.dao.MainMapper">
+
+    <resultMap id="sidebarImageResultMap" type="com.ohgiraffers.semi_project.subpage.main.model.dto.SidebarImageDTO">
+        <id property="user_no" column="user_no"/>
+        <result property="korea_name" column="korea_name"/>
+        <result property="profile_image" column="profile_image"/>
+    </resultMap>
+
+    <select id="selectSidebar" resultMap="sidebarImageResultMap">
+        select
+        korea_name,
+        profile_image,
+        user_no
+        from
+        profile
+        where
+        user_no = #{user_no}
+    </select>
+</mapper>
