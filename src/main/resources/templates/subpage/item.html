@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="/css/car.css">
     <script src="/js/pageButton.js"></script>
     <style>
-
         @media screen and (max-width: 375px) {
             .container {
                 flex-direction: column;
@@ -21,9 +19,9 @@
             .content {
                 display: none;
             }
+
             #sidebar {
                 width: 100%;
-                /* 사이드바 틀 높이 */
                 height: 838px;
             }
         }
@@ -39,9 +37,7 @@
         <div th:replace="common/header.html" id="header"></div>
 
         <div class="area">
-
-            <!--            여기서부터 시작 위에는 건들지 마세요-->
-
+            <!-- 여기서부터 시작 위에는 건들지 마세요 -->
             <div class="layer">
                 <h1>물품예약</h1>
                 <div class="button">
@@ -49,7 +45,7 @@
                 </div>
 
                 <div class="chart">
-                    <!-- 여기만 건들기-->
+                    <!-- 여기만 건들기 -->
                     <div class="carrr">
                         <table>
                             <tr>
@@ -62,7 +58,7 @@
                                 <th>취소/반납</th>
                             </tr>
                             <tbody id="tableBody">
-                            <tr th:each="itemjoin : ${rentalList}"id="row_${iterStat.index}">
+                            <tr th:each="itemjoin : ${rentalList}" id="row_${iterStat.index}">
                                 <td th:text="${itemjoin.rental_id}"></td>
                                 <td th:text="${itemjoin.rental_purpose}"></td>
                                 <td th:text="${itemjoin.rentalDTO.item_name}"></td>
@@ -72,8 +68,6 @@
                                 <td th:text="${itemjoin.rental_status}"></td>
                             </tr>
                             </tbody>
-
-
                         </table>
                     </div>
                 </div>
@@ -81,7 +75,6 @@
                 <form action="/subpage/item" method="post">
                     <!-- 모달 내용 -->
                     <div id="myModal" class="modal">
-
                         <!-- 모달 내용 -->
                         <div class="modal-content">
                             <h1 style="text-align: center">물품 대여</h1>
@@ -91,23 +84,20 @@
                                 <select name="item_name" id="item_name" style="height: 30px; width: 400px;"></select>
                             </p>
                             <p>대여일</p>
-                            <p> <input type="date" name="rental_date" style="height: 30px; width: 400px; "></p>
+                            <p><input type="date" id="rental_date" name="rental_date" style="height: 30px; width: 400px;"></p>
                             <p>반납 예정일</p>
-                            <p><input type="date" name="rental_return_date" style="height: 30px; width: 400px;"></p>
+                            <p><input type="date" id="rental_return_date" name="rental_return_date" style="height: 30px; width: 400px;"></p>
                             <p>대여 용도</p>
                             <p><input type="text" name="rental_purpose" style="height: 30px; width: 400px;"></p>
                             <div class="buttons">
                                 <button id="addBtn" style="background-color: #4CAF50" type="submit">추가</button>
                                 <button id="cancelBtn" type="button">취소</button>
                             </div>
-                            </p>
-
                         </div>
                     </div>
                 </form>
 
                 <script>
-
                     // 모달 요소 가져오기
                     var modal = document.getElementById("myModal");
 
@@ -143,35 +133,40 @@
                         }
                     }
 
-                    // 차종 에 대한 옵션 가지고 오기
+                    // 차종에 대한 옵션 가져오기
                     fetch("/subpage/item/find")
                         .then(res => res.json())
                         .then(data => {
                             const $item_name = document.getElementById('item_name');
 
-                            for(let item of data) { // 'of'를 사용하여 배열의 각 객체에 대해 반복
+                            for(let item of data) {
                                 const $option = document.createElement("option");
-                                // 'vehicle_name'을 option의 value로, 'vehicle_number'를 텍스트 내용으로 사용
-                                $option.value =item.item_name;
-                                $option.textContent =item.item_name;
+                                $option.value = item.item_name;
+                                $option.textContent = item.item_name;
                                 $item_name.appendChild($option);
                             }
-                        })
+                        });
 
+                    document.getElementById('rental_date').addEventListener('change', function() {
+                        var rentalDate = new Date(this.value);
+                        var returnDateField = document.getElementById('rental_return_date');
+                        returnDateField.min = this.value;
 
+                        if (new Date(returnDateField.value) < rentalDate) {
+                            returnDateField.value = this.value;
+                        }
+                    });
+
+                    document.getElementById('rental_return_date').addEventListener('change', function() {
+                        var rentalDate = new Date(document.getElementById('rental_date').value);
+                        var returnDate = new Date(this.value);
+
+                        if (returnDate < rentalDate) {
+                            alert('반납일은 대여일 이후여야 합니다.');
+                            this.value = document.getElementById('rental_date').value;
+                        }
+                    });
                 </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <div class="page_number">
                     <div class="flex">
@@ -186,11 +181,9 @@
                         <div class="search_button" onclick="search()">검색</div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-
 </div>
 </body>
 </html>
