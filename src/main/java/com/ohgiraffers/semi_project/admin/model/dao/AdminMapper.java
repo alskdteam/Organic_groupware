@@ -10,4 +10,6 @@ public interface AdminMapper {
     List<NoticeDTO> findnotice();
 
     NoticeDTO findByCodePage(int code);
+
+    int updateNotice(NoticeDTO noticeDTO);
 }

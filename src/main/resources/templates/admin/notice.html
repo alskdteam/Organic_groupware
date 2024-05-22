@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>noticetext</title>
     <link rel="stylesheet" href="noticetext.css">
-
     <style>
 
         @media screen and (max-width: 375px) {
@@ -23,12 +21,10 @@
             }
             #sidebar {
                 width: 100%;
-                /* 사이드바 틀 높이 */
                 height: 838px;
             }
         }
 
-        /* main.css */
         @font-face {
             font-family: 'Pretendard-Regular';
             src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -68,7 +64,6 @@
         }
 
         .midtitle {
-
             width: 60vw;
             height: 50px;
             border: 2px solid #4CAF50;
@@ -78,8 +73,6 @@
             position: relative;
             top: 100px;
             left: 10vw;
-
-
         }
 
         .titletext {
@@ -88,14 +81,13 @@
             position: relative;
             top: 41px;
             left: 14vw;
-            font-size: 20px;
+            font-size: 30px;
             font-weight: 400;
             border: none;
             outline: none;
-
         }
-        .inputtext {
 
+        .inputtext {
             margin: 0;
             position: relative;
             align-items: center;
@@ -105,11 +97,12 @@
             top: 100px;
             border: 2px solid #4CAF50;
             left: 5vw;
-            font-size: 14px;
+            font-size: 24px;
             border-radius: 10px;
             padding: 30px;
-
+            font-family: 'Arial', sans-serif;
         }
+
         .button_all {
             position: relative;
             width: 100vw;
@@ -117,6 +110,7 @@
             height: 100px;
             margin-top: 100px;
         }
+
         .btn_notice1, .btn_notice2, .btn_notice3 {
             margin-top: 20px;
             width: 5vw;
@@ -137,11 +131,12 @@
             position: relative;
             left: 61vw;
         }
+
         .btn_notice3 a {
             color: white;
             text-decoration: none;
-
         }
+
         .btn_notice1 {
             position: relative;
             left: 5vw;
@@ -158,20 +153,22 @@
         <div th:replace="common/header.html" id="header"></div>
 
         <div class="area">
-
             <!-- 여기서부터 시작 위에는 건들지 마세요 -->
-
             <h2 class="midtitle">제목 :</h2>
-            <input type="text" class="titletext" placeholder="제목을 입력해주세요">
-            <textarea name="inputtext" id="inputtext" class="inputtext" placeholder=" 내용을 입력하세요"></textarea>
-            <div class="button_all">
-                <input type="file" id="attachmentInput" style="display: none;">
-                <button class="btn_notice1" onclick="document.getElementById('attachmentInput').click();">첨부파일</button>
-                <button class="btn_notice2">등록하기</button>
-                <button class="btn_notice3"><a href="notice.html">취소</a></button>
-            </div>
-
+            <form action="/admin/updateNotice" method="post">
+                <input type="hidden" name="noticeId" th:value="${noticeDTO.noticeId}">
+                <input type="hidden" name="noticeCreationDate" th:value="${noticeDTO.noticeCreationDate}">
+                <input type="text" class="titletext" name="noticeTitle" placeholder="제목을 입력해주세요" th:value="${noticeDTO.noticeTitle}">
+                <textarea name="noticeContent" id="inputtext" class="inputtext" placeholder=" 내용을 입력하세요" th:text="${noticeDTO.noticeContent}"></textarea>
+                <div class="button_all">
+                    <input type="file" id="attachmentInput" style="display: none;">
+                    <button type="button" class="btn_notice1" onclick="document.getElementById('attachmentInput').click();">첨부파일</button>
+                    <button type="submit" class="btn_notice2">수정하기</button>
+                    <button type="button" class="btn_notice3"><a href="/admin/admin">취소</a></button>
+                </div>
+            </form>
         </div>
+
         <script>
             const attachmentInput = document.getElementById('attachmentInput');
             const fileContentTextarea = document.getElementById('fileContent');
@@ -189,8 +186,9 @@
 
                     reader.readAsText(selectedFile); // 파일을 텍스트로 읽어옴
                 }
-            })
+            });
         </script>
-    </body>
-
+    </div>
+</div>
+</body>
 </html>
