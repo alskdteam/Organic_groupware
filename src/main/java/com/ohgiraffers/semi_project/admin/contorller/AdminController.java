@@ -29,7 +29,7 @@ public class AdminController {
     @GetMapping("/admin/notice")
     public String noticecode(@RequestParam int code ,Model model){
         System.out.println("code = " + code);
-        
+
         NoticeDTO noticeDTO = adminService.findByCodePage(code);
         model.addAttribute(noticeDTO);
         System.out.println("noticeDTO = " + noticeDTO);

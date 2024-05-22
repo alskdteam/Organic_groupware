@@ -23,19 +23,13 @@
     <resultMap id="vehicleDTO" type="com.ohgiraffers.semi_project.subpage.car.model.dto.VehicleDTO">
         <id property="vehicle_name" column="vehicle_name"/>
         <result property="vehicle_number" column="vehicle_number"/>
-        <result property="car_rental_status" column="car_rental_status"/>
     </resultMap>
 
     <select id="findAllVehicle" resultMap="vehicleDTO">
-        SELECT
-        v.vehicle_name,
-        v.vehicle_number
-        FROM
-        vehicle v
-        JOIN
-        car c ON v.vehicle_name = c.vehicle_name
-        WHERE
-        c.car_rental_status = '대여 가능';
+        select
+            vehicle_name,
+            vehicle_number
+        from vehicle
     </select>
 
 
@@ -58,15 +52,11 @@
         SELECT
         a.vehicle_name,
         a.vehicle_number,
-        a.vehicle_code,
         b.car_rental_status
         FROM
         CAR b
         JOIN
-        vehicle a ON a.vehicle_code = b.vehicle_code
-        ORDER BY
-        a.vehicle_code;
-
+        vehicle a on (a.vehicle_name = b.vehicle_name)
     </select>
 
 

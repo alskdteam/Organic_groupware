@@ -60,6 +60,7 @@
                                 <th>예약날짜</th>
                                 <th>반납예정일</th>
                                 <th>취소/반납</th>
+                                <th>반납</th>
                             </tr>
                             <tbody id="tableBody">
                             <tr th:each="siCarMyJoin : ${siCarMyList}" id="row_${iterStat.index}">
@@ -69,6 +70,7 @@
                                 <td th:text="${siCarMyJoin.vehicle_reservation_date }"></td>
                                 <td th:text="${siCarMyJoin.vehicle_return_due_date }"></td>
                                 <td th:text="${siCarMyJoin.vehicle_return_status}"></td>
+                                <td><span style="width: 15px; height: auto; border-radius: 5px; background-color: aliceblue;  border: 1px solid gray; padding: 2px ">반납</span></td>
                             </tr>
 
                             </tbody>

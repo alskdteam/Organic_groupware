@@ -400,3 +400,119 @@ button {
     font-size: 80px;
     text-align: center;
 }
+
+/* 메모 안에 css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.memocontainer {
+    display: flex;
+    width: auto;
+    height: 450px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    overflow: hidden;
+}
+
+.memosidebar {
+    width: 250px;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+}
+
+#memo-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#memo-list li {
+    padding: 5px;
+    cursor: pointer;
+}
+
+#memo-list li:hover {
+    background-color: #f0f0f0;
+}
+
+#memo-list li button {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 4px;
+    cursor: pointer;
+}
+
+#memo-list li button:hover {
+    background-color: darkred;
+}
+
+#new-memo-btn {
+    margin-top: 10px;
+    padding: 5px;
+    width: 50%;
+    cursor: pointer;
+    margin-left: 5.8vw;
+    position: relative;
+}
+
+.notepad {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.notepad-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+}
+
+.memobuttons {
+    display: flex;
+}
+
+.memobutton {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: bold;
+}
+
+.notepad-content {
+    flex-grow: 1;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: none;
+}
+
+.notepad-content:focus {
+    outline: none;
+}

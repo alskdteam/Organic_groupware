@@ -132,3 +132,73 @@ if(imageInput != null){ // 화면에 imageInput이 있을 경우
         }
     })
 }
+
+
+// 메모 js
+
+document.addEventListener('DOMContentLoaded', () => {
+    const memoList = document.getElementById('memo-list');
+    const memoContent = document.getElementById('memo-content');
+    const newMemoBtn = document.getElementById('new-memo-btn');
+    // 데이터베이스에서 가져온 로그인한 사용자의 ID
+    const user_id = '123'; // 예시로 사용자의 ID가 'user123'인 경우
+
+    // localStorage에서 메모 불러오기
+    let memos = JSON.parse(localStorage.getItem(`memos_${user_id}`)) || [];
+    let currentMemoIndex = null;
+
+
+    function renderMemoList() {
+        memoList.innerHTML = '';
+        memos.forEach((memo, index) => {
+            const li = document.createElement('li');
+            li.textContent = memo.title || `메모 ${index + 1}`;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = '삭제';
+            deleteBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                deleteMemo(index);
+            });
+
+            li.appendChild(deleteBtn);
+            li.addEventListener('click', () => {
+                currentMemoIndex = index;
+                memoContent.value = memo.content;
+            });
+            memoList.appendChild(li);
+        });
+    }
+
+    function deleteMemo(index) {
+        memos.splice(index, 1);
+        currentMemoIndex = null;
+        memoContent.value = '';
+        localStorage.setItem(`memos_${user_id}`, JSON.stringify(memos));
+        renderMemoList();
+    }
+
+
+
+    newMemoBtn.addEventListener('click', () => {
+        const newMemo = { title: '', content: '' };
+        memos.push(newMemo);
+        currentMemoIndex = memos.length - 1;
+        renderMemoList();
+        memoContent.value = '';
+
+        // localStorage에 새 메모 저장
+        localStorage.setItem(`memos_${user_id}`, JSON.stringify(memos));
+    });
+
+    memoContent.addEventListener('input', () => {
+        if (currentMemoIndex !== null) {
+            memos[currentMemoIndex].content = memoContent.value;
+            renderMemoList();
+            // 변경된 메모 내용을 localStorage에 저장
+            localStorage.setItem(`memos_${user_id}`, JSON.stringify(memos));
+        }
+    });
+
+    renderMemoList();
+});
