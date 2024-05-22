@@ -12,21 +12,24 @@
     </resultMap>
 
     <select id="findnotice" resultMap="adminNoticeResultMap">
-
-        select
-        *
-        from
-        Notice;
-
+        SELECT *
+        FROM Notice;
     </select>
 
     <select id="findByCodePage" resultMap="adminNoticeResultMap">
-
-        select
-        *
-        from
-        Notice
-        where
-        notice_id = #{code}
+        SELECT *
+        FROM Notice
+        WHERE notice_id = #{code}
     </select>
+
+
+    <update id="updateNotice" parameterType="com.ohgiraffers.semi_project.admin.model.dto.NoticeDTO">
+        UPDATE Notice
+        SET
+        notice_title = #{noticeTitle},
+        notice_content = #{noticeContent},
+        notice_creation_date = #{noticeCreationDate}
+        WHERE
+        notice_id = #{noticeId}
+    </update>
 </mapper>

@@ -24,4 +24,9 @@ public class AdminService {
 
         return adminMapper.findByCodePage(code);
     }
+
+    public int updateNotice(NoticeDTO noticeDTO) {
+
+        return adminMapper.updateNotice(noticeDTO);
+    }
 }
