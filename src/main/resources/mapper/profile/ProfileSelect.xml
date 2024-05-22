@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semi_project.subpage.profile.model.dao.ProfileMapper">
+
+    <resultMap id="profileSelectDTO" type="com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO">
+        <id property="user_name" column="user_name"/>
+        <result property="english_name" column="english_name"/>
+        <result property="phone_number" column="phone_number"/>
+        <result property="email" column="email"/>
+        <result property="profile_image" column="profile_image"/>
+    </resultMap>
+
+    <select id="selectProfile" resultMap="profileSelectDTO">
+
+        SELECT
+        korea_name,
+        english_name,
+        phone_number,
+        email,
+        profile_image,
+        user_no
+        FROM
+        profile
+        where
+        user_no = #{user_no}
+
+
+    </select>
+
+
+</mapper>

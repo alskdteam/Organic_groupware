@@ -72,18 +72,18 @@
                             <td style="width: 350px; height: 50px;  border: 1px solid rgb(178,178,178);">
                                 <form  name="myForm2" action="/subpage/draft" method="post" enctype="multipart/form-data">
                                     <label for="edoc_form_ct_no" style="margin: 10px">문서 번호:</label>
-                                    <input type="text" placeholder="필수사항" name="edoc_form_ct_no" >
+                                    <input type="text" placeholder="필수사항" name="edoc_form_ct_no" disabled>
                                     <br>
                                     <label for="employee_name" style="margin: 10px">사원 성함:</label>
-                                    <input type="text" placeholder="필수사항" name="employee_name" >
+                                    <input type="text" placeholder="필수사항" name="employee_name" disabled>
                                     <br>
-                                    <label for="user_id" style="margin: 10px">사원 번호:</label>
-                                    <input type="text" placeholder="사용자 ID를 입력하세요" name="user_id" >
+<!--                                    <label for="user_id" style="margin: 10px">사원 번호:</label>-->
+<!--                                    <input type="text" placeholder="사용자 ID를 입력하세요" name="user_id" >-->
 
-                                    <input type="hidden" placeholder="필수사항" name="edoc_form_no" value="2">
+                                    <input type="hidden" placeholder="필수사항" name="edoc_form_no" value="2" disabled>
                                     <br>
                                     <label for="employee_sign" style="margin: 10px; ">사인 파일 등록하기:</label>
-                                    <input id="employee_sign" name="employee_sign" type="file" style=" margin: 10px">
+                                    <input id="employee_sign" name="employee_sign" type="file" style=" margin: 10px" disabled>
                                     <br>
                                     <input type="submit" value="전송" style="width: 60px; height: 30px; margin-left: 80%; border-radius: 5px; background-color: aliceblue;" disabled>
                                 </form>
@@ -145,8 +145,8 @@
                                     </tr>
                                 </table>
                                 <div style="height: 50px">
-                                    <label for="user_id" style="margin: 10px">사원 번호:</label>
-                                    <input type="text" placeholder="사용자 ID를 입력하세요" name="user_id" style="margin-top: 3%">
+<!--                                    <label for="user_id" style="margin: 10px">사원 번호:</label>-->
+<!--                                    <input type="text" placeholder="사용자 ID를 입력하세요" name="user_id" style="margin-top: 3%">-->
                                 </div>
                                 <table id="table2">
 

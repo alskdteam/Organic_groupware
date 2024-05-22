@@ -4,22 +4,58 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.semi_project.subpage.profile.model.dao.ProfileMapper">
 
+    <resultMap id="profileResultMap" type="com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO">
+        <id property="korea_name" column="korea_name"/>
+        <result property="english_name" column="english_name"/>
+        <result property="phone_number" column="phone_number"/>
+        <result property="email" column="email"/>
+        <result property="user_no" column="user_no"/>
+        <result property="profile_image" column="profile_image"/>
+    </resultMap>
+
+<!--    추가매퍼-->
     <insert id="registNewProfile" parameterType="com.ohgiraffers.semi_project.subpage.profile.model.dao.ProfileMapper">
         INSERT INTO profile (
-        user_name,
+        korea_name,
         english_name,
         phone_number,
         email,
-        profile_image
+        profile_image,
+        user_no
         ) VALUES (
-        #{user_name},
+        #{korea_name},
         #{english_name},
         #{phone_number},
         #{email},
-        #{profile_image}
+        #{profile_image},
+        #{user_no}
         )
     </insert>
 
+<!--    확인 매퍼-->
+
+    <select id="getProfileByUserNo" resultMap="profileResultMap">
+
+        SELECT
+        *
+        FROM
+            profile
+        where
+            user_no = #{user_no}
+
+    </select>
+
+    <update id="updateProfile" parameterType="com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO">
+        UPDATE profile
+        SET
+        korea_name = #{korea_name},
+        english_name = #{english_name},
+        phone_number = #{phone_number},
+        email = #{email},
+        profile_image = #{profile_image}
+        WHERE
+        user_no = #{user_no}
+    </update>
 
 
 </mapper>
