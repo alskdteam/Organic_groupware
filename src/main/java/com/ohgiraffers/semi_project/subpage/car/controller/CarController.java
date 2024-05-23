@@ -48,6 +48,7 @@ public class CarController {
         sidebarController.getSidebar(model);
         sidebarController.getHeader(model);
         List<CarJoinDTO> carJoinList = carService.findAllCar();
+        System.out.println("carJoinList = " + carJoinList);
         model.addAttribute("carJoinList", carJoinList);
 
 
@@ -75,6 +76,7 @@ public class CarController {
         System.out.println("regist = " + regist);
 
         int result = carService.registCarDTO(regist);
+        int update = carService.registCarDTOUpdate(regist);
 
 
 

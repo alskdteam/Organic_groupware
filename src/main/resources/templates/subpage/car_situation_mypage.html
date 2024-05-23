@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,6 @@
     <script src="/js/carSituation.js"></script>
 
     <style>
-
         @media screen and (max-width: 375px) {
             .container {
                 flex-direction: column;
@@ -25,31 +23,52 @@
             }
             #sidebar {
                 width: 100%;
-                /* 사이드바 틀 높이 */
                 height: 838px;
             }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+        }
+        .close-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <!-- 사이드바 -->
     <div th:replace="common/sidebar.html" id="sidebar"></div>
-    <!-- 메인 컨텐츠 -->
     <div class="content">
-        <!-- 헤더 추가 -->
         <div th:replace="common/header.html" id="header"></div>
-
         <div class="area">
-
-            <!--            여기서부터 시작 위에는 건들지 마세요-->
             <div class="layer">
                 <h1>차량대여 현황</h1>
                 <div class="button">
                     <div class="c_button" onclick="allBtn()">전체</div>
                     <div class="c_button" onclick="myBtn()">내예약</div>
                 </div>
-
                 <div class="chart">
                     <div class="cars">
                         <table>
@@ -60,19 +79,29 @@
                                 <th>예약날짜</th>
                                 <th>반납예정일</th>
                                 <th>취소/반납</th>
+                                <th>반납</th>
                             </tr>
                             <tbody id="tableBody">
                             <tr th:each="siCarMyJoin : ${siCarMyList}" id="row_${iterStat.index}">
                                 <td th:text="${siCarMyJoin.vehicleDTO.vehicle_name}"></td>
                                 <td th:text="${siCarMyJoin.vehicleDTO.vehicle_number}"></td>
                                 <td th:text="${siCarMyJoin.employeeDTO.user_name}"></td>
-                                <td th:text="${siCarMyJoin.vehicle_reservation_date }"></td>
-                                <td th:text="${siCarMyJoin.vehicle_return_due_date }"></td>
+                                <td th:text="${siCarMyJoin.vehicle_reservation_date}"></td>
+                                <td th:text="${siCarMyJoin.vehicle_return_due_date}"></td>
                                 <td th:text="${siCarMyJoin.vehicle_return_status}"></td>
+                                <td>
+                                    <form class="return-form" th:action="@{/subpage/car_situation_mypage}" method="post">
+                                        <input type="hidden" name="vehicle_name" th:value="${siCarMyJoin.vehicleDTO.vehicle_name}">
+                                        <input type="hidden" name="vehicle_number" th:value="${siCarMyJoin.vehicleDTO.vehicle_number}">
+                                        <input type="hidden" name="user_name" th:value="${siCarMyJoin.employeeDTO.user_name}">
+                                        <input type="hidden" name="vehicle_reservation_date" th:value="${siCarMyJoin.vehicle_reservation_date}">
+                                        <input type="hidden" name="vehicle_return_due_date" th:value="${siCarMyJoin.vehicle_return_due_date}">
+                                        <input type="hidden" name="vehicle_return_status" th:value="${siCarMyJoin.vehicle_return_status}">
+                                        <button type="button" onclick="confirmReturn(this)" style="width: 60px; height: auto; border-radius: 5px; background-color: aliceblue; border: 1px solid gray; padding: 2px">반납</button>
+                                    </form>
+                                </td>
                             </tr>
-
                             </tbody>
-
                         </table>
                     </div>
                 </div>
@@ -83,7 +112,6 @@
                         <div class="s_button" onclick="changePage(2)">2</div>
                         <div class="s_button" onclick="changePage(3)">3</div>
                         <div class="s_button">&gt;</div>
-
                     </div>
                 </div>
                 <div class="search">
@@ -92,29 +120,83 @@
                         <div class="search_button" onclick="search()">검색</div>
                     </div>
                 </div>
-
             </div>
-
-            <script>
-                function search() {
-                    // 검색 버튼을 눌렀을 때 실행되는 검색 기능을 구현합니다.
-                    alert("검색 기능이 실행됩니다.");
-                    // 이 부분에 실제 검색 기능을 구현하면 됩니다.
-                }
-            </script>
-
-
-
-
-
-
-
-
-
-
         </div>
-
     </div>
 </div>
+
+<!-- 반납 확인 모달 -->
+<div id="confirmModal" class="modal">
+    <div class="modal-content">
+        <p>반납 하시겠습니까?</p>
+        <button class="close-btn" onclick="submitForm()">확인</button>
+        <button class="close-btn" onclick="closeConfirmModal()">취소</button>
+    </div>
+</div>
+
+<!-- 반납 완료 모달 -->
+<div id="alertModal" class="modal">
+    <div class="modal-content">
+        <p>반납이 완료 되었습니다!</p>
+        <button class="close-btn" onclick="closeAlertModal()">확인</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var rows = document.querySelectorAll('#tableBody tr');
+        rows.forEach(function(row) {
+            var status = row.querySelector('td:nth-child(6)').textContent.trim();
+            if (status === '반납 완료') {
+                var button = row.querySelector('button');
+                button.disabled = true;
+                button.style.backgroundColor = 'lightgray';
+                button.style.cursor = 'not-allowed';
+            }
+        });
+    });
+
+    var formToSubmit;
+
+    function confirmReturn(button) {
+        var modal = document.getElementById('confirmModal');
+        modal.style.display = 'block';
+        formToSubmit = button.closest('form');
+    }
+// 메모 아래 함수가 ajax 인데 나중에 공부해보기
+    function submitForm() { // 아까 알림창 확인버튼 누르면 실행되는 함수
+        closeConfirmModal();
+        setTimeout(function() {
+            var formData = new FormData(formToSubmit);
+            fetch(formToSubmit.action, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+                    showAlertModal();
+                })
+                .catch(error => console.error('Error:', error));
+        }, 1000); // 딜리이 1초인데 바로 업데이트가 안돼서 딜레이줌 나중에 코드
+    }
+
+    function closeConfirmModal() {
+        var modal = document.getElementById('confirmModal');
+        modal.style.display = 'none';
+    }
+
+    function showAlertModal() {
+        var modal = document.getElementById('alertModal');
+        modal.style.display = 'block';
+    }
+
+    function closeAlertModal() {
+        var modal = document.getElementById('alertModal');
+        modal.style.display = 'none';
+        // 서버에 제출합니다아ㅏㅇ~
+        formToSubmit.submit();
+    }
+</script>
+
 </body>
 </html>

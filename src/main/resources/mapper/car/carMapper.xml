@@ -28,14 +28,12 @@
 
     <select id="findAllVehicle" resultMap="vehicleDTO">
         SELECT
-        v.vehicle_name,
-        v.vehicle_number
+        vehicle_name,
+        vehicle_number
         FROM
-        vehicle v
-        JOIN
-        car c ON v.vehicle_name = c.vehicle_name
+        vehicle
         WHERE
-        c.car_rental_status = '대여 가능';
+        car_rental_status = '대여 가능';
     </select>
 
 
@@ -56,17 +54,11 @@
 
     <select id="findAllCar" resultMap="carjoin">
         SELECT
-        a.vehicle_name,
-        a.vehicle_number,
-        a.vehicle_code,
-        b.car_rental_status
-        FROM
-        CAR b
-        JOIN
-        vehicle a ON a.vehicle_code = b.vehicle_code
-        ORDER BY
-        a.vehicle_code;
-
+        vehicle_number,
+        vehicle_name,
+        vehicle_code,
+        car_rental_status
+        FROM vehicle
     </select>
 
 
@@ -90,7 +82,13 @@
         #{userCode}
         )
     </insert>
-
+    <update id="registCarDTOUpdate">
+        UPDATE vehicle
+        SET
+        car_rental_status = '대여중'
+        WHERE
+        vehicle_name = #{vehicle_name};
+    </update>
 
 
 
@@ -128,6 +126,8 @@
         vehicle b ON b.vehicle_name = a.vehicle_name
         JOIN
         employee c ON c.user_id = a.user_id
+        ORDER BY
+        a.vehicle_return_due_date DESC;
     </select>
 
 
@@ -149,5 +149,21 @@
         c.user_no = ${userCode}
     </select>
 
+
+    <update id="upmycarlist">
+        UPDATE car
+        SET vehicle_return_status = '반납 완료'
+        WHERE
+        vehicle_name = #{vehicle_name};
+
+    </update>
+
+    <update id="CarListUpdate">
+        UPDATE vehicle
+        SET
+        car_rental_status = '대여 가능'
+        WHERE
+        vehicle_name = #{vehicle_name};
+    </update>
 
 </mapper>
