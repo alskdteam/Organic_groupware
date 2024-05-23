@@ -132,3 +132,93 @@ if(imageInput != null){ // 화면에 imageInput이 있을 경우
         }
     })
 }
+
+
+// 메모 js
+document.addEventListener('DOMContentLoaded', () => {
+    const memoList = document.getElementById('memo-list');
+    const memoContent = document.getElementById('memo-content');
+    const newMemoBtn = document.getElementById('new-memo-btn');
+    let user_id = '123'; // 이 부분은 로그인한 사용자 ID로 동적으로 설정되어야 합니다
+
+    let memos = [];
+    let currentMemoIndex = null;
+
+    function loadMemosForUser(userId) {
+        memos = JSON.parse(localStorage.getItem(`memos_${userId}`)) || [];
+        currentMemoIndex = null;
+        memoContent.value = '';
+        renderMemoList();
+    }
+
+    function renderMemoList() {
+        memoList.innerHTML = '';
+        memos.forEach((memo, index) => {
+            const li = document.createElement('li');
+            li.textContent = memo.title || `메모 ${index + 1}`;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = '삭제';
+            deleteBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                deleteMemo(index);
+            });
+
+            li.appendChild(deleteBtn);
+            li.addEventListener('click', () => {
+                currentMemoIndex = index;
+                memoContent.value = memo.content;
+            });
+            memoList.appendChild(li);
+        });
+    }
+
+    function deleteMemo(index) {
+        memos.splice(index, 1);
+        currentMemoIndex = null;
+        memoContent.value = '';
+        localStorage.setItem(`memos_${user_id}`, JSON.stringify(memos));
+        renderMemoList();
+    }
+
+    newMemoBtn.addEventListener('click', () => {
+        const newMemo = { title: '', content: '' };
+        memos.push(newMemo);
+        currentMemoIndex = memos.length - 1;
+        renderMemoList();
+        memoContent.value = '';
+
+        // localStorage에 새 메모 저장
+        localStorage.setItem(`memos_${user_id}`, JSON.stringify(memos));
+    });
+
+    memoContent.addEventListener('input', () => {
+        if (currentMemoIndex !== null) {
+            memos[currentMemoIndex].content = memoContent.value;
+            renderMemoList();
+            // 변경된 메모 내용을 localStorage에 저장
+            localStorage.setItem(`memos_${user_id}`, JSON.stringify(memos));
+        }
+    });
+
+    // 사용자 변경 함수
+    function switchUser(newUserId) {
+        // 현 사용자 데이터 저장
+        localStorage.setItem(`memos_${user_id}`, JSON.stringify(memos));
+
+        // 사용자 전환
+        user_id = newUserId;
+        // 사용자 전환 시 메모와 메모 내용을 초기화
+        memos = [];
+        memoContent.value = '';
+        memoList.innerHTML = '';
+
+        // 새로운 사용자 데이터 로드
+        loadMemosForUser(user_id);
+    }
+
+    // 초기 사용자 로드
+    loadMemosForUser(user_id);
+
+});
+

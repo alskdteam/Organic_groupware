@@ -1,7 +1,9 @@
 package com.ohgiraffers.semi_project.subpage.profile.controller;
 
+import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFromEdocCtDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.service.ProfileService;
+import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,10 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String edoc(Model model) {
+
+        Userdata userdata = new Userdata();
+        LoginUserDTO userDTO = userdata.getloginUserDTO();
+        int userCode = Integer.parseInt(userDTO.getUserId());
 
 
         return "subpage/profile";
