@@ -49,23 +49,24 @@
                     <div class="carrr">
                         <table>
                             <tr>
-                                <th>번호</th>
                                 <th>용도</th>
                                 <th>물품명</th>
                                 <th>대여자</th>
                                 <th>물품 대여일</th>
                                 <th>물품반납일</th>
                                 <th>취소/반납</th>
+                                <th>개수</th>
                             </tr>
                             <tbody id="tableBody">
                             <tr th:each="itemjoin : ${rentalList}" id="row_${iterStat.index}">
-                                <td th:text="${itemjoin.rental_id}"></td>
+
                                 <td th:text="${itemjoin.rental_purpose}"></td>
                                 <td th:text="${itemjoin.rentalDTO.item_name}"></td>
                                 <td th:text="${itemjoin.employeeDTO.user_name}"></td>
                                 <td th:text="${itemjoin.rental_date}"></td>
                                 <td th:text="${itemjoin.rental_return_date}"></td>
                                 <td th:text="${itemjoin.rental_status}"></td>
+                                <td th:text="${itemjoin.rentalDTO.item_inventory}"></td>
                             </tr>
                             </tbody>
                         </table>

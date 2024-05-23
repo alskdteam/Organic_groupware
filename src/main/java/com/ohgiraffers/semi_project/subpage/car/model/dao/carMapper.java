@@ -26,4 +26,9 @@ public interface carMapper {
 
 
     int registCarDTO(Map<String, Object> regist);
+    int registCarDTOUpdate(Map<String,Object> regist);
+
+    int upmycarlist(Map<String, Object> params);
+
+    int CarListUpdate(Map<String, Object> params);
 }

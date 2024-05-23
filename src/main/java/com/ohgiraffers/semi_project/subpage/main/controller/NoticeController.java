@@ -30,12 +30,14 @@ public class NoticeController {
     public String main(Model model) {
 
 
+
         sidebarController.getSidebar(model);
         sidebarController.getHeader(model);
 
 
 //      공지사항
         List<NoticeDTO> selectNotice = mainService.selectNotice();
+
         model.addAttribute("selectNotice", selectNotice);
 
 //        System.out.println(selectNotice);

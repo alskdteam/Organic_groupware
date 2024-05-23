@@ -59,4 +59,18 @@ public class CarService {
         return carMapper.registCarDTO(regist);
 
     }
+
+    public int registCarDTOUpdate(Map<String, Object> regist) {
+        return carMapper.registCarDTOUpdate(regist);
+    }
+
+    public int upmycarlist(Map<String, Object> params) {
+
+        return carMapper.upmycarlist(params);
+    }
+
+    public int CarListUpdate(Map<String, Object> params) {
+
+        return carMapper.CarListUpdate(params);
+    }
 }

@@ -9,7 +9,6 @@
         SET
         employee_name = #{employee_name},
         employee_sign = #{employee_sign},
-        edoc_form_no = #{edoc_form_no},
         user_id = #{user_id}
         WHERE
         edoc_form_ct_no = #{edoc_form_ct_no}

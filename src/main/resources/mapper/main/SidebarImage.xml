@@ -20,4 +20,38 @@
         where
         user_no = #{user_no}
     </select>
+
+
+    <resultMap id="selectCommute" type="com.ohgiraffers.semi_project.subpage.main.model.dto.CommuteDTO">
+        <id property="user_no" column="user_no"/>
+        <result property="go_work" column="go_work"/>
+        <result property="leave_work" column="leave_work"/>
+        <result property="commute_date" column="commute_date" javaType="java.time.LocalDate"/>
+    </resultMap>
+
+
+    <select id="selectCommuteTime" resultMap="selectCommute">
+
+        select
+            go_work,
+            leave_work
+        from
+            commute
+        where
+        user_no = #{user_no} AND commute_date = CURRENT_DATE;
+
+    </select>
+
+
+    <insert id="uploadStartTime" parameterType="com.ohgiraffers.semi_project.subpage.main.model.dto.CommuteDTO">
+        INSERT INTO commute (user_no, go_work, commute_date)
+        VALUES (#{user_no}, #{go_work}, CURRENT_DATE);
+    </insert>
+
+    <update id="updateEndTime" parameterType="com.ohgiraffers.semi_project.subpage.main.model.dto.CommuteDTO">
+        UPDATE commute
+        SET leave_work = #{leave_work}
+        WHERE user_no = #{user_no} AND commute_date = CURRENT_DATE;
+    </update>
+
 </mapper>
