@@ -55,13 +55,13 @@
                                     <table>
                                         <tr>
                                             <th>번호</th>
-                                            <th>내용</th>
+                                            <th>제목</th>
                                             <th>등록일</th>
                                         </tr>
                                         <tbody id="tableBody">
                                         <tr th:each="list, iterStat : ${selectNotice}" id="row_${iterStat.index}">
                                             <td th:text="${list.notice_id}"></td>
-                                            <td th:text="${list.notice_content}"></td>
+                                            <td th:text="${list.notice_title}"></td>
                                             <td th:text="${list.notice_creationDate}"></td>
                                         </tr>
                                         </tbody>

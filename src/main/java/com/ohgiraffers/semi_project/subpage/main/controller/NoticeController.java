@@ -26,6 +26,7 @@ public class NoticeController {
     public String main(Model model) {
         List<NoticeDTO> selectNotice = mainService.selectNotice();
 
+        System.out.println("selectNotice = " + selectNotice);
         model.addAttribute("selectNotice", selectNotice);
 
 //        System.out.println(selectNotice);
