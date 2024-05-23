@@ -44,7 +44,7 @@ public class EdocFormCtFunctionController {
         logger.info("Locale : {}", locale);
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("registMenu", null, locale));
 
-        return "subpage/edocFrom/selectEdocList";
+        return "subpage/edocFrom/selectEdocList2";
     }
 
 

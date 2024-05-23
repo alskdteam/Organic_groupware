@@ -4,6 +4,8 @@ package com.ohgiraffers.semi_project.subpage.car.controller;
 import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.service.CarService;
+import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
+import com.ohgiraffers.semi_project.subpage.main.model.service.MainService;
 import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,20 +23,26 @@ import java.util.Map;
 @RequestMapping("/subpage")
 public class CarSituationController {
 
+
     private static final Logger logger = LogManager.getLogger(CarController.class);
 
     private final CarService carService;
     private final MessageSource messageSource;
+    private final MainService mainService;
+    private final SidebarController sidebarController;
 
-    @Autowired
-    public CarSituationController(CarService carService, MessageSource messageSource) {
+    public CarSituationController(CarService carService, MessageSource messageSource, MainService mainService, SidebarController sidebarController) {
         this.carService = carService;
         this.messageSource = messageSource;
+        this.mainService = mainService;
+        this.sidebarController = sidebarController;
     }
-
 
     @GetMapping("car_situation")
     public String siCarList(Model model, @RequestParam(required = false) String type) {
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
+
         System.out.println(type);
         List<CarJoinDTO> siCarList = carService.findAllSiCar();
         model.addAttribute("siCarList", siCarList);
@@ -57,7 +65,7 @@ public class CarSituationController {
         model.addAttribute("siCarMyList", siCarMyList);
 
         System.out.println("siCarMyList = " + siCarMyList);
-
+        
 
         return "subpage/car_situation_mypage";
     }
