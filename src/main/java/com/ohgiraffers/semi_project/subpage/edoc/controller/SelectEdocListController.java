@@ -29,7 +29,6 @@ public class SelectEdocListController {
     private final EdocService edocService;
     private final MessageSource messageSource;
 
-
     @Autowired
     private HttpServletRequest request;
 
@@ -70,7 +69,7 @@ public class SelectEdocListController {
 
 //         모델에 조회된 정보를 추가합니다.
         model.addAttribute("insertedEdoc", insertedEdoc);
-
+        
 
         return "subpage/edocFrom/selectEdocList2";
     }

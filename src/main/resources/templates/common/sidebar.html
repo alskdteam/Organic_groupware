@@ -32,9 +32,9 @@
             margin-bottom: 10px;
         }
 
-        /*p {*/
-        /*    margin-bottom: 20px;*/
-        /*}*/
+        p {
+            margin-bottom: 20px;
+        }
     /*여기서 시작*/
         #logo{
             margin: 20px;
@@ -55,22 +55,20 @@
         /*이름*/
         #s_name{
             text-align: center;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            margin-top: 20px;
         }
     /*    wrap2*/
     /*    시계*/
         .s_time{
             width: 150px;
             height: 30px;
-            border-top: 2px solid #e1e1e1; /* 위쪽 테두리의 두께와 색상을 설정합니다. */
-            border-bottom: 2px solid #e1e1e1; /* 아래쪽 테두리의 두께와 색상을 설정합니다. */
+            border: 1.5px solid #e1e1e1; /* 테두리의 두께와 색상을 설정합니다. */
             margin: 5px;
         }
         /*출퇴근*/
         .s_commute{
             width: 150px;
-            height: 50px;
+            height: 30px;
             border: 1.5px solid #e1e1e1; /* 테두리의 두께와 색상을 설정합니다. */
             margin: 5px;
         }
@@ -101,7 +99,7 @@
         .s_wrap3{
             display: flex;
             justify-content: center;
-            padding-top: 20px;
+            padding-top: 30px;
         }
 
         /*목록 버튼*/
@@ -258,13 +256,10 @@
 
         <div class="s_wrap1">
             <div class="s_flex1">
-                <div class="s_picture" style="position: relative; overflow: hidden;">
-                    <img style="width: 100%; height: 100%;" onerror="this.style.display='none'" th:if="${base64ImageData != null}" th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" />
-                    <img style="width: 100%; height: 100%;" th:if="${base64ImageData == null}" src="/img/profile/profile2.jpeg" alt="Default Image" />
+                <div class="s_picture">
+
                 </div>
-                <p id="s_name">
-                    <p th:text="${koreaName}" style="text-align: center"></p>
-                </p>
+                <p id="s_name">아무개 사원</p>
             </div>
         </div>
 
@@ -272,22 +267,9 @@
             <div class="s_flex2">
                 <div class="s_wrap2-1">
                     <div class="s_flex2-1">
-                        <div class="s_time" style="text-align: center; align-content: center">
-                            <div class="clock" id="clock"></div>
-                        </div>
+                        <div class="s_time">
 
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function() {
-                                function updateClock() {
-                                    const clockElement = document.getElementById("clock");
-                                    if (clockElement) {
-                                        const now = new Date();
-                                        clockElement.textContent = now.toLocaleTimeString();
-                                    }
-                                }
-                                setInterval(updateClock, 1000);
-                            });
-                        </script>
+                        </div>
 
                         <div class="s_commute">
 
@@ -296,8 +278,8 @@
                 </div>
                 <div class="s_wrap2-1">
                     <div class="s_flex2-2">
-                        <div class="s_button1" style="cursor: pointer;"></div>
-                        <div class="s_button2" style="cursor: pointer;"></div>
+                        <div class="s_button1"></div>
+                        <div class="s_button2"></div>
                     </div>
                 </div>
 
@@ -311,7 +293,7 @@
 
             <div id="container">
                 <!--세로형 1-->
-                <ul id="nav-v1" style="cursor: pointer;">
+                <ul id="nav-v1">
 
                     <li class="menu-v1">
                             <a href="#" onclick="location.href='/login/main'">

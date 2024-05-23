@@ -7,8 +7,6 @@ import com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.dto.RegistDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.dto.VehicleDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.service.CarService;
-import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
-import com.ohgiraffers.semi_project.subpage.main.model.service.MainService;
 import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +22,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-
 @Controller
 @RequestMapping("/subpage")
 public class CarController {
@@ -32,15 +29,11 @@ public class CarController {
 
     private final CarService carService;
     private final MessageSource messageSource;
-    private final MainService mainService;
-    private final SidebarController sidebarController;
 
     @Autowired
-    public CarController(CarService carService, MessageSource messageSource, MainService mainService, SidebarController sidebarController) {
+    public CarController(CarService carService, MessageSource messageSource) {
         this.carService = carService;
         this.messageSource = messageSource;
-        this.mainService = mainService;
-        this.sidebarController = sidebarController;
     }
 
     @GetMapping("car")
@@ -48,8 +41,6 @@ public class CarController {
         List<CarJoinDTO> carJoinList = carService.findAllCar();
         model.addAttribute("carJoinList", carJoinList);
 
-        sidebarController.getSidebar(model);
-        sidebarController.getHeader(model);
 
         return "subpage/car";
     }
