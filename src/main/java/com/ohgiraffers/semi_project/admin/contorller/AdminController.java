@@ -2,8 +2,6 @@ package com.ohgiraffers.semi_project.admin.contorller;
 
 import com.ohgiraffers.semi_project.admin.model.dto.NoticeDTO;
 import com.ohgiraffers.semi_project.admin.model.service.AdminService;
-import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
-import com.ohgiraffers.semi_project.subpage.main.model.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,22 +18,11 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
 
-
-    private AdminService adminService;
-    private final SidebarController sidebarController;
-
     @Autowired
-    public AdminController(SidebarController sidebarController, AdminService adminService) {
-        this.sidebarController = sidebarController;
-        this.adminService = adminService;
-    }
+    private AdminService adminService;
 
     @GetMapping("/admin")
     public String notice(Model model){
-        sidebarController.getSidebar(model);
-        sidebarController.getHeader(model);
-
-        
         List<NoticeDTO> noticeList = adminService.findnotice();
         model.addAttribute("noticeList", noticeList);
         System.out.println("noticeList = " + noticeList);

@@ -2,8 +2,6 @@ package com.ohgiraffers.semi_project.subpage.edoc.controller;
 
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFormDTO;
 import com.ohgiraffers.semi_project.subpage.edoc.model.service.EdocService;
-import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
-import com.ohgiraffers.semi_project.subpage.main.model.service.MainService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +19,11 @@ public class EdocCorrectionController {
 
 
     private final EdocService edocService;
-    private final MainService mainService;
-    private final SidebarController sidebarController;
+
 
     @Autowired
-    public EdocCorrectionController(EdocService edocService, MainService mainService, SidebarController sidebarController) {
+    public EdocCorrectionController(EdocService edocService, MessageSource messageSource) {
         this.edocService = edocService;
-        this.mainService = mainService;
-        this.sidebarController = sidebarController;
     }
 
 
@@ -38,8 +33,6 @@ public class EdocCorrectionController {
     public String edoc(Model model) {
         List<EdocFormDTO> edocFormList = edocService.selectEdocForm();
 
-        sidebarController.getSidebar(model);
-        sidebarController.getHeader(model);
         model.addAttribute("edocFormList", edocFormList);
 
         return "subpage/edoc_correction";
