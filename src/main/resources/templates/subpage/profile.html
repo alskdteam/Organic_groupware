@@ -274,7 +274,7 @@
                                             <tbody id="tableBody">
                                             <tr th:each="memo : ${memoDTOList}" id="row_${iterStat.index}">
                                                 <td style="width: 135px">
-                                                    <a th:href="'profile/' +${memo.memo_id}" th:text="${memo.memo_title}"></a>
+                                                    <a th:href="'profile/memo/' +${memo.memo_id}" th:text="${memo.memo_title}"></a>
                                                 </td>
                                             </tr>
                                             </tbody>

@@ -40,16 +40,15 @@ public class ProfileController {
         return "subpage/profile";
     }
 
-    @GetMapping("/profile/{memo_id}")
+    @GetMapping("/profile/memo/{memo_id}")
     public String memoInse(Model model,@PathVariable int memo_id ){
         System.out.println("memo_id = " + memo_id);
-        MemoDTO memoooDTO = profileService.findMemoPage(memo_id);
-        model.addAttribute("memoooDTO", memoooDTO);
-        System.out.println("memoooDTO = " + memoooDTO);
+        MemoDTO memoDTO = profileService.findMemoPage(memo_id);
+        model.addAttribute("memoDTO", memoDTO);
+        System.out.println("memoDTO = " + memoDTO);
         return "subpage/profileMemoInse";
 
     }
-
 
 
     @PostMapping("/profile")
@@ -62,30 +61,29 @@ public class ProfileController {
         int userCode = userDTO.getUserCode();
 
 
-        MemoDTO memouupDTO = new MemoDTO();
-        memouupDTO.setMemo_title(memo_title);
-        memouupDTO.setMemo_content(memo_content);
-        memouupDTO.setUser_no(userCode);
+        MemoDTO memoDTO = new MemoDTO();
+        memoDTO.setMemo_title(memo_title);
+        memoDTO.setMemo_content(memo_content);
+        memoDTO.setUser_no(userCode);
 
-        profileService.registMem(memouupDTO);
+        profileService.registMem(memoDTO);
 
-        System.out.println("memouupDTO = " + memouupDTO);
+        System.out.println("memouupDTO = " + memoDTO);
 
         return "redirect:/subpage/profile";
 
     }
 
+
     @PostMapping("/profileMemoInse")
-    public String updateMemo (@RequestParam Map<String,String> upmemo){
-        MemoDTO memoupDTO = new MemoDTO();
-        memoupDTO.setMemo_title(upmemo.get("memo_title"));
-        memoupDTO.setMemo_content(upmemo.get("memo_content"));
-        memoupDTO.setMemo_id(Integer.parseInt(upmemo.get("memo_id")));
-        System.out.println("memoupDTO = " + memoupDTO);
-        int Memo = profileService.updateMemoo(memoupDTO);
-
+    public String updateMemo(@RequestParam Map<String, String> upmemo) {
+        MemoDTO memoDTO = new MemoDTO();
+        memoDTO.setMemo_title(upmemo.get("memo_title"));
+        memoDTO.setMemo_content(upmemo.get("memo_content"));
+        memoDTO.setMemo_id(Integer.parseInt(upmemo.get("memo_id")));
+        System.out.println("memoupDTO = " + memoDTO);
+        int result = profileService.updateMemoo(memoDTO);
         return "redirect:/subpage/profile";
-
     }
 
 

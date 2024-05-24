@@ -155,17 +155,17 @@
         <div class="area">
             <!-- 여기서부터 시작 위에는 건들지 마세요 -->
             <h2 class="midtitle">제목 :</h2>
-            <form action="/subpage/profileMemoInse" method="post">
-                <input type="hidden" name="memo_id" th:value="${memoooDTO.memo_id}">
-                <input type="hidden" name="memo_title" th:value="${memoooDTO.memo_title}">
-                <input type="hidden" name="memo_content" th:value="${memoooDTO.memo_content}">
-                <input type="text" class="titletext" name="memo_title" placeholder="제목을 입력해주세요" th:value="${memoooDTO.memo_title}">
-                <textarea name="memo_content" id="inputtext" class="inputtext" placeholder="내용을 입력하세요" th:text="${memoooDTO.memo_content}"></textarea>
+            <form action="/profileMemoInse" method="post">
+                <input type="hidden" name="memo_id" th:value="${memoDTO.memo_id}">
+                <input type="hidden" name="memo_title" th:value="${memoDTO.memo_title}">
+                <input type="hidden" name="memo_content" th:value="${memoDTO.memo_content}">
+                <input type="text" class="titletext" name="memo_title" placeholder="제목을 입력해주세요" th:value="${memoDTO.memo_title}">
+                <textarea name="memo_content" id="inputtext" class="inputtext" placeholder="내용을 입력하세요" th:text="${memoDTO.memo_content}"></textarea>
                 <div class="button_all">
                     <input type="file" id="attachmentInput" style="display: none;">
                     <button type="button" class="btn_notice1" onclick="document.getElementById('attachmentInput').click();">첨부파일</button>
                     <button type="submit" class="btn_notice2">수정하기</button>
-                    <button type="button" class="btn_notice3"><a href="/admin/admin">취소</a></button>
+                    <button type="button" class="btn_notice3"><a href="/subpage/profile">취소</a></button>
                 </div>
             </form>
         </div>
