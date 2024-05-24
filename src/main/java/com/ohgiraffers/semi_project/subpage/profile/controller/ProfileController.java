@@ -7,10 +7,7 @@ import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -43,8 +40,8 @@ public class ProfileController {
         return "subpage/profile";
     }
 
-    @GetMapping("/profileMemoInse")
-    public String memoInse(Model model,@RequestParam (required = true)int memo_id ){
+    @GetMapping("/profile/{memo_id}")
+    public String memoInse(Model model,@PathVariable int memo_id ){
         System.out.println("memo_id = " + memo_id);
         MemoDTO memoooDTO = profileService.findMemoPage(memo_id);
         model.addAttribute("memoooDTO", memoooDTO);
