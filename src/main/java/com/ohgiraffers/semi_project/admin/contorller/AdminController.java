@@ -51,7 +51,7 @@ public class AdminController {
         System.out.println("noticeDTO = " + noticeDTO);
         return "admin/notice";
     }
-    @PostMapping("/updateNotice")
+    @PostMapping("/subpage/updateNotice")
     public String updateNotice(@RequestParam Map<String, String> params) {
         NoticeDTO noticeDTO = new NoticeDTO();
         noticeDTO.setNoticeId(Integer.parseInt(params.get("noticeId")));

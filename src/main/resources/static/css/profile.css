@@ -313,6 +313,18 @@ body {
     justify-content: center;
 }
 
+/*.modal-content{*/
+/*    padding: 10px;*/
+/*    background: linear-gradient(white 0%, white calc(50% - 25px), #c6d0db calc(50% - 25px), #c6d0db calc(50% + 175px), white calc(50% + 175px), white 100%);*/
+
+/*    margin: 15% auto; !* 중앙에 위치 *!*/
+/*    width: 280px; !* 너비 조정 *!*/
+/*    height: 530px;*/
+/*    border-radius: 40px;*/
+/*    border: 1px solid #ababab;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
 .circle {
     width: 120px; /* 원의 너비 */
     height: 120px; /* 원의 높이 */
@@ -383,6 +395,7 @@ body {
     margin-top: 40px;
 }
 
+
 #addBtn {
     padding: 8px 18px;
     cursor: pointer;
@@ -392,6 +405,7 @@ body {
     margin-left: 27px;
 }
 #cancelBtn {
+
     padding: 8px 18px;
     cursor: pointer;
     border: none;
@@ -413,4 +427,196 @@ body {
 .memo p {
     font-size: 80px;
     text-align: center;
+}
+
+/* 메모 */
+.memo p {
+    font-size: 80px;
+    text-align: center;
+}
+
+/* 메모 안에 css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.memocontainer {
+    display: flex;
+    width: auto;
+    height: 450px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    overflow: hidden;
+}
+
+.memosidebar {
+    width: 250px;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+}
+
+#memo-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#memo-list li {
+    padding: 5px;
+    cursor: pointer;
+}
+
+#memo-list li:hover {
+    background-color: #f0f0f0;
+}
+
+#memo-list li button {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 4px;
+    cursor: pointer;
+}
+
+#memo-list li button:hover {
+    background-color: darkred;
+}
+
+#new-memo-btn {
+    margin-top: 10px;
+    padding: 5px;
+    width: 60px;
+    cursor: pointer;
+    margin-left: 50vw;
+    position: relative;
+}
+
+.notepad {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.notepad-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+}
+
+.memobuttons {
+    display: flex;
+}
+
+.memobutton {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: bold;
+}
+
+.notepad-content {
+    flex-grow: 1;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: none;
+}
+
+.notepad-content:focus {
+    outline: none;
+}
+
+/* 표 css*/
+table{
+    width: 50vw;
+    border-collapse: collapse;
+    margin-left: 50px;
+}
+
+
+.cars table th,
+.cars table td {
+    padding: 8px; /* 셀의 여백 설정 (원하는 값으로 조정 가능) */
+    border-bottom: 0.5px solid #c5c5c5;
+    text-align: left; /* 셀 안의 텍스트 가운데 정렬 */
+    font-size: 13px;
+    height: 40px;
+}
+
+.cars table th {
+    border-bottom: 1px solid #8d8d8d; /* th에만 하단 테두리를 적용합니다. */
+}
+
+
+/* 모달 스타일 */
+.memomodal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.memomodal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.memoclose {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.memoclose:hover,
+.memoclose:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 추가 및 취소 버튼 스타일 */
+.memobuttons {
+    text-align: end;
+    margin-top: 40px;
+}
+
+memobutton {
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
 }

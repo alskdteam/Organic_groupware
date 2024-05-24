@@ -4,13 +4,19 @@ import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dao.EdocMapper;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.UploadFileDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dao.ProfileMapper;
+import com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO;
 import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Map;
 import java.util.*;
+import java.util.List;
+import java.util.Map;
+
 
 @Service
 public class ProfileService {
@@ -40,6 +46,27 @@ public class ProfileService {
         }
     }
 
+
+    public List<MemoDTO> findMemoTitle(int userCode) {
+
+        return profileMapper.findMemoTitle(userCode);
+    }
+
+    public void registMem(MemoDTO memoDTO) {
+
+         profileMapper.registMem(memoDTO);
+    }
+
+
+    public MemoDTO findMemoPage(int memo_id) {
+
+        return profileMapper.findMemoPage(memo_id);
+    }
+
+    public int updateMemo(MemoDTO memoDTO) {
+        System.out.println("memoDTO = " + memoDTO);
+        return profileMapper.updateMemo(memoDTO);
+    }
 
     public Map<String, Object> selectProfile(int user_no) {
         // 프로필 정보를 데이터베이스에서 가져오는 메소드 호출
