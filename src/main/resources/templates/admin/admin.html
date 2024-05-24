@@ -83,62 +83,17 @@
                                         <th>제목</th>
                                         <th>등록일</th>
                                     </tr>
+
                                     </thead>
+
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><a href="notice.html">첫 번째 공지사항 제목</a></td>
-                                        <td>2024-05-06</td>
+                                    <tr th:each="notice : ${noticeList}">
+                                        <td th:text="${notice.noticeId}"></td>
+                                        <td><a th:href="'admin/notice?code=' + ${notice.noticeId}" th:text="${notice.noticeTitle}"></a></td>
+                                        <td th:text="${notice.noticeCreationDate}"></td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td><a href="notice.html">두 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td><a href="notice.html">세 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td><a href="notice.html">네 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td><a href="notice.html">다섯 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td><a href="notice.html">여섯 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td><a href="notice.html">일곱 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td><a href="notice.html">여덟 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td><a href="notice.html">아홉 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td><a href="notice.html">열 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-
-
-                                    <!-- 추가적인 공지사항 행은 필요에 따라 추가 -->
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

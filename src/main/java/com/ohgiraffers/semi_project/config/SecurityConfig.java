@@ -39,10 +39,15 @@ public class SecurityConfig {
     /* 필기.
     *   정적인 리소스에 대한 요청을 제외하는 설정을 하는 bean
     *  */
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return web -> web.ignoring()
+//                .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+//    }
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring()
-                .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+                .requestMatchers("/css/**", "/js/**", "/img/**");
     }
 
     @Bean

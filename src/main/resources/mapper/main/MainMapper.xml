@@ -15,11 +15,19 @@
     <select id="selectNoticeList" resultMap="noticeResultMap">
 
         select
-            Notice_id,
-            Notice_content,
-            notice_creation_date
+          *
         from
             Notice;
+
+    </select>
+    <select id="selectADMINPageNoticeList" resultMap="noticeResultMap">
+
+        select
+        Notice_id,
+        Notice_content,
+        notice_creation_date
+        from
+        Notice;
 
     </select>
 

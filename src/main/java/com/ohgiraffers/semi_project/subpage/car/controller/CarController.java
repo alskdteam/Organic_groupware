@@ -1,11 +1,13 @@
 package com.ohgiraffers.semi_project.subpage.car.controller;
 
 
+import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.car.model.dto.CarDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.dto.RegistDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.dto.VehicleDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.service.CarService;
+import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,7 @@ public class CarController {
     @GetMapping("car")
     public String carJoinList(Model model) {
         List<CarJoinDTO> carJoinList = carService.findAllCar();
+        System.out.println("carJoinList = " + carJoinList);
         model.addAttribute("carJoinList", carJoinList);
 
 
@@ -54,11 +57,20 @@ public class CarController {
 
 
     @PostMapping("car")
-    public String registCar(RegistDTO regist, RedirectAttributes rttr) {
+    public String registCar(RedirectAttributes rttr,@RequestParam Map<String,Object> regist) {
+
+        Userdata userdata = new Userdata();
+        LoginUserDTO userDTO = userdata.getloginUserDTO();
+        int userCode = Integer.parseInt(userDTO.getUserId());
+        regist.put("userCode", userCode);
+
+        System.out.println("regist = " + regist);
+
+        int result = carService.registCarDTO(regist);
+        int update = carService.registCarDTOUpdate(regist);
 
 
-        System.out.println("carJoinDTO = " + regist);
-        carService.registCar(regist);
+
         rttr.addFlashAttribute("successMessage","차량예약에 성공하셨습니다.");
 
 

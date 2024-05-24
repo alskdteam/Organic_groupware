@@ -62,33 +62,35 @@
         JOIN
         ITEM b ON b.item_number = a.item_number
         JOIN
-        employee c ON c.user_no = a.user_no
+        employee c ON c.user_id = a.user_id
     </select>
-    <insert id="registitem" parameterType="com.ohgiraffers.semi_project.subpage.item.model.dto.registRentalDTO">
-        INSERT INTO rental
-        (
-        rental_category,
+
+    <insert id="itemRental">
+        INSERT INTO rental (
         rental_date,
         rental_return_date,
-        user_no,
-        rental_purpose
+        user_id,
+        rental_purpose,
+        item_number
         )
-        VALUES
-        (
-        #{rental_category},
+        SELECT
         #{rental_date},
         #{rental_return_date},
-        #{user_no},
-        #{rental_purpose}
-        )
+        #{userCode},
+        #{rental_purpose},
+        a.item_number
+        FROM item a
+        WHERE a.item_name = #{item_name};
+
     </insert>
-    <resultMap id="findDTO" type="com.ohgiraffers.semi_project.subpage.item.model.dto.ItemDTO">
-        <result property="rental_category" column="rental_category"/>
+    <resultMap id="findDTO" type="com.ohgiraffers.semi_project.subpage.item.model.dto.rentalDTO">
+        <result property="item_name" column="item_name"/>
     </resultMap>
 
     <select id="finditemList" resultMap="findDTO">
         select
-        rental_category
-        from rental
+        item_number,
+        item_name
+        from item
     </select>
 </mapper>

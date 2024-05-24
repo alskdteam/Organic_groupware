@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/profile.css">
-
+    <script src="/js/profile.js"></script>
     <style>
 
         @media screen and (max-width: 375px) {
@@ -59,11 +59,22 @@
 
                                             </div>
                                             <div class="profile_frame"></div>
-                                            <div class="edit_button">
+                                            <div class="edit_button" id="edit_btn">
                                                 프로필 편집
                                             </div>
                                         </div>
-                                        <div class="profile_edit">
+                                        <div class="profile_edit" >
+                                            <div class="write">
+                                                <br>
+                                                <p style="font-size: 25px; font-weight: normal">푸바오</p>
+                                                <p style="font-size: 20px">(주)organic</p><br>
+                                                <p style="font-size: 15px"> 서울시 구석진로 19, 7층(대나무 숲)<br>f.02-123-1234</p>
+                                                <br>
+                                                <p style="font-size: 13px">
+
+                                                </p>
+
+                                            </div>
 
                                         </div>
                                     </div>
@@ -78,6 +89,132 @@
                             </div>
 
                         </div>
+
+
+
+                        <!--모달 관련-->
+                        <form action="/subpage/profileEdit" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
+                            <div id="myModal" class="modal">
+                                <!-- 모달 내용 -->
+                                <div class="modal-content">
+                                    <div style="position: relative">
+                                        <p style="margin-top: 6px; text-align: center">프로필 편집</p>
+                                        <div class="circle" id="imagePreview"></div>
+
+                                        <!-- 파일 선택 input -->
+                                        <input type="file" id="profile_image" name="profile_image" accept="image/*" style="display: none;">
+                                        <div class="btn1" id="selectButton">변경</div>
+
+                                        <div class="wrap_input">
+                                            <div>
+                                                <label for="user_name">이름</label> <br>
+                                                <input type="text" id="user_name" name="user_name">
+                                            </div>
+                                            <div>
+                                                <label for="english_name">영문 이름</label><br>
+                                                <input type="text" id="english_name" name="english_name">
+                                            </div>
+                                            <div>
+                                                <label for="phone_number">전화번호</label> <br>
+                                                <input type="tel" id="phone_number" name="phone_number">
+                                            </div>
+                                            <div>
+                                                <label for="email">이메일</label> <br>
+                                                <input type="email" id="email" name="email">
+                                            </div>
+                                        </div>
+
+                                        <div class="buttons">
+                                            <button id="addBtn" style="background-color: #4CAF50" type="submit">추가</button>
+                                            <button id="cancelBtn" type="button">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <script>
+                            document.getElementById('selectButton').addEventListener('click', function() {
+                                document.getElementById('profile_image').click();
+                            });
+
+                            document.getElementById('profile_image').addEventListener('change', function(event) {
+                                const file = event.target.files[0];
+                                if (file) {
+                                    const reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        const imagePreview = document.getElementById('imagePreview');
+                                        if (imagePreview) {
+                                            imagePreview.innerHTML = '<img src="' + e.target.result + '" alt="Profile Image">';
+                                        }
+                                    };
+                                    reader.readAsDataURL(file);
+                                }
+                            });
+                        </script>
+
+<!--                            // document.getElementById('profileFrm').addEventListener('submit', function(event) {-->
+<!--                            //     event.preventDefault();-->
+<!--                            //     const formData = new FormData(this);-->
+<!--                            //     fetch('/subpage/profileEdit', {-->
+<!--                            //         method: 'POST',-->
+<!--                            //         body: formData-->
+<!--                            //     }).then(response => response.json())-->
+<!--                            //         .then(data => {-->
+<!--                            //             // 서버 응답에 따른 처리-->
+<!--                            //             console.log(data);-->
+<!--                            //         }).catch(error => {-->
+<!--                            //         console.error('Error:', error);-->
+<!--                            //     });-->
+<!--                            // });-->
+
+
+
+
+
+                        <script>
+
+                            // 모달 요소 가져오기
+                            var modal = document.getElementById("myModal");
+
+                            // 모달 열기 버튼 가져오기
+                            var btn = document.getElementById("edit_btn");
+
+                            // 모달 닫기 버튼 가져오기
+                            var span = document.getElementsByClassName("buttons")[0];
+
+                            // 모달 열기 버튼을 클릭하면 모달 보이기
+                            btn.onclick = function() {
+                                modal.style.display = "block";
+                            }
+
+                            // 모달 닫기 버튼을 클릭하면 모달 닫기
+                            span.onclick = function() {
+                                modal.style.display = "none";
+                            }
+
+                            document.getElementById('cancelBtn').addEventListener('click', function(event) {
+                                // 기본 동작(폼 제출) 막기
+                                event.preventDefault();
+
+                                // 모달 닫기
+                                var modal = document.getElementById("myModal");
+                                modal.style.display = "none";
+                            });
+
+                            // 모달 밖의 영역을 클릭하면 모달 닫기
+                            window.onclick = function(event) {
+                                if (event.target == modal) {
+                                    modal.style.display = "none";
+                                }
+                            }
+
+                        </script>
+
+
+
+
+
                         <!--                        버튼 영역-->
                         <div class="button">
                             <!--여기서 시작-->
@@ -123,7 +260,92 @@
                             <div class="flex2">
                                 <h3>메모</h3>
                                 <div class="c_memo">
-                                    <p>memo</p>
+                                        <h1 class="headmemo_title">memo<h1/>
+                                       
+                                        <button class="new_button" id="new-memo-btn">메모 등록</button>
+                                       
+                                    <!--메모창 안에 디자인 추가-->
+                                    
+
+                                    <!-- 메모 목록 항목이 여기에 추가됩니다 -->
+                                    <div class="cars">
+                                        <table>
+                                            <tbody id="tableBody">
+                                            <tr th:each="memo : ${memoDTOList}" id="row_${iterStat.index}" >
+                                                <td style="width: 135px" >
+                                                    <a th:href="'profile/' +${memo.memo_id}" th:text="${memo.memo_title}">안녕하세요</a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <form class="Memoform" action="/subpage/profile" method="post">
+
+                                            <div id="MemomyModal" class="modal">
+
+                                                <!-- 모달 내용 -->
+                                                <div class="modal-content">
+                                                    <div class="titlebox"><p id="modal-title1">제목 :</p>
+                                                    <p id="inputtitle"><input type="text" id="memo_title" name="memo_title" placeholder="제목을 입력해주세요"></p>
+                                                    </div>
+                                                    <div class="inputbox">
+                                                    <p id="substance"></p>
+                                                    <p id="inputcontent"><textarea id="memo_content" name="memo_content" placeholder="내용을 입력해주세요"></textarea></p>
+                                                    </div>
+                                                    <div class="memobuttons">
+                                                        <button id="memoaddBtn" type="submit">추가</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                    <script>
+                                        // 모달 요소 가져오기
+                                        var modal = document.getElementById("MemomyModal");
+
+                                        // 모달 열기 버튼 가져오기
+                                        var btn = document.getElementById("new-memo-btn");
+
+                                        // 모달 닫기 버튼 가져오기
+                                        var span = document.getElementsByClassName("memobuttons")[0];
+
+                                        // 모달 열기 버튼을 클릭하면 모달 보이기
+                                        btn.onclick = function() {
+                                            modal.style.display = "block";
+                                        }
+
+                                        // 모달 닫기 버튼을 클릭하면 모달 닫기
+                                        span.onclick = function() {
+                                            modal.style.display = "none";
+                                        }
+
+                                        document.getElementById('memocancelBtn').addEventListener('click', function(event) {
+                                            // 기본 동작(폼 제출) 막기
+                                            event.preventDefault();
+
+                                            // 모달 닫기
+                                            modal.style.display = "none";
+                                        });
+
+                                        // 모달 밖의 영역을 클릭하면 모달 닫기
+                                        window.onclick = function(event) {
+                                            if (event.target == modal) {
+                                                modal.style.display = "none";
+                                            }
+                                        }
+                                    </script>
+
+
+
+
+                                    <!--요 까지 메모장 추가 -->
+
+
+
+
+
 
 
                                 </div>
@@ -151,21 +373,10 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
 
     </div>
 </div>
+
 </body>
 </html>

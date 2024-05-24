@@ -8,19 +8,21 @@ public class registRentalDTO {
     private String rental_category;
     private String rental_purpose;
     private String rental_status;
+    private String item_name;
     private int item_number;
-    private int user_no;
+    private int user_id;
 
     public registRentalDTO(){}
 
-    public registRentalDTO(Date rental_date, Date rental_return_date, String rental_category, String rental_purpose, String rental_status, int item_number, int user_no) {
+    public registRentalDTO(Date rental_date, Date rental_return_date, String rental_category, String rental_purpose, String rental_status, String item_name, int item_number, int user_id) {
         this.rental_date = rental_date;
         this.rental_return_date = rental_return_date;
         this.rental_category = rental_category;
         this.rental_purpose = rental_purpose;
         this.rental_status = rental_status;
+        this.item_name = item_name;
         this.item_number = item_number;
-        this.user_no = user_no;
+        this.user_id = user_id;
     }
 
     public Date getRental_date() {
@@ -63,6 +65,14 @@ public class registRentalDTO {
         this.rental_status = rental_status;
     }
 
+    public String getItem_name() {
+        return item_name;
+    }
+
+    public void setItem_name(String item_name) {
+        this.item_name = item_name;
+    }
+
     public int getItem_number() {
         return item_number;
     }
@@ -71,12 +81,12 @@ public class registRentalDTO {
         this.item_number = item_number;
     }
 
-    public int getUser_no() {
-        return user_no;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUser_no(int user_no) {
-        this.user_no = user_no;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     @Override
@@ -87,8 +97,9 @@ public class registRentalDTO {
                 ", rental_category='" + rental_category + '\'' +
                 ", rental_purpose='" + rental_purpose + '\'' +
                 ", rental_status='" + rental_status + '\'' +
+                ", item_name='" + item_name + '\'' +
                 ", item_number=" + item_number +
-                ", user_no=" + user_no +
+                ", user_id=" + user_id +
                 '}';
     }
 }

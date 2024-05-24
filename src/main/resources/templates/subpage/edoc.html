@@ -27,6 +27,12 @@
             }
         }
     </style>
+
+    <script>
+        function subpage(edocFormCtNo) {
+            window.location.href = '/subpage/edocFrom/selectEdocList/' + edocFormCtNo;
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -41,6 +47,7 @@
 
             <!--            여기서부터 시작 위에는 건들지 마세요-->
             <div class="layer">
+
                 <h1>전자결재 리스트</h1>
                 <div class="button">
                     <button class="c_button" onclick="location.href='/subpage/edoc'">전체</button>
@@ -53,24 +60,34 @@
                 <div class="chart">
                     <table>
                         <tr>
-                            <th>번호</th>
-                            <th>기안일</th>
-                            <th>제목</th>
-                            <th>기안자</th>
-                            <th>세부사항</th>
-                            <th>결재확인</th>
+                            <th>문서번호</th>
+                            <th>분류</th>
+                            <th>작성자</th>
+                            <th>사원번호</th>
+                            <th>세부내용</th>
+                            <th>작성일자</th>
+                            <th>결재상태</th>
+                            <th>상세보기</th>
                         </tr>
                         <tbody id="tableBody">
-                        <tr th:each="list, iterStat : ${employeeAndEdocList}" id="row_${iterStat.index}">
-                            <td th:text="${list.edoc_id}"></td>
-                            <td th:text="${list.Drafting_date}"></td>
-                            <td th:text="${list.edoc_templete}"></td>
-                            <td th:text="${list.employeeDTO.user_name}"></td>
-                            <td th:text="${list.edoc_title}"></td>
+
+                        <tr th:each="list, iterStat : ${edocList}" id="row_${iterStat.index}" >
+                            <td th:text="${list.edoc_form_ct_no}"></td>
+                            <td th:text="${list.edocFormDTO.form_name}"></td>
+                            <td th:text="${list.employee_name}"></td>
+                            <td th:text="${list.user_id}"></td>
+                            <td th:text="${list.title}"></td>
+                            <td th:text="${list.drafting_date}"></td>
                             <td th:text="${list.edoc_status}"></td>
+                            <td>
+                                <button style="border-radius: 5px; background-color: aliceblue; border: 1px solid gray; padding: 2px" type="button" class="btn" th:attr="onclick='subpage(\'' + ${list.edoc_form_ct_no} + '\')'">상세보기</button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
+
+
+
                 </div>
 
                 <div class="page_number">
@@ -80,13 +97,16 @@
                         <div class="s_button" onclick="changePage(3)">3</div>
                     </div>
                 </div>
+
                 <div class="search">
                     <div class="flex">
                         <input type="text" class="search_input" placeholder="검색어를 입력하세요">
                         <div class="search_button" onclick="search()">검색</div>
                     </div>
                 </div>
+
             </div>
+
 
         </div>
     </div>

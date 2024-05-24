@@ -23,13 +23,17 @@
     <resultMap id="vehicleDTO" type="com.ohgiraffers.semi_project.subpage.car.model.dto.VehicleDTO">
         <id property="vehicle_name" column="vehicle_name"/>
         <result property="vehicle_number" column="vehicle_number"/>
+        <result property="car_rental_status" column="car_rental_status"/>
     </resultMap>
 
     <select id="findAllVehicle" resultMap="vehicleDTO">
-        select
-            vehicle_name,
-            vehicle_number
-        from vehicle
+        SELECT
+        vehicle_name,
+        vehicle_number
+        FROM
+        vehicle
+        WHERE
+        car_rental_status = '대여 가능';
     </select>
 
 
@@ -50,37 +54,41 @@
 
     <select id="findAllCar" resultMap="carjoin">
         SELECT
-        a.vehicle_name,
-        a.vehicle_number,
-        b.car_rental_status
-        FROM
-        CAR b
-        JOIN
-        vehicle a on (a.vehicle_name = b.vehicle_name)
+        vehicle_number,
+        vehicle_name,
+        vehicle_code,
+        car_rental_status
+        FROM vehicle
     </select>
 
 
-    <insert id="registCar" parameterType="com.ohgiraffers.semi_project.subpage.car.model.dto.RegistDTO">
+    <insert id="registCarDTO"  >
         INSERT INTO car
         (
-        user_no,
         vehicle_purpose,
         vehicle_address,
         vehicle_reservation_date,
         vehicle_return_due_date,
-        vehicle_name
+        vehicle_name,
+        user_id
         )
         VALUES
         (
-        #{user_no},
         #{vehicle_purpose},
         #{vehicle_address},
         #{vehicle_reservation_date},
         #{vehicle_return_due_date},
-        #{vehicle_name}
+        #{vehicle_name},
+        #{userCode}
         )
     </insert>
-
+    <update id="registCarDTOUpdate">
+        UPDATE vehicle
+        SET
+        car_rental_status = '대여중'
+        WHERE
+        vehicle_name = #{vehicle_name};
+    </update>
 
 
 
@@ -98,8 +106,9 @@
             <result property="vehicle_number" column="vehicle_number"/>
         </association>
         <association property="employeeDTO" javaType="com.ohgiraffers.semi_project.subpage.car.model.dto.EmployeeDTO">
-            <id property="user_no" column="user_no"/>
+            <id property="user_id" column="user_id"/>
             <result property="user_name" column="user_name"/>
+            <result property="userCode" column="user_no"/>
         </association>
     </resultMap>
 
@@ -116,8 +125,45 @@
         JOIN
         vehicle b ON b.vehicle_name = a.vehicle_name
         JOIN
-        employee c ON c.user_no = a.user_no
+        employee c ON c.user_id = a.user_id
+        ORDER BY
+        a.vehicle_return_due_date DESC;
     </select>
 
+
+    <select id="findAllSiMyCar" resultMap="siCar">
+        SELECT
+        b.vehicle_name,
+        b.vehicle_number,
+        a.vehicle_reservation_date,
+        a.vehicle_return_due_date,
+        a.vehicle_return_status,
+        c.user_name
+        FROM
+        CAR a
+        JOIN
+        vehicle b ON b.vehicle_name = a.vehicle_name
+        JOIN
+        employee c ON c.user_id = a.user_id
+        WHERE
+        c.user_no = ${userCode}
+    </select>
+
+
+    <update id="upmycarlist">
+        UPDATE car
+        SET vehicle_return_status = '반납 완료'
+        WHERE
+        vehicle_name = #{vehicle_name};
+
+    </update>
+
+    <update id="CarListUpdate">
+        UPDATE vehicle
+        SET
+        car_rental_status = '대여 가능'
+        WHERE
+        vehicle_name = #{vehicle_name};
+    </update>
 
 </mapper>
