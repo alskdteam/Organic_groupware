@@ -396,7 +396,7 @@ body {
 }
 
 
-#addBtn {
+.button {
     padding: 8px 18px;
     cursor: pointer;
     border: none;
