@@ -470,9 +470,9 @@ body {
 #new-memo-btn {
     margin-top: 10px;
     padding: 5px;
-    width: 50%;
+    width: 60px;
     cursor: pointer;
-    margin-left: 5.8vw;
+    margin-left: 50vw;
     position: relative;
 }
 
@@ -521,4 +521,74 @@ body {
 
 .notepad-content:focus {
     outline: none;
+}
+
+/* 표 css*/
+table{
+    width: 50vw;
+    border-collapse: collapse;
+    margin-left: 50px;
+}
+
+
+.cars table th,
+.cars table td {
+    padding: 8px; /* 셀의 여백 설정 (원하는 값으로 조정 가능) */
+    border-bottom: 0.5px solid #c5c5c5;
+    text-align: left; /* 셀 안의 텍스트 가운데 정렬 */
+    font-size: 13px;
+    height: 40px;
+}
+
+.cars table th {
+    border-bottom: 1px solid #8d8d8d; /* th에만 하단 테두리를 적용합니다. */
+}
+
+
+/* 모달 스타일 */
+.memomodal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.memomodal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.memoclose {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.memoclose:hover,
+.memoclose:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 추가 및 취소 버튼 스타일 */
+.memobuttons {
+    text-align: end;
+    margin-top: 40px;
+}
+
+memobutton {
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
 }

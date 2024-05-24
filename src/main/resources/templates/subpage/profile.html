@@ -261,26 +261,89 @@
                                 <h3>메모</h3>
                                 <div class="c_memo">
                                     <p>memo</p>
+                                    <div>
+                                        <button id="new-memo-btn">새 메모</button>
+                                    </div>
 
                                     <!--메모창 안에 디자인 추가-->
-                                    <div class="memocontainer">
-                                        <div class="memosidebar">
-                                            <h2>메모 목록</h2>
-                                            <button id="new-memo-btn">새 메모</button>
-                                            <ul id="memo-list">
-                                                <!-- 메모 목록 항목이 여기에 추가됩니다 -->
+                                    <!--                                                <button id="new-memo-btn">새 메모</button>-->
 
-                                            </ul>
+                                    <!-- 메모 목록 항목이 여기에 추가됩니다 -->
+                                    <div class="cars">
+                                        <table>
+                                            <tbody id="tableBody">
+                                            <tr th:each="memo : ${memoDTOList}" id="row_${iterStat.index}">
+                                                <td style="width: 135px">
+                                                    <a th:href="'profile?code=' +${memo.memo_id}" th:text="${memo.memo_title}"></a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
 
-                                        </div>
-                                        <div class="notepad">
-                                            <div class="notepad-header">
-                                                <div class="title">메모장</div>
+                                        <form action="/subpage/profile" method="post">
+
+                                            <div id="MemomyModal" class="modal">
+
+                                                <!-- 모달 내용 -->
+                                                <div class="modal-content">
+                                                    <p>제목</p>
+                                                    <p><input type="text" id="memo_title" name="memo_title"></p>
+                                                    <p>내용</p>
+                                                    <p><input type="text" id="memo_content" name="memo_content"></p>
+                                                    <div class="memobuttons">
+                                                        <button id="memoaddBtn" style="background-color: #4CAF50" type="submit">추가</button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <textarea id="memo-content" class="notepad-content" placeholder="메모를 작성하세요..."></textarea>
-                                        </div>
+                                        </form>
+
                                     </div>
+
+                                    <script>
+                                        // 모달 요소 가져오기
+                                        var modal = document.getElementById("MemomyModal");
+
+                                        // 모달 열기 버튼 가져오기
+                                        var btn = document.getElementById("new-memo-btn");
+
+                                        // 모달 닫기 버튼 가져오기
+                                        var span = document.getElementsByClassName("memobuttons")[0];
+
+                                        // 모달 열기 버튼을 클릭하면 모달 보이기
+                                        btn.onclick = function() {
+                                            modal.style.display = "block";
+                                        }
+
+                                        // 모달 닫기 버튼을 클릭하면 모달 닫기
+                                        span.onclick = function() {
+                                            modal.style.display = "none";
+                                        }
+
+                                        document.getElementById('memocancelBtn').addEventListener('click', function(event) {
+                                            // 기본 동작(폼 제출) 막기
+                                            event.preventDefault();
+
+                                            // 모달 닫기
+                                            modal.style.display = "none";
+                                        });
+
+                                        // 모달 밖의 영역을 클릭하면 모달 닫기
+                                        window.onclick = function(event) {
+                                            if (event.target == modal) {
+                                                modal.style.display = "none";
+                                            }
+                                        }
+                                    </script>
+
+
+
+
                                     <!--요 까지 메모장 추가 -->
+
+
+
+
+
 
 
                                 </div>
@@ -308,28 +371,10 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
 
     </div>
 </div>
-
-<!--<script>-->
-<!--    var message = `[[${successMessage}]]`;-->
-<!--    console.log(message);-->
-<!--    if(message){alert(message)};-->
-<!--</script>-->
 
 </body>
 </html>
