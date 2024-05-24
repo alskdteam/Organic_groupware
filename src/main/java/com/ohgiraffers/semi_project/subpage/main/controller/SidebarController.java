@@ -30,7 +30,6 @@ public class SidebarController {
         Userdata userDate = new Userdata();
         LoginUserDTO userDTO = userDate.getloginUserDTO();
         int user_no = userDTO.getUserCode();
-        System.out.println(user_no);
 
         Map<String, Object> selectSidebar = mainService.sidebarImage(user_no);
 
@@ -47,7 +46,6 @@ public class SidebarController {
         Userdata userDate = new Userdata();
         LoginUserDTO userDTO = userDate.getloginUserDTO();
         int user_no = userDTO.getUserCode();
-        System.out.println(user_no);
 
         Map<String, Object> selectSidebar = mainService.sidebarImage(user_no);
 

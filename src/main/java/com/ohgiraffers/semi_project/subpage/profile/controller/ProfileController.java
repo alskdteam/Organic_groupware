@@ -2,6 +2,7 @@ package com.ohgiraffers.semi_project.subpage.profile.controller;
 
 import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFromEdocCtDTO;
+import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO;
 
@@ -20,19 +21,24 @@ import java.util.Map;
 public class ProfileController {
 
     private final ProfileService profileService;
+    private final SidebarController sidebarController;
 
-    @Autowired
-    public ProfileController(ProfileService profileService) {
+    public ProfileController(ProfileService profileService, SidebarController sidebarController) {
         this.profileService = profileService;
+        this.sidebarController = sidebarController;
     }
 
     @GetMapping("/profile")
-    public String memo(Model model){
+
+    public String profile(Model model){
 
         Userdata userDate = new Userdata();
         LoginUserDTO userDTO = userDate.getloginUserDTO();
         int user_no = userDTO.getUserCode();
         int userCode = userDTO.getUserCode();
+//         규혁
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
   
 //         도아
         List<MemoDTO> memoDTOList = profileService.findMemoTitle(userCode);

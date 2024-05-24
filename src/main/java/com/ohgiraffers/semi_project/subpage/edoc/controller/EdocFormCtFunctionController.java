@@ -1,7 +1,9 @@
 package com.ohgiraffers.semi_project.subpage.edoc.controller;
 
+import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFormCtDTO;
 import com.ohgiraffers.semi_project.subpage.edoc.model.service.EdocService;
+import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,17 +37,22 @@ public class EdocFormCtFunctionController {
 
     @PostMapping("/regist")
     public String registEdoc(@ModelAttribute EdocFormCtDTO newEdoc, RedirectAttributes rttr, Locale locale, Model model) {
+        Userdata userDate = new Userdata();
+        LoginUserDTO userDTO = userDate.getloginUserDTO();
+        int user_id = Integer.parseInt(userDTO.getUserId());
+
+        // newEdoc 객체에 user_id 설정
+        newEdoc.setUser_id(user_id);
+
         EdocFormCtDTO insertedEdoc = edocService.registNewEdoc(newEdoc);
 
         model.addAttribute("successMessage", "등록에 성공했습니다.");
         model.addAttribute("insertedEdoc", insertedEdoc);
-
-
-        logger.info("Locale : {}", locale);
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("registMenu", null, locale));
 
         return "subpage/edocFrom/selectEdocList2";
     }
+
 
 
 

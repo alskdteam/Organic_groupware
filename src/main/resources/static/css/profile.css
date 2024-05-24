@@ -395,7 +395,17 @@ body {
     margin-top: 40px;
 }
 
-.button {
+
+#addBtn {
+    padding: 8px 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    margin-left: 27px;
+}
+#cancelBtn {
+
     padding: 8px 18px;
     cursor: pointer;
     border: none;
