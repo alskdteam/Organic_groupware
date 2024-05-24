@@ -41,17 +41,17 @@ public class ProfileService {
          profileMapper.registMem(memoDTO);
     }
 
-    public void updateMemo(MemoDTO memoDTO) {
-        profileMapper.updateMemo(memoDTO);
-    }
+//    public void updateMemo(MemoDTO memoDTO) {
+//        profileMapper.updateMemo(memoDTO);
+//    }
 
     public MemoDTO findMemoPage(int memo_id) {
 
         return profileMapper.findMemoPage(memo_id);
     }
 
-    public int updateMemoo(MemoDTO memoDTO) {
-
-        return profileMapper.updateMemoo(memoDTO);
+    public int updateMemo(MemoDTO memoDTO) {
+        System.out.println("memoDTO = " + memoDTO);
+        return profileMapper.updateMemo(memoDTO);
     }
 }

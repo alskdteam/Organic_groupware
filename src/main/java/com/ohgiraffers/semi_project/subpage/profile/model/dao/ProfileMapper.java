@@ -20,10 +20,10 @@ public interface ProfileMapper {
 
     void registMem(MemoDTO memoDTO);
 
-    void updateMemo(MemoDTO memoDTO);
+//    void updateMemo(MemoDTO memoDTO);
 
     MemoDTO findMemoPage(int memo_id);
 
-    int updateMemoo(MemoDTO memoDTO);
+    int updateMemo(MemoDTO memoDTO);
 }
 

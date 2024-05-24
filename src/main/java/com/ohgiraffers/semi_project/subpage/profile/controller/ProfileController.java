@@ -43,8 +43,14 @@ public class ProfileController {
     @GetMapping("/profile/memo/{memo_id}")
     public String memoInse(Model model,@PathVariable int memo_id ){
         System.out.println("memo_id = " + memo_id);
+
+        Userdata userdata = new Userdata();
+        LoginUserDTO userDTO = userdata.getloginUserDTO();
+        int userCode = userDTO.getUserCode();
+
         MemoDTO memoDTO = profileService.findMemoPage(memo_id);
         model.addAttribute("memoDTO", memoDTO);
+
         System.out.println("memoDTO = " + memoDTO);
         return "subpage/profileMemoInse";
 
@@ -76,17 +82,13 @@ public class ProfileController {
 
 
     @PostMapping("/profileMemoInse")
-    public String updateMemo(@RequestParam Map<String, String> upmemo) {
-        MemoDTO memoDTO = new MemoDTO();
-        memoDTO.setMemo_title(upmemo.get("memo_title"));
-        memoDTO.setMemo_content(upmemo.get("memo_content"));
-        memoDTO.setMemo_id(Integer.parseInt(upmemo.get("memo_id")));
-        System.out.println("memoupDTO = " + memoDTO);
-        int result = profileService.updateMemoo(memoDTO);
+    public String updateMemo(@ModelAttribute MemoDTO memoDTO) {
+        // memoDTO에 값이 제대로 들어오는지 확인
+        System.out.println(memoDTO);
+        // 서비스 호출하여 데이터베이스 업데이트
+        profileService.updateMemo(memoDTO);
         return "redirect:/subpage/profile";
     }
-
-
 
 
 
