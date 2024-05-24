@@ -62,7 +62,7 @@ public class CarSituationController {
 
 
         List<CarJoinDTO> siCarMyList = carService.findAllSiMyCar(userCode);
-        model.addAttribute("siCarMyList", siCarMyList);
+        model.addAttribute("siCarM yList", siCarMyList);
 
         System.out.println("siCarMyList = " + siCarMyList);
         
