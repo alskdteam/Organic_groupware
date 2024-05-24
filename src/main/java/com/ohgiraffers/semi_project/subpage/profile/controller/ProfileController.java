@@ -1,7 +1,10 @@
 package com.ohgiraffers.semi_project.subpage.profile.controller;
 
 import com.ohgiraffers.semi_project.auth.model.service.Userdata;
+import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFromEdocCtDTO;
+import com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO;
+
 import com.ohgiraffers.semi_project.subpage.profile.model.service.ProfileService;
 import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,23 +26,35 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
-
-    // 나의 프로필 메모
     @GetMapping("/profile")
     public String memo(Model model){
 
-        Userdata userdata = new Userdata();
-        LoginUserDTO userDTO = userdata.getloginUserDTO();
+        Userdata userDate = new Userdata();
+        LoginUserDTO userDTO = userDate.getloginUserDTO();
+        int user_no = userDTO.getUserCode();
         int userCode = userDTO.getUserCode();
-
+  
+//         도아
         List<MemoDTO> memoDTOList = profileService.findMemoTitle(userCode);
         model.addAttribute("memoDTOList", memoDTOList);
 
         System.out.println("memoDTOList = " + memoDTOList);
+  
+  
+
+  
+        //  규혁 서비스에서 데이터를 받아옴
+        Map<String, Object> profileData = profileService.selectProfile(user_no);
+        System.out.println(profileData.get("profilesWithoutImage"));
+
+        // Add the data to the model as attributes
+        model.addAttribute("profilesWithoutImage", profileData.get("profilesWithoutImage"));
+
 
         return "subpage/profile";
     }
 
+//   도아
     @GetMapping("/profile/memo/{memo_id}")
     public String memoInse(Model model,@PathVariable int memo_id ){
         System.out.println("memo_id = " + memo_id);
@@ -56,7 +71,7 @@ public class ProfileController {
 
     }
 
-
+//아도아
     @PostMapping("/profile")
     public String registMemo(@RequestParam("memo_title") String memo_title,
                              @RequestParam("memo_content") String memo_content
@@ -80,7 +95,7 @@ public class ProfileController {
 
     }
 
-
+// 
     @PostMapping("/profileMemoInse")
     public String updateMemo(@ModelAttribute MemoDTO memoDTO) {
         // memoDTO에 값이 제대로 들어오는지 확인

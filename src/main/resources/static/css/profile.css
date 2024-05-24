@@ -256,6 +256,12 @@ body {
     height: 250px;
 }
 
+.write div,
+.write p {
+    margin: 0; /* 위아래 여백 제거 */
+    padding: 0; /* 내부 여백 제거 */
+}
+
 /* 프로필 사진 */
 .profile_picture {
     width: 170px;

@@ -6,6 +6,8 @@ import com.ohgiraffers.semi_project.subpage.item.model.dto.ItemDTO;
 import com.ohgiraffers.semi_project.subpage.item.model.dto.ItemJoinDTO;
 import com.ohgiraffers.semi_project.subpage.item.model.dto.registRentalDTO;
 import com.ohgiraffers.semi_project.subpage.item.model.service.ItemService;
+import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
+import com.ohgiraffers.semi_project.subpage.main.model.service.MainService;
 import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,14 +28,22 @@ public class ItemController {
     private static final Logger logger = LogManager.getLogger(CarController.class);
     private final ItemService itemService;
     private final MessageSource messageSource;
+    private final MainService mainService;
+    private final SidebarController sidebarController;
 
-    @Autowired
-    public ItemController(ItemService itemService, MessageSource messageSource){
+    public ItemController(ItemService itemService, MessageSource messageSource, MainService mainService, SidebarController sidebarController) {
         this.itemService = itemService;
         this.messageSource = messageSource;
+        this.mainService = mainService;
+        this.sidebarController = sidebarController;
     }
+
     @GetMapping("/item")
     public String item(Model model){
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
+
+
         List<ItemJoinDTO> rentalList = itemService.findAllItem();
         model.addAttribute("rentalList" ,rentalList);
 
@@ -52,6 +62,7 @@ public class ItemController {
     }
     @PostMapping("item")
     public String registitem( RedirectAttributes rttr, @RequestParam Map<String ,Object> itemRental) {
+
 
 
         Userdata userdata = new Userdata();
