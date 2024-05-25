@@ -1,6 +1,5 @@
 package com.ohgiraffers.semi_project.subpage.main.model.service;
 
-import com.ohgiraffers.semi_project.subpage.edoc.model.dao.EdocMapper;
 import com.ohgiraffers.semi_project.subpage.main.model.dao.MainMapper;
 import com.ohgiraffers.semi_project.subpage.main.model.dto.CommuteDTO;
 import com.ohgiraffers.semi_project.subpage.main.model.dto.NoticeDTO;
@@ -8,8 +7,6 @@ import com.ohgiraffers.semi_project.subpage.main.model.dto.SidebarImageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Base64;
@@ -65,6 +62,7 @@ public class MainService {
         LocalDate commute_date = currentTime.toLocalDate();
 
         commuteDTO.setCommute_date(commute_date);
+//         오늘 날짜 기반으로 조히
         CommuteDTO result = mainMapper.selectCommuteTime(commuteDTO);
 
         if (result == null) {
@@ -78,6 +76,7 @@ public class MainService {
     }
 
 
+//    업데이트
     public void uploadEndTime(CommuteDTO commuteDTO) {
         // 현재 퇴근 시간을 조회
         CommuteDTO result = mainMapper.selectCommuteTime(commuteDTO);
@@ -90,4 +89,28 @@ public class MainService {
         }
 
     }
+
+    public Map<String, Object> selectCommute(CommuteDTO commuteDTO) {
+
+        LocalDateTime currentTime = LocalDateTime.now();
+        LocalDate commute_date = currentTime.toLocalDate();
+
+        commuteDTO.setCommute_date(commute_date);
+        // 오늘 날짜 기반으로 조회
+        CommuteDTO selectCommute = mainMapper.selectCommuteTime(commuteDTO);
+
+        Map<String, Object> result = new HashMap<>();
+
+        if (selectCommute == null) {
+            System.out.println("출퇴근 기록이 없습니다..");
+        } else {
+            result.put("commute1", selectCommute.getGo_work());
+            result.put("commute2", selectCommute.getLeave_work());
+        }
+
+        return result;
+    }
+
+
+
 }
