@@ -27,6 +27,14 @@ public interface EdocMapper {
 
     SelectEdocListDTO selectEdocList2(String edocFormCtNo);
 
+    List<EdocFromEdocCtDTO> findByStatus(String 진행중);
+
+    List<EdocFromEdocCtDTO> findByUserId(int userId);
+
+    void uploadAdminFile(UploadFileDTO newFile);
+
+    void updateStatus(EdocFormCtDTO edocFormCtDTO);
+
 }
 
 

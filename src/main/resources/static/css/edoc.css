@@ -68,6 +68,12 @@ body {
 
 }
 
+.c_button.active {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
 .chart{
     width: 70vw;
     height: 440px;
@@ -134,12 +140,7 @@ body {
     text-align: center;
 }
 
-/*전체 버튼 색 변경*/
-.button .c_button:first-child {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-}
+
 
 /*테이블 변경*/
 
