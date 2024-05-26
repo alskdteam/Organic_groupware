@@ -35,4 +35,8 @@ public class ItemService {
 
         return itemMapper.itemRental(itemRental);
     }
+
+    public List<ItemJoinDTO> findAllItems() {
+        return itemMapper.findAllItems();
+    }
 }

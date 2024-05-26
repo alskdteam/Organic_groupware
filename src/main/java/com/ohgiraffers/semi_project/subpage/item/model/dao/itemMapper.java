@@ -17,4 +17,6 @@ public interface itemMapper {
     List<ItemJoinDTO> finditemList();
 
     int itemRental(Map<String, Object> itemRental);
+
+    List<ItemJoinDTO> findAllItems();
 }
