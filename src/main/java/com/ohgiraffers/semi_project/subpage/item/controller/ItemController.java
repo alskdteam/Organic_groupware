@@ -80,4 +80,18 @@ public class ItemController {
 
         return "redirect:/subpage/item";
     }
+    @GetMapping("/item_situation")
+
+    public String itemsituation(Model model){
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
+
+
+        List<ItemJoinDTO> rentalList = itemService.findAllItems();
+        model.addAttribute("rentalList" ,rentalList);
+
+        System.out.println("rentalList = " + rentalList);
+
+        return "subpage/item_situation";
+    }
 }
