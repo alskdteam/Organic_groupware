@@ -14,6 +14,15 @@
         edoc_form_ct_no = #{edoc_form_ct_no}
     </update>
 
+    <update id="uploadAdminFile" parameterType="com.ohgiraffers.semi_project.subpage.edoc.model.dto.UploadFileDTO">
+        UPDATE edoc_form_ct
+        SET
+        admin_sign = #{admin_sign},
+        user_id = #{user_id}
+        WHERE
+        edoc_form_ct_no = #{edoc_form_ct_no}
+    </update>
+
 
 
 

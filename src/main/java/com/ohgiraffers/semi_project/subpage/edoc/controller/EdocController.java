@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -33,19 +34,22 @@ public class EdocController {
         this.sidebarController = sidebarController;
     }
 
+
     @GetMapping("/edoc")
-    public String edoc(Model model) {
-//        List<EdocDTO> edocList = edocService.selectEdoc();
-        List<EdocFromEdocCtDTO> edocList = edocService.selectEdoc();
-
-
+    public String getEdocList(@RequestParam(value = "filter", required = false) String filter, Model model) {
         sidebarController.getSidebar(model);
         sidebarController.getHeader(model);
+
+        List<EdocFromEdocCtDTO> edocList;
+        if (filter == null || filter.equals("all")) {
+            edocList = edocService.selectEdoc();
+        } else {
+            edocList = edocService.getFilteredEdocs(filter);
+        }
         model.addAttribute("edocList", edocList);
 
         return "subpage/edoc";
     }
-
 
 
 

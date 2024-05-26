@@ -26,6 +26,8 @@
                 height: 838px;
             }
         }
+
+
     </style>
 
     <script>
@@ -33,6 +35,8 @@
             window.location.href = '/subpage/edocFrom/selectEdocList/' + edocFormCtNo;
         }
     </script>
+
+
 </head>
 <body>
 <div class="container">
@@ -50,12 +54,36 @@
 
                 <h1>전자결재 리스트</h1>
                 <div class="button">
-                    <button class="c_button" onclick="location.href='/subpage/edoc'">전체</button>
-                    <button class="c_button">진행중</button>
-                    <button class="c_button">반려</button>
-                    <button class="c_button">진행중</button>
-                    <button class="c_button">내결재함</button>
+                    <button id="all" class="c_button" onclick="location.href='/subpage/edoc?filter=all'">전체</button>
+                    <button id="progress" class="c_button" onclick="location.href='/subpage/edoc?filter=progress'">진행중</button>
+                    <button id="rejected" class="c_button" onclick="location.href='/subpage/edoc?filter=rejected'">반려</button>
+                    <button id="my" class="c_button" onclick="location.href='/subpage/edoc?filter=my'">내결재함</button>
                 </div>
+                
+                <script>
+                    function handleButtonClick(button, filter) {
+                        // 모든 버튼에서 active 클래스 제거
+                        document.querySelectorAll('.c_button').forEach(function(btn) {
+                            btn.classList.remove('active');
+                        });
+
+                        // 클릭된 버튼에 active 클래스 추가
+                        button.classList.add('active');
+
+                        // 페이지 이동
+                        location.href = `/subpage/edoc?filter=${filter}`;
+                    }
+
+                    // 현재 URL의 파라미터를 분석하여 적절한 버튼에 active 클래스를 추가
+                    window.onload = function() {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const filter = urlParams.get('filter') || 'all';
+                        const activeButton = document.getElementById(filter);
+                        if (activeButton) {
+                            activeButton.classList.add('active');
+                        }
+                    };
+                </script>
 
                 <div class="chart">
                     <table>
@@ -70,8 +98,7 @@
                             <th>상세보기</th>
                         </tr>
                         <tbody id="tableBody">
-
-                        <tr th:each="list, iterStat : ${edocList}" id="row_${iterStat.index}" >
+                        <tr th:each="list, iterStat : ${edocList}" id="row_${iterStat.index}">
                             <td th:text="${list.edoc_form_ct_no}"></td>
                             <td th:text="${list.edocFormDTO.form_name}"></td>
                             <td th:text="${list.employee_name}"></td>
