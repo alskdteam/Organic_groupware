@@ -1,18 +1,14 @@
 package com.ohgiraffers.semi_project.subpage.main.model.service;
 
 import com.ohgiraffers.semi_project.subpage.main.model.dao.MainMapper;
-import com.ohgiraffers.semi_project.subpage.main.model.dto.CommuteDTO;
-import com.ohgiraffers.semi_project.subpage.main.model.dto.NoticeDTO;
-import com.ohgiraffers.semi_project.subpage.main.model.dto.SidebarImageDTO;
+import com.ohgiraffers.semi_project.subpage.main.model.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class MainService {
@@ -112,5 +108,29 @@ public class MainService {
     }
 
 
+    public List<CarDTO> selectDashboard(CarDTO carDTO) {
 
+        List<CarDTO> result = mainMapper.selectDashboard(carDTO);
+
+//        // null 값과 빈 값을 가진 객체를 제외하고 필터링
+//        List<CarDTO> nonEmptyResult = result.stream()
+//                .filter(car -> car != null && car.getVehicle_name() != null && !car.getVehicle_name().isEmpty())
+//                .collect(Collectors.toList());
+
+        return result;
+    }
+
+    public List<RentalDTO> selectRental(RentalDTO rentalDTO) {
+
+        List<RentalDTO> result = mainMapper.selectRental(rentalDTO);
+//        System.out.println("result" + result);
+
+//        for (RentalDTO rental : result) {
+//            ItemDTO itemDTO = rental.getItemDTO();
+//            String itemName = itemDTO.getItem_name();
+//            System.out.println("Item Name: " + itemName);
+//        }
+
+        return result;
+    }
 }

@@ -1,7 +1,9 @@
 package com.ohgiraffers.semi_project.subpage.edoc.model.service;
 
+import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dao.EdocMapper;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.*;
+import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,6 +69,33 @@ public class EdocService {
     public SelectEdocListDTO selectEdocList2(String edocFormCtNo) {
 
         return edocMapper.selectEdocList2(edocFormCtNo);
+    }
+
+    public List<EdocFromEdocCtDTO> getFilteredEdocs(String filter) {
+        Userdata userDate = new Userdata();
+        LoginUserDTO userDTO = userDate.getloginUserDTO();
+        int user_id = Integer.parseInt(userDTO.getUserId());
+
+        switch (filter) {
+            case "progress":
+                return edocMapper.findByStatus("진행중");
+            case "rejected":
+                return edocMapper.findByStatus("반려");
+            case "my":
+                return edocMapper.findByUserId(user_id);
+            default:
+                return selectEdoc();
+        }
+    }
+
+    public void uploadAdminFile(UploadFileDTO newFile) {
+        edocMapper.uploadAdminFile(newFile);
+    }
+
+    public void updateSatus(EdocFormCtDTO edocFormCtDTO) {
+
+
+        edocMapper.updateStatus(edocFormCtDTO);
     }
 }
 
