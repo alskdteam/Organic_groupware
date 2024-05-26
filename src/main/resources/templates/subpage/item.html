@@ -42,34 +42,51 @@
                 <h1>물품예약</h1>
                 <div class="button">
                     <div class="c_button" id="itembtn"> 물품 대여</div>
+                    <div class="c_button" onclick="itembtn2()">대여 현황</div>
                 </div>
+
+
+                <script>
+                    function itembtn2() {
+                        //여기선 car_situation?type=all
+                        window.location.href = "/subpage/item_situation"
+                    }
+                </script>
 
                 <div class="chart">
                     <!-- 여기만 건들기 -->
                     <div class="carrr">
-                        <table>
-                            <tr>
-                                <th>용도</th>
-                                <th>물품명</th>
-                                <th>대여자</th>
-                                <th>물품 대여일</th>
-                                <th>물품반납일</th>
-                                <th>취소/반납</th>
-                                <th>개수</th>
-                            </tr>
-                            <tbody id="tableBody">
-                            <tr th:each="itemjoin : ${rentalList}" id="row_${iterStat.index}">
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+                        <canvas id="myChart"></canvas>
+                        <script th:inline="javascript">
+                            /*[[${rentalList}]]*/
+                            let rentalList = /*[[${rentalList}]]*/[];
 
-                                <td th:text="${itemjoin.rental_purpose}"></td>
-                                <td th:text="${itemjoin.rentalDTO.item_name}"></td>
-                                <td th:text="${itemjoin.employeeDTO.user_name}"></td>
-                                <td th:text="${itemjoin.rental_date}"></td>
-                                <td th:text="${itemjoin.rental_return_date}"></td>
-                                <td th:text="${itemjoin.rental_status}"></td>
-                                <td th:text="${itemjoin.rentalDTO.item_inventory}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            let labels = [];
+                            let data = [];
+
+                            /* rentalList의 item_name과 item_inventory를 가져와서 labels와 data에 추가 */
+                            rentalList.forEach(function(item) {    //메모 모델 어트리뷰트? 로 보낸 rentalList 포이치로 까봄 그이름이 함수 선언으로 아이템임
+                                labels.push(item.rentalDTO.item_name);  //메모 그래서 아이템.렌탈디티오 아이템 네임임
+                                data.push(item.rentalDTO.item_inventory);
+                            });
+
+                            let myCt = document.getElementById('myChart').getContext('2d');
+
+                            let myChart = new Chart(myCt, {
+                                type: 'bar',
+                                data: {
+                                    labels: labels,  // 메모 배열형태로 리스트 박아버림
+                                    datasets: [
+                                        {
+                                            label: '대여가능 개수',
+                                            data: data,
+                                        }
+                                    ]
+                                },
+                            });
+                        </script>
+
                     </div>
                 </div>
 

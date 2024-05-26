@@ -49,6 +49,11 @@
 
     <select id="findAllItem" resultMap="ItemJoinDTO">
         SELECT
+        *
+        FROM item
+    </select>
+    <select id="findAllItems" resultMap="ItemJoinDTO">
+        SELECT
         a.rental_id,
         a.rental_date,
         a.rental_return_date,
@@ -65,7 +70,6 @@
         JOIN
         employee c ON c.user_id = a.user_id
     </select>
-
     <insert id="itemRental">
         INSERT INTO rental (
         rental_date,
