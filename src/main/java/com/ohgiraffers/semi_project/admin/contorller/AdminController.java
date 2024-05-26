@@ -1,5 +1,6 @@
 package com.ohgiraffers.semi_project.admin.contorller;
 
+import com.ohgiraffers.semi_project.admin.model.dto.AdminEmployeeDTO;
 import com.ohgiraffers.semi_project.admin.model.dto.NoticeDTO;
 import com.ohgiraffers.semi_project.admin.model.service.AdminService;
 import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
@@ -39,6 +40,11 @@ public class AdminController {
         List<NoticeDTO> noticeList = adminService.findnotice();
         model.addAttribute("noticeList", noticeList);
         System.out.println("noticeList = " + noticeList);
+
+        // 도아 전체 사원조회
+        List<AdminEmployeeDTO> employeeList = adminService.findEmployee();
+        model.addAttribute("employeeList", employeeList);
+
         return "admin/admin";
     }
 
@@ -62,4 +68,15 @@ public class AdminController {
         int Notice = adminService.updateNotice(noticeDTO);
         return "redirect:/admin/admin"; // 업데이트 후 이동할 페이지
     }
+
+    // 도아 개별 사원조회
+    @GetMapping("search")
+    public String selectEmployee(@RequestParam Map<String, String> search, Model model){
+
+        List<AdminEmployeeDTO> employeeDTO = adminService.findSelectEmployee(search);
+        model.addAttribute("employeeList", employeeDTO);
+
+        return "/admin/admin";
+    }
+
 }

@@ -1,8 +1,9 @@
-package com.ohgiraffers.semi_project.subpage.profile.model.dto;
+package com.ohgiraffers.semi_project.admin.model.dto;
 
 import java.sql.Date;
 
-public class EmployeeDTO {
+public class AdminEmployeeDTO {
+
     private int user_no;
     private String user_name;
     private int user_id;
@@ -15,10 +16,10 @@ public class EmployeeDTO {
     private String user_email;
     private Date join_date;
 
-    public EmployeeDTO() {
+    public AdminEmployeeDTO() {
     }
 
-    public EmployeeDTO(int user_no, String user_name, int user_id, Date user_birth, String user_phone_number, String user_gender, String user_department, String user_role, String user_rank, String user_email, Date join_date) {
+    public AdminEmployeeDTO(int user_no, String user_name, int user_id, Date user_birth, String user_phone_number, String user_gender, String user_department, String user_role, String user_rank, String user_email, Date join_date) {
         this.user_no = user_no;
         this.user_name = user_name;
         this.user_id = user_id;
@@ -122,7 +123,7 @@ public class EmployeeDTO {
 
     @Override
     public String toString() {
-        return "EmployeeDTO{" +
+        return "AdminEmployeeDTO{" +
                 "user_no=" + user_no +
                 ", user_name='" + user_name + '\'' +
                 ", user_id=" + user_id +

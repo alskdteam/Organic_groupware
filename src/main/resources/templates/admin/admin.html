@@ -111,20 +111,20 @@
                                         <img src="https://github.com/alskdteam/semi_project_java/assets/158136952/3d4ec91f-ae4f-4ddf-987c-4e47a8a92ef1" id="logo">
                                     </div>
                                     <div class="wrap2">
-                                        <form action="/search" method="GET" class="searchForm">
+                                        <form action="/admin/search" method="GET" class="searchForm">
 
                                             <div class="wrap3">
-                                                <input type="text" class="searchInput-a" name="query" placeholder="부서검색" >
+                                                <input type="text" class="searchInput-a" name="user_department" placeholder="부서검색" >
                                                 <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
                                             </div>
 
                                             <div class="wrap3">
-                                                <input type="text" class="searchInput-b" name="query" placeholder="이름검색" >
+                                                <input type="text" class="searchInput-b" name="user_name" placeholder="이름검색" >
                                                 <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
                                             </div>
 
                                             <div class="wrap3">
-                                                <input type="text" class="searchInput-c" name="query" placeholder="직급검색" >
+                                                <input type="text" class="searchInput-c" name="user_rank" placeholder="직급검색" >
                                                 <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
                                             </div>
 
@@ -134,10 +134,8 @@
                                 </div>
                                 <!--employee 테이블-->
                                 <table><br>
-
                                     <thead>
                                     <tr>
-                                        <th></th>
                                         <th>부서</th>
                                         <th>구성원명</th>
                                         <th>직급</th>
@@ -147,72 +145,26 @@
                                         <th>입사일</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>대표</td>
-                                        <td>조평훈</td>
-                                        <td>대표이사</td>
-                                        <td>apple@organic.com</td>
-                                        <td>010-1234-5678</td>
-                                        <td>24.01.30</td>
-                                        <td>24.02.14</td>
+                                    <tbody id="employeetableBody">
+                                    <!-- 여기서부터 페이지 네이션을 위한 행들만 추가 -->
+                                    <tr th:each="employee : ${employeeList}" id="row_${employee.user_no}">
+                                        <td th:text="${employee.user_department}"></td>
+                                        <td th:text="${employee.user_name}"></td>
+                                        <td th:text="${employee.user_rank}"></td>
+                                        <td th:text="${employee.user_email}"></td>
+                                        <td th:text="${employee.user_phone_number}"></td>
+                                        <td th:text="${employee.user_birth}"></td>
+                                        <td th:text="${employee.join_date}"></td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>영업부</td>
-                                        <td>최규혁</td>
-                                        <td>부장</td>
-                                        <td>a@organic.com</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>영업부</td>
-                                        <td>이도아</td>
-                                        <td>과장</td>
-                                        <td>b@organic.com</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>생산부</td>
-                                        <td>전준규</td>
-                                        <td>대리</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>생산부</td>
-                                        <td>박찬우</td>
-                                        <td>사원</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>생산부</td>
-                                        <td>푸바오</td>
-                                        <td>사원</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                    </tr>
-
-
-                                    <!-- 추가적인 공지사항 행은 필요에 따라 추가 -->
+                                    <!-- 페이지 네이션을 위한 행들 끝 -->
                                     </tbody>
                                 </table>
+                                <!-- 페이지 네이션 버튼 -->
+                                <div class="page_number">
+                                    <div class="s_button" onclick="changePage(1)">1</div>
+                                    <div class="s_button" onclick="changePage(2)">2</div>
+                                    <div class="s_button" onclick="changePage(3)">3</div>
+                                </div>
 
                             </div>
                         </div>
