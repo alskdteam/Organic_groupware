@@ -298,7 +298,7 @@
 
                                                 <!-- 모달 내용 -->
 
-                                                <div class="modal-content">
+                                                <div class="modal-content2">
                                                     <div class="titlebox"><p id="modal-title1">제목 :</p>
                                                     <p id="inputtitle"><input type="text" id="memo_title" name="memo_title" placeholder="제목을 입력해주세요"></p>
                                                     </div>
@@ -309,6 +309,7 @@
 
                                                     <div class="memobuttons">
                                                         <button id="memoaddBtn" type="submit">추가</button>
+                                                        <button id="memocancelBtn" type="submit">취소</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -324,7 +325,7 @@
                                         var btn = document.getElementById("new-memo-btn");
 
                                         // 모달 닫기 버튼 가져오기
-                                        var span = document.getElementsByClassName("memobuttons")[0];
+                                        var span = document.getElementsByClassName("cancelBtn")[0];
 
                                         // 모달 열기 버튼을 클릭하면 모달 보이기
                                         btn.onclick = function() {
