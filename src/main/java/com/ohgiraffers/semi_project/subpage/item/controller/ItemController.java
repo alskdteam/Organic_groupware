@@ -2,6 +2,7 @@ package com.ohgiraffers.semi_project.subpage.item.controller;
 
 import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.car.controller.CarController;
+import com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO;
 import com.ohgiraffers.semi_project.subpage.item.model.dto.ItemDTO;
 import com.ohgiraffers.semi_project.subpage.item.model.dto.ItemJoinDTO;
 import com.ohgiraffers.semi_project.subpage.item.model.dto.registRentalDTO;
@@ -93,5 +94,41 @@ public class ItemController {
         System.out.println("rentalList = " + rentalList);
 
         return "subpage/item_situation";
+    }
+    @PostMapping("/item_situation_mypage")
+    public String returnCar(@RequestParam Map<String, Object> params, Model model) {
+        System.out.println("params = " + params);
+
+        Userdata userdata = new Userdata();
+        LoginUserDTO userDTO = userdata.getloginUserDTO();
+        int userCode = userDTO.getUserCode();
+
+        List<ItemJoinDTO> rentalList = itemService.findMyItems(userCode);
+        System.out.println("rentalList = " + rentalList);
+        model.addAttribute("rentalList", rentalList);
+
+        int upmycarlist = itemService.upMyitemlist(params);
+        int CarListUpdate = itemService.itemListUpdate(params);
+        return "subpage/item_situation_mypage";
+    }
+
+
+
+    @GetMapping("/item_situation_mypage")
+
+    public String itemsituationMy(Model model){
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
+
+        Userdata userdata = new Userdata();
+        LoginUserDTO userDTO = userdata.getloginUserDTO();
+        int userCode = userDTO.getUserCode();
+
+        List<ItemJoinDTO> rentalList = itemService.findMyItems(userCode);
+        model.addAttribute("rentalList" ,rentalList);
+
+        System.out.println("rentalList = " + rentalList);
+
+        return "subpage/item_situation_mypage";
     }
 }

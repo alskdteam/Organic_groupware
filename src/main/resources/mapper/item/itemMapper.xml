@@ -70,6 +70,28 @@
         JOIN
         employee c ON c.user_id = a.user_id
     </select>
+    <select id="findMyItems" resultMap="ItemJoinDTO">
+        SELECT
+        a.rental_id,
+        a.rental_date,
+        a.rental_return_date,
+        a.rental_category,
+        a.rental_purpose,
+        a.rental_status,
+        b.item_name,
+        b.item_inventory,
+        c.user_name
+        FROM
+        RENTAL a
+        JOIN
+        ITEM b ON b.item_number = a.item_number
+        JOIN
+        employee c ON c.user_id = a.user_id
+        where
+        user_no = #{userCode}
+    </select>
+
+
     <insert id="itemRental">
         INSERT INTO rental (
         rental_date,

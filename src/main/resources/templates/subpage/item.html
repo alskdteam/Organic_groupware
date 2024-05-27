@@ -41,8 +41,10 @@
             <div class="layer">
                 <h1>물품예약</h1>
                 <div class="button">
+                    <div class="c_button" onclick="itembtn1()">물품 재고</div>
                     <div class="c_button" id="itembtn"> 물품 대여</div>
                     <div class="c_button" onclick="itembtn2()">대여 현황</div>
+                    <div class="c_button" onclick="itembtn3()">내 예약</div>
                 </div>
 
 
@@ -50,6 +52,14 @@
                     function itembtn2() {
                         //여기선 car_situation?type=all
                         window.location.href = "/subpage/item_situation"
+                    }
+                    function itembtn1() {
+                        //여기선 car_situation?type=all
+                        window.location.href = "/subpage/item"
+                    }
+                    function itembtn3() {
+                        //여기선 car_situation?type=all
+                        window.location.href = "/subpage/item_situation_mypage"
                     }
                 </script>
 
