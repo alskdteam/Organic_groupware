@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fbfbfb;
+    overflow-y: auto;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-y: auto;
+}
+
+.content {
+    flex: 1;
+}
+
+.area {
+    background-color: white;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border: 1.3px solid #e1e1e1;
+    margin-left: 16.5vw;
+    width: calc(100% - 16.5vw);
+    height: 900px;
+}
+
+.midtitle {
+    width: 60vw;
+    height: 50px;
+    border: 2px solid #4CAF50;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    position: relative;
+    top: 100px;
+    left: 10vw;
+}
+
+.titletext {
+    width: 50vw;
+    height: 50px;
+    position: relative;
+    top: 41px;
+    left: 14vw;
+    font-size: 30px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+}
+
+.inputtext {
+    margin: 0;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 70%;
+    top: 100px;
+    border: 2px solid #4CAF50;
+    left: 5vw;
+    font-size: 24px;
+    border-radius: 10px;
+    padding: 30px;
+    font-family: 'Arial', sans-serif;
+}
+
+.button_all {
+    position: relative;
+    width: 100vw;
+    background-color: white;
+    height: 100px;
+    margin-top: 100px;
+}
+
+.btn_notice1, .btn_notice2, .btn_notice3 {
+    margin-top: 20px;
+    width: 5vw;
+    height: 35px;
+    border-radius: 3px;
+    background-color: #4CAF50;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Pretendard-Regular';
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn_notice2, .btn_notice3 {
+    margin-left: 15px;
+    position: relative;
+    left: 61vw;
+}
+
+.btn_notice3 a {
+    color: white;
+    text-decoration: none;
+}
+
+.btn_notice1 {
+    position: relative;
+    left: 5vw;
+}

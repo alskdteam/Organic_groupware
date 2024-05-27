@@ -270,38 +270,45 @@
                             <div class="flex2">
                                 <h3>메모</h3>
                                 <div class="c_memo">
-                                    <p>memo</p>
-                                    <div>
-                                        <button id="new-memo-btn">새 메모</button>
-                                    </div>
-
+                                        <h1 class="headmemo_title">memo<h1/>
+                                       
+                                        <button class="new_button" id="new-memo-btn">메모 등록</button>
+                                       
                                     <!--메모창 안에 디자인 추가-->
-                                    <!--                                                <button id="new-memo-btn">새 메모</button>-->
+                                    
 
                                     <!-- 메모 목록 항목이 여기에 추가됩니다 -->
                                     <div class="cars">
                                         <table>
                                             <tbody id="tableBody">
+
+
                                             <tr th:each="memo : ${memoDTOList}" id="row_${iterStat.index}">
                                                 <td style="width: 135px">
                                                     <a th:href="'profile/memo/' +${memo.memo_id}" th:text="${memo.memo_title}"></a>
+
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
 
-                                        <form action="/subpage/profile" method="post">
+                                        <form class="Memoform" action="/subpage/profile" method="post">
 
                                             <div id="MemomyModal" class="modal1">
 
                                                 <!-- 모달 내용 -->
-                                                <div class="memomodal-content">
-                                                    <p>제목</p>
-                                                    <p><input type="text" id="memo_title" name="memo_title"></p>
-                                                    <p>내용</p>
-                                                    <p><input type="text" id="memo_content" name="memo_content"></p>
+
+                                                <div class="modal-content">
+                                                    <div class="titlebox"><p id="modal-title1">제목 :</p>
+                                                    <p id="inputtitle"><input type="text" id="memo_title" name="memo_title" placeholder="제목을 입력해주세요"></p>
+                                                    </div>
+                                                    <div class="inputbox">
+                                                    <p id="substance"></p>
+                                                    <p id="inputcontent"><textarea id="memo_content" name="memo_content" placeholder="내용을 입력해주세요"></textarea></p>
+                                                    </div>
+
                                                     <div class="memobuttons">
-                                                        <button id="memoaddBtn" style="background-color: #4CAF50" type="submit">추가</button>
+                                                        <button id="memoaddBtn" type="submit">추가</button>
                                                     </div>
                                                 </div>
                                             </div>
