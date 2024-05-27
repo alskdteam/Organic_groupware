@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>noticetext</title>
+    <title>profileMemo</title>
     <link rel="stylesheet" href="noticetext.css">
     <style>
 
@@ -64,8 +64,9 @@
         }
 
         .midtitle {
+            padding: 1px;
             width: 60vw;
-            height: 50px;
+            height: 60px;
             border: 2px solid #4CAF50;
             border-top: none;
             border-left: none;
@@ -73,18 +74,26 @@
             position: relative;
             top: 100px;
             left: 10vw;
+        
         }
 
         .titletext {
-            width: 50vw;
-            height: 50px;
+
+            align-items: center;
+            margin-left: 16vw;
+            width: 40vw;
+            height: 30px;
             position: relative;
+
             margin-top: 38px;
             left: 14vw;
             font-size: 30px;
+
             font-weight: 400;
             border: none;
             outline: none;
+            z-index: 1;
+           
         }
 
         .inputtext {
@@ -111,31 +120,64 @@
             margin-top: 100px;
         }
 
-        .btn_notice1, .btn_notice2, .btn_notice3 {
+        .btn_notice1, .btn_notice2 {
+            position: relative;
+            margin-right: 3vw;
             margin-top: 20px;
             width: 5vw;
             height: 35px;
             border-radius: 3px;
             background-color: #4CAF50;
             color: white;
+
             align-items: center;
+
             font-family: 'Pretendard-Regular';
             font-size: 16px;
             border: none;
             cursor: pointer;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn_notice2, .btn_notice3 {
-            margin-left: 15px;
+            
             position: relative;
-            left: 61vw;
+            left: 55vw;
+        }
+        .btn_notice3  {
+            position: relative;
+            margin-right: 3vw;
+            margin-top: 20px;
+            width: 5vw;
+            height: 35px;
+            border-radius: 3px;
+            background-color: #4CAF50;
+            color: white;
+            font-family: 'Pretendard-Regular';
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn_notice3 a {
+
             
             justify-content: center;
+
+            display: flex;
+            position: relative;
+
             color: white;
             text-decoration: none;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+           
         }
 
         .btn_notice1 {
@@ -157,18 +199,20 @@
             <!-- 여기서부터 시작 위에는 건들지 마세요 -->
             <h2 class="midtitle">제목 :</h2>
             <form action="/subpage/profileMemoInse" method="post">
-                <input type="hidden" name="memo_id" th:value="${memoooDTO.memo_id}">
-                <input type="hidden" name="memo_title" th:value="${memoooDTO.memo_title}">
-                <input type="hidden" name="memo_content" th:value="${memoooDTO.memo_content}">
-                <input type="text" class="titletext" name="memo_title" placeholder="제목을 입력해주세요" th:value="${memoooDTO.memo_title}">
-                <textarea name="memo_content" id="inputtext" class="inputtext" placeholder="내용을 입력하세요" th:text="${memoooDTO.memo_content}"></textarea>
+                <input type="hidden" name="memo_id" th:value="${memoDTO.memo_id}">
+                <input type="hidden" name="user_no" th:value="${memoDTO.user_no}">
+
+                <input type="text" class="titletext" name="memo_title" placeholder="제목을 입력해주세요" th:value="${memoDTO.memo_title}">
+                <textarea name="memo_content" id="inputtext" class="inputtext" placeholder="내용을 입력하세요" th:text="${memoDTO.memo_content}"></textarea>
+
                 <div class="button_all">
                     <input type="file" id="attachmentInput" style="display: none;">
                     <button type="button" class="btn_notice1" onclick="document.getElementById('attachmentInput').click();">첨부파일</button>
                     <button type="submit" class="btn_notice2">수정하기</button>
-                    <button type="button" class="btn_notice3"><a href="/admin/admin">취소</a></button>
+                    <button type="button" class="btn_notice3"><a href="/subpage/profile">취소</a></button>
                 </div>
             </form>
+
         </div>
 
         <script>

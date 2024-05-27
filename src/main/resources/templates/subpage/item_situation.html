@@ -2,9 +2,198 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="/css/car.css">
+    <script src="/js/pageButton.js"></script>
+    <style>
+        @media screen and (max-width: 375px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .content {
+                display: none;
+            }
+
+            #sidebar {
+                width: 100%;
+                height: 838px;
+            }
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <!-- 사이드바 -->
+    <div th:replace="common/sidebar.html" id="sidebar"></div>
+    <!-- 메인 컨텐츠 -->
+    <div class="content">
+        <!-- 헤더 추가 -->
+        <div th:replace="common/header.html" id="header"></div>
 
+        <div class="area">
+            <!-- 여기서부터 시작 위에는 건들지 마세요 -->
+            <div class="layer">
+                <h1>물품예약</h1>
+                <div class="button">
+                    <div class="c_button" id="itembtn"> 물품 대여</div>
+                    <div class="c_button" onclick="itembtn2()">대여 현황</div>
+                </div>
+
+
+                <script>
+                    function itembtn2() {
+                        //여기선 car_situation?type=all
+                        window.location.href = "/subpage/item_situation"
+                    }
+                </script>
+                <div class="chart">
+                    <!-- 여기만 건들기 -->
+                    <div class="carrr">
+                        <table>
+                            <tr>
+                                <th>용도</th>
+                                <th>물품명</th>
+                                <th>대여자</th>
+                                <th>물품 대여일</th>
+                                <th>물품반납일</th>
+                                <th>취소/반납</th>
+                                <th>개수</th>
+                            </tr>
+                            <tbody id="tableBody">
+                            <tr th:each="itemjoin : ${rentalList}" id="row_${iterStat.index}">
+
+                                <td th:text="${itemjoin.rental_purpose}"></td>
+                                <td th:text="${itemjoin.rentalDTO.item_name}"></td>
+                                <td th:text="${itemjoin.employeeDTO.user_name}"></td>
+                                <td th:text="${itemjoin.rental_date}"></td>
+                                <td th:text="${itemjoin.rental_return_date}"></td>
+                                <td th:text="${itemjoin.rental_status}"></td>
+                                <td th:text="${itemjoin.rentalDTO.item_inventory}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <form action="/subpage/item" method="post">
+                    <!-- 모달 내용 -->
+                    <div id="myModal" class="modal">
+                        <!-- 모달 내용 -->
+                        <div class="modal-content">
+                            <h1 style="text-align: center">물품 대여</h1>
+                            <br>
+                            <p>항목 선택</p>
+                            <p>
+                                <select name="item_name" id="item_name" style="height: 30px; width: 400px;"></select>
+                            </p>
+                            <p>대여일</p>
+                            <p><input type="date" id="rental_date" name="rental_date" style="height: 30px; width: 400px;"></p>
+                            <p>반납 예정일</p>
+                            <p><input type="date" id="rental_return_date" name="rental_return_date" style="height: 30px; width: 400px;"></p>
+                            <p>대여 용도</p>
+                            <p><input type="text" name="rental_purpose" style="height: 30px; width: 400px;"></p>
+                            <div class="buttons">
+                                <button id="addBtn" style="background-color: #4CAF50" type="submit">추가</button>
+                                <button id="cancelBtn" type="button">취소</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <script>
+                    // 모달 요소 가져오기
+                    var modal = document.getElementById("myModal");
+
+                    // 모달 열기 버튼 가져오기
+                    var btn = document.getElementById("itembtn");
+
+                    // 모달 닫기 버튼 가져오기
+                    var span = document.getElementsByClassName("buttons")[0];
+
+                    // 모달 열기 버튼을 클릭하면 모달 보이기
+                    btn.onclick = function() {
+                        modal.style.display = "block";
+                    }
+
+                    // 모달 닫기 버튼을 클릭하면 모달 닫기
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+
+                    document.getElementById('cancelBtn').addEventListener('click', function(event) {
+                        // 기본 동작(폼 제출) 막기
+                        event.preventDefault();
+
+                        // 모달 닫기
+                        var modal = document.getElementById("myModal");
+                        modal.style.display = "none";
+                    });
+
+                    // 모달 밖의 영역을 클릭하면 모달 닫기
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+
+                    // 차종에 대한 옵션 가져오기
+                    fetch("/subpage/item/find")
+                        .then(res => res.json())
+                        .then(data => {
+                            const $item_name = document.getElementById('item_name');
+
+                            for(let item of data) {
+                                const $option = document.createElement("option");
+                                $option.value = item.item_name;
+                                $option.textContent = item.item_name;
+                                $item_name.appendChild($option);
+                            }
+                        });
+
+                    document.getElementById('rental_date').addEventListener('change', function() {
+                        var rentalDate = new Date(this.value);
+                        var returnDateField = document.getElementById('rental_return_date');
+                        returnDateField.min = this.value;
+
+                        if (new Date(returnDateField.value) < rentalDate) {
+                            returnDateField.value = this.value;
+                        }
+                    });
+
+                    document.getElementById('rental_return_date').addEventListener('change', function() {
+                        var rentalDate = new Date(document.getElementById('rental_date').value);
+                        var returnDate = new Date(this.value);
+
+                        if (returnDate < rentalDate) {
+                            alert('반납일은 대여일 이후여야 합니다.');
+                            this.value = document.getElementById('rental_date').value;
+                        }
+                    });
+                </script>
+
+
+                <div class="page_number">
+                    <div class="flex">
+                        <div class="s_button" onclick="changePage(1)">1</div>
+                        <div class="s_button" onclick="changePage(2)">2</div>
+                        <div class="s_button" onclick="changePage(3)">3</div>
+                    </div>
+                </div>
+                <div class="search">
+                    <div class="flex">
+                        <input type="text" class="search_input" placeholder="검색어를 입력하세요">
+                        <div class="search_button" onclick="search()">검색</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

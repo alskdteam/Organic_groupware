@@ -32,9 +32,9 @@
             margin-bottom: 10px;
         }
 
-        p {
-            margin-bottom: 20px;
-        }
+        /*p {*/
+        /*    margin-bottom: 20px;*/
+        /*}*/
     /*여기서 시작*/
         #logo{
             margin: 20px;
@@ -55,21 +55,23 @@
         /*이름*/
         #s_name{
             text-align: center;
-            margin-top: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
     /*    wrap2*/
     /*    시계*/
         .s_time{
-            width: 150px;
+            width: 140px;
             height: 30px;
-            border: 1.5px solid #e1e1e1; /* 테두리의 두께와 색상을 설정합니다. */
+            border-top: 2px solid #e1e1e1; /* 위쪽 테두리의 두께와 색상을 설정합니다. */
+            border-bottom: 2px solid #e1e1e1; /* 아래쪽 테두리의 두께와 색상을 설정합니다. */
             margin: 5px;
+            padding-bottom: 3px;
         }
         /*출퇴근*/
         .s_commute{
             width: 150px;
-            height: 30px;
-            border: 1.5px solid #e1e1e1; /* 테두리의 두께와 색상을 설정합니다. */
+            height: 50px;
             margin: 5px;
         }
 
@@ -99,7 +101,7 @@
         .s_wrap3{
             display: flex;
             justify-content: center;
-            padding-top: 30px;
+            padding-top: 20px;
         }
 
         /*목록 버튼*/
@@ -235,7 +237,6 @@
 
 
 
-
     <!-- 뷰포트 스크립트 -->
     <script>
         window.addEventListener('resize', function() {
@@ -247,6 +248,28 @@
         });
 
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function updateCurrentTime() {
+                const startCurrentTimeInput = document.getElementById("start_current_time");
+                const endCurrentTimeInput = document.getElementById("end_current_time");
+                if (startCurrentTimeInput && endCurrentTimeInput) {
+                    const now = new Date().toLocaleString();
+                    startCurrentTimeInput.value = now;
+                    endCurrentTimeInput.value = now;
+                }
+            }
+
+            updateCurrentTime(); // 페이지 로드 시에도 현재 시간을 업데이트
+            const intervalId = setInterval(updateCurrentTime, 1000); // 1초마다 현재 시간을 업데이트
+
+            // 페이지가 언로드될 때 setInterval 클리어
+            window.addEventListener("unload", function() {
+                clearInterval(intervalId);
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="sidebar">
@@ -256,10 +279,13 @@
 
         <div class="s_wrap1">
             <div class="s_flex1">
-                <div class="s_picture">
-
+                <div class="s_picture" style="position: relative; overflow: hidden;">
+                    <img style="width: 100%; height: 100%;" onerror="this.style.display='none'" th:if="${base64ImageData != null}" th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" />
+                    <img style="width: 100%; height: 100%;" th:if="${base64ImageData == null}" src="/img/profile/profile2.jpeg" alt="Default Image" />
                 </div>
-                <p id="s_name">아무개 사원</p>
+                <p id="s_name">
+                    <p th:text="${koreaName}" style="text-align: center"></p>
+                </p>
             </div>
         </div>
 
@@ -267,19 +293,81 @@
             <div class="s_flex2">
                 <div class="s_wrap2-1">
                     <div class="s_flex2-1">
-                        <div class="s_time">
-
+                        <div class="s_time" style="text-align: center; align-content: center">
+                            <div class="clock" id="clock"></div>
                         </div>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                function updateClock() {
+                                    const clockElement = document.getElementById("clock");
+                                    if (clockElement) {
+                                        const now = new Date();
+                                        clockElement.textContent = now.toLocaleTimeString();
+                                    }
+                                }
+                                setInterval(updateClock, 100);
+                            });
+                        </script>
 
                         <div class="s_commute">
-
+                            <div class="commute-container" style=" align-content: center; text-align: center">
+                                <span>출근 :</span>
+                                <span id="commute1" th:text="${commute1}"></span>
+                            </div>
+                            <div class="commute-container" style=" align-content: center; text-align: center">
+                                <span>퇴근 :</span>
+                                <span id="commute2" th:text="${commute2}"></span>
+                            </div>
                         </div>
+
+                        <script>
+                            function formatTime(timestamp) {
+                                const date = new Date(timestamp);
+                                return date.toLocaleTimeString('en-GB'); // HH:mm:ss 형식
+                            }
+
+                            document.addEventListener("DOMContentLoaded", function() {
+                                const commute1 = document.getElementById("commute1");
+                                const commute2 = document.getElementById("commute2");
+
+                                if (commute1) {
+                                    commute1.textContent = formatTime(commute1.textContent);
+                                }
+
+                                if (commute2) {
+                                    commute2.textContent = formatTime(commute2.textContent);
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
                 <div class="s_wrap2-1">
                     <div class="s_flex2-2">
-                        <div class="s_button1"></div>
-                        <div class="s_button2"></div>
+<!--                        출근-->
+                        <form action="/subpage/startDate" method="post">
+                            <div class="s_button1" style="cursor: pointer; position: relative; align-content: center">
+                                <input type="hidden" name="current_time" id="start_current_time">
+                                <button type="submit" name="action" value="start_date" style="width: 100%; border: none; background: none; padding: 0;">
+                                    <p style="text-align: center;">
+                                        출근
+                                    </p>
+                                </button>
+                            </div>
+                        </form>
+                        <form action="/subpage/endDate" method="post">
+                            <div class="s_button2" style="cursor: pointer; position: relative; align-content: center">
+                                <input type="hidden" name="current_time" id="end_current_time">
+                                <button type="submit" name="action" value="end_date" style="width: 100%; border: none; background: none; padding: 0;">
+                                    <p style="text-align: center;">
+                                        퇴근
+                                    </p>
+                                </button>
+                            </div>
+                        </form>
+
+                        
+
                     </div>
                 </div>
 
@@ -293,7 +381,7 @@
 
             <div id="container">
                 <!--세로형 1-->
-                <ul id="nav-v1">
+                <ul id="nav-v1" style="cursor: pointer;">
 
                     <li class="menu-v1">
                             <a href="#" onclick="location.href='/login/main'">

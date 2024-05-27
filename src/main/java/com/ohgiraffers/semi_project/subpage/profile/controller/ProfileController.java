@@ -1,7 +1,11 @@
 package com.ohgiraffers.semi_project.subpage.profile.controller;
 
 import com.ohgiraffers.semi_project.auth.model.service.Userdata;
+import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFromEdocCtDTO;
+import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
+import com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO;
+
 import com.ohgiraffers.semi_project.subpage.profile.model.service.ProfileService;
 import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,41 +21,63 @@ import java.util.Map;
 public class ProfileController {
 
     private final ProfileService profileService;
+    private final SidebarController sidebarController;
 
-    @Autowired
-    public ProfileController(ProfileService profileService) {
+    public ProfileController(ProfileService profileService, SidebarController sidebarController) {
         this.profileService = profileService;
+        this.sidebarController = sidebarController;
     }
 
-
-    // 나의 프로필 메모
     @GetMapping("/profile")
-    public String memo(Model model){
+
+    public String profile(Model model){
+
+        Userdata userDate = new Userdata();
+        LoginUserDTO userDTO = userDate.getloginUserDTO();
+        int user_no = userDTO.getUserCode();
+        int userCode = userDTO.getUserCode();
+//         규혁
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
+  
+//         도아
+        List<MemoDTO> memoDTOList = profileService.findMemoTitle(userCode);
+        model.addAttribute("memoDTOList", memoDTOList);
+
+        System.out.println("memoDTOList = " + memoDTOList);
+  
+  
+
+  
+        //  규혁 서비스에서 데이터를 받아옴
+        Map<String, Object> profileData = profileService.selectProfile(user_no);
+        System.out.println(profileData.get("profilesWithoutImage"));
+
+        // Add the data to the model as attributes
+        model.addAttribute("profilesWithoutImage", profileData.get("profilesWithoutImage"));
+
+
+        return "subpage/profile";
+    }
+
+//   도아
+    @GetMapping("/profile/memo/{memo_id}")
+    public String memoInse(Model model,@PathVariable int memo_id ){
+        System.out.println("memo_id = " + memo_id);
 
         Userdata userdata = new Userdata();
         LoginUserDTO userDTO = userdata.getloginUserDTO();
         int userCode = userDTO.getUserCode();
 
-        List<MemoDTO> memoDTOList = profileService.findMemoTitle(userCode);
-        model.addAttribute("memoDTOList", memoDTOList);
+        MemoDTO memoDTO = profileService.findMemoPage(memo_id);
+        model.addAttribute("memoDTO", memoDTO);
 
-        System.out.println("memoDTOList = " + memoDTOList);
-
-        return "subpage/profile";
-    }
-
-    @GetMapping("/profile/{memo_id}")
-    public String memoInse(Model model,@PathVariable int memo_id ){
-        System.out.println("memo_id = " + memo_id);
-        MemoDTO memoooDTO = profileService.findMemoPage(memo_id);
-        model.addAttribute("memoooDTO", memoooDTO);
-        System.out.println("memoooDTO = " + memoooDTO);
+        System.out.println("memoDTO = " + memoDTO);
         return "subpage/profileMemoInse";
 
     }
 
-
-
+//아도아
     @PostMapping("/profile")
     public String registMemo(@RequestParam("memo_title") String memo_title,
                              @RequestParam("memo_content") String memo_content
@@ -62,33 +88,28 @@ public class ProfileController {
         int userCode = userDTO.getUserCode();
 
 
-        MemoDTO memouupDTO = new MemoDTO();
-        memouupDTO.setMemo_title(memo_title);
-        memouupDTO.setMemo_content(memo_content);
-        memouupDTO.setUser_no(userCode);
+        MemoDTO memoDTO = new MemoDTO();
+        memoDTO.setMemo_title(memo_title);
+        memoDTO.setMemo_content(memo_content);
+        memoDTO.setUser_no(userCode);
 
-        profileService.registMem(memouupDTO);
+        profileService.registMem(memoDTO);
 
-        System.out.println("memouupDTO = " + memouupDTO);
+        System.out.println("memouupDTO = " + memoDTO);
 
         return "redirect:/subpage/profile";
 
     }
 
+// 
     @PostMapping("/profileMemoInse")
-    public String updateMemo (@RequestParam Map<String,String> upmemo){
-        MemoDTO memoupDTO = new MemoDTO();
-        memoupDTO.setMemo_title(upmemo.get("memo_title"));
-        memoupDTO.setMemo_content(upmemo.get("memo_content"));
-        memoupDTO.setMemo_id(Integer.parseInt(upmemo.get("memo_id")));
-        System.out.println("memoupDTO = " + memoupDTO);
-        int Memo = profileService.updateMemoo(memoupDTO);
-
+    public String updateMemo(@ModelAttribute MemoDTO memoDTO) {
+        // memoDTO에 값이 제대로 들어오는지 확인
+        System.out.println(memoDTO);
+        // 서비스 호출하여 데이터베이스 업데이트
+        profileService.updateMemo(memoDTO);
         return "redirect:/subpage/profile";
-
     }
-
-
 
 
 

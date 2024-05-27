@@ -1,11 +1,10 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
-    <link rel="stylesheet" href="/css/edocForm/vacation.css">
+    <link rel="stylesheet" href="/css/edocForm/adminEdoc.css">
 
     <style>
         @media screen and (max-width: 375px) {
@@ -45,9 +44,6 @@
             outline: none; /* 포커스 효과 제거 */
             font-size: 15px;
         }
-
-
-
     </style>
 </head>
 <body>
@@ -64,28 +60,25 @@
             <div class="layer">
                 <h1>전자결재 서류</h1>
                 <div class="signBox">
-<!--                    <p id="singText" style="color: #999999; margin-top: 130px"> 서류작성을 먼저 한 후에 <br> 사인을 등록해 주십시오. </p>-->
+                    <!--                    <p id="singText" style="color: #999999; margin-top: 130px"> 서류작성을 먼저 한 후에 <br> 사인을 등록해 주십시오. </p>-->
 
                     <table>
                         <tr>
-                            <th style="width: 350px; height: 20px; border: 1px solid rgb(178,178,178);">사인등록</th>
+                            <th style="width: 350px; height: 20px; border: 1px solid rgb(178,178,178);">관리자 사인등록</th>
                         </tr>
                         <tr>
                             <td style="width: 350px; height: 50px;  border: 1px solid rgb(178,178,178);">
-                                <form  name="myForm2" action="/subpage/uploadFile" method="post" enctype="multipart/form-data">
+                                <form  name="myForm2" action="/admin/uploadFile" method="post" enctype="multipart/form-data">
                                     <label for="edoc_form_ct_no" style="margin: 10px">문서 번호:</label>
                                     <input type="text" placeholder="필수사항" name="edoc_form_ct_no" >
-                                    <br>
-                                    <label for="employee_name" style="margin: 10px">사원 성함:</label>
-                                    <input type="text" placeholder="필수사항" name="employee_name" >
-                                    <br>
-                                    <label for="user_id" style="margin: 10px">사원 번호:</label>
-                                    <input type="text" placeholder="사용자 ID를 입력하세요" name="user_id" >
+
+                                    <!--                                    <label for="user_id" style="margin: 10px">사원 번호:</label>-->
+                                    <!--                                    <input type="text" placeholder="사용자 ID를 입력하세요" name="user_id" >-->
 
                                     <input type="hidden" placeholder="필수사항" name="edoc_form_no" value="1">
                                     <br>
-                                    <label for="employee_sign" style="margin: 10px; ">사인 파일 등록하기:</label>
-                                    <input id="employee_sign" name="employee_sign" type="file" style=" margin: 10px">
+                                    <label for="admin_sign" style="margin: 10px; ">사인 파일 등록하기:</label>
+                                    <input id="admin_sign" name="admin_sign" type="file" style=" margin: 10px">
                                     <br>
                                     <input type="submit" value="전송" style="width: 60px; height: 30px; margin-left: 80%; border-radius: 5px; background-color: aliceblue;">
                                 </form>
@@ -93,32 +86,32 @@
                         </tr>
                     </table>
 
-
-
-
                     <table>
                         <tr>
                             <th style="width: 175px; height: 20px;  border: 1px solid rgb(178,178,178);">사원사인</th>
                             <th style="width: 175px; height: 20px;  border: 1px solid rgb(178,178,178);">관리자사인</th>
                         </tr>
                         <tr>
-                            <td style="width: 175px; height: 50px;  border: 1px solid rgb(178,178,178);">
-                                <img th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" style="width: 175px; height: 174px"/>
-
+                            <td style="width: 175px; height: 50px; border: 1px solid rgb(178, 178, 178); position: relative; overflow: hidden;">
+                                <!-- base64ImageData가 null이 아닌 경우에만 이미지 표시 -->
+                                <img onerror="this.style.display='none'" th:if="${employeeSign != null}" th:src="'data:image/png;base64,' + ${employeeSign}" alt="Uploaded Image" style="width: 100%; height: auto;"/>
                             </td>
-                            <td style="width: 175px; height: 50px;  border: 1px solid rgb(178,178,178);"></td>
+                            <td style="width: 175px; height: 50px; border: 1px solid rgb(178, 178, 178);">
+                                <!-- base64ImageData2가 null이 아닌 경우에만 이미지 표시 -->
+                                <img onerror="this.style.display='none'" th:if="${adminSign != null}" th:src="'data:image/png;base64,' + ${adminSign}" alt="Uploaded Image" style="width: 175px; height: 174px"/>
+                            </td>
                         </tr>
                     </table>
-
                 </div>
 
-                <form name="myForm" action="/subpage/regist" method="post">
+                <form name="myForm" action="/admin/updateStatus" method="post">
                     <div class="chart1">
                         <div class="wrap1">
                             <p id="text">양식명</p>
                         </div>
                         <div class="wrap2">
                             <p id="text">문서번호 : <span style="color: red" th:text="${insertedEdoc.edoc_form_ct_no}"></span> </p>
+                            <input type="hidden" placeholder="필수사항" name="edoc_form_ct_no" th:value="${insertedEdoc.edoc_form_ct_no}">
                         </div>
                     </div>
                     <div class="chart2">
@@ -170,17 +163,20 @@
                                         <td colspan="3" style="vertical-align: top;"><span th:text="${insertedEdoc.content}"></span></td>
                                     </tr>
                                     <tr>
-                                        <th style=" height: 100px;">비고</th>
-                                        <td colspan="3" style="vertical-align: top;"><span th:text="${insertedEdoc.reason_return}"></span></td>
+                                        <th style=" height: 100px; color: red">비고</th>
+                                        <td colspan="3" style="vertical-align: top;">
+                                            <textarea th:placeholder="${insertedEdoc.reason_return}" style="width: 100%; height: 100px; resize: none;" name="reason_return" id="reason_return"></textarea>
+                                        </td>
                                     </tr>
                                 </table>
                                 <input type="hidden" name="edoc_status" value="진행중">
-                                <input type="hidden" placeholder="필수사항" name="edoc_form_no" value="1">
                                 <div class="submitWrap">
                                     <div class="submitBox">
-                                        <input type="submit" value="전송" style="width: 100px; margin-right: 20px; border-radius: 10px; background-color: aliceblue;" disabled>
+                                        <input type="submit" name="action" value="반려" style="width: 100px; margin-right: 20px; border-radius: 10px; background-color: aliceblue;">
+                                        <input type="submit" name="action" value="승인" style="width: 100px; margin-right: 20px; border-radius: 10px; background-color: aliceblue;">
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -224,9 +220,5 @@
         });
     });
 </script>
-
-
-
 </body>
 </html>
-

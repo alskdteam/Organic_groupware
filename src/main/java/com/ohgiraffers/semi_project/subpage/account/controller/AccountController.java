@@ -6,6 +6,8 @@ import com.ohgiraffers.semi_project.subpage.account.model.service.AccountService
 import com.ohgiraffers.semi_project.subpage.car.controller.CarController;
 import com.ohgiraffers.semi_project.subpage.car.model.dto.CarJoinDTO;
 import com.ohgiraffers.semi_project.subpage.car.model.service.CarService;
+import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
+import com.ohgiraffers.semi_project.subpage.main.model.service.MainService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +27,24 @@ public class AccountController {
 
     private final AccountService accountService;
     private final MessageSource messageSource;
+    private final SidebarController sidebarController;
 
     @Autowired
-    public AccountController(AccountService accountService, MessageSource messageSource) {
+    public AccountController(AccountService accountService, MessageSource messageSource, MainService mainService, SidebarController sidebarController) {
         this.accountService = accountService;
         this.messageSource = messageSource;
+        this.sidebarController = sidebarController;
     }
-
 
     @GetMapping("account")
     public String accJoinList(Model model) {
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
+
         List<AccountJoinDTO> accJoinList = accountService.findAllAcount();
         model.addAttribute("accJoinList", accJoinList);
 
-        System.out.println("accJoinList = " + accJoinList);
+//        System.out.println("accJoinList = " + accJoinList);
 
 
         return "subpage/account";

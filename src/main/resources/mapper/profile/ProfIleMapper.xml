@@ -49,14 +49,14 @@
         where memo_id = #{memo_id}
     </select>
 
-    <update id="updateMemoo">
+    <update id="updateMemo" parameterType="com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO">
         UPDATE
             memo
         SET
             memo_title = #{memo_title},
-            memo_content = #{memo_content},
+            memo_content = #{memo_content}
         WHERE
-            user_no = ${userCode}
+        memo_id = ${memo_id}
     </update>
 
 

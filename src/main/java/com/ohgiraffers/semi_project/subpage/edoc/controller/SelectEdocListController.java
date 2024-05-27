@@ -4,6 +4,7 @@ import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFormCtDTO;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFromEdocCtDTO;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.SelectEdocListDTO;
 import com.ohgiraffers.semi_project.subpage.edoc.model.service.EdocService;
+import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,18 +29,25 @@ public class SelectEdocListController {
 
     private final EdocService edocService;
     private final MessageSource messageSource;
+    private final SidebarController sidebarController;
+
+
 
     @Autowired
     private HttpServletRequest request;
 
-    public SelectEdocListController(EdocService edocService, MessageSource messageSource) {
+    @Autowired
+    public SelectEdocListController(EdocService edocService, MessageSource messageSource, SidebarController sidebarController) {
         this.edocService = edocService;
         this.messageSource = messageSource;
+        this.sidebarController = sidebarController;
     }
 
-
+    //    전자결재 서류 조회 컨트롤러
     @GetMapping("/edocFrom/selectEdocList/{edocFormCtNo}")
     public String selectEdoc(@PathVariable("edocFormCtNo") String edocFormCtNo, Model model) {
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
         // Ajax 요청으로부터 edoc_form_ct_no 값을 가져옵니다.
 
 
@@ -64,12 +72,12 @@ public class SelectEdocListController {
             base64ImageDate2 = Base64.getEncoder().encodeToString(imageData2);
         }
 
-        model.addAttribute("base64ImageData", base64ImageDate);
-        model.addAttribute("base64ImageData2", base64ImageDate2);
+        model.addAttribute("employeeSign", base64ImageDate);
+        model.addAttribute("adminSign", base64ImageDate2);
 
 //         모델에 조회된 정보를 추가합니다.
         model.addAttribute("insertedEdoc", insertedEdoc);
-        
+
 
         return "subpage/edocFrom/selectEdocList2";
     }

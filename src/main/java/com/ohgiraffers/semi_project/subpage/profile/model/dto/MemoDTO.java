@@ -5,7 +5,7 @@ public class MemoDTO {
     private int memo_id;
     private String memo_title;
     private String memo_content;
-    public int user_no;
+    private int user_no;
     private EmployeeDTO employeeDTO;
 
     public MemoDTO() {
