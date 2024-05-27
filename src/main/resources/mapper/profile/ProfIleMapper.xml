@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ohgiraffers.semi_project.subpage.profile.model.dao.ProfileMapper">
+    <resultMap id="memoDTO" type="com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO">
+        <id property="memo_id" column="memo_id"/>
+        <result property="memo_title" column="memo_title"/>
+        <result property="memo_content" column="memo_content"/>
+        <result property="user_no" column="user_no"/>
+        <association property="employeeDTO" javaType="com.ohgiraffers.semi_project.subpage.profile.model.dto.EmployeeDTO">
+            <id property="user_id" column="user_id"/>
+            <result property="user_name" column="user_name"/>
+            <result property="user_no" column="user_no"/>
+        </association>
+    </resultMap>
+
+    <select id="findMemoTitle" resultMap="memoDTO" >
+        select
+        memo_title,
+        memo_id
+        from
+        memo
+        WHERE
+        user_no = ${userCode}
+
+    </select>
+
+    <insert id="registMem" useGeneratedKeys="true" keyProperty="memo_id">
+        INSERT INTO memo
+        (
+        memo_title,
+        memo_content,
+        user_no
+        )
+        VALUES
+        (
+        #{memo_title},
+        #{memo_content},
+        #{user_no}
+        )
+    </insert>
+
+    <select id="findMemoPage" resultMap="memoDTO">
+        select *
+        from memo
+        where memo_id = #{memo_id}
+    </select>
+
+    <update id="updateMemo" parameterType="com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO">
+        UPDATE
+            memo
+        SET
+            memo_title = #{memo_title},
+            memo_content = #{memo_content}
+        WHERE
+        memo_id = ${memo_id}
+    </update>
+
+
+
+</mapper>
+
+
+
+
+
+

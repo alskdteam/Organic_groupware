@@ -35,3 +35,13 @@ function showRowsForCurrentPage() {
 window.onload = function() {
     changePage(1);
 };
+
+function allBtn() {
+    //여기선 car_situation?type=all
+    window.location.href = "/subpage/car_situation?type=all"
+}
+
+function myBtn() {
+    //여기선 car_situation?type=my
+    window.location.href = "/subpage/car_situation_mypage"
+}

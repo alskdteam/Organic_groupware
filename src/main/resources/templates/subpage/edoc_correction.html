@@ -41,7 +41,7 @@
             <!-- 여기서부터 시작 위에는 건들지 마세요 -->
             <div class="layer">
                 <div class="layer">
-                    <h1>문서처리 양식</h1>
+                    <h1>문서작성</h1>
 
                     <div class="chart">
                         <table>
@@ -49,12 +49,16 @@
                                 <th>분류</th>
                                 <th>양식명</th>
                                 <th>서류설명</th>
+                                <th>작성하기</th>
                             </tr>
                             <tbody id="tableBody">
                             <tr th:each="list, iterStat : ${edocFormList}" id="row_${iterStat.index}">
                                 <td th:text="${list.edoc_form_no}"></td>
                                 <td th:text="${list.form_name}"></td>
                                 <td th:text="${list.form_explanation}"></td>
+                                <td>
+                                    <span style="width: 15px; height: auto; border-radius: 5px; background-color: aliceblue;  border: 1px solid gray; padding: 2px ">작성하기</span>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

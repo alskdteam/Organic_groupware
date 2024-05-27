@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semi_project.subpage.account.model.dao.accountMapper">
+
+    <resultMap id="acc" type="com.ohgiraffers.semi_project.subpage.account.model.dto.AccountJoinDTO">
+        <id property="account_name" column="account_name"/>
+        <result property="representative_name" column="representative_name"/>
+        <result property="representative_number" column="representative_number"/>
+        <result property="account_category" column="account_category"/>
+        <result property="business_address" column="business_address"/>
+        <result property="registration_date" column="registration_date"/>
+        <association property="employeeDTO" javaType="com.ohgiraffers.semi_project.subpage.account.model.dto.EmployeeDTO">
+            <result property="user_name" column="user_name"/>
+        </association>
+    </resultMap>
+
+    <select id="findAllAcount" resultMap="acc">
+        SELECT
+        a.account_name,
+        a.representative_name,
+        a.representative_number,
+        a.account_category,
+        a.business_address,
+        a.registration_date,
+        b.user_name
+        FROM
+        account a
+        JOIN
+        employee b ON b.user_id = a.user_id;
+    </select>
+
+    <insert id="registAccount" parameterType="com.ohgiraffers.semi_project.subpage.account.model.dto.RegistAccDTO" >
+        INSERT INTO account
+        (
+        account_name,
+        representative_number,
+        business_number,
+        representative_name,
+        business_address,
+        bank_name,
+        account_holder,
+        account_number,
+        user_id,
+        registration_date,
+        account_category
+        )
+        VALUES
+        (
+        #{account_name},
+        #{representative_number},
+        #{business_number},
+        #{representative_name},
+        #{business_address},
+        #{bank_name},
+        #{account_holder},
+        #{account_number},
+        #{user_id},
+        #{registration_date},
+        #{account_category}
+        )
+    </insert>
+
+</mapper>

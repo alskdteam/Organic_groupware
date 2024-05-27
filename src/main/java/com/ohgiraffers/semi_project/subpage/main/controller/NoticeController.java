@@ -1,6 +1,5 @@
 package com.ohgiraffers.semi_project.subpage.main.controller;
 
-import com.ohgiraffers.semi_project.subpage.edoc.model.service.EdocService;
 import com.ohgiraffers.semi_project.subpage.main.model.dto.NoticeDTO;
 import com.ohgiraffers.semi_project.subpage.main.model.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,19 +15,32 @@ import java.util.List;
 public class NoticeController {
 
     private final MainService mainService;
+    private final SidebarController sidebarController;
 
     @Autowired
-    public NoticeController(MainService mainService) {
+    public NoticeController(MainService mainService, SidebarController sidebarController) {
         this.mainService = mainService;
+        this.sidebarController = sidebarController;
     }
-    
+
+
+
+    //    메인 뷰
     @GetMapping("/main")
     public String main(Model model) {
+
+
+
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
+
+
+//      공지사항
         List<NoticeDTO> selectNotice = mainService.selectNotice();
 
         model.addAttribute("selectNotice", selectNotice);
 
-        System.out.println(selectNotice);
+//        System.out.println(selectNotice);
         return "login/main";
     }
 
