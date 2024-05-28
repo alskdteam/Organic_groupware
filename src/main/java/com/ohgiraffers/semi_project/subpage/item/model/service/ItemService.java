@@ -36,7 +36,27 @@ public class ItemService {
         return itemMapper.itemRental(itemRental);
     }
 
+    public List<ItemJoinDTO> findMyItems(int userCode) {
+        return itemMapper.findMyItems(userCode);
+    }
+
     public List<ItemJoinDTO> findAllItems() {
         return itemMapper.findAllItems();
+    }
+
+    public int upMyitemlist(Map<String, Object> params) {
+        return  itemMapper.upMyitemlist(params);
+    }
+
+    public int itemListUpdate(Map<String, Object> params) {
+        return itemMapper.itemListUpdate(params);
+    }
+
+    public int getItemInventory(String itemName) {
+        return itemMapper.getItemInventory(itemName);
+    }
+
+    public int itemRentalUpdate(Map<String, Object> itemRental) {
+        return itemMapper.itemRentalUpdate(itemRental);
     }
 }
