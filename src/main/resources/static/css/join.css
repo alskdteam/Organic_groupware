@@ -1,0 +1,157 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+*{margin: 0; padding: 0; box-sizing: border-box;}
+.join-form {position: absolute; z-index: 2;}
+.join-form h1 {
+    font-size: 32px; color: #010101;
+    text-align: center;
+}
+
+
+body {
+    font-family: "Pretendard-Regular";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("bg.jpg") no-repeat center;
+    background-size: cover;
+}
+body::before {
+    content: "";
+    position: absolute; z-index: 1;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-color: rgba(red, green, blue, alpha);
+}
+
+.int-area {width: 400px;}
+.int-area input {
+    font-family: "Pretendard-Regular";
+    width: 100%;
+    padding: 20px 10px 10px;
+    background-color: transparent;
+    border-radius: 15px;
+    border-color: green;
+    font-size: 18px;
+    outline: none;
+}
+.divide {
+    width: 400px;
+    border: #010101;
+    border-radius: 15px;
+    padding: 20px 10px 10px;
+}
+.onclick {
+    display: inline;
+    font-family: "Pretendard-Regular";
+    width: 95px;
+    padding: 20px 10px 10px;
+    background-color: transparent;
+    border-radius: 15px;
+    border-color: green;
+    font-size: 18px;
+    outline: none;
+
+}
+
+.int-area label {
+    font-family: "Pretendard-Regular";
+    position: absolute; left: 10px; top: 15px;
+    font-size: 18px; color: #999;
+
+}
+
+.caption1 {
+    font-family: "Pretendard-Regular";
+    position: absolute;
+    left: 43%;
+    top: 120%;
+
+}
+.caption {
+    font-family: "Pretendard-Regular";
+    position: absolute;
+    left:30%;
+    top: 128%;
+
+}
+
+.btn-area {
+
+    box-sizing: border-box;
+    display: inline;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    font-size: 30px;
+    padding: 10px 135px;
+    border: 5px color(yellow);
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bold;
+    font-family: "Pretendard-Regular";
+    cursor: pointer;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.img-logo {
+    height: 300px;
+}
+
+.login-form{
+    margin-top: -20vh;
+}
+
+/* 스타일링을 위한 CSS */
+.terms-container {
+    margin-bottom: 20px;
+}
+
+/* 체크박스 스타일 */
+.terms-checkbox {
+    padding: 10px 20px 10px;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+/* 회원가입 버튼 스타일 */
+.btn {
+    width: 400px;
+    padding: 10px 20px;
+    background-color:green;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 비활성화된 버튼 스타일 */
+.btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.terms-container {
+    font-size: 18px;
+}
+
+
+@media screen and (max-width: 375px) {
+    .login-form{
+        margin-top: -10vh;
+        scale: 50%;
+    }
+}
+
+

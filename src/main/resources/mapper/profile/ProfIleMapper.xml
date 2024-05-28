@@ -60,6 +60,61 @@
     </update>
 
 
+    <!-- 도아 사원조회 -->
+    <resultMap id="employee" type="com.ohgiraffers.semi_project.subpage.profile.model.dto.EmployeeDTO">
+        <id property="user_no" column="user_no"/>
+        <result property="user_name" column="user_name"/>
+        <result property="user_id" column="user_id"/>
+        <result property="user_birth" column="user_birth"/>
+        <result property="user_phone_number" column="user_phone_number"/>
+        <result property="user_gender" column="user_gender"/>
+        <result property="user_department" column="user_department"/>
+        <result property="user_role" column="user_role"/>
+        <result property="user_rank" column="user_rank"/>
+        <result property="user_email" column="user_email"/>
+        <result property="join_date" column="join_date"/>
+    </resultMap>
+
+
+    <select id="findAllEmployee" resultMap="employee">
+        select
+        user_department,
+        user_name,
+        user_rank,
+        user_email,
+        user_phone_number,
+        user_birth,
+        join_date
+        from
+        employee;
+    </select>
+
+    <!-- 도아 - 개별 사원 조회 -->
+    <select id="findDepartment" resultMap="employee" parameterType="map">
+
+        select
+        user_department,
+        user_name,
+        user_rank,
+        user_email,
+        user_phone_number,
+        user_birth,
+        join_date
+        from
+        employee
+        where
+        1=1
+        <if test="user_department != null and user_department != ''">
+            AND user_department = #{user_department}
+        </if>
+        <if test="user_name != null and user_name != ''">
+            AND user_name = #{user_name}
+        </if>
+        <if test="user_rank != null and user_rank != ''">
+            AND user_rank = #{user_rank}
+        </if>
+    </select>
+
 
 </mapper>
 

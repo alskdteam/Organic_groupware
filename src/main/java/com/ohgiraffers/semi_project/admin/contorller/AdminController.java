@@ -1,5 +1,6 @@
 package com.ohgiraffers.semi_project.admin.contorller;
 
+import com.ohgiraffers.semi_project.admin.model.dto.AdminEmployeeDTO;
 import com.ohgiraffers.semi_project.admin.model.dto.NoticeDTO;
 import com.ohgiraffers.semi_project.admin.model.service.AdminService;
 import com.ohgiraffers.semi_project.auth.model.service.Userdata;
@@ -10,13 +11,20 @@ import com.ohgiraffers.semi_project.subpage.edoc.model.dto.UploadFileDTO;
 import com.ohgiraffers.semi_project.subpage.edoc.model.service.EdocService;
 import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
 import com.ohgiraffers.semi_project.subpage.main.model.service.MainService;
+
+import com.ohgiraffers.semi_project.user.model.dto.SignupDTO;
+
 import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import java.io.IOException;
 import java.sql.Date;
@@ -52,6 +60,13 @@ public class AdminController {
         List<NoticeDTO> noticeList = adminService.findnotice();
         model.addAttribute("noticeList", noticeList);
 
+        System.out.println("noticeList = " + noticeList);
+
+        // 도아 전체 사원조회
+        List<AdminEmployeeDTO> employeeList = adminService.findEmployee();
+        model.addAttribute("employeeList", employeeList);
+
+
         return "admin/admin";
     }
 
@@ -76,6 +91,49 @@ public class AdminController {
         int Notice = adminService.updateNotice(noticeDTO);
         return "redirect:/admin/admin"; // 업데이트 후 이동할 페이지
     }
+
+
+    // 도아 개별 사원조회
+    @GetMapping("search")
+    public String selectEmployee(@RequestParam Map<String, String> search, Model model){
+
+        List<AdminEmployeeDTO> employeeDTO = adminService.findSelectEmployee(search);
+        model.addAttribute("employeeList", employeeDTO);
+
+        return "/admin/admin";
+    }
+
+
+
+        @GetMapping("/updateEmployee")
+    public String updateEmployee(@RequestParam int user_no, Model model){
+
+        AdminEmployeeDTO employee = adminService.findByEmployee(user_no);
+        model.addAttribute("employee",employee);
+
+            System.out.println("employee = " + employee);
+
+            return "admin/updateEmployee";
+
+    }
+
+
+    @PostMapping("/updateEmployee")
+    public String update(@RequestParam Map<String,Object> map){
+        System.out.println("map = " + map);
+       adminService.updateEmployee(map);
+
+
+        return "redirect:/admin/admin";
+
+
+
+
+    }
+
+
+
+
 
     @GetMapping("/edoc")
     public String getEdocList(@RequestParam(value = "filter", required = false) String filter, Model model) {
@@ -174,4 +232,6 @@ public class AdminController {
         // 변경된 문서 번호로 리다이렉트
         return "redirect:/admin/edocFrom/selectEdocList/" + edoc_form_ct_no;
     }
+
 }
+

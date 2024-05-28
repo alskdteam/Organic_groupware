@@ -1,6 +1,7 @@
 package com.ohgiraffers.semi_project.subpage.profile.model.dao;
 
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.UploadFileDTO;
+import com.ohgiraffers.semi_project.subpage.profile.model.dto.EmployeeDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -35,6 +36,14 @@ public interface ProfileMapper {
 
 //    없으면 update 구문 실행
     void updateProfile(ProfileDTO newFile);
+
+    // 도아 사원조회
+    List<EmployeeDTO> findAllEmployee();
+
+    // 도아 - 개별 사원조회
+    List<EmployeeDTO> findDepartment(Map<String, String> search);
+
+
 
 }
 

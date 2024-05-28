@@ -32,4 +32,105 @@
         WHERE
         notice_id = #{noticeId}
     </update>
+
+
+    <!-- 도아 사원-->
+    <resultMap id="employee" type="com.ohgiraffers.semi_project.admin.model.dto.AdminEmployeeDTO">
+        <id property="user_no" column="user_no"/>
+        <result property="user_name" column="user_name"/>
+        <result property="user_id" column="user_id"/>
+        <result property="user_birth" column="user_birth"/>
+        <result property="user_phone_number" column="user_phone_number"/>
+        <result property="user_gender" column="user_gender"/>
+        <result property="user_department" column="user_department"/>
+        <result property="user_role" column="user_role"/>
+        <result property="user_rank" column="user_rank"/>
+        <result property="user_email" column="user_email"/>
+        <result property="join_date" column="join_date"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <!--  전체 사원 조회 -->
+
+    <select id="findEmployee" resultMap="employee">
+        select
+        user_no,
+        user_department,
+        user_name,
+        user_rank,
+        user_email,
+        user_phone_number,
+        user_birth,
+        join_date
+        from
+        employee;
+    </select>
+
+    <!-- 사원 개별 조회 -->
+    <select id="findSelectEmployee" resultMap="employee" parameterType="map">
+        select
+        user_department,
+        user_name,
+        user_rank,
+        user_email,
+        user_phone_number,
+        user_birth,
+        join_date
+        from
+        employee
+        where
+        1=1
+        <if test="user_department != null and user_department != ''">
+            AND user_department = #{user_department}
+        </if>
+        <if test="user_name != null and user_name != ''">
+            AND user_name = #{user_name}
+        </if>
+        <if test="user_rank != null and user_rank != ''">
+            AND user_rank = #{user_rank}
+        </if>
+
+    </select>
+
+
+    <select id="findByEmployee" resultMap="employee">
+        select
+        user_no,
+        user_id,
+        password,
+        user_department,
+        user_name,
+        user_rank,
+        user_email,
+        user_phone_number,
+        user_birth,
+        join_date
+        from
+        employee
+        where
+        user_no = #{userNo}
+
+    </select>
+
+    <update id="adminEmployeeDTO">
+        UPDATE Employee
+        SET
+<!--        user_id = #{user_id},-->
+        password = #{password},
+        user_name = #{user_name},
+        user_birth = #{user_birth},
+        user_phone_number = #{user_phone_number},
+        user_department = #{user_department},
+        user_rank = #{user_rank},
+        user_email = #{user_email},
+        user_gender = #{user_gender},
+        join_date = #{join_date},
+        user_role = #{user_role}
+        WHERE
+        user_id = #{user_id}
+    </update>
+
+
+
+
 </mapper>

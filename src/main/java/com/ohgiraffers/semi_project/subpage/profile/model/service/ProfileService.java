@@ -4,6 +4,7 @@ import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dao.EdocMapper;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.UploadFileDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dao.ProfileMapper;
+import com.ohgiraffers.semi_project.subpage.profile.model.dto.EmployeeDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO;
 import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
@@ -22,6 +23,7 @@ import java.util.Map;
 public class ProfileService {
 
     private final ProfileMapper profileMapper;
+
 
     @Autowired
     public ProfileService(ProfileMapper profileMapper) {
@@ -103,7 +105,20 @@ public class ProfileService {
         return result;
     }
 
+    // 도아 사원조회
+    public List<EmployeeDTO> findAllEmployee() {
 
+        return profileMapper.findAllEmployee();
+
+    }
+
+    // 도아 - 개별사원 조회
+    public List<EmployeeDTO> findDepartment(Map<String, String> search) {
+
+        return  profileMapper.findDepartment(search);
+    }
+//
+//
 }
 
 
