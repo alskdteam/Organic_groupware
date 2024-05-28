@@ -139,7 +139,9 @@
                                     </div>
                                 </div>
                                 <!--employee 테이블-->
-                                <table>
+                                <div class="employee_table">
+
+                                <table >
                                     <thead>
                                     <tr>
                                         <th>부서</th>
@@ -171,11 +173,12 @@
                                     <!-- 페이지 네이션을 위한 행들 끝 -->
                                     </tbody>
                                 </table>
+                                </div>
                                 <!-- 페이지 네이션 버튼 -->
-                                <div class="page_number">
-                                    <div class="s_button" onclick="changePage(1)">1</div>
-                                    <div class="s_button" onclick="changePage(2)">2</div>
-                                    <div class="s_button" onclick="changePage(3)">3</div>
+                                <div class="employee_page_number" id="employee_page_number">
+                                    <div class="employee_s_button" onclick="changePage(1)">1</div>
+                                    <div class="employee_s_button" onclick="changePage(2)">2</div>
+                                    <div class="employee_s_button" onclick="changePage(3)">3</div>
                                 </div>
 
 
@@ -197,12 +200,12 @@
                             // 현재 페이지를 저장할 변수
                             var currentPage = 1;
                             // 페이지당 행 수
-                            var rowsPerPage = 10;
+                            var rowsPerPage = 7;
 
                             // 페이지를 변경하는 함수
-                            function changePage(pageNumber) {
+                            function changePage(employee_page_number) {
                                 // 현재 페이지를 설정
-                                currentPage = pageNumber;
+                                currentPage = employee_page_number;
                                 // 모든 행을 숨김
                                 hideAllRows();
                                 // 현재 페이지에 해당하는 행들을 보여줌
@@ -211,7 +214,7 @@
 
                             // 모든 행을 숨기는 함수
                             function hideAllRows() {
-                                var rows = document.querySelectorAll('[id^="row_"]');
+                                var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
                                 rows.forEach(function(row) {
                                     row.style.display = 'none';
                                 });
@@ -221,7 +224,7 @@
                             function showRowsForCurrentPage() {
                                 var startIndex = (currentPage - 1) * rowsPerPage;
                                 var endIndex = startIndex + rowsPerPage;
-                                var rows = document.querySelectorAll('[id^="row_"]');
+                                var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
                                 for (var i = startIndex; i < endIndex && i < rows.length; i++) {
                                     rows[i].style.display = 'table-row';
                                 }
