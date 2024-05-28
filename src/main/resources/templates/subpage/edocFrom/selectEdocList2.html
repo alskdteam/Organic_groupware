@@ -49,8 +49,35 @@
 
 
     </style>
+
+
 </head>
 <body>
+<script>
+    const message = '[[${message}]]'
+
+    console.log('message'+message);
+    if (message){
+
+        alert(message)
+    }
+</script>
+
+
+
+<script>
+    function validateForm() {
+        var startDate = document.getElementById("startDate").value;
+        var regex = /^\d{4}-\d{2}-\d{2}$/; // 날짜 형식을 나타내는 정규식
+
+        if (!regex.test(startDate)) {
+            alert("올바른 날짜 형식을 입력해주세요 (YYYY-MM-DD).");
+            return false; // 폼 제출 막기
+        }
+        return true;
+    }
+</script>
+
 <div class="container">
     <!-- 사이드바 -->
     <div th:replace="common/sidebar.html" id="sidebar"></div>
@@ -96,6 +123,8 @@
 
 
 
+
+
                     <table>
                         <tr>
                             <th style="width: 175px; height: 20px;  border: 1px solid rgb(178,178,178);">사원사인</th>
@@ -115,7 +144,7 @@
 
                 </div>
 
-                <form name="myForm" action="/subpage/regist" method="post">
+                <form name="myForm" action="/subpage/regist" method="post" onsubmit="return validateForm()">
                     <div class="chart1">
                         <div class="wrap1">
                             <p id="text">양식명</p>
@@ -146,7 +175,7 @@
                                     </tr>
                                     <tr>
                                         <th style=" height: 35px;">작성일자</th>
-                                        <td style=" height: 35px;"><span th:text="${insertedEdoc.drafting_date}"></span></td>
+                                        <td><span th:text="${#dates.format(insertedEdoc.drafting_date, 'yyyy-MM-dd')}"></span></td>
                                     </tr>
                                 </table>
                                 <div style="height: 50px">
@@ -163,10 +192,10 @@
                                     </tr>
                                     <tr>
                                         <th style=" height: 50px;">시작일</th>
-                                        <td><span th:text="${insertedEdoc.start_date}"></span></td>
+                                        <td><span th:text="${#dates.format(insertedEdoc.start_date, 'yyyy-MM-dd')}"></span></td>
 
                                         <th>종료일</th>
-                                        <td><span th:text="${insertedEdoc.end_date}"></span></td>
+                                        <td><span th:text="${#dates.format(insertedEdoc.end_date, 'yyyy-MM-dd')}"></span></td>
                                     </tr>
                                     <tr>
                                         <th style=" height: 500px;">내용</th>

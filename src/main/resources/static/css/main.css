@@ -27,7 +27,7 @@ body {
     border: 1.3px solid #e1e1e1;
     margin-left: 16.5vw;
     width: calc(100% - 16.5vw);
-    height: 1100px;
+    height: 1400px;
 }
 
 /* 여기서 부터 시작 위에는 건들지 마세요*/
@@ -39,7 +39,7 @@ body {
 
 .layer{
     width: 78vw;
-    height: 1000px;
+    height: 1500px;
     display: flex;
     justify-content: center;
 }
@@ -62,7 +62,7 @@ body {
 
 /* 클릭시 세로길이 늘어나는*/
 .announcement:focus-within {
-    height: 590px;
+    height: auto;
     border: 1px solid #4CAF50; /* 변경하고자 하는 색상으로 설정 */
 
 }
@@ -192,8 +192,244 @@ table{
 
 .dashboard{
     width: 60vw;
-    height: 523px;
+    height: auto;
     border: 1px solid #BFBFBF;
     border-radius: 30px;
+}
+
+
+
+/* 클릭시 세로길이 늘어나는*/
+.dashboard:focus-within {
+    height: auto;
+    border: 1px solid #4CAF50; /* 변경하고자 하는 색상으로 설정 */
+
+}
+
+
+
+.dashboardTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dashboardTable th,
+.dashboardTable td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 8px;
+}
+
+.dashboardTable th {
+    border: 1px solid #ccc;
+}
+.header2 {
+    text-align: center;
+    padding: 15px 0;
+    width: 100%;
+}
+.empty {
+    width: 70px;
+}
+
+.wrap_dashboard{
+    margin-top: 20px;
+    width: 57vw;
+    border: 1px solid gray;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    height: auto;
+}
+
+#shift-row, #vehicle-rental-row, #item-rental-row {
+    height: 100px;
+}
+
+.bottom-left {
+    border-bottom-left-radius: 10px;
+}
+
+.bottom-right {
+    border-bottom-right-radius: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.button-container button {
+    font-size: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+}
+
+.day-column {
+    width: 55px; /* Adjust this value to the desired width */
+}
+
+
+.hidden-date{
+    display: none;
+}
+
+
+/* 대여일 */
+[id^="vehicle-"][id$="-start"] {
+    background-color: #ffffe4 !important;
+    border-top: 4px solid #8e8e23;
+    margin-bottom: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+/* 대여일 텍스트 스타일 */
+[id^="vehicle-"][id$="-start"]::before {
+    content: "대여일";
+    position: absolute;
+    top: -21px;
+    left: 20%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #5a5858;
+    padding: 2px 7px;
+    border-radius: 5px;
+}
+
+/* 반납일 */
+[id^="vehicle-"][id$="-end"] {
+    background-color: #d6ffd0 !important;
+    border-top: 4px solid #168907;
+    margin-bottom: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+/* 대여일 텍스트 스타일 */
+[id^="vehicle-"][id$="-end"]::before {
+    content: "반납일";
+    position: absolute;
+    top: -21px;
+    left: 20%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #a2a1a1;
+    padding: 2px 7px;
+    border-radius: 5px;
+}
+
+/* 대여일 */
+[id^="vehicle-"][id$="-same"] {
+    background-color: #fff0ff !important;
+    border-top: 4px solid #9e15a9;
+    margin-bottom: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+/* 대여일 텍스트 스타일 */
+[id^="vehicle-"][id$="-same"]::before {
+    content: "사용완료";
+    position: absolute;
+    top: -21px;
+    left: 23%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #a2a1a1;
+    padding: 2px 7px;
+    border-radius: 5px;
+}
+
+/*itme*/
+
+
+/* 대여일 */
+[id^="item-"][id$="-start"] {
+    background-color: #ffffe4 !important;
+    border-top: 4px solid #8e8e23;
+    margin-bottom: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+/* 대여일 텍스트 스타일 */
+[id^="item-"][id$="-start"]::before {
+    content: "대여일";
+    position: absolute;
+    top: -21px;
+    left: 20%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #5a5858;
+    padding: 2px 7px;
+    border-radius: 5px;
+}
+
+/* 반납일 */
+[id^="item-"][id$="-end"] {
+    background-color: #d6ffd0 !important;
+    border-top: 4px solid #168907;
+    margin-bottom: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+/* 대여일 텍스트 스타일 */
+[id^="item-"][id$="-end"]::before {
+    content: "반납일";
+    position: absolute;
+    top: -21px;
+    left: 20%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #a2a1a1;
+    padding: 2px 7px;
+    border-radius: 5px;
+}
+
+/* 대여일 */
+[id^="item-"][id$="-same"] {
+    background-color: #fff0ff !important;
+    border-top: 4px solid #9e15a9;
+    margin-bottom: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+/* 대여일 텍스트 스타일 */
+[id^="item-"][id$="-same"]::before {
+    content: "하루대여";
+    position: absolute;
+    top: -21px;
+    left: 23%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #a2a1a1;
+    padding: 2px 7px;
+    border-radius: 5px;
 }
 

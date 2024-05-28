@@ -31,3 +31,7 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+dependencies {
+	implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final'
+	// 다른 의존성들...
+}
