@@ -7,7 +7,8 @@
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/profile.css">
     <script src="/js/profile.js"></script>
-    <style>
+
+      <style>
 
         @media screen and (max-width: 375px) {
             .container {
@@ -163,64 +164,6 @@
                             });
                         </script>
 
-<!--                            // document.getElementById('profileFrm').addEventListener('submit', function(event) {-->
-<!--                            //     event.preventDefault();-->
-<!--                            //     const formData = new FormData(this);-->
-<!--                            //     fetch('/subpage/profileEdit', {-->
-<!--                            //         method: 'POST',-->
-<!--                            //         body: formData-->
-<!--                            //     }).then(response => response.json())-->
-<!--                            //         .then(data => {-->
-<!--                            //             // 서버 응답에 따른 처리-->
-<!--                            //             console.log(data);-->
-<!--                            //         }).catch(error => {-->
-<!--                            //         console.error('Error:', error);-->
-<!--                            //     });-->
-<!--                            // });-->
-
-
-
-
-
-                        <script>
-
-                            // 모달 요소 가져오기
-                            var modal = document.getElementById("myModal");
-
-                            // 모달 열기 버튼 가져오기
-                            var btn = document.getElementById("edit_btn");
-
-                            // 모달 닫기 버튼 가져오기
-                            var span = document.getElementsByClassName("buttons")[0];
-
-                            // 모달 열기 버튼을 클릭하면 모달 보이기
-                            btn.onclick = function() {
-                                modal.style.display = "block";
-                            }
-
-                            // 모달 닫기 버튼을 클릭하면 모달 닫기
-                            span.onclick = function() {
-                                modal.style.display = "none";
-                            }
-
-                            document.getElementById('cancelBtn').addEventListener('click', function(event) {
-                                // 기본 동작(폼 제출) 막기
-                                event.preventDefault();
-
-                                // 모달 닫기
-                                var modal = document.getElementById("myModal");
-                                modal.style.display = "none";
-                            });
-
-                            // 모달 밖의 영역을 클릭하면 모달 닫기
-                            window.onclick = function(event) {
-                                if (event.target == modal) {
-                                    modal.style.display = "none";
-                                }
-                            }
-
-                        </script>
-
 
 
 
@@ -270,38 +213,46 @@
                             <div class="flex2">
                                 <h3>메모</h3>
                                 <div class="c_memo">
-                                    <p>memo</p>
-                                    <div>
-                                        <button id="new-memo-btn">새 메모</button>
-                                    </div>
-
+                                        <h1 class="headmemo_title">memo<h1/>
+                                       
+                                        <button class="new_button" id="new-memo-btn">메모 등록</button>
+                                       
                                     <!--메모창 안에 디자인 추가-->
-                                    <!--                                                <button id="new-memo-btn">새 메모</button>-->
+                                    
 
                                     <!-- 메모 목록 항목이 여기에 추가됩니다 -->
                                     <div class="cars">
                                         <table>
                                             <tbody id="tableBody">
+
+
                                             <tr th:each="memo : ${memoDTOList}" id="row_${iterStat.index}">
                                                 <td style="width: 135px">
                                                     <a th:href="'profile/memo/' +${memo.memo_id}" th:text="${memo.memo_title}"></a>
+
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
 
-                                        <form action="/subpage/profile" method="post">
+                                        <form class="Memoform" action="/subpage/profile" method="post">
 
                                             <div id="MemomyModal" class="modal1">
 
                                                 <!-- 모달 내용 -->
-                                                <div class="memomodal-content">
-                                                    <p>제목</p>
-                                                    <p><input type="text" id="memo_title" name="memo_title"></p>
-                                                    <p>내용</p>
-                                                    <p><input type="text" id="memo_content" name="memo_content"></p>
+
+                                                <div class="modal-content2">
+                                                    <div class="titlebox"><p id="modal-title1">제목 :</p>
+                                                    <p id="inputtitle"><input type="text" id="memo_title" name="memo_title" placeholder="제목을 입력해주세요"></p>
+                                                    </div>
+                                                    <div class="inputbox">
+                                                    <p id="substance"></p>
+                                                    <p id="inputcontent"><textarea id="memo_content" name="memo_content" placeholder="내용을 입력해주세요"></textarea></p>
+                                                    </div>
+
                                                     <div class="memobuttons">
-                                                        <button id="memoaddBtn" style="background-color: #4CAF50" type="submit">추가</button>
+                                                        <button id="memoaddBtn" type="submit">추가</button>
+                                                        <button id="memocancelBtn" type="submit">취소</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -317,7 +268,7 @@
                                         var btn = document.getElementById("new-memo-btn");
 
                                         // 모달 닫기 버튼 가져오기
-                                        var span = document.getElementsByClassName("memobuttons")[0];
+                                        var span = document.getElementsByClassName("cancelBtn")[0];
 
                                         // 모달 열기 버튼을 클릭하면 모달 보이기
                                         btn.onclick = function() {
@@ -344,40 +295,138 @@
                                             }
                                         }
                                     </script>
-
-
-
-
                                     <!--요 까지 메모장 추가 -->
-
-
-
-
-
-
-
                                 </div>
-
-
                             </div>
 
                         </div>
 
-                        <!--                        조회 영역-->
-                        <div class="employee" tabindex="0">
 
+
+
+                        <!-- 도아 사원조회 -->
+                        <!-- 조회 영역-->
+                        <div class="employee" tabindex="0">
                             <div class="flex3">
                                 <h3>사원조회</h3>
-
                                 <div class="c_employee">
-                                    <!--                                    여기서 시작-->
+                                    <!--  여기서 시작-->
 
+                                    <div class="head-container">
+                                        <div class="wrap1">
+                                            <img src="https://github.com/alskdteam/semi_project_java/assets/158136952/3d4ec91f-ae4f-4ddf-987c-4e47a8a92ef1" id="logo">
+                                        </div>
+                                        <div class="wrap2">
+                                            <form action="/subpage/search" method="GET" class="searchForm">
+
+                                                <div class="wrap3">
+                                                    <input type="text" class="searchInput-a" name="user_department" placeholder="부서검색">
+                                                    <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
+                                                </div>
+
+                                                <div class="wrap3">
+                                                    <input type="text" class="searchInput-b" name="user_name" placeholder="이름검색">
+                                                    <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
+                                                </div>
+
+                                                <div class="wrap3">
+                                                    <input type="text" class="searchInput-c" name="user_rank" placeholder="직급검색">
+                                                    <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--employee 테이블-->
+                                    <table><br>
+                                        <thead>
+                                        <tr>
+                                            <th>부서</th>
+                                            <th>구성원명</th>
+                                            <th>직급</th>
+                                            <th>이메일</th>
+                                            <th>휴대폰</th>
+                                            <th>생년월일</th>
+                                            <th>입사일</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="employeetableBody">
+                                        <!-- 여기서부터 페이지 네이션을 위한 행들만 추가 -->
+                                        <tr th:each="employee : ${employeeList}" id="row_${employee.user_no}">
+                                            <td th:text="${employee.user_department}"></td>
+                                            <td th:text="${employee.user_name}"></td>
+                                            <td th:text="${employee.user_rank}"></td>
+                                            <td th:text="${employee.user_email}"></td>
+                                            <td th:text="${employee.user_phone_number}"></td>
+                                            <td th:text="${employee.user_birth}"></td>
+                                            <td th:text="${employee.join_date}"></td>
+                                        </tr>
+                                        <!-- 페이지 네이션을 위한 행들 끝 -->
+                                        </tbody>
+                                    </table>
+
+                                    <!-- 페이지 네이션 버튼 -->
+                                    <div class="page_number">
+                                        <div class="s_button" onclick="changePage(1)">1</div>
+                                        <div class="s_button" onclick="changePage(2)">2</div>
+                                        <div class="s_button" onclick="changePage(3)">3</div>
+                                    </div>
                                 </div>
-
-
                             </div>
-
                         </div>
+
+                        <script>
+
+                            // 현재 페이지를 저장할 변수
+                            var currentPage = 1;
+                            // 페이지당 행 수
+                            var rowsPerPage = 10;
+
+                            // 페이지를 변경하는 함수
+                            function changePage(pageNumber) {
+                                // 현재 페이지를 설정
+                                currentPage = pageNumber;
+                                // 모든 행을 숨김
+                                hideAllRows();
+                                // 현재 페이지에 해당하는 행들을 보여줌
+                                showRowsForCurrentPage();
+                            }
+
+                            // 모든 행을 숨기는 함수
+                            function hideAllRows() {
+                                var rows = document.querySelectorAll('[id^="row_"]');
+                                rows.forEach(function(row) {
+                                    row.style.display = 'none';
+                                });
+                            }
+
+                            // 현재 페이지에 해당하는 행들을 보여주는 함수
+                            function showRowsForCurrentPage() {
+                                var startIndex = (currentPage - 1) * rowsPerPage;
+                                var endIndex = startIndex + rowsPerPage;
+                                var rows = document.querySelectorAll('[id^="row_"]');
+                                for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+                                    rows[i].style.display = 'table-row';
+                                }
+                            }
+
+                            // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
+                            window.onload = function() {
+                                changePage(1);
+                            };
+                        </script>
+
+
+                        <!-- 여기까지 employee 영역 -->
+
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -385,6 +434,7 @@
 
     </div>
 </div>
+
 
 </body>
 </html>

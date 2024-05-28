@@ -10,14 +10,24 @@
         USER_ID,
         USER_NAME,
         PASSWORD,
-        USER_ROLE
+        USER_ROLE,
+        user_birth,
+        user_phone_number,
+        user_department,
+        user_rank,
+        user_email
         )
         VALUES
         (
         #{userId},
         #{userName},
         #{userPass},
-        #{role}
+        #{role},
+        #{user_birth},
+        #{user_phone_number},
+        #{user_department},
+        #{user_rank},
+        #{user_email}
         )
     </insert>
 
