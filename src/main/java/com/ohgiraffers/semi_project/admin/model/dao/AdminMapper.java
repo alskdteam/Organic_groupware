@@ -2,6 +2,7 @@ package com.ohgiraffers.semi_project.admin.model.dao;
 
 import com.ohgiraffers.semi_project.admin.model.dto.AdminEmployeeDTO;
 import com.ohgiraffers.semi_project.admin.model.dto.NoticeDTO;
+import com.ohgiraffers.semi_project.user.model.dto.SignupDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -21,4 +22,10 @@ public interface AdminMapper {
 
     // 사원 개별 조회
     List<AdminEmployeeDTO> findSelectEmployee(Map<String, String> search);
+
+
+    AdminEmployeeDTO findByEmployee(int userNo);
+
+
+    void adminEmployeeDTO(Map<String,Object> map);
 }

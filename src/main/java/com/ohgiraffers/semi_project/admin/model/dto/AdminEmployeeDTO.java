@@ -15,11 +15,12 @@ public class AdminEmployeeDTO {
     private String user_rank;
     private String user_email;
     private Date join_date;
+    private String password;
 
     public AdminEmployeeDTO() {
     }
 
-    public AdminEmployeeDTO(int user_no, String user_name, int user_id, Date user_birth, String user_phone_number, String user_gender, String user_department, String user_role, String user_rank, String user_email, Date join_date) {
+    public AdminEmployeeDTO(int user_no, String user_name, int user_id, Date user_birth, String user_phone_number, String user_gender, String user_department, String user_role, String user_rank, String user_email, Date join_date, String password) {
         this.user_no = user_no;
         this.user_name = user_name;
         this.user_id = user_id;
@@ -31,6 +32,7 @@ public class AdminEmployeeDTO {
         this.user_rank = user_rank;
         this.user_email = user_email;
         this.join_date = join_date;
+        this.password = password;
     }
 
     public int getUser_no() {
@@ -121,6 +123,14 @@ public class AdminEmployeeDTO {
         this.join_date = join_date;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "AdminEmployeeDTO{" +
@@ -135,6 +145,7 @@ public class AdminEmployeeDTO {
                 ", user_rank='" + user_rank + '\'' +
                 ", user_email='" + user_email + '\'' +
                 ", join_date=" + join_date +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

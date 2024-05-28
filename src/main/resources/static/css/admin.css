@@ -322,7 +322,7 @@ body {
 
 .c_employee table {
     width: 90%;
-    /* margin-top: 150px; */
+     margin-top: -30px;
     margin-left: 40px;
     background-color: white;
     border-collapse: collapse;
@@ -360,6 +360,14 @@ body {
     color: white;
 }
 
+.button-container {
+    display: flex;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-left: 435px;
+
+}
+
 
 
 /*검색버튼*/
@@ -393,7 +401,8 @@ body {
 
 .wrap2{
     width: 40vw;
-    height: 100px;
+    height: 50px;
+    margin-top: -10px;
 
 }
 
@@ -402,7 +411,7 @@ body {
     width: 37vw;
     display: flex;
     gap: 20px;
-    margin-top: 50px;
+    margin-top: -15px;
     margin-right: 10px;
 }
 
@@ -485,7 +494,28 @@ a {
     border-bottom: 2px solid white; /* 마지막 행에 밑줄 추가 */
 
 }
+.delbtn{
+
+    flex: 1; /* 입력 필드가 남은 공간을 차지하도록 설정 */
+    min-width: 0; /* 최소 너비 설정 */
+    padding: 10px;
+    box-sizing: border-box; /* 내부 padding을 너비에 포함시킵니다. */
+    border: 1px solid #4CAF50;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 100%; /* 입력 필드의 너비를 상대적인 비율로 지정 */
+    border-right: none;
+
+}
 
 
+/*.employeeTable*/
+/*{*/
+/*    position: relative;*/
+/*    width: 55vw;*/
+/*    height: 300px;*/
+/*    display: flex;*/
+/*    margin-top: 80px;*/
+/*}*/
 
 
