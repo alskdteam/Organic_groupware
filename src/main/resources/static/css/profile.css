@@ -667,6 +667,7 @@ table{
     padding: 10px;
     background: linear-gradient(white 0%, white calc(50% - 25px), #c6d0db calc(50% - 25px), #c6d0db calc(50% + 175px), white calc(50% + 175px), white 100%);
 
+
     margin: 15% auto; /* 중앙에 위치 */
     width: 280px; /* 너비 조정 */
     height: 530px;
@@ -678,6 +679,21 @@ table{
 }
 
 .modal-content2 {
+
+
+
+    margin: 15% auto; /* 중앙에 위치 */
+    width: 280px; /* 너비 조정 */
+    height: 530px;
+    border-radius: 40px;
+    border: 1px solid #ababab;
+    display: flex;
+    justify-content: center;
+
+}
+
+.modal-content2 {
+
 
     position: absolute;
     top: 50%;
@@ -794,6 +810,8 @@ table{
 }
 #memocancelBtn {
 
+
+
     width: 5vw;
     height: 30px;
     background-color: white;
@@ -804,6 +822,28 @@ table{
     margin-right: 1.5vw;
 }
 
+
+
+    width: 5vw;
+    height: 30px;
+    background-color: white;
+    border: 2px solid #00FF00;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 0.5vw;
+    margin-right: 1.5vw;
+}
+
+
+.memobuttons {
+
+    position: relative;
+    display: flex;
+    margin-left: 19vw;
+    top: 30px;
+    text-align: center;
+    display: flex;
+}
 
 
 /* 사원조회 css */
@@ -1003,6 +1043,7 @@ table{
     text-align: center;
     display: flex;
 }
+
 
 
 
