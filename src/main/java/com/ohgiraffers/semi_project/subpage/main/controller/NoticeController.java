@@ -40,6 +40,9 @@ public class NoticeController {
 
         model.addAttribute("selectNotice", selectNotice);
 
+        System.out.println("안녕");
+
+
 //        System.out.println(selectNotice);
         return "login/main";
     }
