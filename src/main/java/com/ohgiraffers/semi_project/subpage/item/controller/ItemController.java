@@ -14,6 +14,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -74,9 +76,10 @@ public class ItemController {
         System.out.println("regist = " + itemRental);
 
         int result = itemService.itemRental(itemRental);
+        int update = itemService.itemRentalUpdate(itemRental);
 
 
-        rttr.addFlashAttribute("successMessage","차량예약에 성공하셨습니다.");
+        rttr.addFlashAttribute("successMessage","물품대여 에 성공하셨습니다.");
 
 
         return "redirect:/subpage/item";
@@ -103,13 +106,17 @@ public class ItemController {
         LoginUserDTO userDTO = userdata.getloginUserDTO();
         int userCode = userDTO.getUserCode();
 
-        List<ItemJoinDTO> rentalList = itemService.findMyItems(userCode);
-        System.out.println("rentalList = " + rentalList);
-        model.addAttribute("rentalList", rentalList);
+//        List<ItemJoinDTO> rentalList = itemService.findMyItems(userCode);
+//        System.out.println("rentalList = " + rentalList);
+//        model.addAttribute("rentalList", rentalList);
 
-        int upmycarlist = itemService.upMyitemlist(params);
-        int CarListUpdate = itemService.itemListUpdate(params);
-        return "subpage/item_situation_mypage";
+        int upmyItemlist = itemService.upMyitemlist(params);
+        int itemListUpdate = itemService.itemListUpdate(params);
+
+        System.out.println("CarListUpdatessssssssssssssssssssssssssss = " + itemListUpdate);
+        System.out.println("upmycarlistssssssssssssssssssssssssssssss = " + upmyItemlist);
+
+        return "redirect:/subpage/item_situation_mypage";
     }
 
 
@@ -131,4 +138,14 @@ public class ItemController {
 
         return "subpage/item_situation_mypage";
     }
+    @GetMapping(value = "/subpage/item/inventory", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public int getItemInventory(@RequestParam("item_name") String itemName) {
+
+        int inventory = itemService.getItemInventory(itemName);
+        System.out.println("inventory = " + inventory);
+
+          return 1;
+    }
+
 }

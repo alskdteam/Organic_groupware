@@ -51,4 +51,12 @@ public class ItemService {
     public int itemListUpdate(Map<String, Object> params) {
         return itemMapper.itemListUpdate(params);
     }
+
+    public int getItemInventory(String itemName) {
+        return itemMapper.getItemInventory(itemName);
+    }
+
+    public int itemRentalUpdate(Map<String, Object> itemRental) {
+        return itemMapper.itemRentalUpdate(itemRental);
+    }
 }

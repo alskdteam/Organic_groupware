@@ -61,7 +61,7 @@
         a.rental_purpose,
         a.rental_status,
         b.item_name,
-        b.item_inventory,
+        a.item_inventory,
         c.user_name
         FROM
         RENTAL a
@@ -79,7 +79,7 @@
         a.rental_purpose,
         a.rental_status,
         b.item_name,
-        b.item_inventory,
+        a.item_inventory,
         c.user_name
         FROM
         RENTAL a
@@ -98,26 +98,57 @@
         rental_return_date,
         user_id,
         rental_purpose,
-        item_number
+        item_number,
+        item_inventory
         )
         SELECT
         #{rental_date},
         #{rental_return_date},
         #{userCode},
         #{rental_purpose},
-        a.item_number
+        a.item_number,
+        #{item_inventory}
         FROM item a
         WHERE a.item_name = #{item_name};
-
     </insert>
+
     <resultMap id="findDTO" type="com.ohgiraffers.semi_project.subpage.item.model.dto.rentalDTO">
         <result property="item_name" column="item_name"/>
+        <result property="item_inventory" column="item_inventory"/>
     </resultMap>
 
     <select id="finditemList" resultMap="findDTO">
         select
         item_number,
-        item_name
+        item_name,
+        item_inventory
         from item
     </select>
+
+    <select id="getItemInventory">
+        SELECT *
+        FROM item
+        WHERE item_name = #{itemName}
+    </select>
+
+    <update id="itemRentalUpdate">
+        UPDATE item
+        SET
+        item_inventory = item_inventory - #{item_inventory}
+        WHERE item_name = #{item_name};
+    </update>
+
+    <update id="upMyitemlist">
+        UPDATE item
+        SET
+        item_inventory = item_inventory + #{item_inventory}
+        WHERE item_name = #{item_name};
+    </update>
+
+    <update id="itemListUpdate">
+        UPDATE rental
+        SET
+        rental_status = '반납 완료'
+        WHERE rental_id = #{rental_id}
+    </update>
 </mapper>

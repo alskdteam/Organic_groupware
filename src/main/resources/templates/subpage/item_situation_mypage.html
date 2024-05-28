@@ -42,7 +42,7 @@
                 <h1>물품예약</h1>
                 <div class="button">
                     <div class="c_button" onclick="itembtn1()">물품 재고</div>
-                    <div class="c_button" id="itembtn"> 물품 대여</div>
+<!--                    <div class="c_button" id="itembtn"> 물품 대여</div>-->
                     <div class="c_button" onclick="itembtn2()">대여 현황</div>
                     <div class="c_button" onclick="itembtn3()">내 예약</div>
 
@@ -90,7 +90,7 @@
                                 <td th:text="${itemjoin.rentalDTO.item_inventory}"></td>
 
                                 <td>
-                                    <form class="return-form" th:action="@{/subpage/car_situation_mypage}" method="post">
+                                    <form class="return-form" th:action="@{/subpage/item_situation_mypage}" method="post">
                                         <input type="hidden" name="rental_purpose" th:value="${itemjoin.rental_purpose}">
                                         <input type="hidden" name="item_name" th:value="${itemjoin.rentalDTO.item_name}">
                                         <input type="hidden" name="user_name" th:value="${itemjoin.employeeDTO.user_name}">
@@ -98,6 +98,7 @@
                                         <input type="hidden" name="rental_return_date" th:value="${itemjoin.rental_return_date}">
                                         <input type="hidden" name="rental_status" th:value="${itemjoin.rental_status}">
                                         <input type="hidden" name="item_inventory" th:value="${itemjoin.rentalDTO.item_inventory}">
+                                        <input type="hidden" name="rental_id" th:value="${itemjoin.rental_id}">
                                         <button type="button" onclick="confirmReturn(this)" style="width: 60px; height: auto; border-radius: 5px; background-color: aliceblue; border: 1px solid gray; padding: 2px">반납</button>
                                     </form>
                                 </td>
@@ -199,7 +200,7 @@
                         var modal = document.getElementById('alertModal');
                         modal.style.display = 'none';
                         // 서버에 제출합니다아ㅏㅇ~
-                        formToSubmit.submit();
+                        location.href='/subpage/item_situation_mypage';
                     }
                 </script>
                 <script>
@@ -243,13 +244,41 @@
                         .then(res => res.json())
                         .then(data => {
                             const $item_name = document.getElementById('item_name');
+                            const $item_inventory = document.getElementById('item_inventory');
+                            console.table(data);
 
-                            for(let item of data) {
-                                const $option = document.createElement("option");
-                                $option.value = item.item_name;
-                                $option.textContent = item.item_name;
-                                $item_name.appendChild($option);
-                            }
+                            // 데이터를 저장할 객체 생성
+                            const itemData = {};
+
+
+
+                            data.forEach(d=>{
+
+
+                                const $option = document.createElement('option');
+                                $option.value=d.item_name;
+                                $option.textContent=d.item_name;
+                                $item_name.appendChild($option)
+
+
+                                itemData[d.item_name] = d.item_inventory;
+
+                                console.log(itemData);
+                            })
+
+
+                            // change 이벤트 리스너를 루프 외부에 설정
+                            $item_name.addEventListener('click', function() {
+                                const selectedItem = $item_name.options[$item_name.selectedIndex].value;
+                                console.log(selectedItem);
+                                if (itemData[selectedItem] !== undefined) {
+                                    console.log('fdsfdsfds')
+                                    const inventoryValue = itemData[selectedItem];
+                                    $item_inventory.value = inventoryValue;
+                                    // 빌릴 개수 input에 최대값 설정
+                                    $item_inventory.max = inventoryValue;
+                                }
+                            });
                         });
 
                     document.getElementById('rental_date').addEventListener('change', function() {

@@ -23,7 +23,11 @@ public interface itemMapper {
 
     List<ItemJoinDTO> findAllItems();
 
-    int upMyitemlist(Map<String, Object> params);
+    int upMyitemlist(Map<String, Object> params); //반납 버튼
 
-    int itemListUpdate(Map<String, Object> params);
+    int itemListUpdate(Map<String, Object> params); //빈닙 밭,ㄴ
+
+    int getItemInventory(String itemName);
+
+    int itemRentalUpdate(Map<String, Object> itemRental);
 }

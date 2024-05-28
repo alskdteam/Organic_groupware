@@ -42,7 +42,7 @@
                 <h1>물품예약</h1>
                 <div class="button">
                     <div class="c_button" onclick="itembtn1()">물품 재고</div>
-                    <div class="c_button" id="itembtn"> 물품 대여</div>
+<!--                    <div class="c_button" id="itembtn"> 물품 대여</div>-->
                     <div class="c_button" onclick="itembtn2()">대여 현황</div>
                     <div class="c_button" onclick="itembtn3()">내 예약</div>
 
@@ -159,13 +159,41 @@
                         .then(res => res.json())
                         .then(data => {
                             const $item_name = document.getElementById('item_name');
+                            const $item_inventory = document.getElementById('item_inventory');
+                            console.table(data);
 
-                            for(let item of data) {
-                                const $option = document.createElement("option");
-                                $option.value = item.item_name;
-                                $option.textContent = item.item_name;
-                                $item_name.appendChild($option);
-                            }
+                            // 데이터를 저장할 객체 생성
+                            const itemData = {};
+
+
+
+                            data.forEach(d=>{
+
+
+                                const $option = document.createElement('option');
+                                $option.value=d.item_name;
+                                $option.textContent=d.item_name;
+                                $item_name.appendChild($option)
+
+
+                                itemData[d.item_name] = d.item_inventory;
+
+                                console.log(itemData);
+                            })
+
+
+                            // change 이벤트 리스너를 루프 외부에 설정
+                            $item_name.addEventListener('click', function() {
+                                const selectedItem = $item_name.options[$item_name.selectedIndex].value;
+                                console.log(selectedItem);
+                                if (itemData[selectedItem] !== undefined) {
+                                    console.log('fdsfdsfds')
+                                    const inventoryValue = itemData[selectedItem];
+                                    $item_inventory.value = inventoryValue;
+                                    // 빌릴 개수 input에 최대값 설정
+                                    $item_inventory.max = inventoryValue;
+                                }
+                            });
                         });
 
                     document.getElementById('rental_date').addEventListener('change', function() {
