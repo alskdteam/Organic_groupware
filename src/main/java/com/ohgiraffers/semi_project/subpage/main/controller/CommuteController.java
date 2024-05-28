@@ -18,6 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -40,16 +44,25 @@ public class CommuteController {
         LoginUserDTO userDTO = userDate.getloginUserDTO();
         int user_no = userDTO.getUserCode();
 
-        String formattedTime = currentTime.replace("T", " ").replace("Z", "");
-        Timestamp go_work = Timestamp.valueOf(formattedTime);
+        // 주어진 날짜 및 시간 형식에 맞게 SimpleDateFormat 생성
+        DateFormat dateFormat = new SimpleDateFormat("yyyy. M. d. a hh:mm:ss");
+        try {
+            // SimpleDateFormat을 사용하여 문자열을 Date 객체로 파싱
+            Date parsedDate = dateFormat.parse(currentTime);
 
-        commuteDTO.setUser_no(user_no);
-        commuteDTO.setGo_work(go_work);
+            // Date 객체를 SQL Timestamp으로 변환
+            Timestamp go_work = new Timestamp(parsedDate.getTime());
 
-        mainService.uploadStartTime(commuteDTO);
+            commuteDTO.setUser_no(user_no);
+            commuteDTO.setGo_work(go_work);
 
-        String referrer = request.getHeader("referer");
-        response.sendRedirect(referrer);
+            mainService.uploadStartTime(commuteDTO);
+
+            String referrer = request.getHeader("referer");
+            response.sendRedirect(referrer);
+        } catch (ParseException e) {
+            System.out.println("날짜 파싱 오류: " + e.getMessage());
+        }
     }
 
     @PostMapping("/endDate")
@@ -62,16 +75,25 @@ public class CommuteController {
         LoginUserDTO userDTO = userDate.getloginUserDTO();
         int user_no = userDTO.getUserCode();
 
-        String formattedTime = currentTime.replace("T", " ").replace("Z", "");
-        Timestamp leave_work= Timestamp.valueOf(formattedTime);
+        // 주어진 날짜 및 시간 형식에 맞게 SimpleDateFormat 생성
+        DateFormat dateFormat = new SimpleDateFormat("yyyy. M. d. a hh:mm:ss");
+        try {
+            // SimpleDateFormat을 사용하여 문자열을 Date 객체로 파싱
+            Date parsedDate = dateFormat.parse(currentTime);
 
-        commuteDTO.setUser_no(user_no);
-        commuteDTO.setLeave_work(leave_work);
+            // Date 객체를 SQL Timestamp으로 변환
+            Timestamp leave_work = new Timestamp(parsedDate.getTime());
 
-        mainService.uploadEndTime(commuteDTO);
+            commuteDTO.setUser_no(user_no);
+            commuteDTO.setLeave_work(leave_work);
 
-        String referrer = request.getHeader("referer");
-        response.sendRedirect(referrer);
+            mainService.uploadEndTime(commuteDTO);
+
+            String referrer = request.getHeader("referer");
+            response.sendRedirect(referrer);
+        } catch (ParseException e) {
+            System.out.println("날짜 파싱 오류: " + e.getMessage());
+        }
     }
 
 

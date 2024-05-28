@@ -61,17 +61,17 @@
     /*    wrap2*/
     /*    시계*/
         .s_time{
-            width: 150px;
+            width: 140px;
             height: 30px;
             border-top: 2px solid #e1e1e1; /* 위쪽 테두리의 두께와 색상을 설정합니다. */
             border-bottom: 2px solid #e1e1e1; /* 아래쪽 테두리의 두께와 색상을 설정합니다. */
             margin: 5px;
+            padding-bottom: 3px;
         }
         /*출퇴근*/
         .s_commute{
             width: 150px;
             height: 50px;
-            border: 1.5px solid #e1e1e1; /* 테두리의 두께와 색상을 설정합니다. */
             margin: 5px;
         }
 
@@ -255,13 +255,19 @@
                 const startCurrentTimeInput = document.getElementById("start_current_time");
                 const endCurrentTimeInput = document.getElementById("end_current_time");
                 if (startCurrentTimeInput && endCurrentTimeInput) {
-                    const now = new Date();
-                    startCurrentTimeInput.value = now.toISOString();
-                    endCurrentTimeInput.value = now.toISOString();
+                    const now = new Date().toLocaleString();
+                    startCurrentTimeInput.value = now;
+                    endCurrentTimeInput.value = now;
                 }
             }
+
             updateCurrentTime(); // 페이지 로드 시에도 현재 시간을 업데이트
-            setInterval(updateCurrentTime, 1000); // 1초마다 현재 시간을 업데이트
+            const intervalId = setInterval(updateCurrentTime, 1000); // 1초마다 현재 시간을 업데이트
+
+            // 페이지가 언로드될 때 setInterval 클리어
+            window.addEventListener("unload", function() {
+                clearInterval(intervalId);
+            });
         });
     </script>
 </head>
@@ -300,13 +306,40 @@
                                         clockElement.textContent = now.toLocaleTimeString();
                                     }
                                 }
-                                setInterval(updateClock, 1000);
+                                setInterval(updateClock, 100);
                             });
                         </script>
 
                         <div class="s_commute">
-
+                            <div class="commute-container" style=" align-content: center; text-align: center">
+                                <span>출근 :</span>
+                                <span id="commute1" th:text="${commute1}"></span>
+                            </div>
+                            <div class="commute-container" style=" align-content: center; text-align: center">
+                                <span>퇴근 :</span>
+                                <span id="commute2" th:text="${commute2}"></span>
+                            </div>
                         </div>
+
+                        <script>
+                            function formatTime(timestamp) {
+                                const date = new Date(timestamp);
+                                return date.toLocaleTimeString('en-GB'); // HH:mm:ss 형식
+                            }
+
+                            document.addEventListener("DOMContentLoaded", function() {
+                                const commute1 = document.getElementById("commute1");
+                                const commute2 = document.getElementById("commute2");
+
+                                if (commute1) {
+                                    commute1.textContent = formatTime(commute1.textContent);
+                                }
+
+                                if (commute2) {
+                                    commute2.textContent = formatTime(commute2.textContent);
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
                 <div class="s_wrap2-1">

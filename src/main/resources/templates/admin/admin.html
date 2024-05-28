@@ -27,6 +27,8 @@
                 height: 838px;
             }
         }
+
+
     </style>
 
 </head>
@@ -249,12 +251,35 @@
                                 </div>
 
                                 <div class="buttonlist">
-                                    <button class="c_buttonlist">전체</button>
-                                    <button class="c_buttonlist">진행중</button>
-                                    <button class="c_buttonlist">반려</button>
-                                    <button class="c_buttonlist">진행중</button>
-                                    <button class="c_buttonlist">내결재함</button>
+                                    <button id="all" class="c_buttonlist" onclick="location.href='/admin/edoc?filter=all'">전체</button>
+                                    <button id="progress" class="c_buttonlist" onclick="location.href='/admin/edoc?filter=progress'">진행중</button>
+                                    <button id="rejected" class="c_buttonlist" onclick="location.href='/admin/edoc?filter=rejected'">반려</button>
                                 </div>
+
+                                <script>
+                                    function handleButtonClick(button, filter) {
+                                        // 모든 버튼에서 active 클래스 제거
+                                        document.querySelectorAll('.c_button').forEach(function(btn) {
+                                            btn.classList.remove('active');
+                                        });
+
+                                        // 클릭된 버튼에 active 클래스 추가
+                                        button.classList.add('active');
+
+                                        // 페이지 이동
+                                        location.href = `/subpage/edoc?filter=${filter}`;
+                                    }
+
+                                    // 현재 URL의 파라미터를 분석하여 적절한 버튼에 active 클래스를 추가
+                                    window.onload = function() {
+                                        const urlParams = new URLSearchParams(window.location.search);
+                                        const filter = urlParams.get('filter') || 'all';
+                                        const activeButton = document.getElementById(filter);
+                                        if (activeButton) {
+                                            activeButton.classList.add('active');
+                                        }
+                                    };
+                                </script>
 
                                 <div class="chart">
                                     <!--여기서 시작-->
@@ -262,66 +287,33 @@
                                         <thead>
                                         <tr>
                                             <th>기안일</th>
+                                            <th>분류</th>
                                             <th>제목</th>
-                                            <th>기안자</th>
-                                            <th>결재자</th>
-                                            <th>진행상태</th>
-                                            <th>결재확인</th>
+                                            <th>작성자</th>
+                                            <th>결재상태</th>
+                                            <th>결재하기</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>24.05.12</td>
-                                            <td><a href="#">휴가신청서</a></td>
-                                            <td>이도아</td>
-                                            <td>최규혁</td>
-                                            <td>승인</td>
-                                            <td>확인</td>
+                                        <tbody id="tableBody">
+                                        <tr th:each="list, iterStat : ${edocList}" id="row_${iterStat.index}">
+                                            <td th:text="${list.drafting_date}"></td>
+                                            <td th:text="${list.edocFormDTO.form_name}"></td>
+                                            <td th:text="${list.title}"></td>
+                                            <td th:text="${list.employee_name}"></td>
+                                            <td th:text="${list.edoc_status}"></td>
+                                            <td>
+                                                <button style="border-radius: 5px; background-color: aliceblue; border: 1px solid gray; padding: 2px" type="button" class="btn" th:attr="onclick='admin(\'' + ${list.edoc_form_ct_no} + '\')'">상세보기</button>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>24.05.01</td>
-                                            <td><a href="#">결재서류</a></td>
-                                            <td>전준규</td>
-                                            <td>최규혁</td>
-                                            <td>진행중</td>
-                                            <td>보류</td>
-                                        </tr>
-                                        <tr>
-                                            <td>24.04.03</td>
-                                            <td><a href="#">임금인상 요청서</a></td>
-                                            <td>푸바오</td>
-                                            <td>최규혁</td>
-                                            <td>반려</td>
-                                            <td>불허</td>
-                                        </tr>
-                                        <tr>
-                                            <td>24.04.01</td>
-                                            <td><a href="#">text</a></td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                        </tr>
-                                        <tr>
-                                            <td>24.03.23</td>
-                                            <td><a href="#">text</a></td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                        </tr>
-                                        <tr>
-                                            <td>24.03.22</td>
-                                            <td><a href="#">text</a></td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                        </tr>
-                                        <!-- 추가적인 리스트 행은 필요에 따라 추가 -->
                                         </tbody>
                                     </table>
-                                    </table>
+
+                                    <script>
+                                        function admin(edocFormCtNo) {
+                                            window.location.href = '/admin/edocFrom/selectEdocList/' + edocFormCtNo;
+                                        }
+                                    </script>
+
                                 </div>
                                 <div class="page_number">
                                     <div class="s_button">&lt;</div>

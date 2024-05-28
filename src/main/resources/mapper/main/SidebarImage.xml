@@ -54,4 +54,5 @@
         WHERE user_no = #{user_no} AND commute_date = CURRENT_DATE;
     </update>
 
+
 </mapper>

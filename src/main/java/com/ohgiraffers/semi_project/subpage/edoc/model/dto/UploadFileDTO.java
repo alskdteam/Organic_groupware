@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class UploadFileDTO {
 
     private byte[] employee_sign;
+    private byte[] admin_sign;
     private String employee_name;
     private int edoc_form_no;
     private int user_id;
@@ -13,8 +14,9 @@ public class UploadFileDTO {
     public UploadFileDTO() {
     }
 
-    public UploadFileDTO(byte[] employee_sign, String employee_name, int edoc_form_no, int user_id, int edoc_form_ct_no) {
+    public UploadFileDTO(byte[] employee_sign, byte[] admin_sign, String employee_name, int edoc_form_no, int user_id, int edoc_form_ct_no) {
         this.employee_sign = employee_sign;
+        this.admin_sign = admin_sign;
         this.employee_name = employee_name;
         this.edoc_form_no = edoc_form_no;
         this.user_id = user_id;
@@ -27,6 +29,14 @@ public class UploadFileDTO {
 
     public void setEmployee_sign(byte[] employee_sign) {
         this.employee_sign = employee_sign;
+    }
+
+    public byte[] getAdmin_sign() {
+        return admin_sign;
+    }
+
+    public void setAdmin_sign(byte[] admin_sign) {
+        this.admin_sign = admin_sign;
     }
 
     public String getEmployee_name() {
@@ -65,6 +75,7 @@ public class UploadFileDTO {
     public String toString() {
         return "UploadFileDTO{" +
                 "employee_sign=" + Arrays.toString(employee_sign) +
+                ", admin_sign=" + Arrays.toString(admin_sign) +
                 ", employee_name='" + employee_name + '\'' +
                 ", edoc_form_no=" + edoc_form_no +
                 ", user_id=" + user_id +
