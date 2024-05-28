@@ -23,20 +23,6 @@
     <div class="img-logo">
         <img src="https://github.com/alskdteam/semi_project_java/assets/167507636/bd479789-f3d8-410d-93bc-51a78ba44096" width="400px">
 
-<h1 style="text-align: center">회원가입</h1>
-<form th:action="@{/user/signup}" th:method="post">
-    ID : <input type="text" name="userId"> <br>
-    <!--        이름 : <input type="text" name="userName"> <br>-->
-    PWD : <input type="password" name="userPass"> <br>
-
-    <div class="wrap">
-        <select name="role" style="display: none">
-            <option value="USER"  selected >일반회원</option>
-            <option value="ADMIN">관리자</option>
-        </select> <br>
-
-    </div>
-
     <form th:action="@{/user/signup}" th:method="post">
         <div class="int-area">
             <input type="text" name="userId"

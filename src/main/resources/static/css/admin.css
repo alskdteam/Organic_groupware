@@ -109,6 +109,9 @@ body {
 }
 
 /*사원조회 영역*/
+.flex3 {
+    display: flex;
+}
 .employee{
     width: 60vw;
     height: 405px;
@@ -122,6 +125,7 @@ body {
     transition: height 0.6s ease-in-out; /* 부드러운 애니메이션 효과 추가 */
 }
 
+
 /* 클릭시 세로길이 늘어나는*/
 .employee:focus-within {
     height: 700px;
@@ -132,9 +136,12 @@ body {
     border: 1px solid #BFBFBF; /* 테두리 설정 */
     border-radius: 30px; /* 테두리 반지름 설정 */
     width: 55vw;
-    height: 600px;
+    height: 550px;
     margin-top: 50px;
+
 }
+
+
 
 /*전자결재 영역*/
 .edoc{
@@ -188,11 +195,14 @@ body {
 .chart th {
     background-color: #4CAF50; /* 테이블 헤더 배경색 설정 */
     color: white;
+    font-size: 14px;
 }
 
 .chart tbody tr:last-child td {
+
     border-bottom: 2px solid white; /* 마지막 행에 밑줄 추가 */
     /*border-left: ;*/
+    font-size: 12px;
 }
 .chart th, .c_employee td {
     border: 1px solid #dddddd; /* 테이블 셀 경계 선 설정 */
@@ -200,11 +210,13 @@ body {
     text-align: left;
     border-left: none;
     border-right: none;
+    font-size: 12px;
 }
 
 .chart th {
     background-color: #4CAF50; /* 테이블 헤더 배경색 설정 */
     color: white;
+
 }
 
 
@@ -327,7 +339,7 @@ body {
 
 .c_employee table {
     width: 90%;
-     margin-top: -30px;
+    margin-top: -30px;
     margin-left: 40px;
     background-color: white;
     border-collapse: collapse;
@@ -352,18 +364,37 @@ body {
     border-bottom: 2px solid white; /* 마지막 행에 밑줄 추가 */
 
 }
-.c_employee th, .c_employee td {
-    border: 1px solid #dddddd; /* 테이블 셀 경계 선 설정 */
-    padding: 8px;
-    text-align: left;
-    border-left: none;
-    border-right: none;
+.employee_table {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 20vw;
+}
+.employee_page_number{
+    position: absolute;
+    width: 55vw;
+    height: 65px;
+    border-top: 4px solid #848484;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
-.c_employee th {
-    background-color: #4CAF50; /* 테이블 헤더 배경색 설정 */
-    color: white;
+.employee_s_button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black; /* 1px 두께의 검은색 테두리 설정 */
+    background-color: #f0f0f0; /* 연한 회색 배경색 설정 */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* 마우스 커서를 포인터로 설정하여 클릭 가능한 요소임을 표시합니다. */
+    margin: 3px; /* 버튼 간 간격을 설정합니다. */
+
 }
+
+
 
 .button-container {
     display: flex;
@@ -514,6 +545,8 @@ a {
 }
 
 
+
+
 /*.employeeTable*/
 /*{*/
 /*    position: relative;*/
@@ -522,5 +555,3 @@ a {
 /*    display: flex;*/
 /*    margin-top: 80px;*/
 /*}*/
-
-

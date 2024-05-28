@@ -226,7 +226,7 @@
                                             <tbody id="tableBody">
 
 
-                                            <tr th:each="memo : ${memoDTOList}" id="row_${iterStat.index}">
+                                            <tr th:each="memo : ${memoDTOList}" >
                                                 <td style="width: 135px">
                                                     <a th:href="'profile/memo/' +${memo.memo_id}" th:text="${memo.memo_title}"></a>
 
@@ -379,7 +379,7 @@
                             // 현재 페이지를 저장할 변수
                             var currentPage = 1;
                             // 페이지당 행 수
-                            var rowsPerPage = 10;
+                            var rowsPerPage = 7;
 
                             // 페이지를 변경하는 함수
                             function changePage(pageNumber) {
@@ -393,7 +393,7 @@
 
                             // 모든 행을 숨기는 함수
                             function hideAllRows() {
-                                var rows = document.querySelectorAll('[id^="row_"]');
+                                var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
                                 rows.forEach(function(row) {
                                     row.style.display = 'none';
                                 });
@@ -403,7 +403,7 @@
                             function showRowsForCurrentPage() {
                                 var startIndex = (currentPage - 1) * rowsPerPage;
                                 var endIndex = startIndex + rowsPerPage;
-                                var rows = document.querySelectorAll('[id^="row_"]');
+                                var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
                                 for (var i = startIndex; i < endIndex && i < rows.length; i++) {
                                     rows[i].style.display = 'table-row';
                                 }

@@ -187,13 +187,13 @@ body {
 }
 
 .c_memo {
-    
+
     border: 1px solid #4CAF50; /* 테두리 설정 */
     border-radius: 30px; /* 테두리 반지름 설정 */
     width: 55vw;
     height: 500px;
     margin-top: 7px;
-  
+
 }
 
 
@@ -229,7 +229,7 @@ body {
 /* 여기서 메인 콘텐츠들 시작 */
 
 .picture{
-    
+
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -426,401 +426,401 @@ body {
 
 
 
- 메모
+메모
 .memo p {
     font-size: 80px;
 
-/* 메모 */
-.headmemo_title {
-    
-    font-size: 50px;
-    background-color: white;
-    height: 50px;
-    width: 100%;
-
-    text-align: center;
-    margin-top: 20px;
-    color: #36D697;
-    
-}
-#memo_title {
-    padding-left: 5px;
-    width: 90%;
-    position: relative;
-    display: flex;
-    height: 40px;
-}
- 
-#new-memo-btn.new_button { 
-    position: relative;
-    width: 6vw;
-    height: 30px;
-    right: 3vw;
-
-}
-.memo_button {
-
-    background-color: #aaa;
-    width: 20vw;
-    height: 50px;
-   
-}
-.new_button {
-    
-    border: 2px solid #36D697;
-    width: 20vw;
-    height: 30px;
-    background-color: white;
-    color: #36D697;
-
-}
-
-
-/*!* 메모 안에 css *!*/
-/*body {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100vh;*/
-/*    margin: 0;*/
-/*    background-color: #f0f0f0;*/
-/*    font-family: Arial, sans-serif;*/
-/*}*/
-
-/*.memocontainer {*/
-/*    display: flex;*/
-/*    width: auto;*/
-/*    height: 450px;*/
-/*    border: 1px solid #ccc;*/
-/*    border-radius: 10px;*/
-/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-/*    background-color: white;*/
-/*    overflow: hidden;*/
-/*}*/
-
-/*.memosidebar {*/
-/*    width: 250px;*/
-/*    border-right: 1px solid #ccc;*/
-/*    padding: 10px;*/
-/*    box-sizing: border-box;*/
-/*}*/
-
-/*.sidebar h2 {*/
-/*    margin-top: 0;*/
-/*}*/
-
-/*#memo-list {*/
-/*    list-style-type: none;*/
-/*    padding: 0;*/
-/*}*/
-
-/*#memo-list li {*/
-/*    padding: 5px;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*#memo-list li:hover {*/
-/*    background-color: #f0f0f0;*/
-/*}*/
-
-/*#memo-list li button {*/
-/*    background-color: red;*/
-/*    color: white;*/
-/*    border: none;*/
-/*    border-radius: 4px;*/
-/*    padding: 2px 4px;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*#memo-list li button:hover {*/
-/*    background-color: darkred;*/
-/*}*/
-
-#new-memo-btn {
-    margin-top: 10px;
-    padding: 5px;
-    width: 60px;
-    cursor: pointer;
-    margin-left: 50vw;
-    position: relative;
-}
-
-/*.notepad {*/
-/*    flex-grow: 1;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*}*/
-
-/*.notepad-header {*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*    padding: 10px;*/
-/*    background-color: #f2f2f2;*/
-/*    border-bottom: 1px solid #ccc;*/
-/*}*/
-
-
-/*.memobuttons {*/
-/*    display: flex;*/
-/*}*/
-
-.memobuttons {
-    position: relative;
-    display: flex;
-    margin-left: 19vw;
-    top: 30px;
-    text-align: center;
-    display: flex;
-    
-}
-
-
-/*.memobutton {*/
-/*    width: 12px;*/
-/*    height: 12px;*/
-/*    border-radius: 50%;*/
-/*    margin-right: 8px;*/
-/*}*/
-
-
-/*.title {*/
-/*    flex-grow: 1;*/
-/*    text-align: center;*/
-/*    font-weight: bold;*/
-/*}*/
-
-/*.notepad-content {*/
-/*    flex-grow: 1;*/
-/*    width: 100%;*/
-/*    border: none;*/
-/*    padding: 10px;*/
-/*    font-size: 16px;*/
-/*    line-height: 1.5;*/
-/*    resize: none;*/
-/*}*/
-
-/*.notepad-content:focus {*/
-/*    outline: none;*/
-/*}*/
-
-/* 표 css*/
-table{
-
-    position: relative;
-    background-color: white;
-    border: 2px solid#36D697;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-radius: 2px;
-    width: 50vw;
-    border-collapse: collapse;
-    margin-left: 5%;
-
-}
-
-
-.cars table th,
-.cars table td {
-    padding: 8px; /* 셀의 여백 설정 (원하는 값으로 조정 가능) */
-    border-bottom: 0.5px solid #c5c5c5;
-    text-align: left; /* 셀 안의 텍스트 가운데 정렬 */
-    font-size: 13px;
-    height: 40px;
-}
-
-.cars table th {
-    border-bottom: 1px solid #8d8d8d; /* th에만 하단 테두리를 적용합니다. */
-}
-
-
-/* 모달 스타일 */
-.modal {
-    display: none; /* 초기에는 보이지 않음 */
-    position: relative; /* 고정 위치 */
-    z-index: 1; /* 다른 요소 위에 표시 */
-    width: 50%;
-    height: 10%;
-    overflow: auto; /* 스크롤 가능 */
-    margin-left: 25%;
-    bottom: 50px;
-}
-
-/* 모달 내용 스타일 */
-
-#memo_content {
-
-    margin: auto;
-    padding: 10px;
-    position: relative;
-    display: flex;
-    width: 100%;
-    height: 200px;
-    border: 1px solid black;
-    border-radius: 4px;
-    resize: both;
-
-}
-.modal-content{
-
-    padding: 10px;
-    background: linear-gradient(white 0%, white calc(50% - 25px), #c6d0db calc(50% - 25px), #c6d0db calc(50% + 175px), white calc(50% + 175px), white 100%);
-
-
-    margin: 15% auto; /* 중앙에 위치 */
-    width: 280px; /* 너비 조정 */
-    height: 530px;
-    border-radius: 40px;
-    border: 1px solid #ababab;
-    display: flex;
-    justify-content: center;
-
-}
-
-.modal-content2 {
-
-
-
-    margin: 15% auto; /* 중앙에 위치 */
-    width: 280px; /* 너비 조정 */
-    height: 530px;
-    border-radius: 40px;
-    border: 1px solid #ababab;
-    display: flex;
-    justify-content: center;
-
-}
-
-.modal-content2 {
-
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    padding-top: 50px;
-    width: 30vw; /* 너비 조정 */
-    height: 400px;
-    border-radius: 40px;
-    border: 1px solid #ababab;
-    justify-content: center;
-    background-color: #a3e9a3;
-
-
-}
-.titlebox {
-   
-    position: relative;
-    height: 70px;
-    width: 100%;
-    display: flex;
-}
-#modal-title1 {
-    margin-left: 1vw;
-    padding-top: 10px;
-    position: relative;
-    width: 5vw;
-    height: 50px;
-    font-size: 20px;
-    
-}
-
-.inputbox {
-    margin: auto;
-    position: relative;
-    height: 200px;
-    width: 26vw;
-    display: block;
-}
-
-#inputtitle {
-    position: relative;
-    width: 90%;
-    height: 50px;
-    align-items: center;
-    justify-content: center;
-}
-#inputcontent {
-
-    margin: auto;
-    width: 100%;
-}
-
-#substance {
-    position: relative;
-    display: flex;
-    width: 20%;
-    font-size: 20px;
-    justify-content: center;
-}
-.modal-title {
-    display: flex;
-    position: relative;
-    width: 30vw;
-    height: 50px;
-    background-color: #00FF00;
-}
-
-.memomodal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-.memomodal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-.memoclose {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.memoclose:hover,
-.memoclose:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* 추가 및 취소 버튼 스타일 */
-#memoaddBtn {
-
-    width: 5vw;
-    height: 30px;
-    background-color: white;
-    border: 2px solid #00FF00;
-    border-radius: 8px;
-    cursor: pointer;
-}
-#memocancelBtn {
-
-
-
-    width: 5vw;
-    height: 30px;
-    background-color: white;
-    border: 2px solid #00FF00;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-left: 0.5vw;
-    margin-right: 1.5vw;
-}
+    /* 메모 */
+    .headmemo_title {
+
+        font-size: 50px;
+        background-color: white;
+        height: 50px;
+        width: 100%;
+
+        text-align: center;
+        margin-top: 20px;
+        color: #36D697;
+
+    }
+    #memo_title {
+        padding-left: 5px;
+        width: 90%;
+        position: relative;
+        display: flex;
+        height: 40px;
+    }
+
+    #new-memo-btn.new_button {
+        position: relative;
+        width: 6vw;
+        height: 30px;
+        right: 3vw;
+
+    }
+    .memo_button {
+
+        background-color: #aaa;
+        width: 20vw;
+        height: 50px;
+
+    }
+    .new_button {
+
+        border: 2px solid #36D697;
+        width: 20vw;
+        height: 30px;
+        background-color: white;
+        color: #36D697;
+
+    }
+
+
+    /*!* 메모 안에 css *!*/
+    /*body {*/
+    /*    display: flex;*/
+    /*    justify-content: center;*/
+    /*    align-items: center;*/
+    /*    height: 100vh;*/
+    /*    margin: 0;*/
+    /*    background-color: #f0f0f0;*/
+    /*    font-family: Arial, sans-serif;*/
+    /*}*/
+
+    /*.memocontainer {*/
+    /*    display: flex;*/
+    /*    width: auto;*/
+    /*    height: 450px;*/
+    /*    border: 1px solid #ccc;*/
+    /*    border-radius: 10px;*/
+    /*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+    /*    background-color: white;*/
+    /*    overflow: hidden;*/
+    /*}*/
+
+    /*.memosidebar {*/
+    /*    width: 250px;*/
+    /*    border-right: 1px solid #ccc;*/
+    /*    padding: 10px;*/
+    /*    box-sizing: border-box;*/
+    /*}*/
+
+    /*.sidebar h2 {*/
+    /*    margin-top: 0;*/
+    /*}*/
+
+    /*#memo-list {*/
+    /*    list-style-type: none;*/
+    /*    padding: 0;*/
+    /*}*/
+
+    /*#memo-list li {*/
+    /*    padding: 5px;*/
+    /*    cursor: pointer;*/
+    /*}*/
+
+    /*#memo-list li:hover {*/
+    /*    background-color: #f0f0f0;*/
+    /*}*/
+
+    /*#memo-list li button {*/
+    /*    background-color: red;*/
+    /*    color: white;*/
+    /*    border: none;*/
+    /*    border-radius: 4px;*/
+    /*    padding: 2px 4px;*/
+    /*    cursor: pointer;*/
+    /*}*/
+
+    /*#memo-list li button:hover {*/
+    /*    background-color: darkred;*/
+    /*}*/
+
+    #new-memo-btn {
+        margin-top: 10px;
+        padding: 5px;
+        width: 60px;
+        cursor: pointer;
+        margin-left: 50vw;
+        position: relative;
+    }
+
+    /*.notepad {*/
+    /*    flex-grow: 1;*/
+    /*    display: flex;*/
+    /*    flex-direction: column;*/
+    /*}*/
+
+    /*.notepad-header {*/
+    /*    display: flex;*/
+    /*    justify-content: space-between;*/
+    /*    align-items: center;*/
+    /*    padding: 10px;*/
+    /*    background-color: #f2f2f2;*/
+    /*    border-bottom: 1px solid #ccc;*/
+    /*}*/
+
+
+    /*.memobuttons {*/
+    /*    display: flex;*/
+    /*}*/
+
+    .memobuttons {
+        position: relative;
+        display: flex;
+        margin-left: 19vw;
+        top: 30px;
+        text-align: center;
+        display: flex;
+
+    }
+
+
+    /*.memobutton {*/
+    /*    width: 12px;*/
+    /*    height: 12px;*/
+    /*    border-radius: 50%;*/
+    /*    margin-right: 8px;*/
+    /*}*/
+
+
+    /*.title {*/
+    /*    flex-grow: 1;*/
+    /*    text-align: center;*/
+    /*    font-weight: bold;*/
+    /*}*/
+
+    /*.notepad-content {*/
+    /*    flex-grow: 1;*/
+    /*    width: 100%;*/
+    /*    border: none;*/
+    /*    padding: 10px;*/
+    /*    font-size: 16px;*/
+    /*    line-height: 1.5;*/
+    /*    resize: none;*/
+    /*}*/
+
+    /*.notepad-content:focus {*/
+    /*    outline: none;*/
+    /*}*/
+
+    /* 표 css*/
+    table{
+
+        position: relative;
+        background-color: white;
+        border: 2px solid#36D697;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: 2px;
+        width: 50vw;
+        border-collapse: collapse;
+        margin-left: 5%;
+
+    }
+
+
+    .cars table th,
+    .cars table td {
+        padding: 8px; /* 셀의 여백 설정 (원하는 값으로 조정 가능) */
+        border-bottom: 0.5px solid #c5c5c5;
+        text-align: left; /* 셀 안의 텍스트 가운데 정렬 */
+        font-size: 13px;
+        height: 40px;
+    }
+
+    .cars table th {
+        border-bottom: 1px solid #8d8d8d; /* th에만 하단 테두리를 적용합니다. */
+    }
+
+
+    /* 모달 스타일 */
+    .modal {
+        display: none; /* 초기에는 보이지 않음 */
+        position: relative; /* 고정 위치 */
+        z-index: 1; /* 다른 요소 위에 표시 */
+        width: 50%;
+        height: 10%;
+        overflow: auto; /* 스크롤 가능 */
+        margin-left: 25%;
+        bottom: 50px;
+    }
+
+    /* 모달 내용 스타일 */
+
+    #memo_content {
+
+        margin: auto;
+        padding: 10px;
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 200px;
+        border: 1px solid black;
+        border-radius: 4px;
+        resize: both;
+
+    }
+    .modal-content{
+
+        padding: 10px;
+        background: linear-gradient(white 0%, white calc(50% - 25px), #c6d0db calc(50% - 25px), #c6d0db calc(50% + 175px), white calc(50% + 175px), white 100%);
+
+
+        margin: 15% auto; /* 중앙에 위치 */
+        width: 280px; /* 너비 조정 */
+        height: 530px;
+        border-radius: 40px;
+        border: 1px solid #ababab;
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .modal-content2 {
+
+
+
+        margin: 15% auto; /* 중앙에 위치 */
+        width: 280px; /* 너비 조정 */
+        height: 530px;
+        border-radius: 40px;
+        border: 1px solid #ababab;
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .modal-content2 {
+
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        padding-top: 50px;
+        width: 30vw; /* 너비 조정 */
+        height: 400px;
+        border-radius: 40px;
+        border: 1px solid #ababab;
+        justify-content: center;
+        background-color: #a3e9a3;
+
+
+    }
+    .titlebox {
+
+        position: relative;
+        height: 70px;
+        width: 100%;
+        display: flex;
+    }
+    #modal-title1 {
+        margin-left: 1vw;
+        padding-top: 10px;
+        position: relative;
+        width: 5vw;
+        height: 50px;
+        font-size: 20px;
+
+    }
+
+    .inputbox {
+        margin: auto;
+        position: relative;
+        height: 200px;
+        width: 26vw;
+        display: block;
+    }
+
+    #inputtitle {
+        position: relative;
+        width: 90%;
+        height: 50px;
+        align-items: center;
+        justify-content: center;
+    }
+    #inputcontent {
+
+        margin: auto;
+        width: 100%;
+    }
+
+    #substance {
+        position: relative;
+        display: flex;
+        width: 20%;
+        font-size: 20px;
+        justify-content: center;
+    }
+    .modal-title {
+        display: flex;
+        position: relative;
+        width: 30vw;
+        height: 50px;
+        background-color: #00FF00;
+    }
+
+    .memomodal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .memomodal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .memoclose {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .memoclose:hover,
+    .memoclose:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* 추가 및 취소 버튼 스타일 */
+    #memoaddBtn {
+
+        width: 5vw;
+        height: 30px;
+        background-color: white;
+        border: 2px solid #00FF00;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    #memocancelBtn {
+
+
+
+        width: 5vw;
+        height: 30px;
+        background-color: white;
+        border: 2px solid #00FF00;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-left: 0.5vw;
+        margin-right: 1.5vw;
+    }
 
 
 
@@ -1064,5 +1064,3 @@ table{
     font-size: 15px;
     margin-left: 27px;
 }
-
-

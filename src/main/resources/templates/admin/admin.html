@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,43 +138,46 @@
                                     </div>
                                 </div>
                                 <!--employee 테이블-->
-                                <table>
-                                    <thead>
-                                    <tr>
-                                        <th>부서</th>
-                                        <th>구성원명</th>
-                                        <th>직급</th>
-                                        <th>이메일</th>
-                                        <th>휴대폰</th>
-                                        <th>생년월일</th>
-                                        <th>입사일</th>
-                                        <th>비고</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="employeetableBody">
-                                    <!-- 여기서부터 페이지 네이션을 위한 행들만 추가 -->
-                                    <tr th:each="employee : ${employeeList}" id="row_${employee.user_no}">
-                                        <td th:text="${employee.user_department}"></td>
-                                        <td th:text="${employee.user_name}"></td>
-                                        <td th:text="${employee.user_rank}"></td>
-                                        <td th:text="${employee.user_email}"></td>
-                                        <td th:text="${employee.user_phone_number}"></td>
-                                        <td th:text="${employee.user_birth}"></td>
-                                        <td th:text="${employee.join_date}"></td>
-                                        <td>
-                                            <button th:onclick="'user_no(' + ${employee.user_no} + ')'" >상세보기</button>
-                                        </td>
+                                <div class="employee_table">
 
-                                    </tr>
+                                    <table >
+                                        <thead>
+                                        <tr>
+                                            <th>부서</th>
+                                            <th>구성원명</th>
+                                            <th>직급</th>
+                                            <th>이메일</th>
+                                            <th>휴대폰</th>
+                                            <th>생년월일</th>
+                                            <th>입사일</th>
+                                            <th>비고</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="employeetableBody">
+                                        <!-- 여기서부터 페이지 네이션을 위한 행들만 추가 -->
+                                        <tr th:each="employee : ${employeeList}" id="row_${employee.user_no}">
+                                            <td th:text="${employee.user_department}"></td>
+                                            <td th:text="${employee.user_name}"></td>
+                                            <td th:text="${employee.user_rank}"></td>
+                                            <td th:text="${employee.user_email}"></td>
+                                            <td th:text="${employee.user_phone_number}"></td>
+                                            <td th:text="${employee.user_birth}"></td>
+                                            <td th:text="${employee.join_date}"></td>
+                                            <td>
+                                                <button th:onclick="'user_no(' + ${employee.user_no} + ')'" >상세보기</button>
+                                            </td>
 
-                                    <!-- 페이지 네이션을 위한 행들 끝 -->
-                                    </tbody>
-                                </table>
+                                        </tr>
+
+                                        <!-- 페이지 네이션을 위한 행들 끝 -->
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <!-- 페이지 네이션 버튼 -->
-                                <div class="page_number">
-                                    <div class="s_button" onclick="changePage(1)">1</div>
-                                    <div class="s_button" onclick="changePage(2)">2</div>
-                                    <div class="s_button" onclick="changePage(3)">3</div>
+                                <div class="employee_page_number">
+                                    <div class="employee_s_button" onclick="changePage(1)">1</div>
+                                    <div class="employee_s_button" onclick="changePage(2)">2</div>
+                                    <div class="employee_s_button" onclick="changePage(3)">3</div>
                                 </div>
 
 
@@ -187,50 +189,50 @@
 
 
 
-<!--                     사원추가 시 사원추가 페이지로 이동 -->
+                    <!--                     사원추가 시 사원추가 페이지로 이동 -->
                     <script>
 
                         function user_no(user_no) {
                             location.href = '/admin/updateEmployee?user_no=' + user_no;
                         }
 
-                            // 현재 페이지를 저장할 변수
-                            var currentPage = 1;
-                            // 페이지당 행 수
-                            var rowsPerPage = 10;
+                        // 현재 페이지를 저장할 변수
+                        var currentPage = 1;
+                        // 페이지당 행 수
+                        var rowsPerPage = 7;
 
-                            // 페이지를 변경하는 함수
-                            function changePage(pageNumber) {
-                                // 현재 페이지를 설정
-                                currentPage = pageNumber;
-                                // 모든 행을 숨김
-                                hideAllRows();
-                                // 현재 페이지에 해당하는 행들을 보여줌
-                                showRowsForCurrentPage();
+                        // 페이지를 변경하는 함수
+                        function changePage(employee_page_number) {
+                            // 현재 페이지를 설정
+                            currentPage = employee_page_number;
+                            // 모든 행을 숨김
+                            hideAllRows();
+                            // 현재 페이지에 해당하는 행들을 보여줌
+                            showRowsForCurrentPage();
+                        }
+
+                        // 모든 행을 숨기는 함수
+                        function hideAllRows() {
+                            var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
+                            rows.forEach(function(row) {
+                                row.style.display = 'none';
+                            });
+                        }
+
+                        // 현재 페이지에 해당하는 행들을 보여주는 함수
+                        function showRowsForCurrentPage() {
+                            var startIndex = (currentPage - 1) * rowsPerPage;
+                            var endIndex = startIndex + rowsPerPage;
+                            var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
+                            for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+                                rows[i].style.display = 'table-row';
                             }
+                        }
 
-                            // 모든 행을 숨기는 함수
-                            function hideAllRows() {
-                                var rows = document.querySelectorAll('[id^="row_"]');
-                                rows.forEach(function(row) {
-                                    row.style.display = 'none';
-                                });
-                            }
-
-                            // 현재 페이지에 해당하는 행들을 보여주는 함수
-                            function showRowsForCurrentPage() {
-                                var startIndex = (currentPage - 1) * rowsPerPage;
-                                var endIndex = startIndex + rowsPerPage;
-                                var rows = document.querySelectorAll('[id^="row_"]');
-                                for (var i = startIndex; i < endIndex && i < rows.length; i++) {
-                                    rows[i].style.display = 'table-row';
-                                }
-                            }
-
-                            // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
-                            window.onload = function() {
-                                changePage(1);
-                            };
+                        // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
+                        window.onload = function() {
+                            changePage(1);
+                        };
 
 
                     </script>
@@ -242,7 +244,7 @@
                     <!--전자결재 영역-->
                     <div class="edoc" tabindex="0">
                         <div class="flex2">
-                        <div class="c_edoc">
+                            <div class="c_edoc">
                                 <!--여기서 시작-->
                                 <h1 class="e-approval">전자결재 리스트</h1>
                                 <div class="search">
