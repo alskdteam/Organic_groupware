@@ -125,6 +125,7 @@
                                                 <label for="english_name">영문 이름</label><br>
                                                 <input type="text" id="english_name" name="english_name">
                                             </div>
+
                                             <div>
                                                 <label for="phone_number">전화번호</label> <br>
                                                 <input type="tel" id="phone_number" name="phone_number">
@@ -165,7 +166,67 @@
                         </script>
 
 
+                        <script>
+                            document.getElementById('profileFrm').addEventListener('submit', function(event) {
+                                event.preventDefault();
+                                const formData = new FormData(this);
+                                fetch('/subpage/profileEdit', { // 수정된 부분: 올바른 경로로 URL 지정
+                                    method: 'POST',
+                                    body: formData
+                                }).then(response => response.json())
+                                    .then(data => {
+                                        // 서버 응답에 따른 처리
+                                        console.log(data);
+                                        // 서버에서 처리된 결과에 따라 사용자를 적절한 페이지로 이동시키는 로직 추가
+                                        window.location.href = '/subpage/profile'; // 예시: 프로필 페이지로 이동
+                                    }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                            });
+                        </script>
 
+
+
+
+
+                        <script>
+
+                            // 모달 요소 가져오기
+                            var modal = document.getElementById("myModal");
+
+                            // 모달 열기 버튼 가져오기
+                            var btn = document.getElementById("edit_btn");
+
+                            // 모달 닫기 버튼 가져오기
+                            var span = document.getElementsByClassName("buttons")[0];
+
+                            // 모달 열기 버튼을 클릭하면 모달 보이기
+                            btn.onclick = function() {
+                                modal.style.display = "block";
+                            }
+
+                            // 모달 닫기 버튼을 클릭하면 모달 닫기
+                            span.onclick = function() {
+                                modal.style.display = "none";
+                            }
+
+                            document.getElementById('cancelBtn').addEventListener('click', function(event) {
+                                // 기본 동작(폼 제출) 막기
+                                event.preventDefault();
+
+                                // 모달 닫기
+                                var modal = document.getElementById("myModal");
+                                modal.style.display = "none";
+                            });
+
+                            // 모달 밖의 영역을 클릭하면 모달 닫기
+                            window.onclick = function(event) {
+                                if (event.target == modal) {
+                                    modal.style.display = "none";
+                                }
+                            }
+
+                        </script>
 
 
                         <!--                        버튼 영역-->
@@ -215,9 +276,10 @@
                                 <div class="c_memo">
                                         <h1 class="headmemo_title">memo<h1/>
                                         <button class="new_button" id="new-memo-btn">메모 등록</button>
-                                       
+
+
                                     <!--메모창 안에 디자인 추가-->
-                                    
+
 
                                     <!-- 메모 목록 항목이 여기에 추가됩니다 -->
                                     <div class="cars">
@@ -267,7 +329,7 @@
                                         var btn = document.getElementById("new-memo-btn");
 
                                         // 모달 닫기 버튼 가져오기
-                                        var span = document.getElementsByClassName("cancelBtn")[0];
+                                        var span = document.getElementById("memocancelBtn");
 
                                         // 모달 열기 버튼을 클릭하면 모달 보이기
                                         btn.onclick = function() {

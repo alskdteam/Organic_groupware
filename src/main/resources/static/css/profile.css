@@ -27,7 +27,7 @@ body {
     border: 1.3px solid #e1e1e1;
     margin-left: 16.5vw;
     width: calc(100% - 16.5vw);
-    height: 2300px;
+    height: 2500px;
 }
 
 /* 여기서 부터 시작 위에는 건들지 마세요*/
@@ -39,7 +39,7 @@ body {
 
 .layer{
     width: 78vw;
-    height: 2150px;
+    height: 2350px;
     display: flex;
     justify-content: center;
 }
@@ -316,18 +316,20 @@ body {
 }
 
 
-/*.modal-content{*/
-/*    padding: 10px;*/
-/*    background: linear-gradient(white 0%, white calc(50% - 25px), #c6d0db calc(50% - 25px), #c6d0db calc(50% + 175px), white calc(50% + 175px), white 100%);*/
+/* 모달 내용 스타일 */
+.modal-content {
+    padding: 10px;
+    background: linear-gradient(white 0%, white calc(50% - 25px), #c6d0db calc(50% - 25px), #c6d0db calc(50% + 175px), white calc(50% + 175px), white 100%);
 
-/*    margin: 15% auto; !* 중앙에 위치 *!*/
-/*    width: 280px; !* 너비 조정 *!*/
-/*    height: 530px;*/
-/*    border-radius: 40px;*/
-/*    border: 1px solid #ababab;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*}*/
+    margin: 15% auto; /* 중앙에 위치 */
+    width: 280px; /* 너비 조정 */
+    height: 530px;
+    border-radius: 40px;
+    border: 1px solid #ababab;
+    display: flex;
+    justify-content: center;
+}
+
 .circle {
     width: 120px; /* 원의 너비 */
     height: 120px; /* 원의 높이 */
@@ -615,18 +617,19 @@ body {
     border-bottom: 1px solid #8d8d8d; /* th에만 하단 테두리를 적용합니다. */
 }
 
+/*오류*/
 
-/* 모달 스타일 */
-.modal {
-    display: none; /* 초기에는 보이지 않음 */
-    position: relative; /* 고정 위치 */
-    z-index: 1; /* 다른 요소 위에 표시 */
-    width: 50%;
-    height: 10%;
-    overflow: auto; /* 스크롤 가능 */
-    margin-left: 25%;
-    bottom: 50px;
-}
+
+/*.modal {*/
+/*    display: none; !* 초기에는 보이지 않음 *!*/
+/*    position: fixed; !* 고정 위치 *!*/
+/*    z-index: 1; !* 다른 요소 위에 표시 *!*/
+/*    width: 50%;*/
+/*    height: 10%;*/
+/*    overflow: auto; !* 스크롤 가능 *!*/
+/*    margin-left: 25%;*/
+/*    bottom: 50px;*/
+/*}*/
 
 /* 모달 내용 스타일 */
 

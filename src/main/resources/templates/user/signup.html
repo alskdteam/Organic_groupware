@@ -13,6 +13,20 @@
         }
     </script>
 
+    <script>
+        // JavaScript를 사용하여 알림 창으로 오류 메시지를 출력
+        window.onload = function() {
+            // URL에서 errorMessage 파라미터를 가져와 출력
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorMessage = urlParams.get('errorMessage');
+
+            // errorMessage가 존재하면 알림 창으로 출력
+            if (errorMessage) {
+                alert(errorMessage);
+            }
+        };
+    </script>
+
 </head>
 
 <body>
