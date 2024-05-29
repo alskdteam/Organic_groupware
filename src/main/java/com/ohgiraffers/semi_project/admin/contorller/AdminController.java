@@ -89,7 +89,7 @@ public class AdminController {
         noticeDTO.setNoticeCreationDate(Date.valueOf(params.get("noticeCreationDate")));
         System.out.println("noticeDTO = " + noticeDTO);
         int Notice = adminService.updateNotice(noticeDTO);
-        return "redirect:admin/admin"; // 업데이트 후 이동할 페이지
+        return "redirect:/admin/admin"; // 업데이트 후 이동할 페이지
     }
 
 
