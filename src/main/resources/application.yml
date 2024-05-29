@@ -1,7 +1,8 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.0.16:3306/organic
+    url: jdbc:mysql://115.95.149.11:3306/organic
+
     username: organic
     password: organic
 

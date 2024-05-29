@@ -82,7 +82,7 @@ public class ItemController {
         rttr.addFlashAttribute("successMessage","물품대여 에 성공하셨습니다.");
 
 
-        return "redirect:/subpage/item";
+        return "redirect:subpage/item";
     }
     @GetMapping("/item_situation")
 
@@ -116,7 +116,7 @@ public class ItemController {
         System.out.println("CarListUpdatessssssssssssssssssssssssssss = " + itemListUpdate);
         System.out.println("upmycarlistssssssssssssssssssssssssssssss = " + upmyItemlist);
 
-        return "redirect:/subpage/item_situation_mypage";
+        return "redirect:subpage/item_situation_mypage";
     }
 
 

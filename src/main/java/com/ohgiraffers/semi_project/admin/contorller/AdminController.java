@@ -124,7 +124,7 @@ public class AdminController {
        adminService.updateEmployee(map);
 
 
-        return "redirect:admin/admin";
+        return "redirect:admin";
 
     }
 
@@ -135,7 +135,7 @@ public class AdminController {
         System.out.println("user_id = " + user_id);
         adminService.deleteEmployee(user_id);
 
-        return "redirect:admin/admin";
+        return "redirect:admin";
     }
 
 
