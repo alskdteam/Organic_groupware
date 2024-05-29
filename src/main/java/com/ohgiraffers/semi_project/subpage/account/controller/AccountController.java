@@ -49,7 +49,7 @@ public class AccountController {
 
         return "subpage/account";
     }
-//
+
     @PostMapping("/account")
     public String registAccount(RegistAccDTO registAccDTO, RedirectAttributes rttr ) {
 
