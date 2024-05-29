@@ -86,7 +86,9 @@
         user_birth,
         join_date
         from
-        employee;
+        employee
+        WHERE
+        user_status = 'Y'
     </select>
 
     <!-- 도아 - 개별 사원 조회 -->

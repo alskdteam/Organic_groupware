@@ -63,7 +63,9 @@
         user_birth,
         join_date
         from
-        employee;
+        employee
+        WHERE
+        user_status = 'Y'
     </select>
 
     <!-- 사원 개별 조회 -->
@@ -109,13 +111,11 @@
         employee
         where
         user_no = #{userNo}
-
     </select>
 
     <update id="adminEmployeeDTO">
         UPDATE Employee
         SET
-<!--        user_id = #{user_id},-->
         password = #{password},
         user_name = #{user_name},
         user_birth = #{user_birth},
@@ -130,6 +130,11 @@
         user_id = #{user_id}
     </update>
 
+    <update id="deleteEmployee">
+        UPDATE EMPLOYEE
+        SET user_status = 'N'
+        WHERE user_id = #{userId}
+    </update>
 
 
 
