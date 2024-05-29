@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EdocService {
@@ -96,6 +97,31 @@ public class EdocService {
 
 
         edocMapper.updateStatus(edocFormCtDTO);
+    }
+
+    public List<EdocFromEdocCtDTO> generateEdocListHtml(String filter) {
+        Userdata userDate = new Userdata();
+        LoginUserDTO userDTO = userDate.getloginUserDTO();
+        int user_id = Integer.parseInt(userDTO.getUserId());
+
+        List<EdocFromEdocCtDTO> edocList;
+        switch (filter) {
+            case "progress":
+                edocList = edocMapper.findByStatus("진행중");
+                break;
+            case "rejected":
+                edocList = edocMapper.findByStatus("반려");
+                break;
+            case "my":
+                edocList = edocMapper.findByUserId(user_id);
+                break;
+            default:
+                // 기본적으로 설정된 쿼리 실행하여 전체 문서 목록 조회
+                edocList = edocMapper.selectAllEdoc();
+        }
+        
+        // 문서 목록을 HTML 형식으로 변환하는 로직은 생략하고, 여기서는 간단히 문자열로 반환합니다.
+        return edocList;
     }
 }
 

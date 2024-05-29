@@ -67,6 +67,10 @@ body {
     line-height: 32px; /* 버튼의 높이와 동일하게 텍스트의 높이를 맞춥니다. */
 
 }
+.c_button:hover {
+    background-color: #4CAF50; /* 호버 시 배경색 변화 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+}
 
 .c_button.active {
     background-color: #4CAF50;

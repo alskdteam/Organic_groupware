@@ -42,6 +42,7 @@ public class UserController {
             int result = userService.regist(signupDTO);
             String message = (result > 0) ? "회원가입이 성공적으로 완료되었습니다!" : "회원가입에 실패했습니다.";
             mv.addObject("message", message);
+
             mv.setViewName("redirect:/user/signup");
 
         }

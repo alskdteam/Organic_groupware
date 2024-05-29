@@ -4,117 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
-    <link rel="stylesheet" href="/css/join.css">
+    <link rel="stylesheet" href="/css/join.css" >
     <script>
-        // JavaScript to validate form fields
+        const message = `[[${message}]]`;
+        if (message) {
+            alert(message);
+            window.location.href= "/main";
+        }
+    </script>
+
+    <script>
+        // JavaScript를 사용하여 알림 창으로 오류 메시지를 출력
         window.onload = function() {
+            // URL에서 errorMessage 파라미터를 가져와 출력
             const urlParams = new URLSearchParams(window.location.search);
             const errorMessage = urlParams.get('errorMessage');
 
+            // errorMessage가 존재하면 알림 창으로 출력
             if (errorMessage) {
                 alert(errorMessage);
             }
-
-            // Disable the submit button initially
-            document.querySelector('.btn').disabled = true;
         };
-
-        function isValidDate(dateString) {
-            const regex = /^\d{4}-\d{2}-\d{2}$/;
-            return regex.test(dateString);
-        }
-
-        function isValidPhoneNumber(phoneString) {
-            const regex = /^\d{3}-\d{4}-\d{4}$/;
-            return regex.test(phoneString);
-        }
-
-        function isValidEmail(emailString) {
-            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            return regex.test(emailString);
-        }
-
-        function validateForm() {
-            const userId = document.querySelector('input[name="userId"]').value.trim();
-            const userPass = document.querySelector('input[name="userPass"]').value.trim();
-            const userName = document.querySelector('input[name="userName"]').value.trim();
-            const birthDate = document.querySelector('input[name="user_birth"]').value.trim();
-            const phoneNumber = document.querySelector('input[name="user_phone_number"]').value.trim();
-            const department = document.querySelector('input[name="user_department"]').value.trim();
-            const rank = document.querySelector('input[name="user_rank"]').value.trim();
-            const email = document.querySelector('input[name="user_email"]').value.trim();
-            const gender = document.querySelector('select[name="user_gender"]').value;
-            const joinDate = document.querySelector('input[name="join_date"]').value.trim();
-            const role = document.querySelector('select[name="role"]').value;
-
-            if (
-                userId && userPass && userName && isValidDate(birthDate) &&
-                isValidPhoneNumber(phoneNumber) && department && rank &&
-                isValidEmail(email) && gender && joinDate && role
-            ) {
-                document.querySelector('.btn').disabled = false;
-            } else {
-                document.querySelector('.btn').disabled = true;
-            }
-        }
     </script>
+
 </head>
 
 <body>
-<section class="join-form">
-    <div class="img-logo" id="img-logo">
-        <img src="https://github.com/alskdteam/semi_project_java/assets/167507636/bd479789-f3d8-410d-93bc-51a78ba44096"  width="400px">
-    </div>
 
-    <form th:action="@{/user/signup}" th:method="post" oninput="validateForm()">
+
+<section class="join-form">
+
+    <div class="img-logo">
+        <img src="https://github.com/alskdteam/semi_project_java/assets/167507636/bd479789-f3d8-410d-93bc-51a78ba44096" width="400px">
+
+    <form th:action="@{/user/signup}" th:method="post">
         <div class="int-area">
-            <input type="text" name="userId" autocomplete="off" placeholder="사원번호" required>
+            <input type="text" name="userId"
+                   autocomplete="off" placeholder="사원번호">
+        </div>
+        <br>
+
+        <div class="int-area">
+            <input type="password" name="userPass"
+                   autocomplete="off" placeholder="비밀번호">
         </div>
         <br>
         <div class="int-area">
-            <input type="password" name="userPass" autocomplete="off" placeholder="비밀번호" required>
-        </div>
-        <br>
+            <input type="text" name="userName"
+                   autocomplete="off" placeholder="이름">
+        </div><br>
         <div class="int-area">
-            <input type="text" name="userName" autocomplete="off" placeholder="이름" required>
-        </div>
-        <br>
+            <input type="text" name="user_birth"
+                   autocomplete="off" placeholder="생년월일 8자리">
+        </div><br>
+
         <div class="int-area">
-            <input type="text" name="user_birth" autocomplete="off" placeholder="생년월일 8자리 (yyyy-MM-dd)" required>
+            <input type="text" name="user_phone_number"
+                   autocomplete="off" placeholder="휴대전화번호"> <br><br>
         </div>
-        <br>
+
+
         <div class="int-area">
-            <input type="text" name="user_phone_number" autocomplete="off" placeholder="휴대전화번호 (000-0000-0000)" required>
+            <input type="text" name="user_department"
+                   autocomplete="off" placeholder="부서"> <br><br>
         </div>
-        <br>
+
         <div class="int-area">
-            <input type="text" name="user_department" autocomplete="off" placeholder="부서" required>
+            <input type="text" name="user_rank"
+                   autocomplete="off" placeholder="직급"> <br><br>
         </div>
-        <br>
+
         <div class="int-area">
-            <input type="text" name="user_rank" autocomplete="off" placeholder="직급" required>
+            <input type="text" name="user_email"
+                   autocomplete="off" placeholder="이매일"> <br><br>
         </div>
-        <br>
-        <div class="int-area">
-            <input type="text" name="user_email" autocomplete="off" placeholder="이메일" required>
-        </div>
-        <br>
+
+
         <div class="wrap">
-            <select name="user_gender" required>
-                <option value="남성" selected>남성</option>
+            <select name="user_gender">
+                <option value="남성"  selected >남성</option>
                 <option value="여성">여성</option>
-            </select>
+            </select> <br>
         </div>
         <br>
+
         <div class="int-area">
-            <input type="date" name="join_date" autocomplete="off" placeholder="입사날짜" required>
+            <input type="date" name="join_date"
+                   autocomplete="off" placeholder="입사날짜"> <br><br>
         </div>
-        <br>
+
         <div class="wrap">
-            <select name="role" required>
-                <option value="USER" selected>일반회원</option>
+            <select name="role">
+                <option value="USER"  selected >일반회원</option>
                 <option value="ADMIN">관리자</option>
-            </select>
+            </select> <br>
         </div>
         <br>
         <div class="btn-area">
@@ -123,10 +106,6 @@
     </form>
 </section>
 
-<script>
-    document.getElementById('img-logo').addEventListener('dblclick',()=>{
-        location.href='https://gi.esmplus.com/yoonbusi77/CYWORLD/jjgleft.gif'
-    })
-</script>
+
 </body>
 </html>

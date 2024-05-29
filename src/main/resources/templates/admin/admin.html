@@ -29,9 +29,17 @@
 
 
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            updateEdocList('all'); // 페이지가 로드될 때 '전체' 필터를 사용하여 업데이트
+            changeEdocPage(1); // 결과의 첫 번째 페이지를 표시합니다
+        });
+    </script>
 
 </head>
 <body>
+
+
 <div class="container">
     <!-- 사이드바 -->
     <div th:replace="common/sidebar.html" id="sidebar"></div>
@@ -191,45 +199,45 @@
 
                     <!--                     사원추가 시 사원추가 페이지로 이동 -->
                     <script>
-                    // 사원 조회 페이징 변수
+                        // 사원 조회 페이징 변수
 
-                    function user_no(user_no) {
-                        location.href = '/admin/updateEmployee?user_no=' + user_no;
-                    }
-
-                    var employeeCurrentPage = 1;
-                    var employeeRowsPerPage = 7;
-
-                    // 사원 조회 페이지 변경 함수
-                    function changeEmployeePage(pageNumber) {
-                        employeeCurrentPage = pageNumber;
-                        hideAllEmployeeRows();
-                        showEmployeeRowsForCurrentPage();
-                    }
-
-                    // 모든 사원 조회 행 숨기기 함수
-                    function hideAllEmployeeRows() {
-                        var rows = document.querySelectorAll('[id^="row_employee_${employee.user_no}"]');
-                        rows.forEach(function(row) {
-                            row.style.display = 'none';
-                        });
-                    }
-
-                    // 현재 페이지에 해당하는 사원 조회 행 보이기 함수
-                    function showEmployeeRowsForCurrentPage() {
-                        var startIndex = (employeeCurrentPage - 1) * employeeRowsPerPage;
-                        var endIndex = startIndex + employeeRowsPerPage;
-                        var rows = document.querySelectorAll('[id^="row_employee_${employee.user_no}"]');
-                        for (var i = startIndex; i < endIndex && i < rows.length; i++) {
-                            rows[i].style.display = 'table-row';
+                        function user_no(user_no) {
+                            location.href = '/admin/updateEmployee?user_no=' + user_no;
                         }
-                    }
 
-                    // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
-                    window.onload = function() {
-                        changeEmployeePage(1);
-                    };
-                </script>
+                        var employeeCurrentPage = 1;
+                        var employeeRowsPerPage = 7;
+
+                        // 사원 조회 페이지 변경 함수
+                        function changeEmployeePage(pageNumber) {
+                            employeeCurrentPage = pageNumber;
+                            hideAllEmployeeRows();
+                            showEmployeeRowsForCurrentPage();
+                        }
+
+                        // 모든 사원 조회 행 숨기기 함수
+                        function hideAllEmployeeRows() {
+                            var rows = document.querySelectorAll('[id^="row_employee_${employee.user_no}"]');
+                            rows.forEach(function(row) {
+                                row.style.display = 'none';
+                            });
+                        }
+
+                        // 현재 페이지에 해당하는 사원 조회 행 보이기 함수
+                        function showEmployeeRowsForCurrentPage() {
+                            var startIndex = (employeeCurrentPage - 1) * employeeRowsPerPage;
+                            var endIndex = startIndex + employeeRowsPerPage;
+                            var rows = document.querySelectorAll('[id^="row_employee_${employee.user_no}"]');
+                            for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+                                rows[i].style.display = 'table-row';
+                            }
+                        }
+
+                        // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
+                        window.onload = function() {
+                            changeEmployeePage(1);
+                        };
+                    </script>
 
 
 
@@ -247,72 +255,164 @@
                                 </div>
 
                                 <div class="buttonlist">
-                                    <button id="all" class="c_buttonlist" onclick="location.href='/admin/edoc?filter=all'">전체</button>
-                                    <button id="progress" class="c_buttonlist" onclick="location.href='/admin/edoc?filter=progress'">진행중</button>
-                                    <button id="rejected" class="c_buttonlist" onclick="location.href='/admin/edoc?filter=rejected'">반려</button>
+                                    <button id="all" class="c_buttonlist">전체</button>
+                                    <button id="progress" class="c_buttonlist">진행중</button>
+                                    <button id="rejected" class="c_buttonlist">반려</button>
                                 </div>
 
                                 <script>
-                                    function handleButtonClick(button, filter) {
-                                        // 모든 버튼에서 active 클래스 제거
-                                        document.querySelectorAll('.c_button').forEach(function(btn) {
-                                            btn.classList.remove('active');
+                                    // 1. 각 필터 버튼에 대한 클릭 이벤트 핸들러 만들기
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        var filterButtons = document.querySelectorAll('.c_buttonlist');
+
+                                        filterButtons.forEach(function(button) {
+                                            button.addEventListener('click', function() {
+                                                var filter = this.id; // 클릭된 버튼의 id를 필터 값으로 사용
+                                                updateEdocList(filter);
+                                            });
                                         });
+                                    });
 
-                                        // 클릭된 버튼에 active 클래스 추가
-                                        button.classList.add('active');
-
-                                        // 페이지 이동
-                                        location.href = `/subpage/edoc?filter=${filter}`;
+                                    // 2. 필터링된 데이터 가져오기 및 페이지네이션 업데이트하기
+                                    function updateEdocList(filter) {
+                                        var xhr = new XMLHttpRequest();
+                                        xhr.onreadystatechange = function() {
+                                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                if (xhr.status === 200) {
+                                                    var edocList = JSON.parse(xhr.responseText);
+                                                    var container = document.getElementById("your_edoc_list_container_id");
+                                                    if (container) {
+                                                        var edocListHtml = generateEdocListHtml(edocList);
+                                                        container.innerHTML = edocListHtml;
+                                                        populateTable(edocList); // 받아온 데이터를 처리하는 함수 호출
+                                                        // 페이지네이션 초기화
+                                                        initEdocPagination();
+                                                    } else {
+                                                        console.error('컨테이너 요소를 찾을 수 없습니다.');
+                                                    }
+                                                } else {
+                                                    console.error('요청 실패:', xhr.status);
+                                                }
+                                            }
+                                        };
+                                        xhr.open('GET', '/admin/your-backend-endpoint?filter=' + filter, true);
+                                        xhr.send();
                                     }
 
-                                    // 현재 URL의 파라미터를 분석하여 적절한 버튼에 active 클래스를 추가
-                                    window.onload = function() {
-                                        const urlParams = new URLSearchParams(window.location.search);
-                                        const filter = urlParams.get('filter') || 'all';
-                                        const activeButton = document.getElementById(filter);
-                                        if (activeButton) {
-                                            activeButton.classList.add('active');
-                                        }
-                                    };
+                                    // 3. 페이지네이션 업데이트하기
+                                    function initEdocPagination() {
+                                        // 전자결재 페이지 변경 함수 호출
+                                        changeEdocPage(1);
+                                    }
+                                </script>
 
+                                <script>
+                                    
+                                    // 데이터를 HTML로 변환하는 함수 예제
+                                    function generateEdocListHtml(data) {
+                                        var html = '<table>' +
+                                            '<thead>' +
+                                            '<tr>' +
+                                            '<th>문서번호</th>' +
+                                            '<th>분류</th>' +
+                                            '<th>작성자</th>' +
+                                            '<th>사원번호</th>' +
+                                            '<th>세부내용</th>' +
+                                            '<th>작성일자</th>' +
+                                            '<th>결재상태</th>' +
+                                            '<th>상세보기</th>' +
+                                            '</tr>' +
+                                            '</thead>' +
+                                            '<tbody id="table-body">'; // <tbody> 요소에 아이디 추가
+
+                                        data.forEach(function(item, index) {
+                                            html += '<tr id="row_edoc_' + item.user_no + '">';
+                                            html += '<td>' + item.edoc_form_ct_no + '</td>';
+                                            html += '<td>' + item.edocFormDTO.form_name + '</td>';
+                                            html += '<td>' + item.employee_name + '</td>';
+                                            html += '<td>' + item.form_name + '</td>';
+                                            html += '<td>' + item.user_id + '</td>';
+                                            html += '<td>' + item.title + '</td>';
+                                            html += '<td>' + formatDate(item.drafting_date) + '</td>';
+                                            html += '<td>' + item.edoc_status + '</td>';
+                                            html += '</tr>';
+                                        });
+
+                                        html += '</tbody></table>'; // </tbody> 요소 닫기
+                                        return html;
+                                    }
+
+                                    // Function to format date as 'yyyy-MM-dd'
+                                    function formatDate(date) {
+                                        var d = new Date(date);
+                                        var year = d.getFullYear();
+                                        var month = ('0' + (d.getMonth() + 1)).slice(-2);
+                                        var day = ('0' + d.getDate()).slice(-2);
+                                        return year + '-' + month + '-' + day;
+                                    }
+
+                                    // populateTable 함수 정의
+                                    function populateTable(data) {
+                                        // 데이터를 테이블에 추가하는 로직
+                                        console.log(data); // 실제 테이블 로직으로 교체
+                                    }
+
+                                    // 전자결재 페이지 변경 함수
+                                    function changeEdocPage(pageNumber) {
+                                        // 여기에 전자결재 페이지 변경 관련 로직 추가
+                                    }
+                                    // 페이지 로딩이 완료된 후 실행되는 함수
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        // 페이지네이션 초기화
+                                        initEdocPagination();
+                                    });
+
+                                    // 전자결재 페이지네이션 초기화 함수
+                                    function initEdocPagination() {
+                                        // 전자결재 페이지 변경 함수 호출
+                                        changeEdocPage(1);
+                                    }
+
+                                    // 전자결재 페이지 변경 함수
+                                    function changeEdocPage(pageNumber) {
+                                        // 전자결재 페이지네이션 관련 로직 추가
+                                        var edocCurrentPage = pageNumber;
+                                        var edocRowsPerPage = 7;
+
+                                        // 모든 전자결재 행 숨기기
+                                        var rows = document.querySelectorAll('[id^="row_edoc_"]');
+                                        rows.forEach(function(row) {
+                                            row.style.display = 'none';
+                                        });
+
+                                        // 현재 페이지에 해당하는 전자결재 행 보이기
+                                        var startIndex = (edocCurrentPage - 1) * edocRowsPerPage;
+                                        var endIndex = startIndex + edocRowsPerPage;
+                                        for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+                                            rows[i].style.display = 'table-row';
+                                        }
+                                    }
 
                                 </script>
 
-                                <div class="chart">
-                                    <!--여기서 시작-->
-                                    <table><br>
-                                        <thead>
-                                        <tr>
-                                            <th>기안일</th>
-                                            <th>분류</th>
-                                            <th>제목</th>
-                                            <th>작성자</th>
-                                            <th>결재상태</th>
-                                            <th>결재하기</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="tableBody">
-                                        <tr th:each="list, iterStat : ${edocList}" id="row_edoc_${list.user_no}">
-                                            <td th:text="${list.drafting_date}"></td>
-                                            <td th:text="${list.edocFormDTO.form_name}"></td>
-                                            <td th:text="${list.title}"></td>
-                                            <td th:text="${list.employee_name}"></td>
-                                            <td th:text="${list.edoc_status}"></td>
-                                            <td>
-                                                <button style="border-radius: 5px; background-color: aliceblue; border: 1px solid gray; padding: 2px" type="button" class="btn" th:attr="onclick='admin(\'' + ${list.edoc_form_ct_no} + '\')'">상세보기</button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
 
-                                    <script>
-                                        function admin(edocFormCtNo) {
-                                            window.location.href = '/admin/edocFrom/selectEdocList/' + edocFormCtNo;
-                                        }
-                                    </script>
+
+
+
+                                <div id="your_edoc_list_container_id" class="chart">
+                                    <!--여기서 시작-->
+
+
+
 
                                 </div>
+
+
+                                <script>
+                                    function admin(edocFormCtNo) {
+                                        window.location.href = '/admin/edocFrom/selectEdocList/' + edocFormCtNo;
+                                    }
+                                </script>
                                 <div class="page_number">
                                     <div class="s_button">&lt;</div>
                                     <div class="s_button" onclick="changeEdocPage(1)">1</div>
@@ -320,42 +420,7 @@
                                     <div class="s_button" onclick="changeEdocPage(3)">3</div>
                                     <div class="s_button">&gt;</div>
                                 </div>
-                                <script>
-                                    // 전자결재 페이징 변수
-                                    var edocCurrentPage = 1;
-                                    var edocRowsPerPage = 7;
 
-                                    // 전자결재 페이지 변경 함수
-                                    function changeEdocPage(pageNumber) {
-                                        edocCurrentPage = pageNumber;
-                                        hideAllEdocRows();
-                                        showEdocRowsForCurrentPage();
-                                    }
-
-                                    // 모든 전자결재 행 숨기기 함수
-                                    function hideAllEdocRows() {
-                                        var rows = document.querySelectorAll('[id^="row_edoc_${list.user_no}"]');
-                                        rows.forEach(function(row) {
-                                            row.style.display = 'none';
-                                        });
-                                    }
-
-                                    // 현재 페이지에 해당하는 전자결재 행 보이기 함수
-                                    function showEdocRowsForCurrentPage() {
-                                        var startIndex = (edocCurrentPage - 1) * edocRowsPerPage;
-                                        var endIndex = startIndex + edocRowsPerPage;
-                                        var rows = document.querySelectorAll('[id^="row_edoc_${list.user_no}"]');
-                                        for (var i = startIndex; i < endIndex && i < rows.length; i++) {
-                                            rows[i].style.display = 'table-row';
-                                        }
-                                    }
-
-                                    // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
-                                    window.onload = function() {
-                                        changeEdocPage(1);
-                                        changeEmployeePage(1);
-                                    };
-                                </script>
                             </div>
                         </div>
                     </div>
