@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>noticetext</title>
+    <link rel="stylesheet" href="/src/main/resources/static/css/noticetext.css">
+    <style>
+
+        @media screen and (max-width: 375px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .content {
+                display: none;
+            }
+            #sidebar {
+                width: 100%;
+                height: 838px;
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 사이드바 -->
+    <div th:replace="common/sidebar.html" id="sidebar"></div>
+    <!-- 메인 컨텐츠 -->
+    <div class="content">
+        <!-- 헤더 추가 -->
+        <div th:replace="common/header.html" id="header"></div>
+
+        <div class="area">
+            <!-- 여기서부터 시작 위에는 건들지 마세요 -->
+            <h2 class="midtitle">제목 :</h2>
+            <form action="/admin/updateNotice" method="post">
+                <input type="hidden" name="noticeId" th:value="${noticeDTO.noticeId}">
+                <input type="hidden" name="noticeCreationDate" th:value="${noticeDTO.noticeCreationDate}">
+                <input type="text" class="titletext" name="noticeTitle" placeholder="제목을 입력해주세요" th:value="${noticeDTO.noticeTitle}">
+                <textarea name="noticeContent" id="inputtext" class="inputtext" placeholder=" 내용을 입력하세요" th:text="${noticeDTO.noticeContent}"></textarea>
+                <div class="button_all">
+                    <input type="file" id="attachmentInput" style="display: none;">
+                    <button type="button" class="btn_notice1" onclick="document.getElementById('attachmentInput').click();">첨부파일</button>
+                    <button type="submit" class="btn_notice2">수정하기</button>
+                    <button type="button" class="btn_notice3"><a href="/admin/admin">취소</a></button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            const attachmentInput = document.getElementById('attachmentInput');
+            const fileContentTextarea = document.getElementById('fileContent');
+
+            attachmentInput.addEventListener('change', function() {
+                const selectedFile = attachmentInput.files[0]; // 선택된 파일 가져오기
+
+                if (selectedFile) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        const fileText = event.target.result; // 파일 내용을 문자열로 읽어옴
+                        fileContentTextarea.value = fileText; // 텍스트 영역에 파일 내용 출력
+                    };
+
+                    reader.readAsText(selectedFile); // 파일을 텍스트로 읽어옴
+                }
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>

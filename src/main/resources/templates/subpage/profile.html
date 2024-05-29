@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/profile.css">
+    <script src="/js/profile.js"></script>
 
-    <style>
+      <style>
 
         @media screen and (max-width: 375px) {
             .container {
@@ -27,6 +28,10 @@
                 height: 838px;
             }
         }
+
+
+
+
     </style>
 
 </head>
@@ -55,15 +60,32 @@
                                     <!--여기서 시작-->
                                     <div class="picture">
                                         <div class="c_picture">
-                                            <div class="profile_picture">
-
+                                            <div class="profile_picture" style="position: relative">
+                                                <img style="width: 100%; height: 100%;" onerror="this.style.display='none'" th:if="${base64ImageData != null}" th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" />
+                                                <img style="width: 100%; height: 100%;" th:if="${base64ImageData == null}" src="/img/profile/profile2.jpeg" alt="Default Image" />
                                             </div>
                                             <div class="profile_frame"></div>
-                                            <div class="edit_button">
+                                            <div class="edit_button" id="edit_btn">
                                                 프로필 편집
                                             </div>
                                         </div>
-                                        <div class="profile_edit">
+                                        <div class="profile_edit" >
+                                            <div class="write">
+
+
+                                                <div th:each="profile : ${profilesWithoutImage}">
+                                                    <br>
+                                                    <p style="font-size: 25px; font-weight: normal" th:text="${profile.korea_name}"></p>
+                                                    <p style="font-size: 20px; font-weight: normal" th:text="${profile.english_name}"></p>
+                                                    <br>
+                                                    <p style="font-size: 23px; font-weight: normal">(주)Organic</p>
+                                                    <p style="font-size: 15px; font-weight: normal">서울시 구석지로 19, 7층(대나무 숲)<br>f.02-123-1234</p>
+                                                    <br>
+                                                    <p th:text="${profile.phone_number}"></p>
+                                                    <p th:text="${profile.email}"></p>
+                                                </div>
+
+                                            </div>
 
                                         </div>
                                     </div>
@@ -78,6 +100,74 @@
                             </div>
 
                         </div>
+
+
+
+                        <!--모달 관련-->
+                        <form action="/subpage/profileEdit" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
+                            <div id="myModal" class="modal">
+                                <!-- 모달 내용 -->
+                                <div class="modal-content">
+                                    <div style="position: relative">
+                                        <p style="margin-top: 6px; text-align: center">프로필 편집</p>
+                                        <div class="circle" id="imagePreview"></div>
+
+                                        <!-- 파일 선택 input -->
+                                        <input type="file" id="profile_image" name="profile_image" accept="image/*" style="display: none;">
+                                        <div class="btn1" id="selectButton">변경</div>
+
+                                        <div class="wrap_input">
+                                            <div>
+                                                <label for="korea_name">이름</label> <br>
+                                                <input type="text" id="korea_name" name="korea_name">
+                                            </div>
+                                            <div>
+                                                <label for="english_name">영문 이름</label><br>
+                                                <input type="text" id="english_name" name="english_name">
+                                            </div>
+                                            <div>
+                                                <label for="phone_number">전화번호</label> <br>
+                                                <input type="tel" id="phone_number" name="phone_number">
+                                            </div>
+                                            <div>
+                                                <label for="email">이메일</label> <br>
+                                                <input type="email" id="email" name="email">
+                                            </div>
+                                        </div>
+
+                                        <div class="buttons">
+                                            <button id="addBtn" style="background-color: #4CAF50" type="submit">추가</button>
+                                            <button id="cancelBtn" type="button">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <script>
+                            document.getElementById('selectButton').addEventListener('click', function() {
+                                document.getElementById('profile_image').click();
+                            });
+
+                            document.getElementById('profile_image').addEventListener('change', function(event) {
+                                const file = event.target.files[0];
+                                if (file) {
+                                    const reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        const imagePreview = document.getElementById('imagePreview');
+                                        if (imagePreview) {
+                                            imagePreview.innerHTML = '<img src="' + e.target.result + '" alt="Profile Image">';
+                                        }
+                                    };
+                                    reader.readAsDataURL(file);
+                                }
+                            });
+                        </script>
+
+
+
+
+
                         <!--                        버튼 영역-->
                         <div class="button">
                             <!--여기서 시작-->
@@ -123,49 +213,227 @@
                             <div class="flex2">
                                 <h3>메모</h3>
                                 <div class="c_memo">
-                                    <p>memo</p>
+                                        <h1 class="headmemo_title">memo<h1/>
+                                        <button class="new_button" id="new-memo-btn">메모 등록</button>
+                                       
+                                    <!--메모창 안에 디자인 추가-->
+                                    
+
+                                    <!-- 메모 목록 항목이 여기에 추가됩니다 -->
+                                    <div class="cars">
+                                        <table>
+                                            <tbody id="tableBody">
 
 
+                                            <tr th:each="memo : ${memoDTOList}" >
+                                                <td style="width: 135px">
+                                                    <a th:href="'profile/memo/' +${memo.memo_id}" th:text="${memo.memo_title}"></a>
+
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <form class="Memoform" action="/subpage/profile" method="post">
+
+                                            <div id="MemomyModal" class="modal1">
+
+                                                <!-- 모달 내용 -->
+
+                                                <div class="modal-content2">
+                                                    <div class="titlebox"><p id="modal-title1">제목 :</p>
+                                                    <p id="inputtitle"><input type="text" id="memo_title" name="memo_title" placeholder="제목을 입력해주세요"></p>
+                                                    </div>
+                                                    <div class="inputbox">
+                                                    <p id="substance"></p>
+                                                    <p id="inputcontent"><textarea id="memo_content" name="memo_content" placeholder="내용을 입력해주세요"></textarea></p>
+                                                    </div>
+
+                                                    <div class="memobuttons">
+                                                        <button id="memoaddBtn" type="submit">추가</button>
+                                                        <button id="memocancelBtn" type="submit">취소</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                    <script>
+                                        // 모달 요소 가져오기
+                                        var modal1 = document.getElementById("MemomyModal");
+
+                                        // 모달 열기 버튼 가져오기
+                                        var btn = document.getElementById("new-memo-btn");
+
+                                        // 모달 닫기 버튼 가져오기
+                                        var span = document.getElementsByClassName("cancelBtn")[0];
+
+                                        // 모달 열기 버튼을 클릭하면 모달 보이기
+                                        btn.onclick = function() {
+                                            modal1.style.display = "block";
+                                        }
+
+                                        // 모달 닫기 버튼을 클릭하면 모달 닫기
+                                        span.onclick = function() {
+                                            modal1.style.display = "none";
+                                        }
+
+                                        document.getElementById('memocancelBtn').addEventListener('click', function(event) {
+                                            // 기본 동작(폼 제출) 막기
+                                            event.preventDefault();
+
+                                            // 모달 닫기
+                                            modal1.style.display = "none";
+                                        });
+
+                                        // 모달 밖의 영역을 클릭하면 모달 닫기
+                                        window.onclick = function(event) {
+                                            if (event.target == modal1) {
+                                                modal1.style.display = "none";
+                                            }
+                                        }
+                                    </script>
+                                    <!--요 까지 메모장 추가 -->
                                 </div>
-
-
                             </div>
 
                         </div>
 
-                        <!--                        조회 영역-->
-                        <div class="employee" tabindex="0">
 
+
+
+                        <!-- 도아 사원조회 -->
+                        <!-- 조회 영역-->
+                        <div class="employee" tabindex="0">
                             <div class="flex3">
                                 <h3>사원조회</h3>
-
                                 <div class="c_employee">
-                                    <!--                                    여기서 시작-->
+                                    <!--  여기서 시작-->
 
+                                    <div class="head-container">
+                                        <div class="wrap1">
+                                            <img src="https://github.com/alskdteam/semi_project_java/assets/158136952/3d4ec91f-ae4f-4ddf-987c-4e47a8a92ef1" id="logo">
+                                        </div>
+                                        <div class="wrap2">
+                                            <form action="/subpage/search" method="GET" class="searchForm">
+
+                                                <div class="wrap3">
+                                                    <input type="text" class="searchInput-a" name="user_department" placeholder="부서검색">
+                                                    <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
+                                                </div>
+
+                                                <div class="wrap3">
+                                                    <input type="text" class="searchInput-b" name="user_name" placeholder="이름검색">
+                                                    <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
+                                                </div>
+
+                                                <div class="wrap3">
+                                                    <input type="text" class="searchInput-c" name="user_rank" placeholder="직급검색">
+                                                    <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--employee 테이블-->
+                                    <table><br>
+                                        <thead>
+                                        <tr>
+                                            <th>부서</th>
+                                            <th>구성원명</th>
+                                            <th>직급</th>
+                                            <th>이메일</th>
+                                            <th>휴대폰</th>
+                                            <th>생년월일</th>
+                                            <th>입사일</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="employeetableBody">
+                                        <!-- 여기서부터 페이지 네이션을 위한 행들만 추가 -->
+                                        <tr th:each="employee : ${employeeList}" id="row_${employee.user_no}">
+                                            <td th:text="${employee.user_department}"></td>
+                                            <td th:text="${employee.user_name}"></td>
+                                            <td th:text="${employee.user_rank}"></td>
+                                            <td th:text="${employee.user_email}"></td>
+                                            <td th:text="${employee.user_phone_number}"></td>
+                                            <td th:text="${employee.user_birth}"></td>
+                                            <td th:text="${employee.join_date}"></td>
+                                        </tr>
+                                        <!-- 페이지 네이션을 위한 행들 끝 -->
+                                        </tbody>
+                                    </table>
+
+                                    <!-- 페이지 네이션 버튼 -->
+                                    <div class="page_number">
+                                        <div class="s_button" onclick="changePage(1)">1</div>
+                                        <div class="s_button" onclick="changePage(2)">2</div>
+                                        <div class="s_button" onclick="changePage(3)">3</div>
+                                    </div>
                                 </div>
-
-
                             </div>
-
                         </div>
+
+                        <script>
+
+                            // 현재 페이지를 저장할 변수
+                            var currentPage = 1;
+                            // 페이지당 행 수
+                            var rowsPerPage = 7;
+
+                            // 페이지를 변경하는 함수
+                            function changePage(pageNumber) {
+                                // 현재 페이지를 설정
+                                currentPage = pageNumber;
+                                // 모든 행을 숨김
+                                hideAllRows();
+                                // 현재 페이지에 해당하는 행들을 보여줌
+                                showRowsForCurrentPage();
+                            }
+
+                            // 모든 행을 숨기는 함수
+                            function hideAllRows() {
+                                var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
+                                rows.forEach(function(row) {
+                                    row.style.display = 'none';
+                                });
+                            }
+
+                            // 현재 페이지에 해당하는 행들을 보여주는 함수
+                            function showRowsForCurrentPage() {
+                                var startIndex = (currentPage - 1) * rowsPerPage;
+                                var endIndex = startIndex + rowsPerPage;
+                                var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
+                                for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+                                    rows[i].style.display = 'table-row';
+                                }
+                            }
+
+                            // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
+                            window.onload = function() {
+                                changePage(1);
+                            };
+                        </script>
+
+
+                        <!-- 여기까지 employee 영역 -->
+
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
 
     </div>
 </div>
+
+
 </body>
 </html>

@@ -55,14 +55,17 @@
 <div class="header">
     <div class="h_wrap1">
         <div class="h_flex1">
-            <img src="/img/header/ararm.png" id="h_alarm">
-            <img src="/img/header/toDoList.png" id="h_toDoList">
+            <img src="/img/header/ararm.png" id="h_alarm" style="cursor: pointer;">
+            <img src="/img/header/toDoList.png" id="h_toDoList" style="cursor: pointer;">
             <div class="h_logout_wrap">
                 <form th:action="@{/auth/logout}" th:method="post">
-                    <button id="h_logout">로그아웃</button>
+                    <button id="h_logout" style="cursor: pointer;">로그아웃</button>
                 </form>
             </div>
-            <div class="h_profile"></div>
+            <div class="h_profile" style="position: relative; overflow: hidden; cursor: pointer;" onclick="location.href='/subpage/profile'">
+                <img style="width: 105%; height: 105%;" onerror="this.style.display='none'" th:if="${base64ImageData != null}" th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" />
+                <img style="width: 100%; height: 100%;" th:if="${base64ImageData == null}" src="/img/profile/profile2.jpeg" alt="Default Image" />
+            </div>
         </div>
     </div>
 </div>

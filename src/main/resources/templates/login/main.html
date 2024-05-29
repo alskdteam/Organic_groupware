@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/mainPageButton.js"></script>
     <style>
-
         @media screen and (max-width: 375px) {
             .container {
                 flex-direction: column;
@@ -21,6 +20,7 @@
             .content {
                 display: none;
             }
+
             #sidebar {
                 width: 100%;
                 /* 사이드바 틀 높이 */
@@ -55,13 +55,13 @@
                                     <table>
                                         <tr>
                                             <th>번호</th>
-                                            <th>내용</th>
+                                            <th>제목</th>
                                             <th>등록일</th>
                                         </tr>
                                         <tbody id="tableBody">
                                         <tr th:each="list, iterStat : ${selectNotice}" id="row_${iterStat.index}">
                                             <td th:text="${list.notice_id}"></td>
-                                            <td th:text="${list.notice_content}"></td>
+                                            <td th:text="${list.notice_title}"></td>
                                             <td th:text="${list.notice_creationDate}"></td>
                                         </tr>
                                         </tbody>
@@ -78,43 +78,285 @@
                                 </div>
 
                                 <h4>댓글</h4>
-                                <div class="comment_list">
-
-                                </div>
+                                <div class="comment_list"></div>
                                 <div class="comment">
                                     <div flex4>
                                         <input type="text" class="comment_input" placeholder="댓글을 입력하세요">
                                         <button class="comment_button">등록</button>
                                     </div>
-
                                 </div>
-
-
                             </div>
-
                         </div>
                     </div>
 
-                    <div class="dashboard">
+                    <div class="dashboard" style="display: flex; justify-content: center">
                         <!--여기서 시작-->
-
+                        <div class="wrap_dashboard">
+                            <div class="header2">
+                                <div class="button-container">
+                                    <button onclick="prevWeek()">&lt;</button>
+                                    <span id="week-label">5월 1주</span>
+                                    <button onclick="nextWeek()">&gt;</button>
+                                </div>
+                            </div>
+                            <table class="dashboardTable">
+                                <thead>
+                                <tr>
+                                    <th class="empty"></th>
+                                    <th class="day-column">월</th>
+                                    <th class="day-column">화</th>
+                                    <th class="day-column">수</th>
+                                    <th class="day-column">목</th>
+                                    <th class="day-column">금</th>
+                                    <th class="day-column">토</th>
+                                    <th class="day-column">일</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+<!--                                <tr id="shift-row">-->
+<!--                                    <td class="empty bottom-left">교대</td>-->
+<!--                                    <td id="shift-Mon"><span class="hidden-date"></span></td>-->
+<!--                                    <td id="shift-Tue"><span class="hidden-date"></span></td>-->
+<!--                                    <td id="shift-Wed"><span class="hidden-date"></span></td>-->
+<!--                                    <td id="shift-Thu"><span class="hidden-date"></span></td>-->
+<!--                                    <td id="shift-Fri"><span class="hidden-date"></span></td>-->
+<!--                                    <td id="shift-Sat"><span class="hidden-date"></span></td>-->
+<!--                                    <td id="shift-Sun"><span class="hidden-date"></span></td>-->
+<!--                                </tr>-->
+                                <tr id="vehicle-rental-row">
+                                    <td class="empty">차량대여</td>
+                                    <td id="vehicle-Mon"><span class="hidden-date"></span></td>
+                                    <td id="vehicle-Tue"><span class="hidden-date"></span></td>
+                                    <td id="vehicle-Wed"><span class="hidden-date"></span></td>
+                                    <td id="vehicle-Thu"><span class="hidden-date"></span></td>
+                                    <td id="vehicle-Fri"><span class="hidden-date"></span></td>
+                                    <td id="vehicle-Sat"><span class="hidden-date"></span></td>
+                                    <td id="vehicle-Sun"><span class="hidden-date"></span></td>
+                                </tr>
+                                <tr id="item-rental-row">
+                                    <td class="empty bottom-right">물품대여</td>
+                                    <td id="item-Mon"><span class="hidden-date"></span></td>
+                                    <td id="item-Tue"><span
+                                            class="hidden-date"></span></td>
+                                    <td id="item-Wed"><span class="hidden-date"></span></td>
+                                    <td id="item-Thu"><span class="hidden-date"></span></td>
+                                    <td id="item-Fri"><span class="hidden-date"></span></td>
+                                    <td id="item-Sat"><span class="hidden-date"></span></td>
+                                    <td id="item-Sun"><span class="hidden-date"></span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
 
 
+            <script>
+                function addCarDataToDashboard(carData) {
+                    carData.forEach(car => {
+                        const startDate = new Date(car.vehicle_reservation_date);
+                        const endDate = new Date(car.vehicle_return_due_date);
 
+                        const startDay = startDate.getDate();
+                        const endDay = endDate.getDate();
 
+                        const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                        const dayAbbreviationStart = daysOfWeek[startDate.getDay()];
+                        const dayAbbreviationEnd = daysOfWeek[endDate.getDay()];
 
+                        const cellIdStart = `vehicle-${dayAbbreviationStart}-${startDay}-${car.vehicle_name}`;
+                        const cellIdEnd = `vehicle-${dayAbbreviationEnd}-${endDay}-${car.vehicle_name}`;
 
+                        const newCellStart = document.createElement('div');
+                        newCellStart.id = cellIdStart + '-start';
+                        newCellStart.textContent = `${car.vehicle_name} (${car.vehicle_purpose})`;
 
+                        const newCellEnd = document.createElement('div');
+                        newCellEnd.id = cellIdEnd + '-end';
+                        newCellEnd.textContent = `${car.vehicle_name} (${car.vehicle_purpose})`;
 
+                        const targetCellStart = document.getElementById(`vehicle-${dayAbbreviationStart}`);
+                        targetCellStart.appendChild(newCellStart);
 
+                        if (startDay !== endDay || dayAbbreviationStart !== dayAbbreviationEnd) {
+                            const targetCellEnd = document.getElementById(`vehicle-${dayAbbreviationEnd}`);
+                            targetCellEnd.appendChild(newCellEnd);
+                        } else {
+                            newCellStart.id += '-same';
+                        }
+                    });
+                }
+
+                function addRentalDataToDashboard(rentalData) {
+                    rentalData.forEach(rental => {
+                        const startDate = new Date(rental.rental_date);
+                        const endDate = new Date(rental.rental_return_date);
+
+                        const startDay = startDate.getDate();
+                        const endDay = endDate.getDate();
+
+                        const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                        const dayAbbreviationStart = daysOfWeek[startDate.getDay()];
+                        const dayAbbreviationEnd = daysOfWeek[endDate.getDay()];
+
+                        const cellIdStart = `item-${dayAbbreviationStart}-${startDay}`;
+                        const cellIdEnd = `item-${dayAbbreviationEnd}-${endDay}`;
+
+                        const newCellStart = document.createElement('div');
+                        newCellStart.id = cellIdStart + '-start';
+                        newCellStart.textContent = `${rental.itemDTO.item_name} (${rental.rental_purpose})`;
+
+                        const newCellEnd = document.createElement('div');
+                        newCellEnd.id = cellIdEnd + '-end';
+                        newCellEnd.textContent = `${rental.itemDTO.item_name} (${rental.rental_purpose})`;
+
+                        const targetCellStart = document.getElementById(`item-${dayAbbreviationStart}`);
+                        targetCellStart.appendChild(newCellStart);
+
+                        if (startDay !== endDay || dayAbbreviationStart !== dayAbbreviationEnd) {
+                            const targetCellEnd = document.getElementById(`item-${dayAbbreviationEnd}`);
+                            targetCellEnd.appendChild(newCellEnd);
+                        } else {
+                            newCellStart.id += '-same';
+                        }
+                    });
+                }
+
+                function handleCarDataResponse(responseData) {
+                    const carData = responseData.carList;
+                    const rentalData = responseData.rentalList;
+                    addCarDataToDashboard(carData);
+                    addRentalDataToDashboard(rentalData);
+                }
+
+                function sendDateToController(day, formattedDate) {
+                    fetch('/login/dashboard', {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ day: day, date: formattedDate })
+                    })
+                        .then(response => response.json())
+                        .then(handleCarDataResponse)
+                        .catch(error => {
+                            console.error('날짜 전송 실패:', error);
+                        });
+                }
+
+                document.addEventListener("DOMContentLoaded", function() {
+                    const currentDate = new Date();
+                    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+                    for (let i = 0; i < 7; i++) {
+                        const targetDate = new Date(currentDate.getTime() + i * 24 * 60 * 60 * 1000);
+                        const dayIndex = targetDate.getDay();
+                        const day = daysOfWeek[dayIndex];
+                        const formattedDate = `${targetDate.getFullYear()}-${(targetDate.getMonth() + 1).toString().padStart(2, '0')}-${targetDate.getDate().toString().padStart(2, '0')}`;
+
+                        sendDateToController(day, formattedDate);
+                    }
+                });
+
+                let startDate = new Date();
+
+                function formatDate(date) {
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    return `${year}-${month}-${day}`;
+                }
+
+                function updateCalendar() {
+                    const weekLabel = document.getElementById("week-label");
+                    const startOfWeek = new Date(startDate);
+
+                    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+                    for (let i = 0; i < 7; i++) {
+                        const currentDate = new Date(startOfWeek);
+                        currentDate.setDate(currentDate.getDate() + i);
+
+                        const dayIndex = (startOfWeek.getDay() + i) % 7;
+                        const day = daysOfWeek[dayIndex];
+                        const cellVehicle = document.getElementById(`vehicle-${day}`);
+
+                        const dateSpanVehicle = cellVehicle ? cellVehicle.querySelector(".hidden-date") : null;
+
+                        if (dateSpanVehicle) {
+                            dateSpanVehicle.textContent = formatDate(currentDate);
+                        }
+                    }
+
+                    const endOfWeek = new Date(startOfWeek);
+                    endOfWeek.setDate(endOfWeek.getDate() + 6);
+
+                    const startMonth = startOfWeek.getMonth() + 1;
+                    const endMonth = endOfWeek.getMonth() + 1;
+                    const startDay = startOfWeek.getDate();
+                    const endDay = endOfWeek.getDate();
+
+                    if (startMonth === endMonth) {
+                        weekLabel.textContent = `${startMonth}월 ${startDay}일 ~ ${endDay}일`;
+                    } else {
+                        weekLabel.textContent = `${startMonth}월 ${startDay}일 ~ ${endMonth}월 ${endDay}일`;
+                    }
+                }
+
+                function clearData() {
+                    const vehicleDaysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                    vehicleDaysOfWeek.forEach(day => {
+                        const targetVehicleCell = document.getElementById(`vehicle-${day}`);
+                        while (targetVehicleCell.firstChild) {
+                            targetVehicleCell.removeChild(targetVehicleCell.firstChild);
+                        }
+                    });
+
+                    const itemDaysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                    itemDaysOfWeek.forEach(day => {
+                        const targetItemCell = document.getElementById(`item-${day}`);
+                        while (targetItemCell.firstChild) {
+                            targetItemCell.removeChild(targetItemCell.firstChild);
+                        }
+                    });
+                }
+
+                function prevWeek() {
+                    startDate.setDate(startDate.getDate() - 7);
+                    clearData();
+                    sendDatesToController();
+                    updateCalendar();
+                }
+
+                function nextWeek() {
+                    startDate.setDate(startDate.getDate() + 7);
+                    clearData();
+                    sendDatesToController();
+                    updateCalendar();
+                }
+
+                function sendDatesToController() {
+                    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+                    for (let i = 0; i < 7; i++) {
+                        const currentDate = new Date(startDate);
+                        currentDate.setDate(currentDate.getDate() + i);
+
+                        const dayIndex = (startDate.getDay() + i) % 7;
+                        const day = daysOfWeek[dayIndex];
+                        const formattedDate = formatDate(currentDate);
+
+                        sendDateToController(day, formattedDate);
+                    }
+                }
+
+                updateCalendar();
+            </script>
 
 
 
         </div>
-
     </div>
 </div>
 </body>

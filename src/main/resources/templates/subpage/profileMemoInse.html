@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profileMemo</title>
+    <style>
+
+        @media screen and (max-width: 375px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .content {
+                display: none;
+            }
+            #sidebar {
+                width: 100%;
+                height: 838px;
+            }
+        }
+
+        @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #fbfbfb;
+            overflow-y: auto;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            overflow-y: auto;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .area {
+            background-color: white;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            border: 1.3px solid #e1e1e1;
+            margin-left: 16.5vw;
+            width: calc(100% - 16.5vw);
+            height: 900px;
+        }
+
+        .midtitle {
+            padding: 1px;
+            width: 60vw;
+            height: 60px;
+            border: 2px solid #4CAF50;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            position: relative;
+            top: 100px;
+            left: 10vw;
+        
+        }
+
+        .titletext {
+
+            align-items: center;
+            margin-left: 1vw;
+            width: 40vw;
+            height: 30px;
+            position: relative;
+            margin-top: 38px;
+            left: 14vw;
+            font-size: 25px;
+            font-weight: 400;
+            border: none;
+            outline: none;
+            z-index: 1;
+           
+        }
+
+        .inputtext {
+            margin: 0;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            height: 500px;
+            width: 70%;
+            top: 100px;
+            border: 2px solid #4CAF50;
+            left: 5vw;
+            font-size: 24px;
+            border-radius: 10px;
+            padding: 30px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .button_all {
+            position: relative;
+            width: 100vw;
+            background-color: white;
+            height: 100px;
+            margin-top: 100px;
+        }
+
+        .btn_notice1, .btn_notice2 {
+            position: relative;
+            margin-right: 3vw;
+            margin-top: 20px;
+            width: 5vw;
+            height: 35px;
+            border-radius: 3px;
+            background-color: #4CAF50;
+            color: white;
+
+            align-items: center;
+
+            font-family: 'Pretendard-Regular';
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn_notice2, .btn_notice3 {
+            
+            position: relative;
+            left: 55vw;
+        }
+        .btn_notice3  {
+            position: relative;
+            margin-right: 3vw;
+            margin-top: 20px;
+            width: 5vw;
+            height: 35px;
+            border-radius: 3px;
+            background-color: #4CAF50;
+            color: white;
+            font-family: 'Pretendard-Regular';
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn_notice3 a {
+
+            
+            justify-content: center;
+
+            display: flex;
+            position: relative;
+
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+           
+        }
+
+        .btn_notice1 {
+            position: relative;
+            left: 5vw;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 사이드바 -->
+    <div th:replace="common/sidebar.html" id="sidebar"></div>
+    <!-- 메인 컨텐츠 -->
+    <div class="content">
+        <!-- 헤더 추가 -->
+        <div th:replace="common/header.html" id="header"></div>
+
+        <div class="area">
+            <!-- 여기서부터 시작 위에는 건들지 마세요 -->
+            <h2 class="midtitle">제목 :</h2>
+            <form action="/subpage/profileMemoInse" method="post">
+                <input type="hidden" name="memo_id" th:value="${memoDTO.memo_id}">
+                <input type="hidden" name="user_no" th:value="${memoDTO.user_no}">
+
+                <input type="text" class="titletext" name="memo_title" placeholder="제목을 입력해주세요" th:value="${memoDTO.memo_title}">
+                <textarea name="memo_content" id="inputtext" class="inputtext" placeholder="내용을 입력하세요" th:text="${memoDTO.memo_content}"></textarea>
+
+                <div class="button_all">
+                    <input type="file" id="attachmentInput" style="display: none;">
+                    <button type="button" class="btn_notice1" onclick="document.getElementById('attachmentInput').click();">첨부파일</button>
+                    <button type="submit" class="btn_notice2">수정하기</button>
+                    <button type="button" class="btn_notice3"><a href="/subpage/profile">취소</a></button>
+                </div>
+            </form>
+
+        </div>
+
+        <script>
+            const attachmentInput = document.getElementById('attachmentInput');
+            const fileContentTextarea = document.getElementById('fileContent');
+
+            attachmentInput.addEventListener('change', function() {
+                const selectedFile = attachmentInput.files[0]; // 선택된 파일 가져오기
+
+                if (selectedFile) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        const fileText = event.target.result; // 파일 내용을 문자열로 읽어옴
+                        fileContentTextarea.value = fileText; // 텍스트 영역에 파일 내용 출력
+                    };
+
+                    reader.readAsText(selectedFile); // 파일을 텍스트로 읽어옴
+                }
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>

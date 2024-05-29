@@ -46,6 +46,8 @@
             font-size: 15px;
         }
 
+
+
     </style>
 </head>
 <body>
@@ -60,14 +62,63 @@
         <div class="area">
             <!--            여기서부터 시작 위에는 건들지 마세요-->
             <div class="layer">
-                <h1>문서 양식 수정</h1>
-                <form name="myForm" action="/submit-url" method="post">
+                <h1>휴가신청서 작성</h1>
+                <div class="signBox">
+                    <p id="singText" style="color: #d74545; margin-top: 130px"> 서류작성을 먼저 한 후에 <br> 사인을 등록해 주십시오. </p>
+
+                        <table>
+                            <tr>
+                                <th style="width: 350px; height: 20px; border: 1px solid rgb(178,178,178);">사인등록</th>
+                            </tr>
+                            <tr>
+                                <td style="width: 350px; height: 50px;  border: 1px solid rgb(178,178,178);">
+                                    <form  name="myForm2" action="/subpage/uploadFile" method="post" enctype="multipart/form-data">
+                                        <label for="edoc_form_ct_no" style="margin: 10px" >문서 번호:</label>
+                                        <input type="text" placeholder="필수사항" name="edoc_form_ct_no" disabled>
+                                        <br>
+                                        <label for="employee_name" style="margin: 10px">사원 성함:</label>
+                                        <input type="text" placeholder="필수사항" name="employee_name" disabled >
+                                        <br>
+<!--                                        <label for="user_id" style="margin: 10px">사원 번호:</label>-->
+<!--                                        <input type="text" placeholder="사용자 ID를 입력하세요" name="user_id" >-->
+
+                                        <input type="hidden" placeholder="필수사항" name="edoc_form_no" value="1">
+                                        <br>
+                                        <label for="employee_sign" style="margin: 10px; ">사인 파일 등록하기:</label>
+                                        <input id="employee_sign" name="employee_sign" type="file" style=" margin: 10px" disabled>
+                                        <br>
+                                        <input type="submit" value="전송" style="width: 60px; height: 30px; margin-left: 80%; border-radius: 5px; background-color: aliceblue;" disabled>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+
+
+
+
+                    <table >
+                        <tr>
+                            <th style="width: 175px; height: 20px;  border: 1px solid rgb(178,178,178);">사원사인</th>
+                            <th style="width: 175px; height: 20px;  border: 1px solid rgb(178,178,178);">관리자사인</th>
+                        </tr>
+                        <tr>
+                            <td style="width: 175px; height: 50px;  border: 1px solid rgb(178,178,178);">
+<!--                                <img th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" style="width: 175px; height: 174px"/>-->
+
+                            </td>
+                            <td style="width: 175px; height: 50px;  border: 1px solid rgb(178,178,178);"></td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                <form name="myForm" action="/subpage/regist" method="post">
                     <div class="chart1">
                         <div class="wrap1">
                             <p id="text">양식명</p>
                         </div>
                         <div class="wrap2">
-                            <p id="text">휴가신청서</p>
+                            <p id="text">문서번호 </p>
                         </div>
                     </div>
                     <div class="chart2">
@@ -92,12 +143,15 @@
                                     </tr>
                                     <tr>
                                         <th style=" height: 35px;">작성일자</th>
-                                        <td style=" height: 35px;"><input type="text" placeholder="필수사항"  name="Drafting_date" id="Drafting_date"></td>
+                                        <td style=" height: 35px;"><input type="text" placeholder="필수사항"  name="drafting_date" id="drafting_date"></td>
                                     </tr>
-                                    <tr style="height: 50px;"></tr> <!-- 높이가 20픽셀인 빈 행 추가 -->
                                 </table>
+                                <div style="height: 50px">
+<!--                                    <label for="user_id" style="margin: 10px">사원 번호:</label>-->
+<!--                                    <input type="text" placeholder="사용자 ID를 입력하세요" name="user_id" style="margin-top: 3%">-->
+                                </div>
                                 <table id="table2">
-                                    
+
                                     <tr>
                                         <th style="width: 7vw; height: 50px;">제목</th>
                                         <td style="width: 19vw"><input type="text" placeholder="필수사항" name="title" id="title" style="height: 50px;"></td>
@@ -106,7 +160,8 @@
                                     </tr>
                                     <tr>
                                         <th style=" height: 50px;">시작일</th>
-                                        <td><input type="text" name="start_date" id="start_date" placeholder="선택사항" style="height: 50px;"></td>
+                                        <td><input type="text" value="2024-05-13" name="start_date" id="start_date" placeholder="선택사항" style="height: 50px;"></td>
+
                                         <th>종료일</th>
                                         <td><input type="text" name="end_date" id="end_date" placeholder="선택사항" style="height: 50px;"></td>
                                     </tr>
@@ -119,23 +174,18 @@
                                         <td colspan="3" style="vertical-align: top;"><textarea placeholder="선택사항" style="width: 100%; height: 100px; resize: none;" name="reason_return" id="reason_return"></textarea></td>
                                     </tr>
                                 </table>
-                                <div class="signature-container">
-                                    <div class="employee_sign">
-                                        <!-- 사원 사인 -->
-                                        <p>사원 사인</p>
-                                    </div>
-                                    <div class="admin_sign">
-                                        <!-- 관리자 사인 -->
-                                        <p>관리자 사인</p>
+                                <input type="hidden" name="edoc_status" value="진행중">
+                                <input type="hidden" placeholder="필수사항" name="edoc_form_no" value="1">
+                                <div class="submitWrap">
+                                    <div class="submitBox">
+                                        <input type="submit" value="전송" style="width: 100px; margin-right: 20px; border-radius: 10px; background-color: aliceblue;"  >
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="submitBox">
-                        <input type="submit" value="전송" style="width: 100px; margin-right: 20px; border-radius: 10px; background-color: aliceblue;"  >
-                    </div>
                 </form>
+
             </div>
         </div>
     </div>
@@ -176,5 +226,7 @@
 </script>
 
 
+
 </body>
 </html>
+

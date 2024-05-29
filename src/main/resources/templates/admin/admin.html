@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +26,8 @@
                 height: 838px;
             }
         }
+
+
     </style>
 
 </head>
@@ -83,62 +84,17 @@
                                         <th>제목</th>
                                         <th>등록일</th>
                                     </tr>
+
                                     </thead>
+
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><a href="notice.html">첫 번째 공지사항 제목</a></td>
-                                        <td>2024-05-06</td>
+                                    <tr th:each="notice : ${noticeList}">
+                                        <td th:text="${notice.noticeId}"></td>
+                                        <td><a th:href="'admin/notice?code=' + ${notice.noticeId}" th:text="${notice.noticeTitle}"></a></td>
+                                        <td th:text="${notice.noticeCreationDate}"></td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td><a href="notice.html">두 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td><a href="notice.html">세 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td><a href="notice.html">네 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td><a href="notice.html">다섯 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td><a href="notice.html">여섯 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td><a href="notice.html">일곱 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td><a href="notice.html">여덟 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td><a href="notice.html">아홉 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td><a href="notice.html">열 번째 공지사항 제목</a></td>
-                                        <td>2024-05-07</td>
-                                    </tr>
-
-
-                                    <!-- 추가적인 공지사항 행은 필요에 따라 추가 -->
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>
@@ -156,20 +112,24 @@
                                         <img src="https://github.com/alskdteam/semi_project_java/assets/158136952/3d4ec91f-ae4f-4ddf-987c-4e47a8a92ef1" id="logo">
                                     </div>
                                     <div class="wrap2">
-                                        <form action="/search" method="GET" class="searchForm">
+                                        <div class="button-container">
+                                            <button onclick="location.href='/user/signup'">사원 추가</button>&nbsp;
+                                        </div>
+
+                                        <form action="/admin/search" method="GET" class="searchForm">
 
                                             <div class="wrap3">
-                                                <input type="text" class="searchInput-a" name="query" placeholder="부서검색" >
+                                                <input type="text" class="searchInput-a" name="user_department" placeholder="부서검색" >
                                                 <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
                                             </div>
 
                                             <div class="wrap3">
-                                                <input type="text" class="searchInput-b" name="query" placeholder="이름검색" >
+                                                <input type="text" class="searchInput-b" name="user_name" placeholder="이름검색" >
                                                 <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
                                             </div>
 
                                             <div class="wrap3">
-                                                <input type="text" class="searchInput-c" name="query" placeholder="직급검색" >
+                                                <input type="text" class="searchInput-c" name="user_rank" placeholder="직급검색" >
                                                 <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
                                             </div>
 
@@ -178,90 +138,108 @@
                                     </div>
                                 </div>
                                 <!--employee 테이블-->
-                                <table><br>
+                                <div class="employee_table">
 
-                                    <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>부서</th>
-                                        <th>구성원명</th>
-                                        <th>직급</th>
-                                        <th>이메일</th>
-                                        <th>휴대폰</th>
-                                        <th>생년월일</th>
-                                        <th>입사일</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>대표</td>
-                                        <td>조평훈</td>
-                                        <td>대표이사</td>
-                                        <td>apple@organic.com</td>
-                                        <td>010-1234-5678</td>
-                                        <td>24.01.30</td>
-                                        <td>24.02.14</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>영업부</td>
-                                        <td>최규혁</td>
-                                        <td>부장</td>
-                                        <td>a@organic.com</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>영업부</td>
-                                        <td>이도아</td>
-                                        <td>과장</td>
-                                        <td>b@organic.com</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>생산부</td>
-                                        <td>전준규</td>
-                                        <td>대리</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>생산부</td>
-                                        <td>박찬우</td>
-                                        <td>사원</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>생산부</td>
-                                        <td>푸바오</td>
-                                        <td>사원</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                        <td>@</td>
-                                    </tr>
+                                    <table >
+                                        <thead>
+                                        <tr>
+                                            <th>부서</th>
+                                            <th>구성원명</th>
+                                            <th>직급</th>
+                                            <th>이메일</th>
+                                            <th>휴대폰</th>
+                                            <th>생년월일</th>
+                                            <th>입사일</th>
+                                            <th>비고</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="employeetableBody">
+                                        <!-- 여기서부터 페이지 네이션을 위한 행들만 추가 -->
+                                        <tr th:each="employee : ${employeeList}" id="row_${employee.user_no}">
+                                            <td th:text="${employee.user_department}"></td>
+                                            <td th:text="${employee.user_name}"></td>
+                                            <td th:text="${employee.user_rank}"></td>
+                                            <td th:text="${employee.user_email}"></td>
+                                            <td th:text="${employee.user_phone_number}"></td>
+                                            <td th:text="${employee.user_birth}"></td>
+                                            <td th:text="${employee.join_date}"></td>
+                                            <td>
+                                                <button th:onclick="'user_no(' + ${employee.user_no} + ')'" >상세보기</button>
+                                            </td>
+
+                                        </tr>
+
+                                        <!-- 페이지 네이션을 위한 행들 끝 -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- 페이지 네이션 버튼 -->
+                                <div class="employee_page_number">
+                                    <div class="employee_s_button" onclick="changePage(1)">1</div>
+                                    <div class="employee_s_button" onclick="changePage(2)">2</div>
+                                    <div class="employee_s_button" onclick="changePage(3)">3</div>
+                                </div>
 
 
-                                    <!-- 추가적인 공지사항 행은 필요에 따라 추가 -->
-                                    </tbody>
-                                </table>
+
 
                             </div>
                         </div>
                     </div>
+
+
+
+                    <!--                     사원추가 시 사원추가 페이지로 이동 -->
+                    <script>
+
+                        function user_no(user_no) {
+                            location.href = '/admin/updateEmployee?user_no=' + user_no;
+                        }
+
+                        // 현재 페이지를 저장할 변수
+                        var currentPage = 1;
+                        // 페이지당 행 수
+                        var rowsPerPage = 7;
+
+                        // 페이지를 변경하는 함수
+                        function changePage(employee_page_number) {
+                            // 현재 페이지를 설정
+                            currentPage = employee_page_number;
+                            // 모든 행을 숨김
+                            hideAllRows();
+                            // 현재 페이지에 해당하는 행들을 보여줌
+                            showRowsForCurrentPage();
+                        }
+
+                        // 모든 행을 숨기는 함수
+                        function hideAllRows() {
+                            var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
+                            rows.forEach(function(row) {
+                                row.style.display = 'none';
+                            });
+                        }
+
+                        // 현재 페이지에 해당하는 행들을 보여주는 함수
+                        function showRowsForCurrentPage() {
+                            var startIndex = (currentPage - 1) * rowsPerPage;
+                            var endIndex = startIndex + rowsPerPage;
+                            var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
+                            for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+                                rows[i].style.display = 'table-row';
+                            }
+                        }
+
+                        // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
+                        window.onload = function() {
+                            changePage(1);
+                        };
+
+
+                    </script>
+
+
+
+                    <!--여기까지 사원관리-->
 
                     <!--전자결재 영역-->
                     <div class="edoc" tabindex="0">
@@ -275,12 +253,35 @@
                                 </div>
 
                                 <div class="buttonlist">
-                                    <button class="c_buttonlist">전체</button>
-                                    <button class="c_buttonlist">진행중</button>
-                                    <button class="c_buttonlist">반려</button>
-                                    <button class="c_buttonlist">진행중</button>
-                                    <button class="c_buttonlist">내결재함</button>
+                                    <button id="all" class="c_buttonlist" onclick="location.href='/admin/edoc?filter=all'">전체</button>
+                                    <button id="progress" class="c_buttonlist" onclick="location.href='/admin/edoc?filter=progress'">진행중</button>
+                                    <button id="rejected" class="c_buttonlist" onclick="location.href='/admin/edoc?filter=rejected'">반려</button>
                                 </div>
+
+                                <script>
+                                    function handleButtonClick(button, filter) {
+                                        // 모든 버튼에서 active 클래스 제거
+                                        document.querySelectorAll('.c_button').forEach(function(btn) {
+                                            btn.classList.remove('active');
+                                        });
+
+                                        // 클릭된 버튼에 active 클래스 추가
+                                        button.classList.add('active');
+
+                                        // 페이지 이동
+                                        location.href = `/subpage/edoc?filter=${filter}`;
+                                    }
+
+                                    // 현재 URL의 파라미터를 분석하여 적절한 버튼에 active 클래스를 추가
+                                    window.onload = function() {
+                                        const urlParams = new URLSearchParams(window.location.search);
+                                        const filter = urlParams.get('filter') || 'all';
+                                        const activeButton = document.getElementById(filter);
+                                        if (activeButton) {
+                                            activeButton.classList.add('active');
+                                        }
+                                    };
+                                </script>
 
                                 <div class="chart">
                                     <!--여기서 시작-->
@@ -288,66 +289,33 @@
                                         <thead>
                                         <tr>
                                             <th>기안일</th>
+                                            <th>분류</th>
                                             <th>제목</th>
-                                            <th>기안자</th>
-                                            <th>결재자</th>
-                                            <th>진행상태</th>
-                                            <th>결재확인</th>
+                                            <th>작성자</th>
+                                            <th>결재상태</th>
+                                            <th>결재하기</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>24.05.12</td>
-                                            <td><a href="#">휴가신청서</a></td>
-                                            <td>이도아</td>
-                                            <td>최규혁</td>
-                                            <td>승인</td>
-                                            <td>확인</td>
+                                        <tbody id="tableBody">
+                                        <tr th:each="list, iterStat : ${edocList}" id="row_${iterStat.index}">
+                                            <td th:text="${list.drafting_date}"></td>
+                                            <td th:text="${list.edocFormDTO.form_name}"></td>
+                                            <td th:text="${list.title}"></td>
+                                            <td th:text="${list.employee_name}"></td>
+                                            <td th:text="${list.edoc_status}"></td>
+                                            <td>
+                                                <button style="border-radius: 5px; background-color: aliceblue; border: 1px solid gray; padding: 2px" type="button" class="btn" th:attr="onclick='admin(\'' + ${list.edoc_form_ct_no} + '\')'">상세보기</button>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>24.05.01</td>
-                                            <td><a href="#">결재서류</a></td>
-                                            <td>전준규</td>
-                                            <td>최규혁</td>
-                                            <td>진행중</td>
-                                            <td>보류</td>
-                                        </tr>
-                                        <tr>
-                                            <td>24.04.03</td>
-                                            <td><a href="#">임금인상 요청서</a></td>
-                                            <td>푸바오</td>
-                                            <td>최규혁</td>
-                                            <td>반려</td>
-                                            <td>불허</td>
-                                        </tr>
-                                        <tr>
-                                            <td>24.04.01</td>
-                                            <td><a href="#">text</a></td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                        </tr>
-                                        <tr>
-                                            <td>24.03.23</td>
-                                            <td><a href="#">text</a></td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                        </tr>
-                                        <tr>
-                                            <td>24.03.22</td>
-                                            <td><a href="#">text</a></td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                            <td>text</td>
-                                        </tr>
-                                        <!-- 추가적인 리스트 행은 필요에 따라 추가 -->
                                         </tbody>
                                     </table>
-                                    </table>
+
+                                    <script>
+                                        function admin(edocFormCtNo) {
+                                            window.location.href = '/admin/edocFrom/selectEdocList/' + edocFormCtNo;
+                                        }
+                                    </script>
+
                                 </div>
                                 <div class="page_number">
                                     <div class="s_button">&lt;</div>

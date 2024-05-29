@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CarService {
@@ -29,8 +30,17 @@ public class CarService {
         return carMapper.findAllSiCar();
     }
 
+//    public List<CarJoinDTO> findMySiCar(String id) {
+//
+//        return carMapper.findMySiCar(id);
+//        /*
+//        * select * from sicar where user_id = {id};
+//        * */
+//    }
+
 
     public List<VehicleDTO> findAllVehicle() {
+
 
         return carMapper.findAllVehicle();
     }
@@ -38,4 +48,29 @@ public class CarService {
      public void registCar(RegistDTO regist){
         carMapper.registCar(regist);
      }
+
+    public List<CarJoinDTO> findAllSiMyCar(int userCode) {
+
+        return carMapper.findAllSiMyCar(userCode);
+    }
+
+
+    public int registCarDTO(Map<String, Object> regist) {
+        return carMapper.registCarDTO(regist);
+
+    }
+
+    public int registCarDTOUpdate(Map<String, Object> regist) {
+        return carMapper.registCarDTOUpdate(regist);
+    }
+
+    public int upmycarlist(Map<String, Object> params) {
+
+        return carMapper.upmycarlist(params);
+    }
+
+    public int CarListUpdate(Map<String, Object> params) {
+
+        return carMapper.CarListUpdate(params);
+    }
 }

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/css/edocForm/vacation.css">
 
     <style>
-
         @media screen and (max-width: 375px) {
             .container {
                 flex-direction: column;
@@ -27,6 +26,26 @@
                 height: 838px;
             }
         }
+
+        table, td, th {
+            border : 1px solid black;
+            border-collapse : collapse;
+        }
+
+        .tableContent table td input[type="text"] {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        textarea,
+        input[type="text"] {
+            border: none; /* 테두리 없애기 */
+            outline: none; /* 포커스 효과 제거 */
+            font-size: 15px;
+        }
+
     </style>
 </head>
 <body>
@@ -39,31 +58,173 @@
         <div th:replace="common/header.html" id="header"></div>
 
         <div class="area">
-
             <!--            여기서부터 시작 위에는 건들지 마세요-->
             <div class="layer">
-                <h1>문서 양식 수정</h1>
+                <h1>회의록 작성</h1>
+                <div class="signBox">
+                    <p id="singText" style="color: #d74545; margin-top: 130px"> 서류작성을 먼저 한 후에 <br> 사인을 등록해 주십시오. </p>
 
-                <div class="chart">
+                    <table >
+                        <tr>
+                            <th style="width: 350px; height: 20px; border: 1px solid rgb(178,178,178);">사인등록</th>
+                        </tr>
+                        <tr>
+                            <td style="width: 350px; height: 50px;  border: 1px solid rgb(178,178,178);">
+                                <form  name="myForm2" action="/subpage/meeting" method="post" enctype="multipart/form-data">
+                                    <label for="edoc_form_ct_no" style="margin: 10px">문서 번호:</label>
+                                    <input type="text" placeholder="필수사항" name="edoc_form_ct_no" disabled>
+                                    <br>
+                                    <label for="employee_name" style="margin: 10px">사원 성함:</label>
+                                    <input type="text" placeholder="필수사항" name="employee_name" disabled >
+                                    <br>
+<!--                                    <label for="user_id" style="margin: 10px">사원 번호:</label>-->
+<!--                                    <input type="text" placeholder="사용자 ID를 입력하세요" name="user_id" >-->
+
+                                    <input type="hidden" placeholder="필수사항" name="edoc_form_no" value="4">
+                                    <br>
+                                    <label for="employee_sign" style="margin: 10px; ">사인 파일 등록하기:</label>
+                                    <input id="employee_sign" name="employee_sign" type="file" style=" margin: 10px" disabled>
+                                    <br>
+                                    <input type="submit" value="전송" style="width: 60px; height: 30px; margin-left: 80%; border-radius: 5px; background-color: aliceblue;" disabled>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+
+                    <table >
+                        <tr>
+                            <th style="width: 175px; height: 20px;  border: 1px solid rgb(178,178,178);">사원사인</th>
+                            <th style="width: 175px; height: 20px;  border: 1px solid rgb(178,178,178);">관리자사인</th>
+                        </tr>
+                        <tr>
+                            <td style="width: 175px; height: 50px;  border: 1px solid rgb(178,178,178);">
+<!--                                <img th:src="'data:image/png;base64,' + ${base64ImageData}" alt="Uploaded Image" style="width: 175px; height: 174px"/>-->
+
+                            </td>
+                            <td style="width: 175px; height: 50px;  border: 1px solid rgb(178,178,178);"></td>
+                        </tr>
+                    </table>
 
                 </div>
 
+                <form name="myForm" action="/subpage/regist" method="post">
+                    <div class="chart1">
+                        <div class="wrap1">
+                            <p id="text">양식명</p>
+                        </div>
+                        <div class="wrap2">
+                            <p id="text">문서번호</p>
+                        </div>
+                    </div>
+                    <div class="chart2">
+                        <div class="wrap3">
+                            <p id="text">양식</p>
+                        </div>
+                        <div class="wrap4">
+                            <div class="tableContent">
+                                <table id="table1">
+                                    <tr>
+                                        <th rowspan="4" style="width: 30vw; font-size: 25px;">회의록</th>
+                                        <th style="width: 8vw; height: 35px;">부서</th>
+                                        <td style="width: 14vw; height: 35px;"><input type="text" placeholder="필수사항" name="employee_de" id="employee_de"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style=" height: 35px;">직급</th>
+                                        <td style="height: 35px;"><input type="text" placeholder="필수사항" name="employee_di" id="employee_di"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style=" height: 35px;">작성자</th>
+                                        <td style=" height: 35px;"><input type="text" placeholder="필수사항" name="employee_name" id="employee_name"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style=" height: 35px;">작성일자</th>
+                                        <td style=" height: 35px;"><input type="text" placeholder="필수사항"  name="drafting_date" id="drafting_date"></td>
+                                    </tr>
+                                </table>
+                                <div style="height: 50px">
+<!--                                    <label for="user_id" style="margin: 10px">사원 번호:</label>-->
+<!--                                    <input type="text" placeholder="사용자 ID를 입력하세요" name="user_id" style="margin-top: 3%">-->
+                                </div>
+                                <table id="table2">
+
+                                    <tr>
+                                        <th style="width: 7vw; height: 50px;">제목</th>
+                                        <td style="width: 19vw"><input type="text" placeholder="필수사항" name="title" id="title" style="height: 50px;"></td>
+                                        <th style="width: 7vw">목적</th>
+                                        <td style="width: 19vw"><input type="text" placeholder="필수사항" name="purpose" id="purpose" style="height: 50px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style=" height: 50px;">시작일</th>
+                                        <td><input type="text" value="2024-05-13" name="start_date" id="start_date" placeholder="선택사항" style="height: 50px;"></td>
+
+                                        <th>종료일</th>
+                                        <td><input type="text" name="end_date" id="end_date" placeholder="선택사항" style="height: 50px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style=" height: 500px;">내용</th>
+                                        <td colspan="3" style="vertical-align: top;"><textarea placeholder="필수사항" style= "width: 100%; height: 500px; resize: none;" name="content" id="content" ></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <th style=" height: 100px;">비고</th>
+                                        <td colspan="3" style="vertical-align: top;"><textarea placeholder="선택사항" style="width: 100%; height: 100px; resize: none;" name="reason_return" id="reason_return"></textarea></td>
+                                    </tr>
+                                </table>
+                                <input type="hidden" name="edoc_status" value="진행중">
+                                <input type="hidden" placeholder="필수사항" name="edoc_form_no" value="4">
+                                <div class="submitWrap">
+                                    <div class="submitBox">
+                                        <input type="submit" value="전송" style="width: 100px; margin-right: 20px; border-radius: 10px; background-color: aliceblue;"  >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
-
     </div>
 </div>
+
+<script>
+    // 엔터키 자동 submit 막음
+    document.addEventListener("DOMContentLoaded", function() {
+        var form = document.querySelector('form[name="myForm"]');
+        form.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+            }
+        });
+    });
+
+    // input 태그 내의 사용자 enter키 허용
+    document.addEventListener("DOMContentLoaded", function() {
+        var inputs = document.querySelectorAll('input[type="text"], textarea');
+
+        inputs.forEach(function(input) {
+            input.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault(); // Prevent default behavior (form submission or new line in textarea)
+
+                    // Add a new line character ("\n") to the input's value
+                    var cursorPosition = this.selectionStart;
+                    var value = this.value;
+                    var newValue = value.substring(0, cursorPosition) + "\n" + value.substring(cursorPosition);
+
+                    // Update the input's value and move the cursor to the next line
+                    this.value = newValue;
+                    this.setSelectionRange(cursorPosition + 1, cursorPosition + 1);
+                }
+            });
+        });
+    });
+</script>
+
+
+
 </body>
 </html>
+

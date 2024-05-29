@@ -49,6 +49,11 @@
 
     <select id="findAllItem" resultMap="ItemJoinDTO">
         SELECT
+        *
+        FROM item
+    </select>
+    <select id="findAllItems" resultMap="ItemJoinDTO">
+        SELECT
         a.rental_id,
         a.rental_date,
         a.rental_return_date,
@@ -56,39 +61,94 @@
         a.rental_purpose,
         a.rental_status,
         b.item_name,
+        a.item_inventory,
         c.user_name
         FROM
         RENTAL a
         JOIN
         ITEM b ON b.item_number = a.item_number
         JOIN
-        employee c ON c.user_no = a.user_no
+        employee c ON c.user_id = a.user_id
     </select>
-    <insert id="registitem" parameterType="com.ohgiraffers.semi_project.subpage.item.model.dto.registRentalDTO">
-        INSERT INTO rental
-        (
-        rental_category,
+    <select id="findMyItems" resultMap="ItemJoinDTO">
+        SELECT
+        a.rental_id,
+        a.rental_date,
+        a.rental_return_date,
+        a.rental_category,
+        a.rental_purpose,
+        a.rental_status,
+        b.item_name,
+        a.item_inventory,
+        c.user_name
+        FROM
+        RENTAL a
+        JOIN
+        ITEM b ON b.item_number = a.item_number
+        JOIN
+        employee c ON c.user_id = a.user_id
+        where
+        user_no = #{userCode}
+    </select>
+
+
+    <insert id="itemRental">
+        INSERT INTO rental (
         rental_date,
         rental_return_date,
-        user_no,
-        rental_purpose
+        user_id,
+        rental_purpose,
+        item_number,
+        item_inventory
         )
-        VALUES
-        (
-        #{rental_category},
+        SELECT
         #{rental_date},
         #{rental_return_date},
-        #{user_no},
-        #{rental_purpose}
-        )
+        #{userCode},
+        #{rental_purpose},
+        a.item_number,
+        #{item_inventory}
+        FROM item a
+        WHERE a.item_name = #{item_name};
     </insert>
-    <resultMap id="findDTO" type="com.ohgiraffers.semi_project.subpage.item.model.dto.ItemDTO">
-        <result property="rental_category" column="rental_category"/>
+
+    <resultMap id="findDTO" type="com.ohgiraffers.semi_project.subpage.item.model.dto.rentalDTO">
+        <result property="item_name" column="item_name"/>
+        <result property="item_inventory" column="item_inventory"/>
     </resultMap>
 
     <select id="finditemList" resultMap="findDTO">
         select
-        rental_category
-        from rental
+        item_number,
+        item_name,
+        item_inventory
+        from item
     </select>
+
+    <select id="getItemInventory">
+        SELECT *
+        FROM item
+        WHERE item_name = #{itemName}
+    </select>
+
+    <update id="itemRentalUpdate">
+        UPDATE item
+        SET
+        item_inventory = item_inventory - #{item_inventory}
+        WHERE item_name = #{item_name};
+    </update>
+
+    <update id="upMyitemlist">
+        UPDATE item
+        SET
+        item_inventory = item_inventory + #{item_inventory}
+        WHERE item_name = #{item_name};
+    </update>
+
+    <update id="itemListUpdate">
+        UPDATE rental
+        SET
+        rental_status = '반납 완료'
+        WHERE rental_id = #{rental_id}
+    </update>
 </mapper>

@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="/css/car.css">
     <script src="/js/pageButton.js"></script>
     <style>
-
         @media screen and (max-width: 375px) {
             .container {
                 flex-direction: column;
@@ -23,7 +21,6 @@
             }
             #sidebar {
                 width: 100%;
-                /* 사이드바 틀 높이 */
                 height: 838px;
             }
         }
@@ -40,7 +37,7 @@
 
         <div class="area">
 
-            <!--            여기서부터 시작 위에는 건들지 마세요-->
+            <!-- 여기서부터 시작 위에는 건들지 마세요-->
 
             <div class="layer">
                 <h1>차량예약</h1>
@@ -58,13 +55,12 @@
                                 <th>대여여부</th>
                             </tr>
 
-
                             <tbody id="tableBody">
-                                <tr th:each="carJoin : ${carJoinList}" id="row_${iterStat.index}">
-                                    <td th:text="${carJoin.vehicleDTO.vehicle_name}"></td>
-                                    <td th:text="${carJoin.vehicleDTO.vehicle_number}"></td>
-                                    <td th:text="${carJoin.car_rental_status}"></td>
-                                </tr>
+                            <tr th:each="carJoin : ${carJoinList}" id="row_${iterStat.index}">
+                                <td th:text="${carJoin.vehicleDTO.vehicle_name}"></td>
+                                <td th:text="${carJoin.vehicleDTO.vehicle_number}"></td>
+                                <td th:text="${carJoin.car_rental_status}"></td>
+                            </tr>
                             </tbody>
 
                         </table>
@@ -84,11 +80,9 @@
                                 <select name="vehicle_name" id="vehicle_name" style="height: 30px; width: 400px;"></select>
                             </p>
                             <p>대여일</p>
-                            <p> <input type="date" name="vehicle_reservation_date" style="height: 30px; width: 400px; "></p>
+                            <p><input type="date" id="vehicle_reservation_date" name="vehicle_reservation_date" style="height: 30px; width: 400px;"></p>
                             <p>반납 예정일</p>
-                            <p><input type="date" name="vehicle_return_due_date" style="height: 30px; width: 400px;"></p>
-                            <p>대여자</p>
-                            <p><input type="number" name="user_no" style="height: 30px; width: 400px;"></p>
+                            <p><input type="date" id="vehicle_return_due_date" name="vehicle_return_due_date" style="height: 30px; width: 400px;"></p>
                             <p>대여 용도</p>
                             <p><input type="text" name="vehicle_purpose" style="height: 30px; width: 400px;"></p>
                             <p>행선지</p>
@@ -97,14 +91,11 @@
                                 <button id="addBtn" style="background-color: #4CAF50" type="submit">추가</button>
                                 <button id="cancelBtn" type="button">취소</button>
                             </div>
-                            </p>
-
                         </div>
                     </div>
                 </form>
 
                 <script>
-
                     // 모달 요소 가져오기
                     var modal = document.getElementById("myModal");
 
@@ -129,7 +120,6 @@
                         event.preventDefault();
 
                         // 모달 닫기
-                        var modal = document.getElementById("myModal");
                         modal.style.display = "none";
                     });
 
@@ -148,13 +138,25 @@
 
                             for(let vehicle of data) { // 'of'를 사용하여 배열의 각 객체에 대해 반복
                                 const $option = document.createElement("option");
-                                // 'vehicle_name'을 option의 value로, 'vehicle_number'를 텍스트 내용으로 사용
                                 $option.value = vehicle.vehicle_name;
                                 $option.textContent = vehicle.vehicle_name;
                                 $vehicle_name.appendChild($option);
                             }
-                        })
+                        });
 
+                    // 대여일과 반납 예정일 설정
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var reservationDateInput = document.getElementById('vehicle_reservation_date');
+                        var returnDueDateInput = document.getElementById('vehicle_return_due_date');
+
+                        reservationDateInput.addEventListener('change', function() {
+                            var reservationDate = new Date(reservationDateInput.value);
+                            returnDueDateInput.min = reservationDate.toISOString().split('T')[0];
+                            if (returnDueDateInput.value < returnDueDateInput.min) {
+                                returnDueDateInput.value = returnDueDateInput.min;
+                            }
+                        });
+                    });
 
                 </script>
 
@@ -175,7 +177,6 @@
             </div>
         </div>
     </div>
-
 </div>
 </body>
 </html>

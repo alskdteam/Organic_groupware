@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semi_project.subpage.edoc.model.dao.EdocMapper">
+
+    <update id="uploadFile" parameterType="com.ohgiraffers.semi_project.subpage.edoc.model.dto.UploadFileDTO">
+        UPDATE edoc_form_ct
+        SET
+        employee_name = #{employee_name},
+        employee_sign = #{employee_sign},
+        user_id = #{user_id}
+        WHERE
+        edoc_form_ct_no = #{edoc_form_ct_no}
+    </update>
+
+    <update id="uploadAdminFile" parameterType="com.ohgiraffers.semi_project.subpage.edoc.model.dto.UploadFileDTO">
+        UPDATE edoc_form_ct
+        SET
+        admin_sign = #{admin_sign},
+        user_id = #{user_id}
+        WHERE
+        edoc_form_ct_no = #{edoc_form_ct_no}
+    </update>
+
+
+
+
+
+
+
+</mapper>

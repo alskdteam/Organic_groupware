@@ -15,12 +15,64 @@
     <select id="selectNoticeList" resultMap="noticeResultMap">
 
         select
-            Notice_id,
-            Notice_content,
-            notice_creation_date
+          *
         from
             Notice;
 
+    </select>
+    <select id="selectADMINPageNoticeList" resultMap="noticeResultMap">
+
+        select
+        Notice_id,
+        Notice_content,
+        notice_creation_date
+        from
+        Notice;
+
+    </select>
+
+    <resultMap id="selectDashboard" type="com.ohgiraffers.semi_project.subpage.main.model.dto.CarDTO">
+        <id property="vehicle_reservation_date" column="vehicle_reservation_date"/>
+        <result property="vehicle_return_due_date" column="vehicle_return_due_date"/>
+        <result property="vehicle_name" column="vehicle_name"/>
+        <result property="vehicle_purpose" column="vehicle_purpose"/>
+    </resultMap>
+
+    <select id="selectDashboard" resultMap="selectDashboard">
+        select
+        vehicle_reservation_date,
+        vehicle_return_due_date,
+        vehicle_name,
+        vehicle_purpose
+        from
+        car
+        where
+        vehicle_reservation_date = #{vehicle_reservation_date}
+    </select>
+
+    <resultMap id="rentalResultMap" type="com.ohgiraffers.semi_project.subpage.main.model.dto.RentalDTO">
+        <id property="rental_date" column="rental_date"/>
+        <result property="rental_return_date" column="rental_return_date"/>
+        <result property="rental_purpose" column="rental_purpose"/>
+
+        <association property="itemDTO" javaType="com.ohgiraffers.semi_project.subpage.main.model.dto.ItemDTO">
+            <id property="item_name" column="item_name"/>
+        </association>
+
+    </resultMap>
+
+    <select id="selectRental" resultMap="rentalResultMap">
+        SELECT
+        a.rental_return_date,
+        a.rental_purpose,
+        a.rental_date,
+        b.item_name
+        FROM
+        rental a
+        JOIN
+        item b
+        WHERE
+        a.rental_date = #{rental_date};
     </select>
 
 

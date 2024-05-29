@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <link rel="stylesheet" href="/css/join.css">
+    <script>
+        const message = `[[${message}]]`;
+        if (message) {
+            alert(message);
+            window.location.href = "/main";
+        }
+    </script>
+</head>
+<body>
+<section class="join-form">
+    <div class="img-logo">
+        <img src="https://github.com/alskdteam/semi_project_java/assets/167507636/bd479789-f3d8-410d-93bc-51a78ba44096" width="400px">
+    </div>
+    <form th:action="@{/admin/updateEmployee}" th:method="post" id="actionForm">
+        <div class="int-area">
+            <input type="text" name="user_id" th:value="${employee.user_id}" placeholder="사원번호" readonly>
+        </div>
+        <br>
+        <div class="int-area">
+            <input type="password" name="password" th:value="${employee.password}" placeholder="비밀번호">
+        </div>
+        <br>
+        <div class="int-area">
+            <input type="text" name="user_name" th:value="${employee.user_name}" placeholder="이름">
+        </div>
+        <br>
+        <div class="int-area">
+            <input type="text" name="user_birth" th:value="${employee.user_birth}" placeholder="생년월일 8자리">
+        </div>
+        <br>
+        <div class="int-area">
+            <input type="text" name="user_phone_number" th:value="${employee.user_phone_number}" placeholder="휴대전화번호">
+        </div>
+        <br><br>
+        <div class="int-area">
+            <input type="text" name="user_department" th:value="${employee.user_department}" placeholder="부서">
+        </div>
+        <br><br>
+        <div class="int-area">
+            <input type="text" name="user_rank" th:value="${employee.user_rank}" placeholder="직급">
+        </div>
+        <br><br>
+        <div class="int-area">
+            <input type="text" name="user_email" th:value="${employee.user_email}" placeholder="이메일">
+        </div>
+        <br><br>
+        <div class="wrap">
+            <select name="user_gender" th:value="${employee.user_gender}">
+                <option value="남성" selected>남성</option>
+                <option value="여성">여성</option>
+            </select>
+        </div>
+        <br>
+        <div class="int-area">
+            <input type="date" name="join_date" th:value="${employee.join_date}" placeholder="입사날짜">
+        </div>
+        <br><br>
+        <div class="wrap">
+            <select name="user_role" th:value="${employee.user_role}">
+                <option value="USER" selected>일반회원</option>
+                <option value="ADMIN">관리자</option>
+            </select>
+        </div>
+        <br>
+        <div class="btn-area">
+            <button type="submit" class="btn" onclick="updatebtn()">사원 정보 수정</button>
+            <button type="button" class="btn" onclick="deletebtn()">사원 삭제</button>
+        </div>
+    </form>
+</section>
+<script>
+    function updatebtn() {
+        console.log("Update button clicked");
+        var form = document.getElementById("actionForm");
+        if (form) {
+            console.log("Form found for update");
+            form.action = "/admin/updateEmployee";
+            form.submit();
+        } else {
+            console.log("Form not found for update");
+        }
+    }
+
+    function deletebtn() {
+        console.log("Delete button clicked");
+        var form = document.getElementById("actionForm");
+        if (form) {
+            console.log("Form found for delete");
+            form.action = "/admin/deleteEmployee";
+            form.submit();
+        } else {
+            console.log("Form not found for delete");
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 package com.ohgiraffers.semi_project.subpage.edoc.model.dto;
 
-// 문서 처리 양식
+// 문서 양식
 public class EdocFormDTO {
 
     private int edoc_form_no;
