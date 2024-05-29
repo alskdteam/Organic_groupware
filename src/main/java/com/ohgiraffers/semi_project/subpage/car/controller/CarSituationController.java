@@ -70,7 +70,7 @@ public class CarSituationController {
 
         return "subpage/car_situation_mypage";
     }
-    @PostMapping("/car_situation_mypage")
+    @PostMapping("car_situation_mypage")
     public String returnCar(@RequestParam Map<String, Object> params, Model model) {
         System.out.println("params = " + params);
         

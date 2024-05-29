@@ -421,7 +421,9 @@ table{
 
 /* 대여일 텍스트 스타일 */
 [id^="item-"][id$="-same"]::before {
+
     content: "하루대여";
+
     position: absolute;
     top: -21px;
     left: 23%;

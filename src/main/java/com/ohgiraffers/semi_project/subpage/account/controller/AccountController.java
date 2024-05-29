@@ -50,7 +50,7 @@ public class AccountController {
         return "subpage/account";
     }
 
-    @PostMapping("account")
+    @PostMapping("/account")
     public String registAccount(RegistAccDTO registAccDTO, RedirectAttributes rttr ) {
 
         System.out.println("registAccDTO = " + registAccDTO);

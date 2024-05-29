@@ -60,5 +60,6 @@ public class EdocFormCtFunctionController {
 
         String edocFormCtNo = String.valueOf(newEdoc.getEdoc_form_ct_no());
         return "redirect:/subpage/edocFrom/selectEdocList/" + edocFormCtNo;
+
     }
 }
