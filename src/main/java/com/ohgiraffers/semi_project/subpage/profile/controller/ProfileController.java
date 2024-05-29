@@ -98,7 +98,7 @@ public class ProfileController {
 
         System.out.println("memouupDTO = " + memoDTO);
 
-        return "redirect:subpage/profile";
+        return "redirect:/subpage/profile";
 
     }
 
@@ -109,7 +109,7 @@ public class ProfileController {
         System.out.println(memoDTO);
         // 서비스 호출하여 데이터베이스 업데이트
         profileService.updateMemo(memoDTO);
-        return "redirect:subpage/profile";
+        return "redirect:/subpage/profile";
     }
 
 

@@ -83,7 +83,7 @@ public class CarController {
         rttr.addFlashAttribute("successMessage","차량예약에 성공하셨습니다.");
 
 
-        return "redirect:subpage/car_situation";
+        return "redirect:/subpage/car_situation";
     }
 
 
