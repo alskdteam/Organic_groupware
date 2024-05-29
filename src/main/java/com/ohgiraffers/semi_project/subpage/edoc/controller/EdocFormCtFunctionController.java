@@ -50,7 +50,7 @@ public class EdocFormCtFunctionController {
         model.addAttribute("insertedEdoc", insertedEdoc);
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("registMenu", null, locale));
 
-        return "subpage/edocFrom/selectEdocList2";
+        return "redirect:/subpage/edoc";
     }
 
 

@@ -50,7 +50,7 @@ public class AccountController {
         return "subpage/account";
     }
 
-    @PostMapping("account")
+    @PostMapping("/account")
     public String registAccount(RegistAccDTO registAccDTO, RedirectAttributes rttr ) {
 
         System.out.println("registAccDTO = " + registAccDTO);
@@ -58,7 +58,7 @@ public class AccountController {
         rttr.addFlashAttribute("successMessage","거래처등록에 성공하셨습니다.");
 
 
-        return "redirect:subpage/account";
+        return "redirect:/subpage/account";
     }
 
     
