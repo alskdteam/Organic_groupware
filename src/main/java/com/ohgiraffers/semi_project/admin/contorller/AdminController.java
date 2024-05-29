@@ -89,7 +89,7 @@ public class AdminController {
         noticeDTO.setNoticeCreationDate(Date.valueOf(params.get("noticeCreationDate")));
         System.out.println("noticeDTO = " + noticeDTO);
         int Notice = adminService.updateNotice(noticeDTO);
-        return "redirect:/admin/admin"; // 업데이트 후 이동할 페이지
+        return "redirect:admin/admin"; // 업데이트 후 이동할 페이지
     }
 
 
@@ -100,7 +100,7 @@ public class AdminController {
         List<AdminEmployeeDTO> employeeDTO = adminService.findSelectEmployee(search);
         model.addAttribute("employeeList", employeeDTO);
 
-        return "/admin/admin";
+        return "admin/admin";
     }
 
 
@@ -124,13 +124,19 @@ public class AdminController {
        adminService.updateEmployee(map);
 
 
-        return "redirect:/admin/admin";
-
-
-
+        return "redirect:admin/admin";
 
     }
 
+
+    @PostMapping("/deleteEmployee")
+    public String deleteEmployee(@RequestParam int user_id){
+
+        System.out.println("user_id = " + user_id);
+        adminService.deleteEmployee(user_id);
+
+        return "redirect:admin/admin";
+    }
 
 
 

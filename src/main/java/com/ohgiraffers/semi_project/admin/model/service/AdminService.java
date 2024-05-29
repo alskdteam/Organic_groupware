@@ -59,6 +59,10 @@ public class AdminService {
         adminMapper.adminEmployeeDTO(map);
 
     }
+
+    public void deleteEmployee(int userId) {
+        adminMapper.deleteEmployee(userId);
+    }
 }
 
 

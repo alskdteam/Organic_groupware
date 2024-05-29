@@ -28,4 +28,6 @@ public interface AdminMapper {
 
 
     void adminEmployeeDTO(Map<String,Object> map);
+
+    void deleteEmployee(int userId);
 }
