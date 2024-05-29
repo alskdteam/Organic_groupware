@@ -1,10 +1,9 @@
-package com.ohgiraffers.semi_project.subpage.edoc.controller;
+package com.ohgiraffers.semi_project.subpage.main;
 
 import com.ohgiraffers.semi_project.subpage.main.model.dto.CarDTO;
 import com.ohgiraffers.semi_project.subpage.main.model.dto.RentalDTO;
 import com.ohgiraffers.semi_project.subpage.main.model.service.MainService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

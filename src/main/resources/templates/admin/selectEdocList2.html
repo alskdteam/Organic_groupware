@@ -136,7 +136,7 @@
                                     </tr>
                                     <tr>
                                         <th style=" height: 35px;">작성일자</th>
-                                        <td style=" height: 35px;"><span th:text="${insertedEdoc.drafting_date}"></span></td>
+                                        <td><span th:text="${#dates.format(insertedEdoc.drafting_date, 'yyyy-MM-dd')}"></span></td>
                                     </tr>
                                 </table>
                                 <div style="height: 50px">
@@ -153,10 +153,10 @@
                                     </tr>
                                     <tr>
                                         <th style=" height: 50px;">시작일</th>
-                                        <td><span th:text="${insertedEdoc.start_date}"></span></td>
+                                        <td><span th:text="${#dates.format(insertedEdoc.start_date, 'yyyy-MM-dd')}"></span></td>
 
                                         <th>종료일</th>
-                                        <td><span th:text="${insertedEdoc.end_date}"></span></td>
+                                        <td><span th:text="${#dates.format(insertedEdoc.end_date, 'yyyy-MM-dd')}"></span></td>
                                     </tr>
                                     <tr>
                                         <th style=" height: 500px;">내용</th>

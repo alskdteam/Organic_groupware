@@ -59,7 +59,7 @@
                     <button id="rejected" class="c_button" onclick="location.href='/subpage/edoc?filter=rejected'">반려</button>
                     <button id="my" class="c_button" onclick="location.href='/subpage/edoc?filter=my'">내결재함</button>
                 </div>
-                
+
                 <script>
                     function handleButtonClick(button, filter) {
                         // 모든 버튼에서 active 클래스 제거
@@ -104,7 +104,7 @@
                             <td th:text="${list.employee_name}"></td>
                             <td th:text="${list.user_id}"></td>
                             <td th:text="${list.title}"></td>
-                            <td th:text="${list.drafting_date}"></td>
+                            <td><span th:text="${#dates.format(list.drafting_date, 'yyyy-MM-dd')}"></span></td>
                             <td th:text="${list.edoc_status}"></td>
                             <td>
                                 <button style="border-radius: 5px; background-color: aliceblue; border: 1px solid gray; padding: 2px" type="button" class="btn" th:attr="onclick='subpage(\'' + ${list.edoc_form_ct_no} + '\')'">상세보기</button>
@@ -138,5 +138,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>
