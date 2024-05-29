@@ -37,8 +37,9 @@ body {
 }
 
 .midtitle {
+    padding: 1px;
     width: 60vw;
-    height: 50px;
+    height: 60px;
     border: 2px solid #4CAF50;
     border-top: none;
     border-left: none;
@@ -49,15 +50,18 @@ body {
 }
 
 .titletext {
-    width: 50vw;
-    height: 50px;
+    align-items: center;
+    margin-left: 1vw;
+    width: 40vw;
+    height: 30px;
     position: relative;
-    top: 41px;
+    margin-top: 38px;
     left: 14vw;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 400;
     border: none;
     outline: none;
+    z-index: 1;
 }
 
 .inputtext {
@@ -84,30 +88,61 @@ body {
     margin-top: 100px;
 }
 
-.btn_notice1, .btn_notice2, .btn_notice3 {
+.btn_notice1, .btn_notice2 {
+    position: relative;
+    margin-right: 3vw;
     margin-top: 20px;
     width: 5vw;
     height: 35px;
     border-radius: 3px;
     background-color: #4CAF50;
     color: white;
+
     align-items: center;
-    justify-content: center;
+
     font-family: 'Pretendard-Regular';
     font-size: 16px;
     border: none;
     cursor: pointer;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn_notice2, .btn_notice3 {
-    margin-left: 15px;
+
     position: relative;
-    left: 61vw;
+    left: 55vw;
+}
+
+.btn_notice3 {
+    position: relative;
+    margin-right: 3vw;
+    margin-top: 20px;
+    width: 5vw;
+    height: 35px;
+    border-radius: 3px;
+    background-color: #4CAF50;
+    color: white;
+    font-family: 'Pretendard-Regular';
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn_notice3 a {
+
+    justify-content: center;
+    display: flex;
+    position: relative;
     color: white;
     text-decoration: none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn_notice1 {
