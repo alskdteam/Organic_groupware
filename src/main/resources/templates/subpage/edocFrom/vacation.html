@@ -51,6 +51,17 @@
     </style>
 </head>
 <body>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var errorMessage = /*[[${errorMessage}]]*/ '';
+
+    if (errorMessage && errorMessage.trim() !== '') {
+        alert(errorMessage);
+    }
+    /*]]>*/
+</script>
+
 <div class="container">
     <!-- 사이드바 -->
     <div th:replace="common/sidebar.html" id="sidebar"></div>
@@ -143,7 +154,7 @@
                                     </tr>
                                     <tr>
                                         <th style=" height: 35px;">작성일자</th>
-                                        <td style=" height: 35px;"><input type="text" placeholder="필수사항"  name="drafting_date" id="drafting_date"></td>
+                                        <td style=" height: 35px;"><input type="text" placeholder="yyyy-MM-dd"  name="drafting_date" id="drafting_date"></td>
                                     </tr>
                                 </table>
                                 <div style="height: 50px">
@@ -160,10 +171,10 @@
                                     </tr>
                                     <tr>
                                         <th style=" height: 50px;">시작일</th>
-                                        <td><input type="text" value="2024-05-13" name="start_date" id="start_date" placeholder="선택사항" style="height: 50px;"></td>
+                                        <td><input type="text" name="start_date" id="start_date" placeholder="yyyy-MM-dd" style="height: 50px;"></td>
 
                                         <th>종료일</th>
-                                        <td><input type="text" name="end_date" id="end_date" placeholder="선택사항" style="height: 50px;"></td>
+                                        <td><input type="text" name="end_date" id="end_date" placeholder="yyyy-MM-dd" style="height: 50px;"></td>
                                     </tr>
                                     <tr>
                                         <th style=" height: 500px;">내용</th>

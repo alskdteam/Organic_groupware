@@ -11,7 +11,7 @@ public class EdocFormCtDTO {
     private String employee_name;
     private int user_id;
     private String edoc_status;
-
+    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date start_date;
 
@@ -27,6 +27,7 @@ public class EdocFormCtDTO {
     private String title;
     private String content;
     private String purpose;
+
 
     public EdocFormCtDTO() {
     }
