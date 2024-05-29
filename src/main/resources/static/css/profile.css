@@ -1005,3 +1005,15 @@ body {
     margin: 3px; /* 버튼 간 간격을 설정합니다. */
 
 }
+
+.pagination-button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    background-color: #f0f0f0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 3px;
+}

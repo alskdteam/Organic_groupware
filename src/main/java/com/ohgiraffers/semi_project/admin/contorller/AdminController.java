@@ -58,11 +58,13 @@ public class AdminController {
         List<NoticeDTO> noticeList = adminService.findnotice();
         model.addAttribute("noticeList", noticeList);
 
-//        System.out.println("noticeList = " + noticeList);
+
 
         // 도아 전체 사원조회
         List<AdminEmployeeDTO> employeeList = adminService.findEmployee();
         model.addAttribute("employeeList", employeeList);
+
+        System.out.println("noticeList = " + noticeList);
 
 
         return "admin/admin";
