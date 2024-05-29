@@ -24,6 +24,7 @@ import java.util.Map;
 public class CarSituationController {
 
 
+
     private static final Logger logger = LogManager.getLogger(CarController.class);
 
     private final CarService carService;
@@ -69,7 +70,7 @@ public class CarSituationController {
 
         return "subpage/car_situation_mypage";
     }
-    @PostMapping("/car_situation_mypage")
+    @PostMapping("car_situation_mypage")
     public String returnCar(@RequestParam Map<String, Object> params, Model model) {
         System.out.println("params = " + params);
         

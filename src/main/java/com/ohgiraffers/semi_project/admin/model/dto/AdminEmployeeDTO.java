@@ -1,8 +1,9 @@
-package com.ohgiraffers.semi_project.subpage.profile.model.dto;
+package com.ohgiraffers.semi_project.admin.model.dto;
 
 import java.sql.Date;
 
-public class EmployeeDTO {
+public class AdminEmployeeDTO {
+
     private int user_no;
     private String user_name;
     private int user_id;
@@ -14,12 +15,12 @@ public class EmployeeDTO {
     private String user_rank;
     private String user_email;
     private Date join_date;
-    private String user_status;
+    private String password;
 
-    public EmployeeDTO() {
+    public AdminEmployeeDTO() {
     }
 
-    public EmployeeDTO(int user_no, String user_name, int user_id, Date user_birth, String user_phone_number, String user_gender, String user_department, String user_role, String user_rank, String user_email, Date join_date, String user_status) {
+    public AdminEmployeeDTO(int user_no, String user_name, int user_id, Date user_birth, String user_phone_number, String user_gender, String user_department, String user_role, String user_rank, String user_email, Date join_date, String password) {
         this.user_no = user_no;
         this.user_name = user_name;
         this.user_id = user_id;
@@ -31,7 +32,7 @@ public class EmployeeDTO {
         this.user_rank = user_rank;
         this.user_email = user_email;
         this.join_date = join_date;
-        this.user_status = user_status;
+        this.password = password;
     }
 
     public int getUser_no() {
@@ -122,17 +123,17 @@ public class EmployeeDTO {
         this.join_date = join_date;
     }
 
-    public String getUser_status() {
-        return user_status;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUser_status(String user_status) {
-        this.user_status = user_status;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public String toString() {
-        return "EmployeeDTO{" +
+        return "AdminEmployeeDTO{" +
                 "user_no=" + user_no +
                 ", user_name='" + user_name + '\'' +
                 ", user_id=" + user_id +
@@ -144,7 +145,7 @@ public class EmployeeDTO {
                 ", user_rank='" + user_rank + '\'' +
                 ", user_email='" + user_email + '\'' +
                 ", join_date=" + join_date +
-                ", user_status='" + user_status + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

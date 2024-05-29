@@ -13,7 +13,7 @@ public class MainController {
 
     @GetMapping(value = {"/", "/login", "/main"})
     public String main() {
-        return "main";
+        return "/login/login";
     }
 
 //    @PostMapping("main")
