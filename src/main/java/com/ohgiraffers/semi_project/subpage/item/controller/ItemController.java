@@ -116,7 +116,7 @@ public class ItemController {
         System.out.println("CarListUpdatessssssssssssssssssssssssssss = " + itemListUpdate);
         System.out.println("upmycarlistssssssssssssssssssssssssssssss = " + upmyItemlist);
 
-        return "redirect:/subpage/item_situation_mypage";
+        return "redirect:subpage/item_situation_mypage";
     }
 
 

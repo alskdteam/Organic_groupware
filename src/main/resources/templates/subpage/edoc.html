@@ -59,7 +59,7 @@
                     <button id="rejected" class="c_button" onclick="location.href='/subpage/edoc?filter=rejected'">반려</button>
                     <button id="my" class="c_button" onclick="location.href='/subpage/edoc?filter=my'">내결재함</button>
                 </div>
-                
+
                 <script>
                     function handleButtonClick(button, filter) {
                         // 모든 버튼에서 active 클래스 제거
@@ -104,7 +104,7 @@
                             <td th:text="${list.employee_name}"></td>
                             <td th:text="${list.user_id}"></td>
                             <td th:text="${list.title}"></td>
-                            <td th:text="${list.drafting_date}"></td>
+                            <td><span th:text="${#dates.format(list.drafting_date, 'yyyy-MM-dd')}"></span></td>
                             <td th:text="${list.edoc_status}"></td>
                             <td>
                                 <button style="border-radius: 5px; background-color: aliceblue; border: 1px solid gray; padding: 2px" type="button" class="btn" th:attr="onclick='subpage(\'' + ${list.edoc_form_ct_no} + '\')'">상세보기</button>
@@ -119,9 +119,11 @@
 
                 <div class="page_number">
                     <div class="flex">
+                        <div class="s_button">&lt;</div>
                         <div class="s_button" onclick="changePage(1)">1</div>
                         <div class="s_button" onclick="changePage(2)">2</div>
                         <div class="s_button" onclick="changePage(3)">3</div>
+                        <div class="s_button">&gt;</div>
                     </div>
                 </div>
 
@@ -138,5 +140,45 @@
         </div>
     </div>
 </div>
+
+<script>
+    // 현재 페이지를 저장할 변수
+    var currentPage = 1;
+    // 페이지당 행 수
+    var rowsPerPage = 10;
+
+    // 페이지를 변경하는 함수
+    function changePage(pageNumber) {
+        // 현재 페이지를 설정
+        currentPage = pageNumber;
+        // 모든 행을 숨김
+        hideAllRows();
+        // 현재 페이지에 해당하는 행들을 보여줌
+        showRowsForCurrentPage();
+    }
+
+    // 모든 행을 숨기는 함수
+    function hideAllRows() {
+        var rows = document.querySelectorAll('#tableBody tr');
+        rows.forEach(function(row) {
+            row.style.display = 'none';
+        });
+    }
+
+    // 현재 페이지에 해당하는 행들을 보여주는 함수
+    function showRowsForCurrentPage() {
+        var startIndex = (currentPage - 1) * rowsPerPage;
+        var endIndex = startIndex + rowsPerPage;
+        var rows = document.querySelectorAll('#tableBody tr');
+        for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+            rows[i].style.display = 'table-row';
+        }
+    }
+
+    // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
+    window.onload = function() {
+        changePage(1);
+    };
+</script>
 </body>
 </html>

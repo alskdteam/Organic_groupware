@@ -60,11 +60,13 @@ public class AdminController {
         List<NoticeDTO> noticeList = adminService.findnotice();
         model.addAttribute("noticeList", noticeList);
 
-        System.out.println("noticeList = " + noticeList);
+
 
         // 도아 전체 사원조회
         List<AdminEmployeeDTO> employeeList = adminService.findEmployee();
         model.addAttribute("employeeList", employeeList);
+
+        System.out.println("noticeList = " + noticeList);
 
 
         return "admin/admin";
@@ -89,16 +91,25 @@ public class AdminController {
         noticeDTO.setNoticeCreationDate(Date.valueOf(params.get("noticeCreationDate")));
         System.out.println("noticeDTO = " + noticeDTO);
         int Notice = adminService.updateNotice(noticeDTO);
-        return "redirect:admin/admin"; // 업데이트 후 이동할 페이지
+        return "redirect:/admin/admin"; // 업데이트 후 이동할 페이지
     }
 
 
     // 도아 개별 사원조회
     @GetMapping("search")
-    public String selectEmployee(@RequestParam Map<String, String> search, Model model){
+    public String selectEmployee(@RequestParam Map<String, Object> search, Model model){
+
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
 
         List<AdminEmployeeDTO> employeeDTO = adminService.findSelectEmployee(search);
         model.addAttribute("employeeList", employeeDTO);
+
+        List<EdocFromEdocCtDTO> edocList = edocService.selectEdoc();
+        model.addAttribute("edocList", edocList);
+
+        List<NoticeDTO> noticeList = adminService.findnotice();
+        model.addAttribute("noticeList", noticeList);
 
         return "admin/admin";
     }
@@ -107,6 +118,7 @@ public class AdminController {
 
         @GetMapping("/updateEmployee")
     public String updateEmployee(@RequestParam int user_no, Model model){
+
 
         AdminEmployeeDTO employee = adminService.findByEmployee(user_no);
         model.addAttribute("employee",employee);
@@ -124,7 +136,7 @@ public class AdminController {
        adminService.updateEmployee(map);
 
 
-        return "redirect:admin/admin";
+        return "redirect:admin";
 
     }
 
@@ -135,7 +147,7 @@ public class AdminController {
         System.out.println("user_id = " + user_id);
         adminService.deleteEmployee(user_id);
 
-        return "redirect:admin/admin";
+        return "redirect:admin";
     }
 
 
@@ -153,6 +165,16 @@ public class AdminController {
             edocList = edocService.getFilteredEdocs(filter);
         }
         model.addAttribute("edocList", edocList);
+
+        List<NoticeDTO> noticeList = adminService.findnotice();
+        model.addAttribute("noticeList", noticeList);
+
+
+
+        // 도아 전체 사원조회
+        List<AdminEmployeeDTO> employeeList = adminService.findEmployee();
+        model.addAttribute("employeeList", employeeList);
+
 
         return "admin/admin";
     }

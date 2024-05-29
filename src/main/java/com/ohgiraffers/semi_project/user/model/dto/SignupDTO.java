@@ -1,5 +1,8 @@
 package com.ohgiraffers.semi_project.user.model.dto;
 
+import jakarta.validation.constraints.Pattern;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
 
 public class SignupDTO {
@@ -8,12 +11,19 @@ public class SignupDTO {
     private String userName;
     private String userPass;
     private String role;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String  user_birth;
+
+    @Pattern(regexp = "^\\d{3}-\\d{3,4}-\\d{4}$", message = "전화번호 형식이 올바르지 않습니다.")
     private String  user_phone_number;
     private String  user_gender;
     private String  user_department;
     private String  user_rank;
+
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
     private String  user_email;
+
     private Date    join_date;
 
     public SignupDTO() {

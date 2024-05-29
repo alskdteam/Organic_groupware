@@ -88,18 +88,15 @@ public class UploadFileController {
         EdocFromEdocCtDTO insertedEdoc = edocService.selectEdocList(Integer.parseInt(edoc_form_ct_no));
         model.addAttribute("insertedEdoc", insertedEdoc);
 
-
-        rttr.addFlashAttribute("successMessage", messageSource.getMessage("registMenu", null, locale));
-
         byte[] imageData = employeeSignBytes;
 
         // 바이트 배열을 Base64로 인코딩
         String base64ImageDate = Base64.getEncoder().encodeToString(imageData);
         model.addAttribute("employeeSign", base64ImageDate);
 
+        String edocFormCtNo = edoc_form_ct_no;
 
-
-        return "subpage/edocFrom/selectEdocList2";
+        return "redirect:/subpage/edocFrom/selectEdocList/" + edocFormCtNo;
     }
 
 

@@ -6,6 +6,7 @@ import com.ohgiraffers.semi_project.subpage.edoc.model.dto.SelectEdocListDTO;
 import com.ohgiraffers.semi_project.subpage.edoc.model.service.EdocService;
 import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,7 @@ public class SelectEdocListController {
 
     //    전자결재 서류 조회 컨트롤러
     @GetMapping("/edocFrom/selectEdocList/{edocFormCtNo}")
-    public String selectEdoc(@PathVariable("edocFormCtNo") String edocFormCtNo, Model model) {
+    public String selectEdoc(@PathVariable("edocFormCtNo") String edocFormCtNo, Model model, RedirectAttributes rttr, HttpSession session) {
         sidebarController.getSidebar(model);
         sidebarController.getHeader(model);
         // Ajax 요청으로부터 edoc_form_ct_no 값을 가져옵니다.
@@ -78,6 +79,14 @@ public class SelectEdocListController {
 //         모델에 조회된 정보를 추가합니다.
         model.addAttribute("insertedEdoc", insertedEdoc);
 
+
+
+
+        // RedirectAttributes를 통해 전달된 속성을 Model에 추가합니다.
+//        String message = (String) rttr.getFlashAttributes().get("successMessage");
+        String message = (String) session.getAttribute("successMessage");
+        model.addAttribute("message", message);
+        session.removeAttribute("successMessage");
 
         return "subpage/edocFrom/selectEdocList2";
     }
