@@ -155,7 +155,7 @@
                                         </thead>
                                         <tbody id="employeetableBody">
                                         <!-- 여기서부터 페이지 네이션을 위한 행들만 추가 -->
-                                        <tr th:each="employee : ${employeeList}" id="row_${employee.user_no}">
+                                        <tr th:each="employee : ${employeeList}" id="row_employee_${employee.user_no}">
                                             <td th:text="${employee.user_department}"></td>
                                             <td th:text="${employee.user_name}"></td>
                                             <td th:text="${employee.user_rank}"></td>
@@ -175,9 +175,9 @@
                                 </div>
                                 <!-- 페이지 네이션 버튼 -->
                                 <div class="employee_page_number">
-                                    <div class="employee_s_button" onclick="changePage(1)">1</div>
-                                    <div class="employee_s_button" onclick="changePage(2)">2</div>
-                                    <div class="employee_s_button" onclick="changePage(3)">3</div>
+                                    <div class="employee_s_button" onclick="changeEmployeePage(1)">1</div>
+                                    <div class="employee_s_button" onclick="changeEmployeePage(2)">2</div>
+                                    <div class="employee_s_button" onclick="changeEmployeePage(3)">3</div>
                                 </div>
 
 
@@ -191,51 +191,40 @@
 
                     <!--                     사원추가 시 사원추가 페이지로 이동 -->
                     <script>
+                    // 사원 조회 페이징 변수
+                    var employeeCurrentPage = 1;
+                    var employeeRowsPerPage = 7;
 
-                        function user_no(user_no) {
-                            location.href = '/admin/updateEmployee?user_no=' + user_no;
+                    // 사원 조회 페이지 변경 함수
+                    function changeEmployeePage(pageNumber) {
+                        employeeCurrentPage = pageNumber;
+                        hideAllEmployeeRows();
+                        showEmployeeRowsForCurrentPage();
+                    }
+
+                    // 모든 사원 조회 행 숨기기 함수
+                    function hideAllEmployeeRows() {
+                        var rows = document.querySelectorAll('[id^="row_employee_${employee.user_no}"]');
+                        rows.forEach(function(row) {
+                            row.style.display = 'none';
+                        });
+                    }
+
+                    // 현재 페이지에 해당하는 사원 조회 행 보이기 함수
+                    function showEmployeeRowsForCurrentPage() {
+                        var startIndex = (employeeCurrentPage - 1) * employeeRowsPerPage;
+                        var endIndex = startIndex + employeeRowsPerPage;
+                        var rows = document.querySelectorAll('[id^="row_employee_${employee.user_no}"]');
+                        for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+                            rows[i].style.display = 'table-row';
                         }
+                    }
 
-                        // 현재 페이지를 저장할 변수
-                        var currentPage = 1;
-                        // 페이지당 행 수
-                        var rowsPerPage = 7;
-
-                        // 페이지를 변경하는 함수
-                        function changePage(employee_page_number) {
-                            // 현재 페이지를 설정
-                            currentPage = employee_page_number;
-                            // 모든 행을 숨김
-                            hideAllRows();
-                            // 현재 페이지에 해당하는 행들을 보여줌
-                            showRowsForCurrentPage();
-                        }
-
-                        // 모든 행을 숨기는 함수
-                        function hideAllRows() {
-                            var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
-                            rows.forEach(function(row) {
-                                row.style.display = 'none';
-                            });
-                        }
-
-                        // 현재 페이지에 해당하는 행들을 보여주는 함수
-                        function showRowsForCurrentPage() {
-                            var startIndex = (currentPage - 1) * rowsPerPage;
-                            var endIndex = startIndex + rowsPerPage;
-                            var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
-                            for (var i = startIndex; i < endIndex && i < rows.length; i++) {
-                                rows[i].style.display = 'table-row';
-                            }
-                        }
-
-                        // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
-                        window.onload = function() {
-                            changePage(1);
-                        };
-
-
-                    </script>
+                    // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
+                    window.onload = function() {
+                        changeEmployeePage(1);
+                    };
+                </script>
 
 
 
@@ -281,6 +270,8 @@
                                             activeButton.classList.add('active');
                                         }
                                     };
+
+
                                 </script>
 
                                 <div class="chart">
@@ -297,7 +288,7 @@
                                         </tr>
                                         </thead>
                                         <tbody id="tableBody">
-                                        <tr th:each="list, iterStat : ${edocList}" id="row_${iterStat.index}">
+                                        <tr th:each="list, iterStat : ${edocList}" id="row_edoc_${list.user_no}">
                                             <td th:text="${list.drafting_date}"></td>
                                             <td th:text="${list.edocFormDTO.form_name}"></td>
                                             <td th:text="${list.title}"></td>
@@ -319,11 +310,46 @@
                                 </div>
                                 <div class="page_number">
                                     <div class="s_button">&lt;</div>
-                                    <div class="s_button">1</div>
-                                    <div class="s_button">2</div>
-                                    <div class="s_button">3</div>
+                                    <div class="s_button" onclick="changeEdocPage(1)">1</div>
+                                    <div class="s_button" onclick="changeEdocPage(2)">2</div>
+                                    <div class="s_button" onclick="changeEdocPage(3)">3</div>
                                     <div class="s_button">&gt;</div>
                                 </div>
+                                <script>
+                                    // 전자결재 페이징 변수
+                                    var edocCurrentPage = 1;
+                                    var edocRowsPerPage = 7;
+
+                                    // 전자결재 페이지 변경 함수
+                                    function changeEdocPage(pageNumber) {
+                                        edocCurrentPage = pageNumber;
+                                        hideAllEdocRows();
+                                        showEdocRowsForCurrentPage();
+                                    }
+
+                                    // 모든 전자결재 행 숨기기 함수
+                                    function hideAllEdocRows() {
+                                        var rows = document.querySelectorAll('[id^="row_edoc_${list.user_no}"]');
+                                        rows.forEach(function(row) {
+                                            row.style.display = 'none';
+                                        });
+                                    }
+
+                                    // 현재 페이지에 해당하는 전자결재 행 보이기 함수
+                                    function showEdocRowsForCurrentPage() {
+                                        var startIndex = (edocCurrentPage - 1) * edocRowsPerPage;
+                                        var endIndex = startIndex + edocRowsPerPage;
+                                        var rows = document.querySelectorAll('[id^="row_edoc_${list.user_no}"]');
+                                        for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+                                            rows[i].style.display = 'table-row';
+                                        }
+                                    }
+
+                                    // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
+                                    window.onload = function() {
+                                        changeEdocPage(1);
+                                    };
+                                </script>
                             </div>
                         </div>
                     </div>

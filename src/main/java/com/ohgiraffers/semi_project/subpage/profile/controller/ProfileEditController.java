@@ -54,6 +54,6 @@ public class ProfileEditController {
         profileService.registNewProfile(profileDTO);
 
         // 결과 페이지 반환
-        return "redirect:/subpage/profile";
+        return "redirect:subpage/profile";
     }
 }
