@@ -21,7 +21,7 @@ public interface AdminMapper {
     List<AdminEmployeeDTO> findEmployee();
 
     // 사원 개별 조회
-    List<AdminEmployeeDTO> findSelectEmployee(Map<String, String> search);
+    List<AdminEmployeeDTO> findSelectEmployee(Map<String, Object> search);
 
 
     AdminEmployeeDTO findByEmployee(int userNo);
@@ -30,4 +30,6 @@ public interface AdminMapper {
     void adminEmployeeDTO(Map<String,Object> map);
 
     void deleteEmployee(int userId);
+
+
 }

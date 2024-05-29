@@ -192,6 +192,11 @@
                     <!--                     사원추가 시 사원추가 페이지로 이동 -->
                     <script>
                     // 사원 조회 페이징 변수
+
+                    function user_no(user_no) {
+                        location.href = '/admin/updateEmployee?user_no=' + user_no;
+                    }
+
                     var employeeCurrentPage = 1;
                     var employeeRowsPerPage = 7;
 

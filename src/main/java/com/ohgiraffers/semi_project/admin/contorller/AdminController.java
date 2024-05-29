@@ -95,10 +95,19 @@ public class AdminController {
 
     // 도아 개별 사원조회
     @GetMapping("search")
-    public String selectEmployee(@RequestParam Map<String, String> search, Model model){
+    public String selectEmployee(@RequestParam Map<String, Object> search, Model model){
+
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
 
         List<AdminEmployeeDTO> employeeDTO = adminService.findSelectEmployee(search);
         model.addAttribute("employeeList", employeeDTO);
+
+        List<EdocFromEdocCtDTO> edocList = edocService.selectEdoc();
+        model.addAttribute("edocList", edocList);
+
+        List<NoticeDTO> noticeList = adminService.findnotice();
+        model.addAttribute("noticeList", noticeList);
 
         return "admin/admin";
     }
@@ -107,6 +116,7 @@ public class AdminController {
 
         @GetMapping("/updateEmployee")
     public String updateEmployee(@RequestParam int user_no, Model model){
+
 
         AdminEmployeeDTO employee = adminService.findByEmployee(user_no);
         model.addAttribute("employee",employee);
