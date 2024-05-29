@@ -43,7 +43,7 @@ public class AdminService {
     }
 
     // 사원 개별 조회
-    public List<AdminEmployeeDTO> findSelectEmployee(Map<String, String> search) {
+    public List<AdminEmployeeDTO> findSelectEmployee(Map<String, Object> search) {
 
         return adminMapper.findSelectEmployee(search);
     }
@@ -63,6 +63,7 @@ public class AdminService {
     public void deleteEmployee(int userId) {
         adminMapper.deleteEmployee(userId);
     }
+
 }
 
 

@@ -71,6 +71,7 @@
     <!-- 사원 개별 조회 -->
     <select id="findSelectEmployee" resultMap="employee" parameterType="map">
         select
+        user_no,
         user_department,
         user_name,
         user_rank,
