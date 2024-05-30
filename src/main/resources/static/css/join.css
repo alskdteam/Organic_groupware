@@ -107,7 +107,14 @@ body::before {
 }
 
 .img-logo {
+    width: 15vw;
+    position: relative;
     height: 300px;
+    bottom: 15vw;
+
+}
+#firstinput {
+    margin-top: 120px;
 }
 
 .login-form{
@@ -135,6 +142,7 @@ body::before {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 30vw;
 }
 
 /* 비활성화된 버튼 스타일 */
@@ -145,7 +153,11 @@ body::before {
 .terms-container {
     font-size: 18px;
 }
-
+.employeeplus {
+    position: relative;
+    height: 70%;
+    bottom: 5vw;
+}
 
 @media screen and (max-width: 375px) {
     .login-form{
