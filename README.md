@@ -57,8 +57,6 @@ organic 이란? organic 은 '유기농' 이라는 뜻으로 사과를 유통하�
 
 
 
-
-
 ## 👨🏻‍💻👩🏻‍💻 멤버 소개
 
 |[![](https://avatars.githubusercontent.com/u/153148788?v=4?width=200px)](https://github.com/gyuhyeok0)|[![](https://avatars.githubusercontent.com/u/167507636?v=4?width=200px)](https://github.com/poohbao) |[![](https://avatars.githubusercontent.com/u/158136952?v=4?width=200px)](https://github.com/doa0819) | [![](https://avatars.githubusercontent.com/u/109369481?v=4?width=200px)](https://github.com/rjadmsehf)|
