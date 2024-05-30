@@ -1,6 +1,7 @@
 ## 소개
 <p align="center">
-  <img src="https://github.com/f-lab-edu/dong-chi-mi/assets/51324045/f7cc15e4-8592-4eab-a3ec-15c346fe5ec9" alt="organic logo" />
+  <img src="](https://github.com/alskdteam/semi_project_java/assets/158136952/42c16634-c9cd-41a4-a8f0-a21cdc907c4a)
+" alt="organic logo" />
 
   ![logo](https://github.com/alskdteam/semi_project_java/assets/158136952/42c16634-c9cd-41a4-a8f0-a21cdc907c4a)
 
@@ -64,6 +65,18 @@ organic 이란? organic 은 '유기농' 이라는 뜻으로 사과를 유통하�
 | ------- |
 | <img src="https://github.com/stc9606.png" width="100" height="100"> |
 | [최규혁] (https://github.com/gyuhyeok0) |
+
+| Backend |
+| ------- |
+| <img src="https://github.com/stc9606.png" width="100" height="100"> |
 | [박찬우] (https://github.com/poohbao) |
-| [이도아] (https://github.com/doa0819) |
+
+| Backend |
+| ------- |
+| <img src="https://github.com/stc9606.png" width="100" height="100"> |
+|  [이도아] (https://github.com/doa0819) |
+
+| Backend |
+| ------- |
+| <img src="https://github.com/stc9606.png" width="100" height="100"> |
 | [전준규] (https://github.com/rjadmsehf) |
