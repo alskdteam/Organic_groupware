@@ -5,7 +5,12 @@
     font-style: normal;
 }
 *{margin: 0; padding: 0; box-sizing: border-box;}
-.join-form {position: absolute; z-index: 2;}
+.join-form {
+
+    position: absolute;
+    z-index: 2;
+    margin-top: 15vw;
+}
 .join-form h1 {
     font-size: 32px; color: #010101;
     text-align: center;
@@ -88,29 +93,20 @@ body::before {
     align-items: center;
 }
 
-.btn {
-    font-size: 30px;
-    padding: 10px 135px;
-    border: 5px color(yellow);
-    border-radius: 10px;
-    background-color: green;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-weight: bold;
-    font-family: "Pretendard-Regular";
-    cursor: pointer;
-}
+
 
 .btn:focus {
     outline: none;
 }
 
 .img-logo {
+
     width: 15vw;
-    position: relative;
+    position: absolute;
     height: 300px;
-    bottom: 15vw;
+    bottom: 33vw;
+    margin-right: 5.5vw;
+
 
 }
 #firstinput {
@@ -135,14 +131,24 @@ body::before {
 
 /* 회원가입 버튼 스타일 */
 .btn {
+
+    font-size: 30px;
+    border: 5px color(yellow);
+
+    background-color: green;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bold;
+    font-family: "Pretendard-Regular";
+
     width: 400px;
     padding: 10px 20px;
     background-color:green;
-    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 30vw;
+
 }
 
 /* 비활성화된 버튼 스타일 */
