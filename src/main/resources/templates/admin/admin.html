@@ -343,9 +343,17 @@
                                         return html;
                                     }
 
-                                    // Function to format date as 'yyyy-MM-dd'
+                                    // 날짜를 'yyyy-MM-dd' 형식으로 포맷하고 null/유효하지 않은 날짜를 처리하는 함수
                                     function formatDate(date) {
+                                        if (!date) {
+                                            return ''; // null 또는 undefined인 경우 빈 문자열 반환
+                                        }
+
                                         var d = new Date(date);
+                                        if (isNaN(d.getTime())) {
+                                            return ''; // 유효하지 않은 날짜인 경우 빈 문자열 반환
+                                        }
+
                                         var year = d.getFullYear();
                                         var month = ('0' + (d.getMonth() + 1)).slice(-2);
                                         var day = ('0' + d.getDate()).slice(-2);
