@@ -25,6 +25,9 @@ body {
     height: 100vh;
     background: url("bg.jpg") no-repeat center;
     background-size: cover;
+    align-items: center;
+    justify-content: center;
+
 }
 body::before {
     content: "";
@@ -101,11 +104,8 @@ body::before {
 
 .img-logo {
 
-    width: 15vw;
-    position: absolute;
-    height: 300px;
-    bottom: 33vw;
-    margin-right: 5.5vw;
+    position: relative;
+    bottom: 23vw;
 
 
 }

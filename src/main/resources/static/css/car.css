@@ -153,14 +153,21 @@ body {
 /* 모달 내용 스타일 */
 .modal-content {
 
-    background-color: rgb(200, 245, 200);
+    background-color: white;
     margin: 15% auto; /* 중앙에 위치 */
     padding: 20px;
     border: 1px solid #888;
     width: 25vw; /* 너비 조정 */
-    height: 100%;
+    height: 70%;
     border-radius: 15px;
 }
+.modal-content p {
+    display: flex;
+}
+.modal-small-content {
+    border: 1px solid green;
+}
+
 
 /* 닫기 버튼 스타일 */
 .close {
@@ -180,7 +187,7 @@ body {
 .buttons {
     text-align: end;
     margin-top: 40px;
-
+    margin-right: 3vw;
 }
 
 #addBtn {
