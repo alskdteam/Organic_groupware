@@ -21,7 +21,7 @@ public interface ProfileMapper {
 
 
 
-    List<MemoDTO> findMemoTitle(int userCode);
+    List<MemoDTO> findMemoTitle(int user_no);
 
     void registMem(MemoDTO memoDTO);
 
