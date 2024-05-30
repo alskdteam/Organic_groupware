@@ -49,11 +49,7 @@ organic 이란? organic 은 '유기농' 이라는 뜻으로 사과를 유통하�
 
 ## 기술 소개
 ### 백엔드
-![백엔드2](https://github.com/f-lab-edu/dong-chi-mi/assets/51324045/ebe18f8f-9643-46e1-96b0-4b321df5538c)
-
-
-
-
+[![stackticon](https://firebasestorage.googleapis.com/v0/b/stackticon-81399.appspot.com/o/images%2F1717079049536?alt=media&token=0af64496-1bca-444c-8cf0-d7d7505bdb3c)](https://github.com/msdio/stackticon)
 
 
 
