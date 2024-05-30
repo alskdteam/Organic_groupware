@@ -7,9 +7,9 @@
 *{margin: 0; padding: 0; box-sizing: border-box;}
 .join-form {
 
-    position: absolute;
+    position: relative;
     z-index: 2;
-    margin-top: 15vw;
+
 }
 .join-form h1 {
     font-size: 32px; color: #010101;
@@ -25,9 +25,6 @@ body {
     height: 100vh;
     background: url("bg.jpg") no-repeat center;
     background-size: cover;
-    align-items: center;
-    justify-content: center;
-
 }
 body::before {
     content: "";
@@ -47,12 +44,15 @@ body::before {
     font-size: 18px;
     outline: none;
 }
-.divide {
-    width: 400px;
-    border: #010101;
-    border-radius: 15px;
-    padding: 20px 10px 10px;
+
+
+.img-logo {
+    margin-top: 20vw;
+    position: relative;
+    width: 13vw;
+    height: 200px;
 }
+
 .onclick {
     display: inline;
     font-family: "Pretendard-Regular";
@@ -68,88 +68,42 @@ body::before {
 
 .int-area label {
     font-family: "Pretendard-Regular";
-    position: absolute; left: 10px; top: 15px;
+    position: relative; left: 10px; top: 15px;
     font-size: 18px; color: #999;
-
 }
 
-.caption1 {
-    font-family: "Pretendard-Regular";
-    position: absolute;
-    left: 43%;
-    top: 120%;
-
-}
-.caption {
-    font-family: "Pretendard-Regular";
-    position: absolute;
-    left:30%;
-    top: 128%;
-
-}
 
 .btn-area {
-
     box-sizing: border-box;
     display: inline;
     justify-content: center;
     align-items: center;
 }
 
-
-
-.btn:focus {
-    outline: none;
-}
-
-.img-logo {
-
-    position: relative;
-    bottom: 23vw;
-
-
-}
-#firstinput {
-    margin-top: 120px;
-}
-
-.login-form{
-    margin-top: -20vh;
-}
-
-/* 스타일링을 위한 CSS */
-.terms-container {
-    margin-bottom: 20px;
-}
-
-/* 체크박스 스타일 */
-.terms-checkbox {
-    padding: 10px 20px 10px;
-    margin-right: 10px;
-    font-size: 18px;
-}
-
-/* 회원가입 버튼 스타일 */
 .btn {
-
     font-size: 30px;
+    padding: 10px 135px;
     border: 5px color(yellow);
-
+    border-radius: 10px;
     background-color: green;
     color: white;
     text-transform: uppercase;
     letter-spacing: 5px;
     font-weight: bold;
     font-family: "Pretendard-Regular";
-
-    width: 400px;
-    padding: 10px 20px;
-    background-color:green;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
-
 }
+
+.btn:focus {
+    outline: none;
+}
+
+
+/* 스타일링을 위한 CSS */
+.terms-container {
+    margin-bottom: 20px;
+}
+
 
 /* 비활성화된 버튼 스타일 */
 .btn:disabled {
@@ -159,17 +113,7 @@ body::before {
 .terms-container {
     font-size: 18px;
 }
-.employeeplus {
-    position: relative;
-    height: 70%;
-    bottom: 5vw;
-}
 
-@media screen and (max-width: 375px) {
-    .login-form{
-        margin-top: -10vh;
-        scale: 50%;
-    }
-}
+
 
 
