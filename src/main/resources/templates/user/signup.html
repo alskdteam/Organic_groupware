@@ -17,6 +17,14 @@
 
             // Disable the submit button initially
             document.querySelector('.btn').disabled = true;
+
+            // 플래시 메시지 확인 후 알림창 띄우기
+            const flashMessage = document.getElementById("flashMessage").value;
+            if (flashMessage) {
+                alert(flashMessage);
+                // 알림창 확인 후 로그인 페이지로 이동
+                window.location.href = "/login/login";
+            }
         };
 
         function isValidDate(dateString) {
@@ -59,16 +67,16 @@
         }
     </script>
 </head>
-
 <body>
+<section class="join-form">
+    <div class="img-logo" id="img-logo">
+        <img src="https://github.com/alskdteam/semi_project_java/assets/167507636/bd479789-f3d8-410d-93bc-51a78ba44096" width="400px">
+    </div>
 
+    <!-- 플래시 메시지를 위한 히든 필드 -->
+    <input type="hidden" id="flashMessage" th:value="${message}" />
 
-    <section class="join-form">
-        <div class="img-logo" id="img-logo">
-            <img src="https://github.com/alskdteam/semi_project_java/assets/167507636/bd479789-f3d8-410d-93bc-51a78ba44096"  width="400px">
-        </div>
     <form th:action="@{/user/signup}" th:method="post" oninput="validateForm()">
-
         <div class="int-area">
             <input type="text" name="userId" autocomplete="off" placeholder="사원번호" required>
         </div>
