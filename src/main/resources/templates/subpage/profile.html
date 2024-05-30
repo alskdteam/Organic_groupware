@@ -27,6 +27,21 @@
             }
         }
 
+        .memo_under {
+            text-decoration: none;
+            position: relative;
+        }
+
+        .memo_under:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; /* 글 아래부터 밑줄 시작 */
+            width: 100%;
+            height: 1px; /* 밑줄의 두께 */
+            background: black; /* 밑줄 색상 */
+        }
+
 
     </style>
 </head>
@@ -277,8 +292,8 @@
                                         <table>
                                             <tbody id="tableBody">
                                             <tr th:each="memo, iterStat : ${memoDTOList}" th:id="'row_memo_' + ${iterStat.index}">
-                                                <td style="width: 135px">
-                                                    <a th:href="'profile/memo/' + ${memo.memo_id}" th:text="${memo.memo_title}"></a>
+                                                <td style="width: 135px" >
+                                                    <a class="memo_under" th:href="'profile/memo/' + ${memo.memo_id}" th:text="${memo.memo_title}"></a>
                                                 </td>
                                             </tr>
                                             </tbody>

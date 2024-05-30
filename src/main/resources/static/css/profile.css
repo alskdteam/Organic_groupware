@@ -226,7 +226,7 @@ body {
 
 }
 .c_memo th, .c_memo td {
-    border: 1px solid #dddddd; /* 테이블 셀 경계 선 설정 */
+    border:  none; /* 테이블 셀 경계 선 설정 */
     padding: 8px;
     text-align: left;
     border-left: none;
@@ -1069,6 +1069,7 @@ body {
 }
 
 .memo_table{
-    width: 90%;
+    width: 100%;
     height: 400px;
+    border-collapse: collapse;
 }
