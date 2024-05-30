@@ -90,11 +90,11 @@
         </div>
         <br>
         <div class="int-area">
-            <input type="text" name="user_birth" autocomplete="off" placeholder="생년월일 8자리 (yyyy-MM-dd)" required>
+            <input type="text" name="user_birth" autocomplete="off" placeholder="생년월일 8자리 (yyyy-MM-dd)" oninput="birth(this)" maxlength="13" required>
         </div>
         <br>
         <div class="int-area">
-            <input type="text" name="user_phone_number" autocomplete="off" placeholder="휴대전화번호 (000-0000-0000)" required>
+            <input type="text" name="user_phone_number" autocomplete="off" placeholder="휴대전화번호 (000-0000-0000)" oninput="hypenTel(this)" maxlength="13" required>
         </div>
         <br>
         <div class="int-area">
@@ -133,6 +133,20 @@
     </form>
 </section>
 
+
+<script>
+    const hypenTel = (target) => {
+        target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+    }
+    const birth = (target) => {
+        target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/^(\d{3,4})(\d{1,2})(\d{2})$/, `$1-$2-$3`);
+    }
+
+</script>
 <script>
     document.getElementById('img-logo').addEventListener('dblclick',()=>{
         location.href='https://gi.esmplus.com/yoonbusi77/CYWORLD/jjgleft.gif'
