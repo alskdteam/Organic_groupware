@@ -327,14 +327,15 @@
 
                                         data.forEach(function(item, index) {
                                             html += '<tr id="row_edoc_' + item.user_no + '">';
-                                            html += '<td>' + item.edoc_form_ct_no + '</td>';
-                                            html += '<td>' + item.edocFormDTO.form_name + '</td>';
-                                            html += '<td>' + item.employee_name + '</td>';
-                                            html += '<td>' + item.form_name + '</td>';
+
+                                            html += '<td>' + item.edoc_form_ct_no + '</td>';         //문서번호
+                                            html += '<td>' + item.edocFormDTO.form_name + '</td>'; //폼 내임
+                                            html += '<td>' + item.employee_name + '</td>';    // 사원이름
                                             html += '<td>' + item.user_id + '</td>';
                                             html += '<td>' + item.title + '</td>';
                                             html += '<td>' + formatDate(item.drafting_date) + '</td>';
                                             html += '<td>' + item.edoc_status + '</td>';
+                                            html += '<td><button style="border-radius: 5px; background-color: aliceblue; border: 1px solid gray; padding: 2px" type="button" class="btn" onclick="admin(\'' + item.edoc_form_ct_no + '\')">상세보기</button></td>';
                                             html += '</tr>';
                                         });
 
