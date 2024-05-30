@@ -17,7 +17,7 @@ organic 이란? organic 은 '유기농' 이라는 뜻으로 사과를 유통하�
 동치미 로고는 서로 다른 사람들 하나의 취미를 함께 하기 위해 한 곳에 모여 이루어진다는 의미를 가지도록 디자인 되었습니다.
 
 ### 프로젝트 정보
-- [테이블 설계](https://github.com/f-lab-edu/dongchimi/wiki/%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%84%A4%EA%B3%84)
+- [테이블 설계](https://github.com/alskdteam/semi_project_java/wiki/%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%84%A4%EA%B3%84)
 - [USECASE](https://github.com/f-lab-edu/dongchimi/wiki/USECASE)
 - [코드 컨벤션](https://github.com/f-lab-edu/dongchimi/wiki/%EC%BD%94%EB%93%9C-%EC%8A%A4%ED%83%80%EC%9D%BC)
 - [Git 컨벤션](https://github.com/f-lab-edu/dongchimi/wiki/Git-%EC%BB%A8%EB%B2%A4%EC%85%98)
