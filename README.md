@@ -1,15 +1,14 @@
 ## 소개
 <p align="center">
-  <img src="](https://github.com/alskdteam/semi_project_java/assets/158136952/42c16634-c9cd-41a4-a8f0-a21cdc907c4a)
-" alt="organic logo" />
 
-  ![logo](https://github.com/alskdteam/semi_project_java/assets/158136952/42c16634-c9cd-41a4-a8f0-a21cdc907c4a)
-
+  <img src="https://github.com/alskdteam/semi_project_java/assets/158136952/42c16634-c9cd-41a4-a8f0-a21cdc907c4a" alt="Organic logo" />
 </p>
+
+<br><br>
 
 <h1 align="center">Organic</h1>
 
-<h3 align="center">:🍏 Organic Company 🍏</h3>
+<h3 align="center">🍏 Organic Company 🍏</h3>
 
 ### Organic?
 organic 이란? organic 은 '유기농' 이라는 뜻으로 사과를 유통하는 회사의 그룹웨어(Groupware)를 
@@ -60,23 +59,8 @@ organic 이란? organic 은 '유기농' 이라는 뜻으로 사과를 유통하�
 
 
 
-## 개발자
-| Backend |
-| ------- |
-| <img src="https://github.com/stc9606.png" width="100" height="100"> |
-| [최규혁] (https://github.com/gyuhyeok0) |
+## 👨🏻‍💻👩🏻‍💻 멤버 소개
 
-| Backend |
-| ------- |
-| <img src="https://github.com/stc9606.png" width="100" height="100"> |
-| [박찬우] (https://github.com/poohbao) |
-
-| Backend |
-| ------- |
-| <img src="https://github.com/stc9606.png" width="100" height="100"> |
-|  [이도아] (https://github.com/doa0819) |
-
-| Backend |
-| ------- |
-| <img src="https://github.com/stc9606.png" width="100" height="100"> |
-| [전준규] (https://github.com/rjadmsehf) |
+|[![](https://avatars.githubusercontent.com/u/153148788?v=4?width=200px)](https://github.com/gyuhyeok0)|[![](https://avatars.githubusercontent.com/u/167507636?v=4?width=200px)](https://github.com/poohbao) |[![](https://avatars.githubusercontent.com/u/158136952?v=4?width=200px)](https://github.com/doa0819) | [![](https://avatars.githubusercontent.com/u/109369481?v=4?width=200px)](https://github.com/rjadmsehf)|
+|:---:|:---:|:---:|:---:|
+| 최규혁 | 박찬우 | 이도아 | 전준규 |
