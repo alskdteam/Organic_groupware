@@ -250,7 +250,7 @@
                         <!-- 캘린더 영역 -->
                         <div class="calender" tabindex="0">
                             <div class="flex2">
-                                <h3>캘린더</h3>
+                                <h3></h3>
                                 <div class="c_calender">
                                     <div id='calendar'></div>
                                     <!-- 여기서 시작 -->
@@ -261,10 +261,9 @@
                         <!-- 메모 영역 -->
                         <div class="memo" tabindex="0">
                             <div class="flex2">
-                                <h3>메모</h3>
                                 <div class="c_memo">
 
-                                        <h1 class="headmemo_title">memo<h1/>
+                                        <h1 class="headmemo_title">memo</h1>
                                         <button class="new_button" id="new-memo-btn">메모 등록</button>
 
 
@@ -273,7 +272,8 @@
 
 
                                     <!-- 메모 목록 항목이 여기에 추가됩니다 -->
-                                    <div class="cars">
+                                    <div class="memo_table">
+
                                         <table>
                                             <tbody id="tableBody">
                                             <tr th:each="memo, iterStat : ${memoDTOList}" th:id="'row_memo_' + ${iterStat.index}">
@@ -284,6 +284,8 @@
                                             </tbody>
                                         </table>
 
+
+                                    </div>
 
                                         <form class="Memoform" action="/subpage/profile" method="post">
                                             <div id="MemomyModal" class="modal1">
@@ -304,7 +306,7 @@
                                                 </div>
                                             </div>
                                         </form>
-                                    </div>
+
 
 
 
@@ -352,7 +354,6 @@
                         <!-- 사원조회 영역 -->
                         <div class="employee" tabindex="0">
                             <div class="flex3">
-                                <h3>사원조회</h3>
                                 <div class="c_employee">
                                     <!-- 여기서 시작 -->
                                     <div class="head-container">

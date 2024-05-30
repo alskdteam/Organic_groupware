@@ -49,9 +49,9 @@ public class ProfileService {
     }
 
 
-    public List<MemoDTO> findMemoTitle(int userCode) {
+    public List<MemoDTO> findMemoTitle(int user_no) {
 
-        return profileMapper.findMemoTitle(userCode);
+        return profileMapper.findMemoTitle(user_no);
     }
 
     public void registMem(MemoDTO memoDTO) {

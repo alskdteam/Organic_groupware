@@ -38,10 +38,9 @@ public class ProfileController {
         Userdata userDate = new Userdata();
         LoginUserDTO userDTO = userDate.getloginUserDTO();
         int user_no = userDTO.getUserCode();
-        int userCode = userDTO.getUserCode();
   
 //         도아
-        List<MemoDTO> memoDTOList = profileService.findMemoTitle(userCode);
+        List<MemoDTO> memoDTOList = profileService.findMemoTitle(user_no);
         model.addAttribute("memoDTOList", memoDTOList);
 
         System.out.println("memoDTOList = " + memoDTOList);
@@ -129,6 +128,20 @@ public class ProfileController {
 
         List<EmployeeDTO> employeeDTO = profileService.findDepartment(search);
         model.addAttribute("employeeList", employeeDTO);
+
+        Userdata userDate = new Userdata();
+        LoginUserDTO userDTO = userDate.getloginUserDTO();
+        int user_no = userDTO.getUserCode();
+
+        List<MemoDTO> memoDTOList = profileService.findMemoTitle(user_no);
+        model.addAttribute("memoDTOList", memoDTOList);
+
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
+
+        Map<String, Object> profileData = profileService.selectProfile(user_no);
+        model.addAttribute("profilesWithoutImage", profileData.get("profilesWithoutImage"));
+
 
         System.out.println("employeeList = " + employeeDTO);
 
