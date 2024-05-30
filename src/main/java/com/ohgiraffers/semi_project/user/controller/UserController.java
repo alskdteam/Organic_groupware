@@ -32,23 +32,26 @@ public class UserController {
         ModelAndView mv = new ModelAndView();
 
         System.out.println("signupDTO = " + signupDTO);
+
         if (bindingResult.hasErrors()) {
-            // 유효성 검사 실패
-            mv.addObject("errorMessage", "입력한 형식이 다릅니다.");
-            mv.setViewName("redirect:/user/signup");
-            return mv; // 여기서 메소드 종료하여 DB로 데이터가 들어가지 않도록 함
+            mv.addObject("errors", bindingResult.getAllErrors());
+            mv.setViewName("signup"); // 다시 회원가입 페이지로 이동
+            return mv;
+        }
+
+        int result = userService.regist(signupDTO);
+        if (result > 0) {
+            redirectAttributes.addFlashAttribute("message", "회원가입이 성공적으로 완료되었습니다!");
+            mv.setViewName("redirect:/user/signup"); // 회원가입 페이지로 리다이렉트
         } else {
-            // 유효성 검사 성공
-            int result = userService.regist(signupDTO);
-            String message = (result > 0) ? "회원가입이 성공적으로 완료되었습니다!" : "회원가입에 실패했습니다.";
-            mv.addObject("message", message);
-
-            mv.setViewName("redirect:/login/login");
-
+            mv.addObject("message", "회원가입에 실패했습니다.");
+            mv.setViewName("user/signup"); // 회원가입 페이지로 이동
         }
 
         return mv;
     }
+
+
 
 
 
