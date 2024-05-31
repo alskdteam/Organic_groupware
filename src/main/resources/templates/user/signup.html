@@ -75,8 +75,7 @@
 
     <!-- 플래시 메시지를 위한 히든 필드 -->
     <input type="hidden" id="flashMessage" th:value="${message}" />
-
-    <form th:action="@{/user/signup}" th:method="post" oninput="validateForm()">
+    <form class="employeeform" th:action="@{/user/signup}" th:method="post" oninput="validateForm()">
         <div class="int-area">
             <input type="text" name="userId" autocomplete="off" placeholder="사원번호" required>
         </div>
