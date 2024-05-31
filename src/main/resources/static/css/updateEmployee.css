@@ -50,6 +50,7 @@
     outline: none;
 }
 
+
 .img-logo {
 
     margin-top: 26vh;
@@ -58,46 +59,6 @@
     position: relative;
     width: 25vw;
     height: 250px;
-
-}
-.big-wrapper {
-    width: 300;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.boy-area {
-
-    border: 1px solid green;
-    width: 40%;
-    height: 80%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 10px;
-    margin-right: 35px;
-    border-radius: 5px;
-
-}
-
-
-.girl-area {
-
-    border: 1px solid green;
-    width: 40%;
-    height: 80%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 10px;
-    margin-left: 35px;
-    border-radius: 5px;
 
 }
 
@@ -119,6 +80,7 @@
     position: relative; left: 10px; top: 15px;
     font-size: 18px; color: #999;
 }
+
 
 .btn-area {
     box-sizing: border-box;
@@ -151,7 +113,32 @@
     margin-bottom: 20px;
 }
 
+.btn1 {
 
+    font-family: "Pretendard-Regular";
+    width: 60%;
+    height: 5vh;
+    padding: 10px 20px;
+    background-color:green;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.btn2 {
+
+    font-family: "Pretendard-Regular";
+    width: 38%;
+    height: 5vh;
+    padding: 10px 20px;
+    background-color:green;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
 
 
 /* 비활성화된 버튼 스타일 */
@@ -162,8 +149,6 @@
 .terms-container {
     font-size: 18px;
 }
-
-
 
 
 

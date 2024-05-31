@@ -171,7 +171,7 @@
                                             <td th:text="${employee.user_birth}"></td>
                                             <td th:text="${employee.join_date}"></td>
                                             <td>
-                                                <button th:onclick="'user_no(' + ${employee.user_no} + ')'" >상세보기</button>
+                                                <button class="details" th:onclick="'user_no(' + ${employee.user_no} + ')'" >상세보기</button>
                                             </td>
 
                                         </tr>
@@ -186,9 +186,6 @@
                                     <div class="employee_s_button" onclick="changeEmployeePage(2)">2</div>
                                     <div class="employee_s_button" onclick="changeEmployeePage(3)">3</div>
                                 </div>
-
-
-
 
                             </div>
                         </div>
@@ -248,10 +245,12 @@
                             <div class="c_edoc">
                                 <!--여기서 시작-->
                                 <h1 class="e-approval">전자결재 리스트</h1>
-                                <div class="search">
+
+                              <!-- admin page 검색 버튼 -->
+                              <!-- <div class="search">
                                     <input type="text" class="e-search_input" placeholder=" search">
                                     <div class="e-search_button" onclick="search()">검색</div>
-                                </div>
+                                </div> -->
 
                                 <div class="buttonlist">
                                     <button id="all" class="c_buttonlist">전체</button>
@@ -326,7 +325,6 @@
 
                                         data.forEach(function(item, index) {
                                             html += '<tr id="row_edoc_' + item.user_no + '">';
-
                                             html += '<td>' + item.edoc_form_ct_no + '</td>';         //문서번호
                                             html += '<td>' + item.edocFormDTO.form_name + '</td>'; //폼 내임
                                             html += '<td>' + item.employee_name + '</td>';    // 사원이름
@@ -334,7 +332,7 @@
                                             html += '<td>' + item.title + '</td>';
                                             html += '<td>' + formatDate(item.drafting_date) + '</td>';
                                             html += '<td>' + item.edoc_status + '</td>';
-                                            html += '<td><button style="border-radius: 5px; background-color: aliceblue; border: 1px solid gray; padding: 2px" type="button" class="btn" onclick="admin(\'' + item.edoc_form_ct_no + '\')">상세보기</button></td>';
+                                            html += '<td><button type="button" class="btn1" onclick="admin(\'' + item.edoc_form_ct_no + '\')">상세보기</button></td>';
                                             html += '</tr>';
                                         });
 
@@ -403,32 +401,22 @@
 
                                 </script>
 
-
-
-
-
                                 <div id="your_edoc_list_container_id" class="chart">
                                     <!--여기서 시작-->
 
-
-
-
                                 </div>
-
 
                                 <script>
                                     function admin(edocFormCtNo) {
                                         window.location.href = '/admin/edocFrom/selectEdocList/' + edocFormCtNo;
                                     }
                                 </script>
-                                <div class="page_number">
-                                    <div class="s_button">&lt;</div>
-                                    <div class="s_button" onclick="changeEdocPage(1)">1</div>
-                                    <div class="s_button" onclick="changeEdocPage(2)">2</div>
-                                    <div class="s_button" onclick="changeEdocPage(3)">3</div>
-                                    <div class="s_button">&gt;</div>
-                                </div>
-
+                               
+                            </div>
+                            <div class="page_number">
+                                <div class="s_button" onclick="changeEdocPage(1)">1</div>
+                                <div class="s_button" onclick="changeEdocPage(2)">2</div>
+                                <div class="s_button" onclick="changeEdocPage(3)">3</div>
                             </div>
                         </div>
                     </div>
