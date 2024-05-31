@@ -419,6 +419,21 @@ body {
     cursor: pointer;
 }
 
+#details {
+    width: 4vw;
+    height: 3vh;
+    display: flex;
+    font-size: 12px;
+    color: white;
+    background-color: #4CAF50;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
 
 
 /*검색버튼*/
