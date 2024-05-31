@@ -187,9 +187,6 @@
                                     <div class="employee_s_button" onclick="changeEmployeePage(3)">3</div>
                                 </div>
 
-
-
-
                             </div>
                         </div>
                     </div>
@@ -248,10 +245,12 @@
                             <div class="c_edoc">
                                 <!--여기서 시작-->
                                 <h1 class="e-approval">전자결재 리스트</h1>
-                                <div class="search">
+
+                              <!-- admin page 검색 버튼 -->
+                              <!-- <div class="search">
                                     <input type="text" class="e-search_input" placeholder=" search">
                                     <div class="e-search_button" onclick="search()">검색</div>
-                                </div>
+                                </div> -->
 
                                 <div class="buttonlist">
                                     <button id="all" class="c_buttonlist">전체</button>
@@ -402,32 +401,22 @@
 
                                 </script>
 
-
-
-
-
                                 <div id="your_edoc_list_container_id" class="chart">
                                     <!--여기서 시작-->
 
-
-
-
                                 </div>
-
 
                                 <script>
                                     function admin(edocFormCtNo) {
                                         window.location.href = '/admin/edocFrom/selectEdocList/' + edocFormCtNo;
                                     }
                                 </script>
-                                <div class="page_number">
-                                    <div class="s_button">&lt;</div>
-                                    <div class="s_button" onclick="changeEdocPage(1)">1</div>
-                                    <div class="s_button" onclick="changeEdocPage(2)">2</div>
-                                    <div class="s_button" onclick="changeEdocPage(3)">3</div>
-                                    <div class="s_button">&gt;</div>
-                                </div>
 
+                            </div>
+                            <div class="page_number">
+                                <div class="s_button" onclick="changeEdocPage(1)">1</div>
+                                <div class="s_button" onclick="changeEdocPage(2)">2</div>
+                                <div class="s_button" onclick="changeEdocPage(3)">3</div>
                             </div>
                         </div>
                     </div>
