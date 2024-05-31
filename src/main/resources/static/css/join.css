@@ -15,6 +15,7 @@
 }
 .employeeform {
     margin-top: 8vh;
+    width: 400px;
 }
 .join-form h1 {
     font-size: 32px; color: #010101;
@@ -60,46 +61,12 @@
     height: 250px;
 
 }
-.big-wrapper {
-    width: 300;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+
+.wrap{
+    width: 100%;
 }
 
-.boy-area {
-
-    border: 1px solid green;
-    width: 40%;
-    height: 80%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 10px;
-    margin-right: 35px;
-    border-radius: 5px;
-
-}
-
-
-.girl-area {
-
-    border: 1px solid green;
-    width: 40%;
-    height: 80%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 10px;
-    margin-left: 35px;
-    border-radius: 5px;
-
-}
 
 .onclick {
     display: inline;
@@ -152,8 +119,6 @@
 }
 
 
-
-
 /* 비활성화된 버튼 스타일 */
 .btn:disabled {
     background-color: #ccc;
@@ -164,7 +129,19 @@
 }
 
 
+/*select 버튼*/
+.select-gender {
 
+    width: 100%;
+    height: 60px;
+    border: 2px solid black;
+    border-radius: 8px;
+    font-size: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+}
 
 
 

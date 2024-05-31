@@ -111,17 +111,21 @@ body {
 }
 
 .scroll_button {
-    width: 162px;
+    font-size: 20px;
+    width: 15vw;
     height: 103px;
     border: 1px solid #ffffff;
-    border-radius: 20px; /* 테두리를 둥글게 만듭니다 */
+    border-radius: 50%; /* 테두리를 둥글게 만듭니다 */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 드롭쉐도우 추가 */
     background-color: #ffffff; /* 배경색 설정 */
     transition: border-color 0.3s; /* 호버 효과에 대한 전환 설정 */
+    cursor: pointer;
 
     /* 버튼이 호버 되었을 때의 스타일 */
     &:hover {
-        border: 2px solid #00FF00; /* 초록색 테두리 추가 */
+        color: white;
+        background-color: #4CAF50;;
+        border: 2px solid white; /* 초록색 테두리 추가 */
     }
 }
 
@@ -256,7 +260,7 @@ body {
 }
 /* 클릭시 세로길이 늘어나는*/
 .employee:focus-within {
-    height: 700px;
+    height: 660px;
 }
 
 .c_employee {
@@ -264,7 +268,7 @@ body {
     border: 1px solid #BFBFBF; /* 테두리 설정 */
     border-radius: 30px; /* 테두리 반지름 설정 */
     width: 55vw;
-    height: 600px;
+    height: 555px;
     margin-top: 50px;
 }
 
@@ -1025,20 +1029,27 @@ body {
 
 }
 
-.page_number{
+.employee_page_number{
+    position: relative;
+    margin-top: 3vh;
     width: 55vw;
     height: 65px;
     border-top: 4px solid #848484;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 9999;
+}
+.employee_s_button:hover {
+    background-color: #4CAF50; /* 변경하고자 하는 색상으로 설정 */
+    color: white;
 }
 
-
-.s_button {
+.employee_s_button {
     width: 30px;
     height: 30px;
     border: 1px solid black; /* 1px 두께의 검은색 테두리 설정 */
+    border-radius: 50%;
     background-color: #f0f0f0; /* 연한 회색 배경색 설정 */
     display: inline-flex;
     justify-content: center;
@@ -1046,18 +1057,6 @@ body {
     cursor: pointer; /* 마우스 커서를 포인터로 설정하여 클릭 가능한 요소임을 표시합니다. */
     margin: 3px; /* 버튼 간 간격을 설정합니다. */
 
-}
-
-.pagination-button {
-    width: 30px;
-    height: 30px;
-    border: 1px solid black;
-    background-color: #f0f0f0;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    margin: 3px;
 }
 
 /*캘린뎌 */
