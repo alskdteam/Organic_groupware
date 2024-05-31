@@ -50,7 +50,6 @@
     outline: none;
 }
 
-
 .img-logo {
 
     margin-top: 26vh;
@@ -59,6 +58,46 @@
     position: relative;
     width: 25vw;
     height: 250px;
+
+}
+.big-wrapper {
+    width: 300;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boy-area {
+
+    border: 1px solid green;
+    width: 40%;
+    height: 80%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 10px;
+    margin-right: 35px;
+    border-radius: 5px;
+
+}
+
+
+.girl-area {
+
+    border: 1px solid green;
+    width: 40%;
+    height: 80%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 10px;
+    margin-left: 35px;
+    border-radius: 5px;
 
 }
 
@@ -80,7 +119,6 @@
     position: relative; left: 10px; top: 15px;
     font-size: 18px; color: #999;
 }
-
 
 .btn-area {
     box-sizing: border-box;
@@ -114,6 +152,8 @@
 }
 
 
+
+
 /* 비활성화된 버튼 스타일 */
 .btn:disabled {
     background-color: #ccc;
@@ -122,6 +162,8 @@
 .terms-container {
     font-size: 18px;
 }
+
+
 
 
 
