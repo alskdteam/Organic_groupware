@@ -419,7 +419,7 @@ body {
     cursor: pointer;
 }
 
-#details {
+.details {
     width: 4vw;
     height: 3vh;
     display: flex;
