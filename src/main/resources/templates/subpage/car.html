@@ -77,21 +77,21 @@
                             <br>
 
                             <div class="modal-small-content">
-                            <p>차종 선택</p>
+                            <p>차종 선택</p><br>
                             <p>
-                                <select name="vehicle_name" id="vehicle_name" style="height: 30px; width: 400px;"></select>
+                                <select name="vehicle_name" id="vehicle_name" style="width: 100%;" ></select>
                             </p>
-                            <p>대여일</p>
-                            <p><input type="date" id="vehicle_reservation_date" name="vehicle_reservation_date" style="height: 30px; width: 400px;"></p>
-                            <p>반납 예정일</p>
-                            <p><input type="date" id="vehicle_return_due_date" name="vehicle_return_due_date" style="height: 30px; width: 400px;"></p>
-                            <p>대여 용도</p>
-                            <p><input type="text" name="vehicle_purpose" style="height: 30px; width: 400px;"></p>
-                            <p>행선지</p>
-                            <p><input type="text" name="vehicle_address" style="height: 30px; width: 400px;"></p>
+                            <p>대여일</p><br>
+                            <p><input type="date" id="vehicle_reservation_date" name="vehicle_reservation_date" style=" width: 100%;"  ></p>
+                            <p>반납 예정일</p><br>
+                            <p><input type="date" id="vehicle_return_due_date" name="vehicle_return_due_date" style=" width: 100%;"  ></p>
+                            <p>대여 용도</p><br>
+                            <p><input type="text" name="vehicle_purpose" style=" width: 100%;" ></p>
+                            <p>행선지</p><br>
+                            <p><input type="text" name="vehicle_address" style=" width: 100%;" ></p>
                             <div class="buttons">
-                                <button id="addBtn" style="background-color: #4CAF50" type="submit">추가</button>
-                                <button id="cancelBtn" type="button">취소</button>
+                                <button class="addBtn2" id="addBtn2"  type="submit">추가</button>
+                                <button class="cancelBtn2" id="cancelBtn2" type="button">취소</button>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                         modal.style.display = "none";
                     }
 
-                    document.getElementById('cancelBtn').addEventListener('click', function(event) {
+                    document.getElementById('cancelBtn2').addEventListener('click', function(event) {
                         // 기본 동작(폼 제출) 막기
                         event.preventDefault();
 
