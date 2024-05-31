@@ -56,8 +56,8 @@ public class SecurityConfig {
             /* permitAll -> 내부에 전달한 http 요청에 대해 모두에게 허용한다. */
             auth.requestMatchers("/user/signup", "/fail", "/", "/login/login").permitAll();
             /* hasAnyAuthority -> 전달 http 요청에 대해 권한이 있는 사람만 허용한다. */
-            auth.requestMatchers("/admin/*").hasAnyAuthority(UserRole.ADMIN.getRole());
-            auth.requestMatchers("/user/*").hasAnyAuthority(UserRole.USER.getRole());
+            auth.requestMatchers("/admin/**").hasAnyAuthority(UserRole.ADMIN.getRole());
+            auth.requestMatchers("/user/**").hasAnyAuthority(UserRole.USER.getRole());
             /* 인증이 된 사람들에게 요청을 허락한다. */
             auth.anyRequest().authenticated();
 

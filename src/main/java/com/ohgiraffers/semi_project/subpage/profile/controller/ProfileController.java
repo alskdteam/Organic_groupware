@@ -2,6 +2,7 @@ package com.ohgiraffers.semi_project.subpage.profile.controller;
 
 import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFromEdocCtDTO;
+import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.EmployeeDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO;
@@ -22,22 +23,24 @@ import java.util.Map;
 public class ProfileController {
 
     private final ProfileService profileService;
+    private final SidebarController sidebarController;
 
-    @Autowired
-    public ProfileController(ProfileService profileService) {
+    public ProfileController(ProfileService profileService, SidebarController sidebarController) {
         this.profileService = profileService;
+        this.sidebarController = sidebarController;
     }
 
     @GetMapping("/profile")
     public String memo(Model model){
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
 
         Userdata userDate = new Userdata();
         LoginUserDTO userDTO = userDate.getloginUserDTO();
         int user_no = userDTO.getUserCode();
-        int userCode = userDTO.getUserCode();
   
 //         도아
-        List<MemoDTO> memoDTOList = profileService.findMemoTitle(userCode);
+        List<MemoDTO> memoDTOList = profileService.findMemoTitle(user_no);
         model.addAttribute("memoDTOList", memoDTOList);
 
         System.out.println("memoDTOList = " + memoDTOList);
@@ -64,6 +67,8 @@ public class ProfileController {
 //   도아
     @GetMapping("/profile/memo/{memo_id}")
     public String memoInse(Model model,@PathVariable int memo_id ){
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
         System.out.println("memo_id = " + memo_id);
 
         Userdata userdata = new Userdata();
@@ -123,6 +128,20 @@ public class ProfileController {
 
         List<EmployeeDTO> employeeDTO = profileService.findDepartment(search);
         model.addAttribute("employeeList", employeeDTO);
+
+        Userdata userDate = new Userdata();
+        LoginUserDTO userDTO = userDate.getloginUserDTO();
+        int user_no = userDTO.getUserCode();
+
+        List<MemoDTO> memoDTOList = profileService.findMemoTitle(user_no);
+        model.addAttribute("memoDTOList", memoDTOList);
+
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
+
+        Map<String, Object> profileData = profileService.selectProfile(user_no);
+        model.addAttribute("profilesWithoutImage", profileData.get("profilesWithoutImage"));
+
 
         System.out.println("employeeList = " + employeeDTO);
 

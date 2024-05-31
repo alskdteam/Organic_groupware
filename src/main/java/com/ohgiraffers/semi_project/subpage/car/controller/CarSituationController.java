@@ -56,6 +56,8 @@ public class CarSituationController {
 
     @GetMapping("car_situation_mypage")
     public String siCarMyList(Model model) {
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
 
         Userdata userdata = new Userdata();
         LoginUserDTO userDTO = userdata.getloginUserDTO();
@@ -72,6 +74,8 @@ public class CarSituationController {
     }
     @PostMapping("car_situation_mypage")
     public String returnCar(@RequestParam Map<String, Object> params, Model model) {
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
         System.out.println("params = " + params);
         
         Userdata userdata = new Userdata();

@@ -117,8 +117,8 @@
                                 </div>
 
                                 <div class="buttons">
-                                    <button id="addBtn" style="background-color: #4CAF50" type="submit">추가</button>
-                                    <button id="cancelBtn" type="button">취소</button>
+                                    <button class="addBtn1" id="addBtn1"  type="submit">추가</button>
+                                    <button class="cancelBtn1" id="cancelBtn1" type="button">취소</button>
                                 </div>
 
 
@@ -147,7 +147,7 @@
                             modal.style.display = "none";
                         }
 
-                        document.getElementById('cancelBtn').addEventListener('click', function(event) {
+                        document.getElementById('cancelBtn1').addEventListener('click', function(event) {
                             // 기본 동작(폼 제출) 막기
                             event.preventDefault();
 
@@ -227,13 +227,6 @@
                             <div class="s_button">&gt;</div>
                         </div>
                     </div>
-                    <div class="search">
-                        <div class="flex">
-                            <input type="text" class="search_input" placeholder="검색어를 입력하세요">
-                            <div class="search_button" onclick="search()">검색</div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 

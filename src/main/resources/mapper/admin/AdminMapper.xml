@@ -84,15 +84,14 @@
         where
         1=1
         <if test="user_department != null and user_department != ''">
-            AND user_department = #{user_department}
+            AND user_department LIKE CONCAT('%', #{user_department}, '%')
         </if>
         <if test="user_name != null and user_name != ''">
-            AND user_name = #{user_name}
+            AND user_name LIKE CONCAT('%', #{user_name}, '%')
         </if>
         <if test="user_rank != null and user_rank != ''">
-            AND user_rank = #{user_rank}
+            AND user_rank LIKE CONCAT('%', #{user_rank}, '%')
         </if>
-
     </select>
 
 

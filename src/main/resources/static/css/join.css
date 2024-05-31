@@ -5,14 +5,23 @@
     font-style: normal;
 }
 *{margin: 0; padding: 0; box-sizing: border-box;}
-.join-form {position: absolute; z-index: 2;}
+.join-form {
+    display: flex;
+    width: 100vw;
+    position: relative;
+    z-index: 2;
+
+}
+.employeeform {
+    margin-top: 8vh;
+}
 .join-form h1 {
     font-size: 32px; color: #010101;
     text-align: center;
 }
 
 
-body {
+.body {
     font-family: "Pretendard-Regular";
     display: flex;
     justify-content: center;
@@ -21,7 +30,7 @@ body {
     background: url("bg.jpg") no-repeat center;
     background-size: cover;
 }
-body::before {
+.body::before {
     content: "";
     position: absolute; z-index: 1;
     top: 0; right: 0; bottom: 0; left: 0;
@@ -39,12 +48,19 @@ body::before {
     font-size: 18px;
     outline: none;
 }
-.divide {
-    width: 400px;
-    border: #010101;
-    border-radius: 15px;
-    padding: 20px 10px 10px;
+
+
+.img-logo {
+
+    margin-top: 26vh;
+    margin-left: 18vw;
+    margin-right: 20vw;
+    position: relative;
+    width: 25vw;
+    height: 250px;
+
 }
+
 .onclick {
     display: inline;
     font-family: "Pretendard-Regular";
@@ -60,28 +76,12 @@ body::before {
 
 .int-area label {
     font-family: "Pretendard-Regular";
-    position: absolute; left: 10px; top: 15px;
+    position: relative; left: 10px; top: 15px;
     font-size: 18px; color: #999;
-
 }
 
-.caption1 {
-    font-family: "Pretendard-Regular";
-    position: absolute;
-    left: 43%;
-    top: 120%;
-
-}
-.caption {
-    font-family: "Pretendard-Regular";
-    position: absolute;
-    left:30%;
-    top: 128%;
-
-}
 
 .btn-area {
-
     box-sizing: border-box;
     display: inline;
     justify-content: center;
@@ -106,36 +106,12 @@ body::before {
     outline: none;
 }
 
-.img-logo {
-    height: 300px;
-}
-
-.login-form{
-    margin-top: -20vh;
-}
 
 /* 스타일링을 위한 CSS */
 .terms-container {
     margin-bottom: 20px;
 }
 
-/* 체크박스 스타일 */
-.terms-checkbox {
-    padding: 10px 20px 10px;
-    margin-right: 10px;
-    font-size: 18px;
-}
-
-/* 회원가입 버튼 스타일 */
-.btn {
-    width: 400px;
-    padding: 10px 20px;
-    background-color:green;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
 /* 비활성화된 버튼 스타일 */
 .btn:disabled {
@@ -147,11 +123,5 @@ body::before {
 }
 
 
-@media screen and (max-width: 375px) {
-    .login-form{
-        margin-top: -10vh;
-        scale: 50%;
-    }
-}
 
 

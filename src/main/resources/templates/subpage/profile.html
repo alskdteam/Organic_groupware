@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +7,7 @@
     <link rel="stylesheet" href="/css/profile.css">
     <script src="/js/profile.js"></script>
 
-      <style>
-
+    <style>
         @media screen and (max-width: 375px) {
             .container {
                 flex-direction: column;
@@ -29,11 +27,23 @@
             }
         }
 
+        .memo_under {
+            text-decoration: none;
+            position: relative;
+        }
 
+        .memo_under:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; /* 글 아래부터 밑줄 시작 */
+            width: 100%;
+            height: 1px; /* 밑줄의 두께 */
+            background: black; /* 밑줄 색상 */
+        }
 
 
     </style>
-
 </head>
 <body>
 <div class="container">
@@ -45,19 +55,17 @@
         <div th:replace="common/header.html" id="header"></div>
 
         <div class="area">
-
-            <!--            여기서부터 시작 위에는 건들지 마세요-->
+            <!-- 여기서부터 시작 위에는 건들지 마세요 -->
             <div class="layer">
                 <div class="layer">
                     <div class="flex">
-                        <!--                        프로필 영역-->
-                        <div class="profile" >
-                            <!--여기서 시작-->
+                        <!-- 프로필 영역 -->
+                        <div class="profile">
+                            <!-- 여기서 시작 -->
                             <div class="flex2">
-
                                 <h3>프로필</h3>
                                 <div class="c_profile">
-                                    <!--여기서 시작-->
+                                    <!-- 여기서 시작 -->
                                     <div class="picture">
                                         <div class="c_picture">
                                             <div class="profile_picture" style="position: relative">
@@ -69,10 +77,8 @@
                                                 프로필 편집
                                             </div>
                                         </div>
-                                        <div class="profile_edit" >
+                                        <div class="profile_edit">
                                             <div class="write">
-
-
                                                 <div th:each="profile : ${profilesWithoutImage}">
                                                     <br>
                                                     <p style="font-size: 25px; font-weight: normal" th:text="${profile.korea_name}"></p>
@@ -84,26 +90,15 @@
                                                     <p th:text="${profile.phone_number}"></p>
                                                     <p th:text="${profile.email}"></p>
                                                 </div>
-
                                             </div>
-
                                         </div>
                                     </div>
-                                    <div class="imformation">
-
-                                    </div>
-
+                                    <div class="imformation"></div>
                                 </div>
-
-
-
                             </div>
-
                         </div>
 
-
-
-                        <!--모달 관련-->
+                        <!-- 모달 관련 -->
                         <form action="/subpage/profileEdit" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
                             <div id="myModal" class="modal">
                                 <!-- 모달 내용 -->
@@ -125,6 +120,7 @@
                                                 <label for="english_name">영문 이름</label><br>
                                                 <input type="text" id="english_name" name="english_name">
                                             </div>
+
                                             <div>
                                                 <label for="phone_number">전화번호</label> <br>
                                                 <input type="tel" id="phone_number" name="phone_number">
@@ -165,12 +161,72 @@
                         </script>
 
 
+                        <script>
+                            document.getElementById('profileFrm').addEventListener('submit', function(event) {
+                                event.preventDefault();
+                                const formData = new FormData(this);
+                                fetch('/subpage/profileEdit', { // 수정된 부분: 올바른 경로로 URL 지정
+                                    method: 'POST',
+                                    body: formData
+                                }).then(response => response.json())
+                                    .then(data => {
+                                        // 서버 응답에 따른 처리
+                                        console.log(data);
+                                        // 서버에서 처리된 결과에 따라 사용자를 적절한 페이지로 이동시키는 로직 추가
+                                        window.location.href = '/subpage/profile'; // 예시: 프로필 페이지로 이동
+                                    }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                            });
+                        </script>
 
+
+
+
+
+                        <script>
+                            // 모달 요소 가져오기
+                            var modal = document.getElementById("myModal");
+
+                            // 모달 열기 버튼 가져오기
+                            var btn = document.getElementById("edit_btn");
+
+                            // 모달 닫기 버튼 가져오기
+                            var span = document.getElementsByClassName("buttons")[0];
+
+                            // 모달 열기 버튼을 클릭하면 모달 보이기
+                            btn.onclick = function() {
+                                modal.style.display = "block";
+                            }
+
+                            // 모달 닫기 버튼을 클릭하면 모달 닫기
+                            span.onclick = function() {
+                                modal.style.display = "none";
+                            }
+
+                            document.getElementById('cancelBtn').addEventListener('click', function(event) {
+                                // 기본 동작(폼 제출) 막기
+                                event.preventDefault();
+
+                                // 모달 닫기
+                                var modal = document.getElementById("myModal");
+                                modal.style.display = "none";
+                            });
+
+                            // 모달 밖의 영역을 클릭하면 모달 닫기
+                            window.onclick = function(event) {
+                                if (event.target == modal) {
+                                    modal.style.display = "none";
+                                }
+                            }
+
+                        </script>
 
 
                         <!--                        버튼 영역-->
+
                         <div class="button">
-                            <!--여기서 시작-->
+                            <!-- 여기서 시작 -->
                             <!-- 스크롤 이동 버튼 1 -->
                             <button class="scroll_button" data-target=".calender">Calendar</button>
                             <button class="scroll_button" data-target=".memo">Memo</button>
@@ -191,64 +247,72 @@
                             });
                         </script>
 
+                        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.13/index.global.min.js'></script>
+                        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.13/locales/ko.global.min.js'></script>
+                        <script>
 
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var calendarEl = document.getElementById('calendar');
+                                var calendar = new FullCalendar.Calendar(calendarEl, {
+                                    initialView: 'dayGridMonth',
+                                    locale: 'ko' // 한국어로 설정
+                                });
+                                calendar.render();
+                            });
 
-                        <!--                        캘린더 영역-->
+                        </script>
+                        <!-- 캘린더 영역 -->
                         <div class="calender" tabindex="0">
                             <div class="flex2">
-                                <h3>캘린더</h3>
+                                <h3></h3>
                                 <div class="c_calender">
-                                    <!--여기서 시작-->
-
+                                    <div id='calendar'></div>
+                                    <!-- 여기서 시작 -->
                                 </div>
-
-
                             </div>
-
                         </div>
 
-                        <!--                        메모 영역-->
+                        <!-- 메모 영역 -->
                         <div class="memo" tabindex="0">
-
                             <div class="flex2">
-                                <h3>메모</h3>
                                 <div class="c_memo">
+
                                         <h1 class="headmemo_title">memo</h1>
                                         <button class="new_button" id="new-memo-btn">메모 등록</button>
-                                       
+
+
                                     <!--메모창 안에 디자인 추가-->
-                                    
+
+
 
                                     <!-- 메모 목록 항목이 여기에 추가됩니다 -->
-                                    <div class="cars">
+                                    <div class="memo_table">
+
                                         <table>
                                             <tbody id="tableBody">
-
-
-                                            <tr th:each="memo : ${memoDTOList}" >
-                                                <td style="width: 135px">
-                                                    <a th:href="'profile/memo/' +${memo.memo_id}" th:text="${memo.memo_title}"></a>
-
+                                            <tr th:each="memo, iterStat : ${memoDTOList}" th:id="'row_memo_' + ${iterStat.index}">
+                                                <td style="width: 135px" >
+                                                    <a class="memo_under" th:href="'profile/memo/' + ${memo.memo_id}" th:text="${memo.memo_title}"></a>
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
 
+
+                                    </div>
+
                                         <form class="Memoform" action="/subpage/profile" method="post">
-
                                             <div id="MemomyModal" class="modal1">
-
                                                 <!-- 모달 내용 -->
-
                                                 <div class="modal-content2">
-                                                    <div class="titlebox"><p id="modal-title1">제목 :</p>
-                                                    <p id="inputtitle"><input type="text" id="memo_title" name="memo_title" placeholder="제목을 입력해주세요"></p>
+                                                    <div class="titlebox">
+                                                        <p id="modal-title1">제목 :</p>
+                                                        <p id="inputtitle"><input type="text" id="memo_title" name="memo_title" placeholder="제목을 입력해주세요"></p>
                                                     </div>
                                                     <div class="inputbox">
-                                                    <p id="substance"></p>
-                                                    <p id="inputcontent"><textarea id="memo_content" name="memo_content" placeholder="내용을 입력해주세요"></textarea></p>
+                                                        <p id="substance"></p>
+                                                        <p id="inputcontent"><textarea id="memo_content" name="memo_content" placeholder="내용을 입력해주세요"></textarea></p>
                                                     </div>
-
                                                     <div class="memobuttons">
                                                         <button id="memoaddBtn" type="submit">추가</button>
                                                         <button id="memocancelBtn" type="submit">취소</button>
@@ -257,7 +321,8 @@
                                             </div>
                                         </form>
 
-                                    </div>
+
+
 
                                     <script>
                                         // 모달 요소 가져오기
@@ -267,7 +332,7 @@
                                         var btn = document.getElementById("new-memo-btn");
 
                                         // 모달 닫기 버튼 가져오기
-                                        var span = document.getElementsByClassName("cancelBtn")[0];
+                                        var span = document.getElementById("memocancelBtn");
 
                                         // 모달 열기 버튼을 클릭하면 모달 보이기
                                         btn.onclick = function() {
@@ -294,41 +359,31 @@
                                             }
                                         }
                                     </script>
-                                    <!--요 까지 메모장 추가 -->
-
+                                    <!-- 메모장 추가 끝 -->
                                 </div>
+                                <div class="page_number" id="memoPagination"></div>
                             </div>
-
                         </div>
 
-
-
-
-                        <!-- 도아 사원조회 -->
-                        <!-- 조회 영역-->
+                        <!-- 사원조회 영역 -->
                         <div class="employee" tabindex="0">
                             <div class="flex3">
-                                <h3>사원조회</h3>
                                 <div class="c_employee">
-                                    <!--  여기서 시작-->
-
+                                    <!-- 여기서 시작 -->
                                     <div class="head-container">
                                         <div class="wrap1">
                                             <img src="https://github.com/alskdteam/semi_project_java/assets/158136952/3d4ec91f-ae4f-4ddf-987c-4e47a8a92ef1" id="logo">
                                         </div>
                                         <div class="wrap2">
                                             <form action="/subpage/search" method="GET" class="searchForm">
-
                                                 <div class="wrap3">
                                                     <input type="text" class="searchInput-a" name="user_department" placeholder="부서검색">
                                                     <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
                                                 </div>
-
                                                 <div class="wrap3">
                                                     <input type="text" class="searchInput-b" name="user_name" placeholder="이름검색">
                                                     <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
                                                 </div>
-
                                                 <div class="wrap3">
                                                     <input type="text" class="searchInput-c" name="user_rank" placeholder="직급검색">
                                                     <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
@@ -336,7 +391,8 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <!--employee 테이블-->
+
+                                    <!-- employee 테이블 -->
                                     <table><br>
                                         <thead>
                                         <tr>
@@ -351,7 +407,7 @@
                                         </thead>
                                         <tbody id="employeetableBody">
                                         <!-- 여기서부터 페이지 네이션을 위한 행들만 추가 -->
-                                        <tr th:each="employee : ${employeeList}" id="row_${employee.user_no}">
+                                        <tr th:each="employee, iterStat : ${employeeList}" th:id="'row_emp_' + ${iterStat.index}">
                                             <td th:text="${employee.user_department}"></td>
                                             <td th:text="${employee.user_name}"></td>
                                             <td th:text="${employee.user_rank}"></td>
@@ -365,45 +421,64 @@
                                     </table>
 
                                     <!-- 페이지 네이션 버튼 -->
-                                    <div class="page_number">
-                                        <div class="s_button" onclick="changePage(1)">1</div>
-                                        <div class="s_button" onclick="changePage(2)">2</div>
-                                        <div class="s_button" onclick="changePage(3)">3</div>
-                                    </div>
+                                    <div class="page_number" id="employeePagination"></div>
+
                                 </div>
                             </div>
                         </div>
 
                         <script>
-
                             // 현재 페이지를 저장할 변수
-                            var currentPage = 1;
+                            var currentMemoPage = 1;
+                            var currentEmployeePage = 1;
                             // 페이지당 행 수
                             var rowsPerPage = 7;
 
-                            // 페이지를 변경하는 함수
-                            function changePage(pageNumber) {
-                                // 현재 페이지를 설정
-                                currentPage = pageNumber;
-                                // 모든 행을 숨김
-                                hideAllRows();
-                                // 현재 페이지에 해당하는 행들을 보여줌
-                                showRowsForCurrentPage();
+                            // 메모 페이지를 변경하는 함수
+                            function changeMemoPage(pageNumber) {
+                                currentMemoPage = pageNumber;
+                                hideAllMemoRows();
+                                showMemoRowsForCurrentPage();
                             }
 
-                            // 모든 행을 숨기는 함수
-                            function hideAllRows() {
-                                var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
+                            // 사원 페이지를 변경하는 함수
+                            function changeEmployeePage(pageNumber) {
+                                currentEmployeePage = pageNumber;
+                                hideAllEmployeeRows();
+                                showEmployeeRowsForCurrentPage();
+                            }
+
+                            // 모든 메모 행을 숨기는 함수
+                            function hideAllMemoRows() {
+                                var rows = document.querySelectorAll('[id^="row_memo_"]');
                                 rows.forEach(function(row) {
                                     row.style.display = 'none';
                                 });
                             }
 
-                            // 현재 페이지에 해당하는 행들을 보여주는 함수
-                            function showRowsForCurrentPage() {
-                                var startIndex = (currentPage - 1) * rowsPerPage;
+                            // 모든 사원 행을 숨기는 함수
+                            function hideAllEmployeeRows() {
+                                var rows = document.querySelectorAll('[id^="row_emp_"]');
+                                rows.forEach(function(row) {
+                                    row.style.display = 'none';
+                                });
+                            }
+
+                            // 현재 페이지에 해당하는 메모 행들을 보여주는 함수
+                            function showMemoRowsForCurrentPage() {
+                                var startIndex = (currentMemoPage - 1) * rowsPerPage;
                                 var endIndex = startIndex + rowsPerPage;
-                                var rows = document.querySelectorAll('[id^="row_${employee.user_no}"]');
+                                var rows = document.querySelectorAll('[id^="row_memo_"]');
+                                for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+                                    rows[i].style.display = 'table-row';
+                                }
+                            }
+
+                            // 현재 페이지에 해당하는 사원 행들을 보여주는 함수
+                            function showEmployeeRowsForCurrentPage() {
+                                var startIndex = (currentEmployeePage - 1) * rowsPerPage;
+                                var endIndex = startIndex + rowsPerPage;
+                                var rows = document.querySelectorAll('[id^="row_emp_"]');
                                 for (var i = startIndex; i < endIndex && i < rows.length; i++) {
                                     rows[i].style.display = 'table-row';
                                 }
@@ -411,30 +486,44 @@
 
                             // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
                             window.onload = function() {
-                                changePage(1);
+                                changeMemoPage(1);
+                                changeEmployeePage(1);
+                                createPaginationButtons('employeePagination', changeEmployeePage);
+                                createPaginationButtons('memoPagination', changeMemoPage);
                             };
+
+                            // 페이지 버튼을 생성하는 함수
+                            function createPaginationButtons(paginationId, changePageFunction) {
+                                var paginationContainer = document.getElementById(paginationId);
+                                paginationContainer.innerHTML = '';
+
+                                var rows;
+                                if (paginationId === 'employeePagination') {
+                                    rows = document.querySelectorAll('[id^="row_emp_"]');
+                                } else if (paginationId === 'memoPagination') {
+                                    rows = document.querySelectorAll('[id^="row_memo_"]');
+                                }
+
+                                var totalPages = Math.ceil(rows.length / rowsPerPage);
+                                for (var i = 1; i <= totalPages; i++) {
+                                    var button = document.createElement('button');
+                                    button.textContent = i;
+                                    button.className = 'pagination-button';
+                                    button.onclick = (function(pageNumber) {
+                                        return function() {
+                                            changePageFunction(pageNumber);
+                                        };
+                                    })(i);
+                                    paginationContainer.appendChild(button);
+                                }
+                            }
                         </script>
-
-
-                        <!-- 여기까지 employee 영역 -->
-
-
-
-
-
-
-
-
-
 
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
-
 </body>
 </html>
