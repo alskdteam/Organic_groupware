@@ -111,17 +111,21 @@ body {
 }
 
 .scroll_button {
-    width: 162px;
+    font-size: 20px;
+    width: 15vw;
     height: 103px;
     border: 1px solid #ffffff;
-    border-radius: 20px; /* 테두리를 둥글게 만듭니다 */
+    border-radius: 50%; /* 테두리를 둥글게 만듭니다 */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 드롭쉐도우 추가 */
     background-color: #ffffff; /* 배경색 설정 */
     transition: border-color 0.3s; /* 호버 효과에 대한 전환 설정 */
+    cursor: pointer;
 
     /* 버튼이 호버 되었을 때의 스타일 */
     &:hover {
-        border: 2px solid #00FF00; /* 초록색 테두리 추가 */
+        color: white;
+        background-color: #4CAF50;;
+        border: 2px solid white; /* 초록색 테두리 추가 */
     }
 }
 
