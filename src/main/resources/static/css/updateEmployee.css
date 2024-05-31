@@ -113,6 +113,33 @@
     margin-bottom: 20px;
 }
 
+.btn1 {
+
+    font-family: "Pretendard-Regular";
+    width: 60%;
+    height: 5vh;
+    padding: 10px 20px;
+    background-color:green;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.btn2 {
+
+    font-family: "Pretendard-Regular";
+    width: 38%;
+    height: 5vh;
+    padding: 10px 20px;
+    background-color:green;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
 
 /* 비활성화된 버튼 스타일 */
 .btn:disabled {
