@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>noticetext</title>
+    <link rel="stylesheet" href="/css/noticetext.css">
+    <style>
+
+        @media screen and (max-width: 375px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .content {
+                display: none;
+            }
+            #sidebar {
+                width: 100%;
+                height: 838px;
+            }
+        }
+
+        .notice_button_all{
+            position: relative;
+            width: 100vw;
+            background-color: white;
+            height: 100px;
+            margin-top: 400px;
+        }
+
+        .notice_titletext {
+            align-items: center;
+            margin-left: 1vw;
+            width: 40vw;
+            height: 30px;
+            position: relative;
+            margin-top: 38px;
+            left: 16vw;
+            font-size: 25px;
+            font-weight: 400;
+            border: none;
+            outline: none;
+            z-index: 1;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 사이드바 -->
+    <div th:replace="common/sidebar.html" id="sidebar"></div>
+    <!-- 메인 컨텐츠 -->
+    <div class="content">
+        <!-- 헤더 추가 -->
+        <div th:replace="common/header.html" id="header"></div>
+
+        <div class="area">
+            <!-- 여기서부터 시작 위에는 건들지 마세요 -->
+            <h2 class="midtitle">제목 :</h2>
+            <form action="/login/NoticeMain" method="post" style="height: 600px">
+                <p th:text="${noticeDTO.notice_title}" class="notice_titletext"></p>
+                <div class="notice-content" th:text="${noticeDTO.notice_content}" style="margin-top: 100px; margin-left: 16vw;"></div>
+                <div class="notice_button_all">
+                    <input type="file" id="attachmentInput" style="display: none;">
+                    <button type="button" class="btn_notice3"><a href="/login/main">back</a></button>
+                </div>
+            </form>
+        </div>
+
+<!--        <script>-->
+<!--            const attachmentInput = document.getElementById('attachmentInput');-->
+<!--            const fileContentTextarea = document.getElementById('fileContent');-->
+
+<!--            attachmentInput.addEventListener('change', function() {-->
+<!--                const selectedFile = attachmentInput.files[0]; // 선택된 파일 가져오기-->
+
+<!--                if (selectedFile) {-->
+<!--                    const reader = new FileReader();-->
+
+<!--                    reader.onload = function(event) {-->
+<!--                        const fileText = event.target.result; // 파일 내용을 문자열로 읽어옴-->
+<!--                        fileContentTextarea.value = fileText; // 텍스트 영역에 파일 내용 출력-->
+<!--                    };-->
+
+<!--                    reader.readAsText(selectedFile); // 파일을 텍스트로 읽어옴-->
+<!--                }-->
+<!--            });-->
+<!--        </script>-->
+    </div>
+</div>
+</body>
+</html>

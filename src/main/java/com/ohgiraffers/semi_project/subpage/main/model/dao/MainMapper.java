@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface MainMapper {
@@ -29,4 +30,10 @@ public interface MainMapper {
 
     List<RentalDTO> selectRental(RentalDTO rentalDTO);
 
+    int noticeMain(NoticeDTO noticeDTO);
+
+    NoticeDTO findNotice(int noticeId);
+
+
+    List<NoticeDTO> findAllNotice();
 }
