@@ -3,6 +3,7 @@ package com.ohgiraffers.semi_project.subpage.profile.controller;
 import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.EdocFromEdocCtDTO;
 import com.ohgiraffers.semi_project.subpage.main.controller.SidebarController;
+import com.ohgiraffers.semi_project.subpage.profile.model.dto.CalendarDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.EmployeeDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO;
@@ -11,6 +12,7 @@ import com.ohgiraffers.semi_project.subpage.profile.model.service.ProfileService
 import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +40,7 @@ public class ProfileController {
         Userdata userDate = new Userdata();
         LoginUserDTO userDTO = userDate.getloginUserDTO();
         int user_no = userDTO.getUserCode();
-  
+
 //         도아
         List<MemoDTO> memoDTOList = profileService.findMemoTitle(user_no);
         model.addAttribute("memoDTOList", memoDTOList);
@@ -49,10 +51,10 @@ public class ProfileController {
 
         List<EmployeeDTO> employeeList = profileService.findAllEmployee();
         model.addAttribute("employeeList",employeeList);
-  
-  
 
-  
+
+
+
         //  규혁 서비스에서 데이터를 받아옴
         Map<String, Object> profileData = profileService.selectProfile(user_no);
         System.out.println(profileData.get("profilesWithoutImage"));
@@ -63,6 +65,20 @@ public class ProfileController {
 
         return "subpage/profile";
     }
+
+    @PostMapping("/calendar")
+    @ResponseBody
+    public List<Map<String,Object>> calender() {
+        Userdata userDate = new Userdata();
+        LoginUserDTO userDTO = userDate.getloginUserDTO();
+        int user_no = userDTO.getUserCode();
+        List<Map<String,Object>> calendarList = profileService.findcalendarList(user_no);
+//        List<Map<String,Object>> updateCalendar = profileService.updateCalendar(user_no);
+
+        System.out.println("calendarList = " + calendarList);
+        return calendarList;
+    }
+    @PostMapping("/updateCalendar")
 
 //   도아
     @GetMapping("/profile/memo/{memo_id}")

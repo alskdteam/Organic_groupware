@@ -4,6 +4,7 @@ import com.ohgiraffers.semi_project.auth.model.service.Userdata;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dao.EdocMapper;
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.UploadFileDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dao.ProfileMapper;
+import com.ohgiraffers.semi_project.subpage.profile.model.dto.CalendarDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.EmployeeDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO;
@@ -116,6 +117,15 @@ public class ProfileService {
     public List<EmployeeDTO> findDepartment(Map<String, String> search) {
 
         return  profileMapper.findDepartment(search);
+    }
+
+    public List<Map<String,Object>> findcalendarList(int user_no) {
+
+        return profileMapper.findcalendarList(user_no);
+    }
+
+    public List<Map<String, Object>> updateCalendar(int userNo) {
+        return profileMapper.updateCalendar(userNo);
     }
 //
 //

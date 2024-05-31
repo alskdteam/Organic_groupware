@@ -228,9 +228,9 @@
                         <div class="button">
                             <!-- 여기서 시작 -->
                             <!-- 스크롤 이동 버튼 1 -->
-                            <button class="scroll_button" data-target=".calender">calender</button>
-                            <button class="scroll_button" data-target=".memo">memo</button>
-                            <button class="scroll_button" data-target=".employee">사원조회</button>
+                            <button class="scroll_button" data-target=".calender">Calendar</button>
+                            <button class="scroll_button" data-target=".memo">Memo</button>
+                            <button class="scroll_button" data-target=".employee">Employee</button>
                         </div>
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
@@ -252,23 +252,58 @@
                         <script>
 
                             document.addEventListener('DOMContentLoaded', function() {
-                                var calendarEl = document.getElementById('calendar');
-                                var calendar = new FullCalendar.Calendar(calendarEl, {
-                                    initialView: 'dayGridMonth',
-                                    locale: 'ko' // 한국어로 설정
-                                });
-                                calendar.render();
-                            });
+                                fetch("/subpage/calendar",{
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type' : 'application/json'
+                                    }
+                                })
+                                    .then(response => response.json())
+                                    .then(event => {
+                                        var calendarEl = document.getElementById('calendar');
+                                        console.log(event);
+                                        var calendar = new FullCalendar.Calendar(calendarEl, {
+                                            initialView: 'dayGridMonth',
+                                            locale: 'ko', // 한국어로 설정
+                                            events: event,
+                                            eventClick: function(info) {
+                                                alert('메모: ' + info.event.title);
+                                                alert('메모: ' + info.event.start.toISOString().slice(0, 10));
+                                                alert('메모: ' + info.event.extendedProps.description);
+                                            }
+                                        });
+                                        calendar.render();
+                                    })
 
+                            });
                         </script>
                         <!-- 캘린더 영역 -->
                         <div class="calender" tabindex="0">
                             <div class="flex2">
-                                <h3></h3>
+                                <h3>캘린더</h3>
                                 <div class="c_calender">
                                     <div id='calendar'></div>
-                                    <!-- 여기서 시작 -->
                                 </div>
+                            </div>
+                        </div>
+
+                        <div id="eventModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <h2 id="modalTitle"></h2>
+                                <p id="modalDate"></p>
+                                <p id="modalDescription"></p>
+                                <button id="editButton">수정</button>
+                                <!-- 수정 기능을 위한 공간 -->
+                                <!-- <form id="editForm">
+                                    <label for="editTitle">제목:</label>
+                                    <input type="text" id="editTitle" name="editTitle"><br>
+                                    <label for="editDate">날짜:</label>
+                                    <input type="text" id="editDate" name="editDate"><br>
+                                    <label for="editDescription">내용:</label>
+                                    <textarea id="editDescription" name="editDescription"></textarea><br>
+                                    <button type="submit">저장</button>
+                                </form> -->
                             </div>
                         </div>
 
@@ -277,8 +312,8 @@
                             <div class="flex2">
                                 <div class="c_memo">
 
-                                        <h1 class="headmemo_title">memo</h1>
-                                        <button class="new_button" id="new-memo-btn">메모 등록</button>
+                                    <h1 class="headmemo_title">memo</h1>
+                                    <button class="new_button" id="new-memo-btn">메모 등록</button>
 
 
                                     <!--메모창 안에 디자인 추가-->
@@ -301,25 +336,25 @@
 
                                     </div>
 
-                                        <form class="Memoform" action="/subpage/profile" method="post">
-                                            <div id="MemomyModal" class="modal1">
-                                                <!-- 모달 내용 -->
-                                                <div class="modal-content2">
-                                                    <div class="titlebox">
-                                                        <p id="modal-title1">제목 :</p>
-                                                        <p id="inputtitle"><input type="text" id="memo_title" name="memo_title" placeholder="제목을 입력해주세요"></p>
-                                                    </div>
-                                                    <div class="inputbox">
-                                                        <p id="substance"></p>
-                                                        <p id="inputcontent"><textarea id="memo_content" name="memo_content" placeholder="내용을 입력해주세요"></textarea></p>
-                                                    </div>
-                                                    <div class="memobuttons">
-                                                        <button id="memoaddBtn" type="submit">추가</button>
-                                                        <button id="memocancelBtn" type="submit">취소</button>
-                                                    </div>
+                                    <form class="Memoform" action="/subpage/profile" method="post">
+                                        <div id="MemomyModal" class="modal1">
+                                            <!-- 모달 내용 -->
+                                            <div class="modal-content2">
+                                                <div class="titlebox">
+                                                    <p id="modal-title1">제목 :</p>
+                                                    <p id="inputtitle"><input type="text" id="memo_title" name="memo_title" placeholder="제목을 입력해주세요"></p>
+                                                </div>
+                                                <div class="inputbox">
+                                                    <p id="substance"></p>
+                                                    <p id="inputcontent"><textarea id="memo_content" name="memo_content" placeholder="내용을 입력해주세요"></textarea></p>
+                                                </div>
+                                                <div class="memobuttons">
+                                                    <button id="memoaddBtn" type="submit">추가</button>
+                                                    <button id="memocancelBtn" type="submit">취소</button>
                                                 </div>
                                             </div>
-                                        </form>
+                                        </div>
+                                    </form>
 
 
 
@@ -421,12 +456,7 @@
                                     </table>
 
                                     <!-- 페이지 네이션 버튼 -->
-                                    <div class="employee_page_number">
-                                        <div class="employee_s_button" onclick="changeEmployeePage(1)">1</div>
-                                        <div class="employee_s_button" onclick="changeEmployeePage(2)">2</div>
-                                        <div class="employee_s_button" onclick="changeEmployeePage(3)">3</div>
-                                    </div>
-                                    </div>
+                                    <div class="page_number" id="employeePagination"></div>
 
                                 </div>
                             </div>

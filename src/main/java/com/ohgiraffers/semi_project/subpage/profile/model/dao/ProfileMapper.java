@@ -1,6 +1,7 @@
 package com.ohgiraffers.semi_project.subpage.profile.model.dao;
 
 import com.ohgiraffers.semi_project.subpage.edoc.model.dto.UploadFileDTO;
+import com.ohgiraffers.semi_project.subpage.profile.model.dto.CalendarDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.EmployeeDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.MemoDTO;
 import com.ohgiraffers.semi_project.subpage.profile.model.dto.ProfileDTO;
@@ -44,6 +45,8 @@ public interface ProfileMapper {
     List<EmployeeDTO> findDepartment(Map<String, String> search);
 
 
+    List<Map<String,Object>> findcalendarList(int userNo);
 
+    List<Map<String, Object>> updateCalendar(int userNo);
 }
 

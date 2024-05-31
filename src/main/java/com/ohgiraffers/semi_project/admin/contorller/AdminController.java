@@ -54,7 +54,7 @@ public class AdminController {
 
 //        List<EdocFromEdocCtDTO> edocList = edocService.selectEdoc();
 //        model.addAttribute("edocList", edocList);
-        
+
         List<NoticeDTO> noticeList = adminService.findnotice();
         model.addAttribute("noticeList", noticeList);
 
@@ -75,7 +75,7 @@ public class AdminController {
         System.out.println("code = " + code);
         sidebarController.getSidebar(model);
         sidebarController.getHeader(model);
-        
+
         NoticeDTO noticeDTO = adminService.findByCodePage(code);
         model.addAttribute("noticeDTO",noticeDTO);
 //        System.out.println("noticeDTO = " + noticeDTO);
@@ -116,16 +116,16 @@ public class AdminController {
 
 
 
-        @GetMapping("/updateEmployee")
+    @GetMapping("/updateEmployee")
     public String updateEmployee(@RequestParam int user_no, Model model){
 
 
         AdminEmployeeDTO employee = adminService.findByEmployee(user_no);
         model.addAttribute("employee",employee);
 
-            System.out.println("employee = " + employee);
+        System.out.println("employee = " + employee);
 
-            return "admin/updateEmployee";
+        return "admin/updateEmployee";
 
     }
 
@@ -133,7 +133,7 @@ public class AdminController {
     @PostMapping("/updateEmployee")
     public String update(@RequestParam Map<String,Object> map){
         System.out.println("map = " + map);
-       adminService.updateEmployee(map);
+        adminService.updateEmployee(map);
 
 
         return "redirect:admin";
@@ -259,11 +259,10 @@ public class AdminController {
 
 
         edocService.updateSatus(edocFormCtDTO);
-        
+
 
         // 변경된 문서 번호로 리다이렉트
         return "redirect:/admin/edocFrom/selectEdocList/" + edoc_form_ct_no;
     }
 
 }
-

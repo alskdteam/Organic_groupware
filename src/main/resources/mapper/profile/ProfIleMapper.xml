@@ -116,6 +116,21 @@
             AND user_rank LIKE CONCAT('%', #{user_rank}, '%')
         </if>
     </select>
+    <resultMap id="CalendarResultMap" type="com.ohgiraffers.semi_project.subpage.profile.model.dto.CalendarDTO">
+        <id property="comment_id" column="comment_id" />
+        <result property="userNo" column="user_no" />
+        <result property="comment_content" column="comment_content" />
+        <result property="comment_creation_time" column="comment_creation_time" />
+    </resultMap>
+
+    <select id="findcalendarList">
+        SELECT
+        comment_content description,
+        comment_creation_time as start,
+        comment_id as title
+        FROM comment
+        WHERE user_no = #{user_no}
+    </select>
 
 
 </mapper>
