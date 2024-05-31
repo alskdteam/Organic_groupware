@@ -64,7 +64,9 @@
                                         <tbody id="tableBody">
                                         <tr th:each="list, iterStat : ${selectNotice}" id="row_${iterStat.index}">
                                             <td th:text="${list.notice_id}"></td>
-                                            <td th:text="${list.notice_title}"></td>
+                                            <td>
+                                                <a th:text="${list.notice_title}" th:href="'main/NoticeMain/' + ${list.notice_id}" style="cursor: pointer; margin-left: 15vw;"></a>
+                                            </td>
                                             <td th:text="${list.notice_creationDate}"></td>
                                         </tr>
                                         </tbody>

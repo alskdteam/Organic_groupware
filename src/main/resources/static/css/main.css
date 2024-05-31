@@ -62,7 +62,7 @@ body {
 
 /* 클릭시 세로길이 늘어나는*/
 .announcement:focus-within {
-    height: auto;
+    /*height: auto;*/
     border: 1px solid #4CAF50; /* 변경하고자 하는 색상으로 설정 */
 
 }
