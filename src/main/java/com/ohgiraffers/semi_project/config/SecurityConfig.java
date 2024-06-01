@@ -54,7 +54,7 @@ public class SecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests( auth -> {
             /* permitAll -> 내부에 전달한 http 요청에 대해 모두에게 허용한다. */
-            auth.requestMatchers("/user/signup", "/fail", "/", "/login/login").permitAll();
+            auth.requestMatchers("/user/signup", "/fail", "/", "/login/login","user/pass").permitAll();
             /* hasAnyAuthority -> 전달 http 요청에 대해 권한이 있는 사람만 허용한다. */
             auth.requestMatchers("/admin/**").hasAnyAuthority(UserRole.ADMIN.getRole());
             auth.requestMatchers("/user/**").hasAnyAuthority(UserRole.USER.getRole());
