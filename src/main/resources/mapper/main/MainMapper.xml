@@ -31,6 +31,19 @@
 
     </select>
 
+    <select id="findNotice" resultMap="noticeResultMap">
+
+        select
+        notice_title,
+        Notice_content
+        from
+        Notice
+        where
+        notice_id = #{notice_id}
+
+    </select>
+
+
     <resultMap id="selectDashboard" type="com.ohgiraffers.semi_project.subpage.main.model.dto.CarDTO">
         <id property="vehicle_reservation_date" column="vehicle_reservation_date"/>
         <result property="vehicle_return_due_date" column="vehicle_return_due_date"/>
@@ -69,8 +82,7 @@
         b.item_name
         FROM
         rental a
-        JOIN
-        item b
+        JOIN item b ON a.item_number = b.item_number
         WHERE
         a.rental_date = #{rental_date};
     </select>

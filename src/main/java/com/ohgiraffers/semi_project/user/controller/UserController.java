@@ -1,19 +1,21 @@
 package com.ohgiraffers.semi_project.user.controller;
 
+import com.ohgiraffers.semi_project.auth.model.service.Userdata;
+import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import com.ohgiraffers.semi_project.user.model.dto.SignupDTO;
 import com.ohgiraffers.semi_project.user.model.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Random;
 
 @Controller
 @RequestMapping("/user")
@@ -22,6 +24,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/signup")
     public void signup() {}
@@ -51,8 +55,20 @@ public class UserController {
         return mv;
     }
 
+    @GetMapping("/pass")
+    public String pass(@RequestParam String code){
+        Userdata userDate = new Userdata();
+        LoginUserDTO userDTO = userDate.getloginUserDTO();
+        int user_no = userDTO.getUserCode();
 
+        String pass = "123";
+        String cpass = passwordEncoder.encode(code);
 
+        System.out.println("cpass = " + cpass);
+        userService.pass(user_no,cpass);
+
+        return "redirect:/auth/logout";
+    }
 
 
 }
