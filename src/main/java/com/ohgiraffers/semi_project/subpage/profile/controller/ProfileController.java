@@ -149,6 +149,35 @@ public class ProfileController {
         return "subpage/profile";
     }
 
+    @PostMapping("/calendar")
+    @ResponseBody
+    public List<Map<String,Object>> calender() {
+        Userdata userDate = new Userdata();
+        LoginUserDTO userDTO = userDate.getloginUserDTO();
+        int user_no = userDTO.getUserCode();
+
+        List<Map<String,Object>> calendarList = profileService.findcalendarList(user_no);
+//        List<Map<String,Object>> updateCalendar = profileService.updateCalendar(user_no);
+
+        System.out.println("calendarList = " + calendarList);
+        return calendarList;
+    }
+
+    @PostMapping("/updateCalender")
+    public String updateCalender(@RequestParam Map<String,Object> updateCalender){
+
+        Userdata userDate = new Userdata();
+        LoginUserDTO userDTO = userDate.getloginUserDTO();
+        int user_no = userDTO.getUserCode();
+        updateCalender.put("user_no",user_no);
+
+        System.out.println("updateCalender = " + updateCalender);
+        profileService.updateCalender(updateCalender);
+        
+        
+        return "redirect:/subpage/profile";
+    }
+
 
 
 

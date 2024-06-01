@@ -133,4 +133,21 @@ public class MainService {
 
         return result;
     }
+
+
+    public int noticeMain(NoticeDTO noticeDTO) {
+
+        return mainMapper.noticeMain(noticeDTO);
+    }
+
+    public NoticeDTO findNotice(int noticeId) {
+
+        return mainMapper.findNotice(noticeId);
+    }
+
+
+    public List<NoticeDTO> findAllNotice() {
+
+        return mainMapper.findAllNotice();
+    }
 }

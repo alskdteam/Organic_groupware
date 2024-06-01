@@ -44,6 +44,9 @@ public interface ProfileMapper {
     List<EmployeeDTO> findDepartment(Map<String, String> search);
 
 
+    List<Map<String, Object>> findcalendarList(int userNo);
 
+
+    void updateCalender(Map<String, Object> updateCalender);
 }
 

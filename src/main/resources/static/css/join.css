@@ -15,6 +15,7 @@
 }
 .employeeform {
     margin-top: 8vh;
+    width: 400px;
 }
 .join-form h1 {
     font-size: 32px; color: #010101;
@@ -45,7 +46,7 @@
     padding: 20px 10px 10px;
     background-color: transparent;
     border-radius: 15px;
-    border-color: green;
+    boder:2px solid #4CAF50;
     font-size: 18px;
     outline: none;
 }
@@ -60,46 +61,12 @@
     height: 250px;
 
 }
-.big-wrapper {
-    width: 300;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+
+.wrap{
+    width: 100%;
 }
 
-.boy-area {
-
-    border: 1px solid green;
-    width: 40%;
-    height: 80%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 10px;
-    margin-right: 35px;
-    border-radius: 5px;
-
-}
-
-
-.girl-area {
-
-    border: 1px solid green;
-    width: 40%;
-    height: 80%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 10px;
-    margin-left: 35px;
-    border-radius: 5px;
-
-}
 
 .onclick {
     display: inline;
@@ -108,7 +75,7 @@
     padding: 20px 10px 10px;
     background-color: transparent;
     border-radius: 15px;
-    border-color: green;
+    boder:2px solid #4CAF50;
     font-size: 18px;
     outline: none;
 
@@ -121,18 +88,20 @@
 }
 
 .btn-area {
+
     box-sizing: border-box;
     display: inline;
     justify-content: center;
     align-items: center;
 }
 
-.btn {
-    font-size: 30px;
+.employee-btn {
+
+    font-size: 28px;
     padding: 10px 135px;
-    border: 5px color(yellow);
+    border: 5px solid #4CAF50;
     border-radius: 10px;
-    background-color: green;
+    background-color: #4CAF50;
     color: white;
     text-transform: uppercase;
     letter-spacing: 5px;
@@ -141,7 +110,7 @@
     cursor: pointer;
 }
 
-.btn:focus {
+.employee-btn:focus {
     outline: none;
 }
 
@@ -152,10 +121,8 @@
 }
 
 
-
-
 /* 비활성화된 버튼 스타일 */
-.btn:disabled {
+.employee-btn:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
@@ -164,7 +131,28 @@
 }
 
 
+/*select 버튼*/
+.select-gender {
 
+    width: 100%;
+    height: 60px;
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    font-size: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 
+}
+.select-role{
+    width: 100%;
+    height: 60px;
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    font-size: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
 
 
