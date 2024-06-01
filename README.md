@@ -19,6 +19,7 @@ organic 이란? organic 은 '유기농' 이라는 뜻으로 사과를 유통하�
 ### 프로젝트 정보
 - [테이블 설계](https://github.com/alskdteam/semi_project_java/wiki/%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%84%A4%EA%B3%84)
 - [피그마 설계](https://github.com/alskdteam/semi_project_java/wiki/%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%84%A4%EA%B3%84)
+- [👨🏻‍💻👩🏻‍💻 멤버 소개](#-멤버-소개)
 
 
 ## 브랜치 전략
