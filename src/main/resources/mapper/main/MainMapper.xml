@@ -82,8 +82,7 @@
         b.item_name
         FROM
         rental a
-        JOIN
-        item b
+        JOIN item b ON a.item_number = b.item_number
         WHERE
         a.rental_date = #{rental_date};
     </select>
