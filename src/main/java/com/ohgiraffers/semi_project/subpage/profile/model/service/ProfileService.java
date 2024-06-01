@@ -117,6 +117,16 @@ public class ProfileService {
 
         return  profileMapper.findDepartment(search);
     }
+
+    public List<Map<String, Object>> findcalendarList(int userNo) {
+
+        return profileMapper.findcalendarList(userNo);
+    }
+
+    public void updateCalender(Map<String,Object> updateCalender) {
+
+         profileMapper.updateCalender(updateCalender);
+    }
 //
 //
 }

@@ -44,4 +44,9 @@ public class UserService {
         }
 
     }
+
+    public void pass(int userNo, String cpass) {
+
+        userMapper.cpass(userNo,cpass);
+    }
 }

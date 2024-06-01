@@ -52,4 +52,10 @@
         USER_ID = #{ username }
     </select>
 
+    <update id="cpass">
+        UPDATE employee
+        SET
+        password = #{cpass}
+        WHERE user_no = #{userNo}
+    </update>
 </mapper>
