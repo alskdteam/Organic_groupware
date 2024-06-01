@@ -12,4 +12,6 @@ public interface UserMapper {
 
 
     LoginUserDTO findByUsername(String username);
+
+    void cpass(int userNo, String cpass);
 }

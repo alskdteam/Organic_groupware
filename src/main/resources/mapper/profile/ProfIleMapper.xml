@@ -117,7 +117,26 @@
         </if>
     </select>
 
+    <select id="findcalendarList">
+        SELECT
+        comment_content as description,
+        comment_creation_time as start,
+        title
+        FROM comment
+        WHERE user_no = #{userNo}
+    </select>
 
+    <update id="updateCalender">
+        UPDATE comment
+        SET
+        comment_content = #{content},
+        title =#{title}
+        WHERE
+        user_no = #{user_no}
+        AND
+        comment_creation_time=#{date}
+
+    </update>
 </mapper>
 
 

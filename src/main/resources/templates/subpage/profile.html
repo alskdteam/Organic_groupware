@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/profile.css">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.13/index.global.min.css' rel='stylesheet' />
+
     <script src="/js/profile.js"></script>
 
     <style>
@@ -42,7 +44,38 @@
             background: black; /* 밑줄 색상 */
         }
 
-
+        .modal3 {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(144, 238, 144, 0.4); /* 연한 녹색 배경 */
+            padding-top: 60px;
+        }
+        .modal-content3 {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px; /* 모달 창 최대 너비 */
+        }
+        .close3 {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close3:hover,
+        .close3:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -160,7 +193,6 @@
                             });
                         </script>
 
-
                         <script>
                             document.getElementById('profileFrm').addEventListener('submit', function(event) {
                                 event.preventDefault();
@@ -179,10 +211,6 @@
                                 });
                             });
                         </script>
-
-
-
-
 
                         <script>
                             // 모달 요소 가져오기
@@ -222,13 +250,11 @@
 
                         </script>
 
-
-                        <!--                        버튼 영역-->
-
+                        <!-- 버튼 영역 -->
                         <div class="button">
                             <!-- 여기서 시작 -->
                             <!-- 스크롤 이동 버튼 1 -->
-                            <button class="scroll_button" data-target=".calender">calender</button>
+                            <button class="scroll_button" data-target=".calendar">calendar</button>
                             <button class="scroll_button" data-target=".memo">memo</button>
                             <button class="scroll_button" data-target=".employee">사원조회</button>
                         </div>
@@ -247,43 +273,128 @@
                             });
                         </script>
 
-                        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.13/index.global.min.js'></script>
-                        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.13/locales/ko.global.min.js'></script>
-                        <script>
-
-                            document.addEventListener('DOMContentLoaded', function() {
-                                var calendarEl = document.getElementById('calendar');
-                                var calendar = new FullCalendar.Calendar(calendarEl, {
-                                    initialView: 'dayGridMonth',
-                                    locale: 'ko' // 한국어로 설정
-                                });
-                                calendar.render();
-                            });
-
-                        </script>
                         <!-- 캘린더 영역 -->
                         <div class="calender" tabindex="0">
                             <div class="flex2">
-                                <h3></h3>
+                                <h3>캘린더</h3>
                                 <div class="c_calender">
                                     <div id='calendar'></div>
-                                    <!-- 여기서 시작 -->
                                 </div>
                             </div>
                         </div>
+
+
+                        <!-- 모달 창 -->
+                        <div id="eventModal" class="modal3">
+                            <div class="modal-content3">
+                                <span class="close3">&times;</span>
+                                <h2>이벤트 수정</h2>
+                                <form id="eventForm"  method="post" action="/subpage/updateCalender">
+                                    <div class="form-group">
+                                        <label for="eventTitle">제목</label>
+                                        <input type="text" id="eventTitle" class="form-control" name="title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventDate">날짜</label>
+                                        <input type="date" id="eventDate" class="form-control" name="date">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventDescription">설명</label>
+                                        <textarea id="eventDescription" class="form-control" name="content"></textarea>
+                                    </div>
+                                    <button id="saveChanges" type="submit">수정하기</button>
+                                </form>
+
+<!--                                <button id="saveChanges">수정하기</button>-->
+                            </div>
+                        </div>
+
+                        <!-- FullCalendar Scripts -->
+                        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.13/index.global.min.js'></script>
+                        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.13/locales/ko.global.min.js'></script>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                fetch("/subpage/calendar", {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type' : 'application/json'
+                                    }
+                                })
+                                    .then(response => response.json())
+                                    .then(event => {
+                                        var calendarEl = document.getElementById('calendar');
+                                        var calendar = new FullCalendar.Calendar(calendarEl, {
+                                            initialView: 'dayGridMonth',
+                                            locale: 'ko', // 한국어로 설정
+                                            events: event,
+                                            eventClick: function(info) {
+                                                var modal = document.getElementById("eventModal");
+                                                modal.style.display = "block";
+
+                                                document.getElementById('eventTitle').value = info.event.title;
+
+                                                var date = new Date(info.event.start);
+                                                date.setDate(date.getDate() + 1);
+                                                document.getElementById('eventDate').value = date.toISOString().slice(0, 10);
+
+                                                document.getElementById('eventDescription').value = info.event.extendedProps.description;
+
+                                                // document.getElementById('saveChanges').onclick = function() {
+                                                //     const updatedEvent = {
+                                                //         id: info.event.id,
+                                                //         title: document.getElementById('eventTitle').value,
+                                                //         start: document.getElementById('eventDate').value,
+                                                //         description: document.getElementById('eventDescription').value
+                                                //     };
+                                                //
+                                                //     fetch("/subpage/calendar", {
+                                                //         method: 'POST',
+                                                //         headers: {
+                                                //             'Content-Type': 'application/json'
+                                                //         },
+                                                //         body: JSON.stringify(updatedEvent)
+                                                //     })
+                                                //         .then(response => {
+                                                //             if (response.ok) {
+                                                //                 info.event.setProp('title', updatedEvent.title);
+                                                //                 info.event.setStart(updatedEvent.start);
+                                                //                 info.event.setExtendedProp('description', updatedEvent.description);
+                                                //                 modal.style.display = "none";
+                                                //             } else {
+                                                //                 alert('이벤트 업데이트 중 오류가 발생했습니다.');
+                                                //             }
+                                                //         });
+                                                // };
+                                            }
+                                        });
+                                        calendar.render();
+                                    });
+
+                                var modal3 = document.getElementById("eventModal");
+                                var closeBtn3 = document.getElementsByClassName("close3")[0];
+
+                                closeBtn3.onclick = function() {
+                                    modal3.style.display = "none";
+                                }
+
+                                window.onclick = function(event) {
+                                    if (event.target == modal3) {
+                                        modal3.style.display = "none";
+                                    }
+                                }
+                            });
+                        </script>
 
                         <!-- 메모 영역 -->
                         <div class="memo" tabindex="0">
                             <div class="flex2">
                                 <div class="c_memo">
 
-                                        <h1 class="headmemo_title">memo</h1>
-                                        <button class="new_button" id="new-memo-btn">메모 등록</button>
+                                    <h1 class="headmemo_title">memo</h1>
+                                    <button class="new_button" id="new-memo-btn">메모 등록</button>
 
 
                                     <!--메모창 안에 디자인 추가-->
-
-
 
                                     <!-- 메모 목록 항목이 여기에 추가됩니다 -->
                                     <div class="memo_table">
@@ -298,31 +409,27 @@
                                             </tbody>
                                         </table>
 
-
                                     </div>
 
-                                        <form class="Memoform" action="/subpage/profile" method="post">
-                                            <div id="MemomyModal" class="modal1">
-                                                <!-- 모달 내용 -->
-                                                <div class="modal-content2">
-                                                    <div class="titlebox">
-                                                        <p id="modal-title1">제목 :</p>
-                                                        <p id="inputtitle"><input type="text" id="memo_title" name="memo_title" placeholder="제목을 입력해주세요"></p>
-                                                    </div>
-                                                    <div class="inputbox">
-                                                        <p id="substance"></p>
-                                                        <p id="inputcontent"><textarea id="memo_content" name="memo_content" placeholder="내용을 입력해주세요"></textarea></p>
-                                                    </div>
-                                                    <div class="memobuttons">
-                                                        <button id="memoaddBtn" type="submit">추가</button>
-                                                        <button id="memocancelBtn" type="submit">취소</button>
-                                                    </div>
+                                    <form class="Memoform" action="/subpage/profile" method="post">
+                                        <div id="MemomyModal" class="modal1">
+                                            <!-- 모달 내용 -->
+                                            <div class="modal-content2">
+                                                <div class="titlebox">
+                                                    <p id="modal-title1">제목 :</p>
+                                                    <p id="inputtitle"><input type="text" id="memo_title" name="memo_title" placeholder="제목을 입력해주세요"></p>
+                                                </div>
+                                                <div class="inputbox">
+                                                    <p id="substance"></p>
+                                                    <p id="inputcontent"><textarea id="memo_content" name="memo_content" placeholder="내용을 입력해주세요"></textarea></p>
+                                                </div>
+                                                <div class="memobuttons">
+                                                    <button id="memoaddBtn" type="submit">추가</button>
+                                                    <button id="memocancelBtn" type="submit">취소</button>
                                                 </div>
                                             </div>
-                                        </form>
-
-
-
+                                        </div>
+                                    </form>
 
                                     <script>
                                         // 모달 요소 가져오기
@@ -421,109 +528,114 @@
                                     </table>
 
                                     <!-- 페이지 네이션 버튼 -->
-                                    <div class="page_number" id="employeePagination"></div>
-
+                                    <div class="employee_page_number">
+                                        <div class="employee_s_button" onclick="changeEmployeePage(1)">1</div>
+                                        <div class="employee_s_button" onclick="changeEmployeePage(2)">2</div>
+                                        <div class="employee_s_button" onclick="changeEmployeePage(3)">3</div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
-
-                        <script>
-                            // 현재 페이지를 저장할 변수
-                            var currentMemoPage = 1;
-                            var currentEmployeePage = 1;
-                            // 페이지당 행 수
-                            var rowsPerPage = 7;
-
-                            // 메모 페이지를 변경하는 함수
-                            function changeMemoPage(pageNumber) {
-                                currentMemoPage = pageNumber;
-                                hideAllMemoRows();
-                                showMemoRowsForCurrentPage();
-                            }
-
-                            // 사원 페이지를 변경하는 함수
-                            function changeEmployeePage(pageNumber) {
-                                currentEmployeePage = pageNumber;
-                                hideAllEmployeeRows();
-                                showEmployeeRowsForCurrentPage();
-                            }
-
-                            // 모든 메모 행을 숨기는 함수
-                            function hideAllMemoRows() {
-                                var rows = document.querySelectorAll('[id^="row_memo_"]');
-                                rows.forEach(function(row) {
-                                    row.style.display = 'none';
-                                });
-                            }
-
-                            // 모든 사원 행을 숨기는 함수
-                            function hideAllEmployeeRows() {
-                                var rows = document.querySelectorAll('[id^="row_emp_"]');
-                                rows.forEach(function(row) {
-                                    row.style.display = 'none';
-                                });
-                            }
-
-                            // 현재 페이지에 해당하는 메모 행들을 보여주는 함수
-                            function showMemoRowsForCurrentPage() {
-                                var startIndex = (currentMemoPage - 1) * rowsPerPage;
-                                var endIndex = startIndex + rowsPerPage;
-                                var rows = document.querySelectorAll('[id^="row_memo_"]');
-                                for (var i = startIndex; i < endIndex && i < rows.length; i++) {
-                                    rows[i].style.display = 'table-row';
-                                }
-                            }
-
-                            // 현재 페이지에 해당하는 사원 행들을 보여주는 함수
-                            function showEmployeeRowsForCurrentPage() {
-                                var startIndex = (currentEmployeePage - 1) * rowsPerPage;
-                                var endIndex = startIndex + rowsPerPage;
-                                var rows = document.querySelectorAll('[id^="row_emp_"]');
-                                for (var i = startIndex; i < endIndex && i < rows.length; i++) {
-                                    rows[i].style.display = 'table-row';
-                                }
-                            }
-
-                            // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
-                            window.onload = function() {
-                                changeMemoPage(1);
-                                changeEmployeePage(1);
-                                createPaginationButtons('employeePagination', changeEmployeePage);
-                                createPaginationButtons('memoPagination', changeMemoPage);
-                            };
-
-                            // 페이지 버튼을 생성하는 함수
-                            function createPaginationButtons(paginationId, changePageFunction) {
-                                var paginationContainer = document.getElementById(paginationId);
-                                paginationContainer.innerHTML = '';
-
-                                var rows;
-                                if (paginationId === 'employeePagination') {
-                                    rows = document.querySelectorAll('[id^="row_emp_"]');
-                                } else if (paginationId === 'memoPagination') {
-                                    rows = document.querySelectorAll('[id^="row_memo_"]');
-                                }
-
-                                var totalPages = Math.ceil(rows.length / rowsPerPage);
-                                for (var i = 1; i <= totalPages; i++) {
-                                    var button = document.createElement('button');
-                                    button.textContent = i;
-                                    button.className = 'pagination-button';
-                                    button.onclick = (function(pageNumber) {
-                                        return function() {
-                                            changePageFunction(pageNumber);
-                                        };
-                                    })(i);
-                                    paginationContainer.appendChild(button);
-                                }
-                            }
-                        </script>
-
                     </div>
+
+                    <script>
+                        // 현재 페이지를 저장할 변수
+                        var currentMemoPage = 1;
+                        var currentEmployeePage = 1;
+                        // 페이지당 행 수
+                        var rowsPerPage = 7;
+
+                        // 메모 페이지를 변경하는 함수
+                        function changeMemoPage(pageNumber) {
+                            currentMemoPage = pageNumber;
+                            hideAllMemoRows();
+                            showMemoRowsForCurrentPage();
+                        }
+
+                        // 사원 페이지를 변경하는 함수
+                        function changeEmployeePage(pageNumber) {
+                            currentEmployeePage = pageNumber;
+                            hideAllEmployeeRows();
+                            showEmployeeRowsForCurrentPage();
+                        }
+
+                        // 모든 메모 행을 숨기는 함수
+                        function hideAllMemoRows() {
+                            var rows = document.querySelectorAll('[id^="row_memo_"]');
+                            rows.forEach(function(row) {
+                                row.style.display = 'none';
+                            });
+                        }
+
+                        // 모든 사원 행을 숨기는 함수
+                        function hideAllEmployeeRows() {
+                            var rows = document.querySelectorAll('[id^="row_emp_"]');
+                            rows.forEach(function(row) {
+                                row.style.display = 'none';
+                            });
+                        }
+
+                        // 현재 페이지에 해당하는 메모 행들을 보여주는 함수
+                        function showMemoRowsForCurrentPage() {
+                            var startIndex = (currentMemoPage - 1) * rowsPerPage;
+                            var endIndex = startIndex + rowsPerPage;
+                            var rows = document.querySelectorAll('[id^="row_memo_"]');
+                            for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+                                rows[i].style.display = 'table-row';
+                            }
+                        }
+
+                        // 현재 페이지에 해당하는 사원 행들을 보여주는 함수
+                        function showEmployeeRowsForCurrentPage() {
+                            var startIndex = (currentEmployeePage - 1) * rowsPerPage;
+                            var endIndex = startIndex + rowsPerPage;
+                            var rows = document.querySelectorAll('[id^="row_emp_"]');
+                            for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+                                rows[i].style.display = 'table-row';
+                            }
+                        }
+
+                        // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
+                        window.onload = function() {
+                            changeMemoPage(1);
+                            changeEmployeePage(1);
+                            createPaginationButtons('employeePagination', changeEmployeePage);
+                            createPaginationButtons('memoPagination', changeMemoPage);
+                        };
+
+                        // 페이지 버튼을 생성하는 함수
+                        function createPaginationButtons(paginationId, changePageFunction) {
+                            var paginationContainer = document.getElementById(paginationId);
+                            paginationContainer.innerHTML = '';
+
+                            var rows;
+                            if (paginationId === 'employeePagination') {
+                                rows = document.querySelectorAll('[id^="row_emp_"]');
+                            } else if (paginationId === 'memoPagination') {
+                                rows = document.querySelectorAll('[id^="row_memo_"]');
+                            }
+
+                            var totalPages = Math.ceil(rows.length / rowsPerPage);
+                            for (var i = 1; i <= totalPages; i++) {
+                                var button = document.createElement('button');
+                                button.textContent = i;
+                                button.className = 'pagination-button';
+                                button.onclick = (function(pageNumber) {
+                                    return function() {
+                                        changePageFunction(pageNumber);
+                                    };
+                                })(i);
+                                paginationContainer.appendChild(button);
+                            }
+                        }
+                    </script>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

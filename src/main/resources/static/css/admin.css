@@ -387,9 +387,13 @@ body {
     align-items: center;
     z-index: 9999;
 }
-.employee_s_button {
-
-
+.s_button:hover {
+    background-color: #4CAF50; /* 변경하고자 하는 색상으로 설정 */
+    color: white;
+}
+.employee_s_button:hover {
+    background-color: #4CAF50;
+    color: white;
 }
 
 .employee_s_button {
