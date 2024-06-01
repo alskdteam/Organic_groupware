@@ -11,18 +11,25 @@
 <h3 align="center">🍏 Organic Company 🍏</h3>
 
 ### Organic?
-organic 이란? organic 은 '유기농' 이라는 뜻으로 사과를 유통하는 회사의 그룹웨어(Groupware)를 
+organic 이란? organic 은 '유기농' 이라는 뜻으로 유기농 사과 생산과 유통을 주요 사업으로 하는 회사의 효율적인 협업과 관리에 초점을 맞춘 그룹웨어 시스템을 구축하는 프로젝트 입니다.
+
 </br>
 </br>
 
 
-### 프로젝트 정보
+## Index
+- [🔎 프로젝트 정보](#-프로젝트-정보)
+- [👨🏻‍💻👩🏻‍💻 멤버 소개](#-멤버-소개)
+- [:octocat: 브랜치 전략](#-브랜치-전략)
+
+## 🔎 프로젝트 정보
 - [테이블 설계](https://github.com/alskdteam/semi_project_java/wiki/%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%84%A4%EA%B3%84)
 - [피그마 설계](https://www.figma.com/design/IKAvtHhfsymAZyzUrcDyt3/Develop?node-id=0-1&t=ixCbcDKfOkSZPW7Q-0)
-- [👨🏻‍💻👩🏻‍💻 멤버 소개](#-멤버-소개)
 
 
-## 브랜치 전략
+</br>
+
+## :octocat: 브랜치 전략
 #### Git-flow 전략을 기반으로 main, develop 브랜치와 feature 보조 브랜치를 운용했습니다.
 - main, develop, feature 브랜치로 나누어 개발을 하였습니다.
 - main 브랜치는 배포 단계에서만 사용하는 브랜치입니다.
