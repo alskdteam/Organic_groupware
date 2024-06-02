@@ -65,6 +65,11 @@ Fullcalendar
 ## 📌 프로젝트 및 기능 소개
 
 
+https://github.com/alskdteam/Organic_groupware/assets/153148788/1b8f52bf-357e-4551-a71f-13b6fc2b2585
+
+
+
+
 
 
 
