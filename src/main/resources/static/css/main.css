@@ -96,6 +96,7 @@ body {
     align-items: center;
     padding-top: 17px;
 }
+
 .s_button {
     width: 30px;
     height: 30px;
@@ -108,12 +109,10 @@ body {
     cursor: pointer; /* 마우스 커서를 포인터로 설정하여 클릭 가능한 요소임을 표시합니다. */
     margin: 3px; /* 버튼 간 간격을 설정합니다. */
     }
-.s_button:hover {
-        border: 2px solid #00FF00; /* 초록색 테두리 추가 */
-    }
 
 
 .s_button:hover {
+    border: 2px solid #00FF00; /* 초록색 테두리 추가 */
     background-color: #4CAF50; /* 변경하고자 하는 색상으로 설정 */
     color: white;
 
@@ -182,10 +181,6 @@ table{
     border-bottom: 0.7px solid #8d8d8d; /* th에만 하단 테두리를 적용합니다. */
 }
 
-
-
-
-
 .dashboard{
     width: 60vw;
     height: auto;
@@ -193,6 +188,21 @@ table{
     border-radius: 30px;
 }
 
+page_btn {
+    width: 55vw;
+    height: 45px;
+    border-top: 4px solid #848484;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 17px;
+    cursor: pointer;
+}
+page_btn:hover {
+    border: 2px solid #00FF00; /* 초록색 테두리 추가 */
+    background-color: #4CAF50; /* 변경하고자 하는 색상으로 설정 */
+    color: white;
+}
 
 
 /* 클릭시 세로길이 늘어나는*/
