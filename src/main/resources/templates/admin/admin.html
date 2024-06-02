@@ -5,58 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/admin.css">
-
     <style>
-
         @media screen and (max-width: 375px) {
             .container {
                 flex-direction: column;
             }
-
             .sidebar {
                 width: 100%;
             }
-
             .content {
                 display: none;
             }
             #sidebar {
                 width: 100%;
-                /* 사이드바 틀 높이 */
                 height: 838px;
             }
         }
-
-
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             updateEdocList('all'); // 페이지가 로드될 때 '전체' 필터를 사용하여 업데이트
-            changeEdocPage(1); // 결과의 첫 번째 페이지를 표시합니다
+            changeEdocPage(1); // 전자결재 결과의 첫 번째 페이지를 표시합니다
+            changeNoticePage(1); // 공지사항 결과의 첫 번째 페이지를 표시합니다
         });
     </script>
-
 </head>
 <body>
-
-
 <div class="container">
-    <!-- 사이드바 -->
     <div th:replace="common/sidebar.html" id="sidebar"></div>
-    <!-- 메인 컨텐츠 -->
     <div class="content">
-        <!-- 헤더 추가 -->
         <div th:replace="common/header.html" id="header"></div>
-
         <div class="area">
-
-            <!--            여기서부터 시작 위에는 건들지 마세요-->
             <div class="layer">
                 <div class="flex">
-
-                    <!-- 스크롤 버튼 영역-->
                     <div class="button">
-                        <!-- 스크롤 이동 버튼 1 -->
                         <button class="scroll_button" data-target=".announcement">공지사항</button>
                         <button class="scroll_button" data-target=".employee">사원조회</button>
                         <button class="scroll_button" data-target=".edoc">전자결재</button>
@@ -64,7 +46,6 @@
                     <script>
                         document.addEventListener("DOMContentLoaded", function() {
                             var scrollButtons = document.querySelectorAll('.scroll_button');
-
                             scrollButtons.forEach(function(button) {
                                 button.addEventListener('click', function() {
                                     var target = document.querySelector(this.getAttribute('data-target'));
@@ -76,50 +57,39 @@
                         });
                     </script>
 
-                    <!--공지사항 영역-->
+                    <!-- 공지사항 영역 -->
                     <div class="announcement" tabindex="0">
-
                         <div class="flex2">
-
                             <div class="c_announcement">
-                                <!--여기서 시작-->
-
                                 <h1 class="semi-title">공지사항</h1>
-
-                                    <a th:href="@{/admin/admin/addNotice}" class="btn">추가</a>
-
+                                <a th:href="@{/admin/admin/addNotice}" class="btn">추가</a>
                                 <table><br>
-
                                     <thead>
                                     <tr>
                                         <th>번호</th>
                                         <th>제목</th>
                                         <th>등록일</th>
                                     </tr>
-
                                     </thead>
-
-                                    <tbody>
+                                    <tbody id="noticeTableBody">
                                     <tr th:each="notice : ${noticeList}">
                                         <td th:text="${notice.noticeId}"></td>
                                         <td><a th:href="'admin/notice?code=' + ${notice.noticeId}" th:text="${notice.noticeTitle}"></a></td>
                                         <td th:text="${notice.noticeCreationDate}"></td>
                                     </tr>
                                     </tbody>
-
                                 </table>
+                                <div id="noticePagination" class="page_number">
+                                    <!-- 페이지네이션 버튼이 여기에 추가됩니다 -->
+                                </div>
                             </div>
                         </div>
                     </div>
 
-
-                    <!--사원조회 영역-->
+                    <!-- 사원조회 영역 -->
                     <div class="employee" tabindex="0">
-
                         <div class="flex3">
-
                             <div class="c_employee">
-                                <!--여기서 시작-->
                                 <div class="head-container">
                                     <div class="wrap1">
                                         <img src="https://github.com/alskdteam/semi_project_java/assets/158136952/3d4ec91f-ae4f-4ddf-987c-4e47a8a92ef1" id="logo">
@@ -128,31 +98,24 @@
                                         <div class="button-container">
                                             <button onclick="location.href='/user/signup'">사원 추가</button>&nbsp;
                                         </div>
-
                                         <form action="/admin/search" method="GET" class="searchForm">
-
                                             <div class="wrap3">
                                                 <input type="text" class="searchInput-a" name="user_department" placeholder="부서검색" >
                                                 <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
                                             </div>
-
                                             <div class="wrap3">
                                                 <input type="text" class="searchInput-b" name="user_name" placeholder="이름검색" >
                                                 <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
                                             </div>
-
                                             <div class="wrap3">
                                                 <input type="text" class="searchInput-c" name="user_rank" placeholder="직급검색" >
                                                 <button class="searchButton" type="submit"><img src="https://github.com/alskdteam/semi_project_java/assets/158136952/a6160f44-b325-4cf1-bc04-568a95ed9820" id="icon1"></button>
                                             </div>
-
                                         </form>
                                     </div>
                                 </div>
-                                <!--employee 테이블-->
                                 <div class="employee_table">
-
-                                    <table >
+                                    <table>
                                         <thead>
                                         <tr>
                                             <th>부서</th>
@@ -166,7 +129,6 @@
                                         </tr>
                                         </thead>
                                         <tbody id="employeetableBody">
-                                        <!-- 여기서부터 페이지 네이션을 위한 행들만 추가 -->
                                         <tr th:each="employee : ${employeeList}" id="row_employee_${employee.user_no}">
                                             <td th:text="${employee.user_department}"></td>
                                             <td th:text="${employee.user_name}"></td>
@@ -178,45 +140,32 @@
                                             <td>
                                                 <button class="details" th:onclick="'user_no(' + ${employee.user_no} + ')'" >상세보기</button>
                                             </td>
-
                                         </tr>
-
-                                        <!-- 페이지 네이션을 위한 행들 끝 -->
                                         </tbody>
                                     </table>
                                 </div>
-                                <!-- 페이지 네이션 버튼 -->
                                 <div class="employee_page_number">
                                     <div class="employee_s_button" onclick="changeEmployeePage(1)">1</div>
                                     <div class="employee_s_button" onclick="changeEmployeePage(2)">2</div>
-                                    <div class="employee_s_button" onclick="changeEmployeePage(3)">3</div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
 
-
-
-                    <!--                     사원추가 시 사원추가 페이지로 이동 -->
+                    <!-- 사원추가 시 사원추가 페이지로 이동 -->
                     <script>
-                        // 사원 조회 페이징 변수
-
                         function user_no(user_no) {
                             location.href = '/admin/updateEmployee?user_no=' + user_no;
                         }
-
                         var employeeCurrentPage = 1;
                         var employeeRowsPerPage = 7;
 
-                        // 사원 조회 페이지 변경 함수
                         function changeEmployeePage(pageNumber) {
                             employeeCurrentPage = pageNumber;
                             hideAllEmployeeRows();
                             showEmployeeRowsForCurrentPage();
                         }
 
-                        // 모든 사원 조회 행 숨기기 함수
                         function hideAllEmployeeRows() {
                             var rows = document.querySelectorAll('[id^="row_employee_${employee.user_no}"]');
                             rows.forEach(function(row) {
@@ -224,7 +173,6 @@
                             });
                         }
 
-                        // 현재 페이지에 해당하는 사원 조회 행 보이기 함수
                         function showEmployeeRowsForCurrentPage() {
                             var startIndex = (employeeCurrentPage - 1) * employeeRowsPerPage;
                             var endIndex = startIndex + employeeRowsPerPage;
@@ -234,49 +182,30 @@
                             }
                         }
 
-                        // 초기 페이지 로드 시 첫 번째 페이지 행들을 보여줌
-                        window.onload = function() {
-                            changeEmployeePage(1);
-                        };
+
                     </script>
 
-
-
-                    <!--여기까지 사원관리-->
-
-                    <!--전자결재 영역-->
+                    <!-- 전자결재 영역 -->
                     <div class="edoc" tabindex="0">
                         <div class="flex2">
                             <div class="c_edoc">
-                                <!--여기서 시작-->
                                 <h1 class="e-approval">전자결재 리스트</h1>
-
-                              <!-- admin page 검색 버튼 -->
-                              <!-- <div class="search">
-                                    <input type="text" class="e-search_input" placeholder=" search">
-                                    <div class="e-search_button" onclick="search()">검색</div>
-                                </div> -->
-
                                 <div class="buttonlist">
                                     <button id="all" class="c_buttonlist">전체</button>
                                     <button id="progress" class="c_buttonlist">진행중</button>
                                     <button id="rejected" class="c_buttonlist">반려</button>
                                 </div>
-
                                 <script>
-                                    // 1. 각 필터 버튼에 대한 클릭 이벤트 핸들러 만들기
                                     document.addEventListener("DOMContentLoaded", function() {
                                         var filterButtons = document.querySelectorAll('.c_buttonlist');
-
                                         filterButtons.forEach(function(button) {
                                             button.addEventListener('click', function() {
-                                                var filter = this.id; // 클릭된 버튼의 id를 필터 값으로 사용
+                                                var filter = this.id;
                                                 updateEdocList(filter);
                                             });
                                         });
                                     });
 
-                                    // 2. 필터링된 데이터 가져오기 및 페이지네이션 업데이트하기
                                     function updateEdocList(filter) {
                                         var xhr = new XMLHttpRequest();
                                         xhr.onreadystatechange = function() {
@@ -287,8 +216,7 @@
                                                     if (container) {
                                                         var edocListHtml = generateEdocListHtml(edocList);
                                                         container.innerHTML = edocListHtml;
-                                                        populateTable(edocList); // 받아온 데이터를 처리하는 함수 호출
-                                                        // 페이지네이션 초기화
+                                                        populateTable(edocList);
                                                         initEdocPagination();
                                                     } else {
                                                         console.error('컨테이너 요소를 찾을 수 없습니다.');
@@ -302,16 +230,11 @@
                                         xhr.send();
                                     }
 
-                                    // 3. 페이지네이션 업데이트하기
                                     function initEdocPagination() {
-                                        // 전자결재 페이지 변경 함수 호출
                                         changeEdocPage(1);
                                     }
                                 </script>
-
                                 <script>
-
-                                    // 데이터를 HTML로 변환하는 함수 예제
                                     function generateEdocListHtml(data) {
                                         var html = '<table>' +
                                             '<thead>' +
@@ -326,13 +249,13 @@
                                             '<th>상세보기</th>' +
                                             '</tr>' +
                                             '</thead>' +
-                                            '<tbody id="table-body">'; // <tbody> 요소에 아이디 추가
+                                            '<tbody id="table-body">';
 
                                         data.forEach(function(item, index) {
                                             html += '<tr id="row_edoc_' + item.user_no + '">';
-                                            html += '<td>' + item.edoc_form_ct_no + '</td>';         //문서번호
-                                            html += '<td>' + item.edocFormDTO.form_name + '</td>'; //폼 내임
-                                            html += '<td>' + item.employee_name + '</td>';    // 사원이름
+                                            html += '<td>' + item.edoc_form_ct_no + '</td>';
+                                            html += '<td>' + item.edocFormDTO.form_name + '</td>';
+                                            html += '<td>' + item.employee_name + '</td>';
                                             html += '<td>' + item.user_id + '</td>';
                                             html += '<td>' + item.title + '</td>';
                                             html += '<td>' + formatDate(item.drafting_date) + '</td>';
@@ -341,62 +264,35 @@
                                             html += '</tr>';
                                         });
 
-                                        html += '</tbody></table>'; // </tbody> 요소 닫기
+                                        html += '</tbody></table>';
                                         return html;
                                     }
 
-                                    // 날짜를 'yyyy-MM-dd' 형식으로 포맷하고 null/유효하지 않은 날짜를 처리하는 함수
                                     function formatDate(date) {
                                         if (!date) {
-                                            return ''; // null 또는 undefined인 경우 빈 문자열 반환
+                                            return '';
                                         }
-
                                         var d = new Date(date);
                                         if (isNaN(d.getTime())) {
-                                            return ''; // 유효하지 않은 날짜인 경우 빈 문자열 반환
+                                            return '';
                                         }
-
                                         var year = d.getFullYear();
                                         var month = ('0' + (d.getMonth() + 1)).slice(-2);
                                         var day = ('0' + d.getDate()).slice(-2);
                                         return year + '-' + month + '-' + day;
                                     }
 
-                                    // populateTable 함수 정의
                                     function populateTable(data) {
-                                        // 데이터를 테이블에 추가하는 로직
-                                        console.log(data); // 실제 테이블 로직으로 교체
+                                        console.log(data);
                                     }
 
-                                    // 전자결재 페이지 변경 함수
                                     function changeEdocPage(pageNumber) {
-                                        // 여기에 전자결재 페이지 변경 관련 로직 추가
-                                    }
-                                    // 페이지 로딩이 완료된 후 실행되는 함수
-                                    document.addEventListener("DOMContentLoaded", function() {
-                                        // 페이지네이션 초기화
-                                        initEdocPagination();
-                                    });
-
-                                    // 전자결재 페이지네이션 초기화 함수
-                                    function initEdocPagination() {
-                                        // 전자결재 페이지 변경 함수 호출
-                                        changeEdocPage(1);
-                                    }
-
-                                    // 전자결재 페이지 변경 함수
-                                    function changeEdocPage(pageNumber) {
-                                        // 전자결재 페이지네이션 관련 로직 추가
                                         var edocCurrentPage = pageNumber;
                                         var edocRowsPerPage = 7;
-
-                                        // 모든 전자결재 행 숨기기
                                         var rows = document.querySelectorAll('[id^="row_edoc_"]');
                                         rows.forEach(function(row) {
                                             row.style.display = 'none';
                                         });
-
-                                        // 현재 페이지에 해당하는 전자결재 행 보이기
                                         var startIndex = (edocCurrentPage - 1) * edocRowsPerPage;
                                         var endIndex = startIndex + edocRowsPerPage;
                                         for (var i = startIndex; i < endIndex && i < rows.length; i++) {
@@ -404,24 +300,21 @@
                                         }
                                     }
 
-                                </script>
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        initEdocPagination();
+                                    });
 
-                                <div id="your_edoc_list_container_id" class="chart">
-                                    <!--여기서 시작-->
-
-                                </div>
-
-                                <script>
                                     function admin(edocFormCtNo) {
                                         window.location.href = '/admin/edocFrom/selectEdocList/' + edocFormCtNo;
                                     }
                                 </script>
-                               
-                            </div>
-                            <div class="page_number">
-                                <div class="s_button" onclick="changeEdocPage(1)">1</div>
-                                <div class="s_button" onclick="changeEdocPage(2)">2</div>
-                                <div class="s_button" onclick="changeEdocPage(3)">3</div>
+                                <div id="your_edoc_list_container_id" class="chart">
+                                </div>
+                                <div class="page_number">
+                                    <div class="s_button" onclick="changeEdocPage(1)">1</div>
+                                    <div class="s_button" onclick="changeEdocPage(2)">2</div>
+                                    <div class="s_button" onclick="changeEdocPage(3)">3</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -430,5 +323,57 @@
         </div>
     </div>
 </div>
+
+<script>
+    var noticeCurrentPage = 1;
+    var noticeRowsPerPage = 7;
+
+    function changeNoticePage(pageNumber) {
+        noticeCurrentPage = pageNumber;
+        hideAllNoticeRows();
+        showNoticeRowsForCurrentPage();
+    }
+
+    function hideAllNoticeRows() {
+        var rows = document.querySelectorAll('#noticeTableBody tr');
+        rows.forEach(function(row) {
+            row.style.display = 'none';
+        });
+    }
+
+    function showNoticeRowsForCurrentPage() {
+        var startIndex = (noticeCurrentPage - 1) * noticeRowsPerPage;
+        var endIndex = startIndex + noticeRowsPerPage;
+        var rows = document.querySelectorAll('#noticeTableBody tr');
+        for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+            rows[i].style.display = 'table-row';
+        }
+    }
+
+    function createNoticePaginationButtons(totalNotices) {
+        var paginationContainer = document.getElementById('noticePagination');
+        paginationContainer.innerHTML = '';
+        var totalPages = Math.ceil(totalNotices / noticeRowsPerPage);
+
+        for (var i = 1; i <= totalPages; i++) {
+            var button = document.createElement('div');
+            button.textContent = i;
+            button.className = 's_button';
+            button.onclick = (function(pageNumber) {
+                return function() {
+                    changeNoticePage(pageNumber);
+                };
+            })(i);
+            paginationContainer.appendChild(button);
+        }
+    }
+
+    window.onload = function() {
+        changeNoticePage(1);
+        createNoticePaginationButtons(document.querySelectorAll('#noticeTableBody tr').length);
+        changeEmployeePage(1);
+    };
+</script>
+
 </body>
 </html>
