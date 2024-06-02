@@ -1,12 +1,9 @@
 ## 프로젝트 제목
 <h1 align="center">Organic</h1>
+<p align: center;>
+  <img style="width: 300px; height: auto;" src="https://github.com/alskdteam/semi_project_java/assets/158136952/42c16634-c9cd-41a4-a8f0-a21cdc907c4a" alt="Organic logo" />
+</p>
 
-<img style="width: 300px; height: auto;" src="https://github.com/alskdteam/semi_project_java/assets/158136952/42c16634-c9cd-41a4-a8f0-a21cdc907c4a" alt="Organic logo" />
-
-
-</br></br>
-
-<h1 align="center">Organic</h1>
 
 <h3 align="center">🍏 Organic Company 🍏</h3>
 
