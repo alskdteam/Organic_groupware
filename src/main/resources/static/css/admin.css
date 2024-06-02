@@ -550,6 +550,7 @@ body {
     position: relative;
     left: 80px;
     top: 40px;
+    width: 15vw;
 }
 
 a {
@@ -600,13 +601,48 @@ a {
 }
 
 
-
-
-/*.employeeTable*/
-/*{*/
-/*    position: relative;*/
-/*    width: 55vw;*/
-/*    height: 300px;*/
+/*.notice_button-container {*/
+/*    width: 7vw;*/
+/*    height: 5vh;*/
 /*    display: flex;*/
-/*    margin-top: 80px;*/
+/*    justify-content: flex-start; !* 왼쪽 정렬 *!*/
+/*    align-items: center; !* 수직 중앙 정렬 *!*/
+/*    margin-left: 31vw;*/
 /*}*/
+
+/*.notice_button-container .btn {*/
+/*    width: 6vw;*/
+/*    height: 4vh;*/
+/*    display: flex;*/
+/*    font-size: 15px;*/
+/*    color: white;*/
+/*    background-color: #4CAF50;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    border: 1px solid #4CAF50;*/
+/*    border-radius: 4px;*/
+/*    cursor: pointer;*/
+/*    text-decoration: none; !* 링크의 밑줄 제거 *!*/
+/*}*/
+
+a.btn{
+
+
+        width: 6vw;
+        height: 4vh;
+        display: flex;
+        font-size: 15px;
+        color: white;
+        background-color: #4CAF50;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #4CAF50;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none; /* 링크의 밑줄 제거 */
+        margin-left: 46vw;
+
+
+}
+
+

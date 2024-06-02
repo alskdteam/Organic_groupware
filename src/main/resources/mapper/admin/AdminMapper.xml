@@ -34,6 +34,29 @@
     </update>
 
 
+    <insert id="addNotice" parameterType="com.ohgiraffers.semi_project.admin.model.dto.NoticeDTO">
+        insert into notice
+        (
+        notice_title,
+        notice_content,
+        notice_creation_date,
+        user_no
+        )
+        values
+        (
+        #{noticeTitle},
+        #{noticeContent},
+        #{noticeCreationDate},
+        #{userNo}
+
+
+
+        )
+
+    </insert>
+
+
+
     <!-- 도아 사원-->
     <resultMap id="employee" type="com.ohgiraffers.semi_project.admin.model.dto.AdminEmployeeDTO">
         <id property="user_no" column="user_no"/>

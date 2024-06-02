@@ -48,5 +48,9 @@ public interface ProfileMapper {
 
 
     void updateCalender(Map<String, Object> updateCalender);
+
+
+    void insetCalender(Map<String, Object> insetCalender);
+
 }
 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>noticetext</title>
+    <link rel="stylesheet" href="/css/addnotice.css">
+
+    <style>
+
+        @media screen and (max-width: 375px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .content {
+                display: none;
+            }
+            #sidebar {
+                width: 100%;
+                height: 838px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 사이드바 -->
+    <div th:replace="common/sidebar.html" id="sidebar"></div>
+    <!-- 메인 컨텐츠 -->
+    <div class="content">
+        <!-- 헤더 추가 -->
+        <div th:replace="common/header.html" id="header"></div>
+
+        <div class="area">
+            <!-- 여기서부터 시작 위에는 건들지 마세요 -->
+            <h2 class="midtitle">제목 :</h2>
+
+            <form action="/admin/addNotice" method="post">
+                <div>
+                    <p> <input class="titletext"  placeholder="제목을 입력해주세요"  type="text"  name="noticeTitle" ></p>
+                </div>
+                <div>
+                    <p></p>
+                    <p><input class="inputtext"  type="text" name="noticeContent" placeholder="내용을 입력해주세요"> </p>
+                </div>
+                <div>
+                    <p></p>
+                    <p> <input type="date"  name="noticeCreationDate"></p>
+                </div>
+
+                <div class="button_all">
+                    <button type="submit" class="btn_notice3">추가</button>
+                    <button type="button" class="btn_notice3"><a href="/admin/admin">취소</a></button>
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

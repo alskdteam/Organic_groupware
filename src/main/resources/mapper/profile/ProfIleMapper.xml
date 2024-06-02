@@ -137,6 +137,21 @@
         comment_creation_time=#{date}
 
     </update>
+
+
+    <insert id="insetCalender">
+        INSERT INTO comment
+        (comment_content,
+        title, user_no,
+        comment_creation_time)
+        VALUES
+        (#{content},
+        #{title},
+        #{user_no},
+        #{date})
+
+    </insert>
+
 </mapper>
 
 

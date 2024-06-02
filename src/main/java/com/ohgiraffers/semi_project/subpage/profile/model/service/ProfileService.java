@@ -127,8 +127,13 @@ public class ProfileService {
 
          profileMapper.updateCalender(updateCalender);
     }
-//
-//
+
+
+    public void insetCalender(Map<String, Object> insetCalender) {
+
+        profileMapper.insetCalender(insetCalender);
+    }
+
 }
 
 
