@@ -39,7 +39,7 @@ body {
 
 .midtitle {
 
-    width: 60vw;
+    width: 55vw;
     height: 50px;
     border: 2px solid #4CAF50;
     border-top: none;
@@ -48,15 +48,14 @@ body {
     position: relative;
     top: 100px;
     left: 10vw;
-
-
 }
 
 .titletext {
-    width: 50vw;
+    bottom: 3vh;
+    width: 45vw;
     height: 50px;
     position: relative;
-    top: 35px;
+    display: flex;
     left: 17vw;
     font-size: 30px;
     font-weight: 400;
@@ -68,8 +67,6 @@ body {
 
     margin: 0;
     position: relative;
-    align-items: center;
-    justify-content: center;
     height: 500px;
     width: 70%;
     top: 100px;
@@ -82,13 +79,14 @@ body {
 
 }
 .button_all {
+    display: flex;
     position: relative;
     width: 100vw;
+    height: 60px;
     background-color: white;
-    height: 100px;
-    margin-top: 100px;
+    margin-top: 13vh;
 }
-.btn_notice1, .btn_notice2, .btn_notice3 {
+.btn_notice3 {
     margin-top: 20px;
     width: 5vw;
     height: 35px;
@@ -103,7 +101,7 @@ body {
     cursor: pointer;
 }
 
-.btn_notice2, .btn_notice3 {
+.btn_notice3 {
     margin-left: 15px;
     position: relative;
     left: 61vw;
@@ -117,4 +115,50 @@ body {
 .btn_notice1 {
     position: relative;
     left: 5vw;
+}
+
+.cancelation {
+
+    position: relative;
+    display: inline;
+    width: 5vw;
+    height: 35px;
+    border-radius: 3px;
+    background-color: #4CAF50;
+    color: white;
+    font-family: 'Pretendard-Regular';
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    left: 64vw;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 2vh;
+}
+.cancelation a {
+
+    padding-left: 1.5vw;
+}
+/*날짜*/
+.adddate {
+    display: flex;
+    position: relative;
+    width: 10vw;
+    height: 4vh;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+.adddate-wrap {
+    position: relative;
+    display: flex;
+    margin-left: 63vw;
+    width: 10vw;
+    height: 4vh;
+    margin-bottom: 10px;
+
 }
