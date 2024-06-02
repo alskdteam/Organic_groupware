@@ -73,7 +73,7 @@ Fullcalendar
  
 <br>
 
-## 📌 프로젝트 및 기능 소개( gif 사용 )
+## 📌 프로젝트 및 기능 소개( gif 사용: 컨텐츠 로딩을 기다려주세요.)
 
 ### 1.로그인
 ![화면 기록 2024-06-02 오후 6 52 37](https://github.com/alskdteam/Organic_groupware/assets/153148788/1cd9c10c-1f2b-460e-8035-321831e1f639)
