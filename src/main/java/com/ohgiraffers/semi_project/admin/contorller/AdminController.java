@@ -297,7 +297,7 @@ public class AdminController {
         
 
         // 변경된 문서 번호로 리다이렉트
-        return "redirect:admin/admin";
+        return "redirect:/admin/admin";
     }
 
 }
