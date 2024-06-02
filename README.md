@@ -53,8 +53,19 @@ organic 이란? organic 은 '유기농' 이라는 뜻으로 유기농 사과 생
 
 
 
-## 기술 소개
-![스크린샷(6)](https://github.com/alskdteam/semi_project_java/assets/158136952/ab7c4d1f-a849-4ec8-86c9-d893c5f87075)
+## 개발 환경
+자바
+<img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white">
+
+스프링
+<img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
+
+스프링부트
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+
+스프링 시큐리티
+<img src="https://img.shields.io/badge/Spring Security-6DB33F?style=for-the-badge&logo=Spring Security&logoColor=white">
+
 
 <br/>
 
