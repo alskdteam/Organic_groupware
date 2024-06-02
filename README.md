@@ -10,21 +10,14 @@ organic 이란? organic 은 '유기농' 이라는 뜻으로 유기농 사과 생
 
 <br>
 
-### Organic?
-organic 이란? organic 은 '유기농' 이라는 뜻으로 유기농 사과 생산과 유통을 주요 사업으로 하는 회사의 효율적인 협업과 관리에 초점을 맞춘 그룹웨어 시스템을 구축하는 프로젝트 입니다.
-
-<br>
-<br>
-
-
-## Index
-- [🔎 프로젝트 정보](#-프로젝트-정보)
+## 목차
+- [🔎 프로젝트 정보](#-관련자료 및 리소스)
 - [👨🏻‍💻👩🏻‍💻 멤버 소개](#-멤버-소개)
 - [:octocat:브랜치 전략](#-브랜치-전략)
 - [🔥 작업 기간 ](#-작업-기간)
 - [📌 프로젝트 및 기능 소개](#-프로젝트-및-기능-소개)
 
-## 🔎 프로젝트 정보
+## 🔎 관련자료 및 리소스
 - [테이블 설계](https://github.com/alskdteam/semi_project_java/wiki/%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%84%A4%EA%B3%84)
 - [피그마 설계](https://www.figma.com/design/IKAvtHhfsymAZyzUrcDyt3/Develop?node-id=0-1&t=ixCbcDKfOkSZPW7Q-0)
 - [맴버 소개 및 역할](https://github.com/alskdteam/semi_project_java/wiki/%F0%9F%91%A8%F0%9F%8F%BB%E2%80%8D%F0%9F%92%BB%F0%9F%91%A9%F0%9F%8F%BB%E2%80%8D%F0%9F%92%BB-%EB%A9%A4%EB%B2%84-%EC%86%8C%EA%B0%9C-%EB%B0%8F-%EC%97%AD%ED%95%A0)
