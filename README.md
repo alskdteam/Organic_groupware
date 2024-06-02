@@ -1,5 +1,7 @@
-## 소개
-<img src="https://github.com/alskdteam/semi_project_java/assets/158136952/42c16634-c9cd-41a4-a8f0-a21cdc907c4a" alt="Organic logo" />
+## 프로젝트 제목
+<h1 align="center">Organic</h1>
+
+<img style="width: 300px; height: auto;" src="https://github.com/alskdteam/semi_project_java/assets/158136952/42c16634-c9cd-41a4-a8f0-a21cdc907c4a" alt="Organic logo" />
 
 
 </br></br>
