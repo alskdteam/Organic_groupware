@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>noticetext</title>
+    <title>addnotice</title>
     <link rel="stylesheet" href="/css/addnotice.css">
 
     <style>
@@ -44,20 +44,20 @@
 
             <form action="/admin/addNotice" method="post">
                 <div>
+                    <p class="adddate-wrap"> <input class="adddate" type="date"  name="noticeCreationDate"></p>
+                </div>
+                <div>
                     <p> <input class="titletext"  placeholder="제목을 입력해주세요"  type="text"  name="noticeTitle" ></p>
                 </div>
                 <div>
                     <p></p>
                     <p><input class="inputtext"  type="text" name="noticeContent" placeholder="내용을 입력해주세요"> </p>
                 </div>
-                <div>
-                    <p></p>
-                    <p> <input type="date"  name="noticeCreationDate"></p>
-                </div>
+
 
                 <div class="button_all">
                     <button type="submit" class="btn_notice3">추가</button>
-                    <button type="button" class="btn_notice3"><a href="/admin/admin">취소</a></button>
+                    <button type="button" class="cancelation" ><a href="/admin/admin">취소</a></button>
                 </div>
 
 
