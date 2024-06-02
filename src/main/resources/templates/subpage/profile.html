@@ -246,19 +246,19 @@
                         <div id="addEventModal" class="modal4">
                             <div class="modal-content4">
                                 <span class="close4">&times;</span>
-                                <h2>이벤트 추가</h2>
+                                <h2 class="eventplus">이벤트 추가</h2>
                                 <form id="addEventForm" method="post" action="/subpage/insertCalender">
                                     <div class="form-group">
-                                        <label for="addEventTitle">제목</label>
-                                        <input type="text" id="addEventTitle" class="form-control" name="title">
+                                        <label class="event-modal-title" for="addEventTitle">제목 :</label>
+                                        <input class="calendar-inform" type="text" id="addEventTitle" name="title" style=>
                                     </div>
                                     <div class="form-group">
-                                        <label for="addEventDate">날짜</label>
-                                        <input type="date" id="addEventDate" class="form-control" name="date">
+                                        <label for="addEventDate">날짜 :</label>
+                                        <input class="calendar-inform" type="date" id="addEventDate" class="form-control" name="date" style="100%">
                                     </div>
                                     <div class="form-group">
-                                        <label for="addEventDescription">설명</label>
-                                        <textarea id="addEventDescription" class="form-control" name="content"></textarea>
+                                        <label class="calendar-inform" for="addEventDescription">설명 :</label>
+                                        <textarea class="calendar-inform" id="addEventDescription" class="form-control" name="content" style="width: 100%%"></textarea>
                                     </div>
                                     <button id="saveNewEvent" type="submit">추가하기</button>
                                 </form>
