@@ -1,8 +1,6 @@
 ## 소개
-<p align="center">
+<img src="https://github.com/alskdteam/semi_project_java/assets/158136952/42c16634-c9cd-41a4-a8f0-a21cdc907c4a" alt="Organic logo" />
 
-  <img src="https://github.com/alskdteam/semi_project_java/assets/158136952/42c16634-c9cd-41a4-a8f0-a21cdc907c4a" alt="Organic logo" />
-</p>
 
 </br></br>
 
