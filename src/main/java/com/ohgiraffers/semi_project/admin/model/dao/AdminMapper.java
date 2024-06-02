@@ -16,6 +16,8 @@ public interface AdminMapper {
 
     int updateNotice(NoticeDTO noticeDTO);
 
+    void addNotice(NoticeDTO noticeDTO);
+
 
     // 도아 - 전체 사원 조회
     List<AdminEmployeeDTO> findEmployee();
@@ -30,6 +32,8 @@ public interface AdminMapper {
     void adminEmployeeDTO(Map<String,Object> map);
 
     void deleteEmployee(int userId);
+
+
 
 
 }

@@ -95,6 +95,41 @@ public class AdminController {
     }
 
 
+    @GetMapping("/admin/addNotice")
+    public String addNoticePage(Model model){
+        sidebarController.getSidebar(model);
+        sidebarController.getHeader(model);
+        return "admin/addNotice"; // 경로 수정
+    }
+
+
+
+    @PostMapping("/addNotice")
+    public String addNotice(@RequestParam("noticeTitle") String notice_title,
+                            @RequestParam("noticeContent") String notice_content,
+                            @RequestParam("noticeCreationDate") Date notice_creation_date){
+
+        Userdata userdata = new Userdata();
+        LoginUserDTO userDTO = userdata.getloginUserDTO();
+        int userCode = userDTO.getUserCode();
+
+        NoticeDTO noticeDTO = new NoticeDTO();
+        noticeDTO.setNoticeTitle(notice_title);
+        noticeDTO.setNoticeContent(notice_content);
+        noticeDTO.setNoticeCreationDate(notice_creation_date);
+        noticeDTO.setUserNo(userCode);
+
+        adminService.addNotice(noticeDTO);
+
+        return "redirect:/admin/admin";
+
+
+    }
+
+
+
+
+
     // 도아 개별 사원조회
     @GetMapping("search")
     public String selectEmployee(@RequestParam Map<String, Object> search, Model model){
