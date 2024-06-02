@@ -15,6 +15,7 @@ organic 이란? organic 은 '유기농' 이라는 뜻으로 유기농 사과 생
 - [🔥 프로젝트 정보](#-프로젝트-정보)
 - [👨🏻‍💻👩🏻‍💻 멤버 소개](#-멤버-소개)
 - [🔎 관련 자료 및 리소스](#-관련-자료-및-리소스)
+- [개발 환경](#-개발-환경)
 - [📌 프로젝트 및 기능 소개](#-프로젝트-및-기능-소개)
 
 <br>
@@ -42,17 +43,6 @@ organic 이란? organic 은 '유기농' 이라는 뜻으로 유기농 사과 생
 - [맴버 소개 및 역할](https://github.com/alskdteam/semi_project_java/wiki/%F0%9F%91%A8%F0%9F%8F%BB%E2%80%8D%F0%9F%92%BB%F0%9F%91%A9%F0%9F%8F%BB%E2%80%8D%F0%9F%92%BB-%EB%A9%A4%EB%B2%84-%EC%86%8C%EA%B0%9C-%EB%B0%8F-%EC%97%AD%ED%95%A0)
 
 
-
-## 📌 프로젝트 및 기능 소개
-
-
-
-
-
-
-
-
-
 ## 개발 환경
 <div style="display: flex;">
   
@@ -64,9 +54,10 @@ organic 이란? organic 은 '유기농' 이라는 뜻으로 유기농 사과 생
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
-
-
 </div>
+
+
+## 📌 프로젝트 및 기능 소개
 
 
 
