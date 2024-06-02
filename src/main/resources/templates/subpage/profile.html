@@ -44,7 +44,7 @@
             background: black; /* 밑줄 색상 */
         }
 
-        .modal3, .modal4 {
+        .modal3 {
             display: none;
             position: fixed;
             z-index: 1;
@@ -56,7 +56,7 @@
             background-color: rgba(144, 238, 144, 0.4); /* 연한 녹색 배경 */
             padding-top: 60px;
         }
-        .modal-content3, .modal-content4 {
+        .modal-content3 {
             background-color: #fefefe;
             margin: 5% auto;
             padding: 20px;
@@ -64,35 +64,18 @@
             width: 80%;
             max-width: 600px; /* 모달 창 최대 너비 */
         }
-        .close3, .close4 {
+        .close3 {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
         .close3:hover,
-        .close3:focus,
-        .close4:hover,
-        .close4:focus {
+        .close3:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;
         }
-
-        .calender-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .calender-header h3 {
-            margin: 0;
-        }
-
-        .calender-header button {
-            margin-left: auto;
-        }
-
     </style>
 </head>
 <body>
@@ -254,6 +237,7 @@
                                 event.preventDefault();
 
                                 // 모달 닫기
+                                var modal = document.getElementById("myModal");
                                 modal.style.display = "none";
                             });
 
@@ -292,22 +276,20 @@
                         <!-- 캘린더 영역 -->
                         <div class="calender" tabindex="0">
                             <div class="flex2">
-                                <div class="calender-header">
-                                    <h3>캘린더</h3>
-                                    <button id="addEventBtn">일정추가</button>
-                                </div>
+                                <h3>캘린더</h3>
                                 <div class="c_calender">
                                     <div id='calendar'></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 수정 모달 창 -->
+
+                        <!-- 모달 창 -->
                         <div id="eventModal" class="modal3">
                             <div class="modal-content3">
                                 <span class="close3">&times;</span>
                                 <h2>이벤트 수정</h2>
-                                <form id="eventForm" method="post" action="/subpage/updateCalender">
+                                <form id="eventForm"  method="post" action="/subpage/updateCalender">
                                     <div class="form-group">
                                         <label for="eventTitle">제목</label>
                                         <input type="text" id="eventTitle" class="form-control" name="title">
@@ -322,29 +304,8 @@
                                     </div>
                                     <button id="saveChanges" type="submit">수정하기</button>
                                 </form>
-                            </div>
-                        </div>
 
-                        <!-- 추가 모달 창 -->
-                        <div id="addEventModal" class="modal4">
-                            <div class="modal-content4">
-                                <span class="close4">&times;</span>
-                                <h2>이벤트 추가</h2>
-                                <form id="addEventForm" method="post" action="/subpage/insertCalender">
-                                    <div class="form-group">
-                                        <label for="addEventTitle">제목</label>
-                                        <input type="text" id="addEventTitle" class="form-control" name="title">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="addEventDate">날짜</label>
-                                        <input type="date" id="addEventDate" class="form-control" name="date">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="addEventDescription">설명</label>
-                                        <textarea id="addEventDescription" class="form-control" name="content"></textarea>
-                                    </div>
-                                    <button id="saveNewEvent" type="submit">추가하기</button>
-                                </form>
+                                <!--                                <button id="saveChanges">수정하기</button>-->
                             </div>
                         </div>
 
@@ -356,7 +317,7 @@
                                 fetch("/subpage/calendar", {
                                     method: 'POST',
                                     headers: {
-                                        'Content-Type': 'application/json'
+                                        'Content-Type' : 'application/json'
                                     }
                                 })
                                     .then(response => response.json())
@@ -377,6 +338,33 @@
                                                 document.getElementById('eventDate').value = date.toISOString().slice(0, 10);
 
                                                 document.getElementById('eventDescription').value = info.event.extendedProps.description;
+
+                                                // document.getElementById('saveChanges').onclick = function() {
+                                                //     const updatedEvent = {
+                                                //         id: info.event.id,
+                                                //         title: document.getElementById('eventTitle').value,
+                                                //         start: document.getElementById('eventDate').value,
+                                                //         description: document.getElementById('eventDescription').value
+                                                //     };
+                                                //
+                                                //     fetch("/subpage/calendar", {
+                                                //         method: 'POST',
+                                                //         headers: {
+                                                //             'Content-Type': 'application/json'
+                                                //         },
+                                                //         body: JSON.stringify(updatedEvent)
+                                                //     })
+                                                //         .then(response => {
+                                                //             if (response.ok) {
+                                                //                 info.event.setProp('title', updatedEvent.title);
+                                                //                 info.event.setStart(updatedEvent.start);
+                                                //                 info.event.setExtendedProp('description', updatedEvent.description);
+                                                //                 modal.style.display = "none";
+                                                //             } else {
+                                                //                 alert('이벤트 업데이트 중 오류가 발생했습니다.');
+                                                //             }
+                                                //         });
+                                                // };
                                             }
                                         });
                                         calendar.render();
@@ -394,24 +382,6 @@
                                         modal3.style.display = "none";
                                     }
                                 }
-
-                                var addEventModal = document.getElementById("addEventModal");
-                                var addEventBtn = document.getElementById("addEventBtn");
-                                var closeBtn4 = document.getElementsByClassName("close4")[0];
-
-                                addEventBtn.onclick = function() {
-                                    addEventModal.style.display = "block";
-                                }
-
-                                closeBtn4.onclick = function() {
-                                    addEventModal.style.display = "none";
-                                }
-
-                                window.onclick = function(event) {
-                                    if (event.target == addEventModal) {
-                                        addEventModal.style.display = "none";
-                                    }
-                                }
                             });
                         </script>
 
@@ -423,8 +393,12 @@
                                     <h1 class="headmemo_title">memo</h1>
                                     <button class="new_button" id="new-memo-btn">메모 등록</button>
 
+
+                                    <!--메모창 안에 디자인 추가-->
+
                                     <!-- 메모 목록 항목이 여기에 추가됩니다 -->
                                     <div class="memo_table">
+
                                         <table>
                                             <tbody id="tableBody">
                                             <tr th:each="memo, iterStat : ${memoDTOList}" th:id="'row_memo_' + ${iterStat.index}">
@@ -434,6 +408,7 @@
                                             </tr>
                                             </tbody>
                                         </table>
+
                                     </div>
 
                                     <form class="Memoform" action="/subpage/profile" method="post">
