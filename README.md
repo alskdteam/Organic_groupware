@@ -99,7 +99,8 @@ Fullcalendar
 
 
 ### 3. 공지사항
-![공지사항2](https://github.com/alskdteam/Organic_groupware/assets/153148788/3a953b41-fb5c-4f7e-9272-cf3457c52e3e)
+![화면 기록 2024-06-02 오후 11 20 38](https://github.com/alskdteam/Organic_groupware/assets/153148788/a6a29b8d-9d0c-476d-9a9c-9c3447356998)
+
 
 - 메인 페이지에서 공지사항 리스트를 볼 수 있습니다.
 - 공지사항을 클릭하면, 관리자가 작성한 공지사항의 세부 정보를 확인할 수 있는 페이지로 이동합니다.
