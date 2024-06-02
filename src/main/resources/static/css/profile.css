@@ -363,7 +363,6 @@ body {
 .modal-content {
     padding: 10px;
     background: linear-gradient(white 0%, white calc(50% - 25px), #c6d0db calc(50% - 25px), #c6d0db calc(50% + 175px), white calc(50% + 175px), white 100%);
-
     margin: 15% auto; /* 중앙에 위치 */
     width: 280px; /* 너비 조정 */
     height: 530px;
@@ -1135,13 +1134,62 @@ body {
     background-color: rgba(144, 238, 144, 0.4); /* 연한 녹색 배경 */
     padding-top: 60px;
 }
-.modal-content3, .modal-content4 {
+.modal-content3 {
     background-color: #fefefe;
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     max-width: 600px; /* 모달 창 최대 너비 */
+}
+
+.modal-content4 {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border: 2px solid #4CAF50;
+    width: 30vw;
+    height: 42vh;
+    border-radius: 10px;
+}
+.calendar-inform {
+    width: 100%;
+}
+
+#saveNewEvent {
+    position: relative;
+    left: 20vw;
+    width: 6vw;
+    height: 5vh;
+    display: flex;
+    font-size: 15px;
+    color: white;
+    background-color: #4CAF50;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.form-group {
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    width: 26vw;
+    height: 5vh;
+    margin: 10px;
+}
+.eventplus {
+    border: 5px solid gray;
+    margin-bottom: 10px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    padding: 10px;
+    text-align: center;
+    width: 20vw;
+    position: relative;
+    margin-left: 3vw;
+
 }
 .close3, .close4 {
     color: #aaa;
@@ -1180,6 +1228,7 @@ body {
 .fc .fc-button-primary {
     cursor: pointer;
 }
+
 .button-container button {
     width: 6vw;
     height: 4vh;

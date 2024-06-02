@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
-    <link rel="stylesheet" href="/css/car.css">
+    <link rel="stylesheet" href="/css/item.css">
     <script src="/js/pageButton.js"></script>
     <style>
         @media screen and (max-width: 375px) {
@@ -102,17 +102,17 @@
                             <br>
                             <p>항목 선택</p>
                             <p>
-                                <select name="item_name" id="item_name" style="height: 30px; width: 400px;"></select>
+                                <select class="item-information" name="item_name" id="item_name" ></select><br><br>
                             </p>
                             <p>대여일</p>
-                            <p><input type="date" id="rental_date" name="rental_date" style="height: 30px; width: 400px;"></p>
+                            <p><input class="item-information" type="date" id="rental_date" name="rental_date"></p><br>
                             <p>반납 예정일</p>
-                            <p><input type="date" id="rental_return_date" name="rental_return_date" style="height: 30px; width: 400px;"></p>
+                            <p><input class="item-information" type="date" id="rental_return_date" name="rental_return_date" ></p><br>
                             <p>대여 용도</p>
-                            <p><input type="text" name="rental_purpose" style="height: 30px; width: 400px;"></p>
+                            <p><input class="item-information" type="text" name="rental_purpose" ></p><br>
                             <!-- 항목별 갯수 입력 -->
                             <p>빌릴 개수</p>
-                            <p><input type="number" id="item_inventory" name="item_inventory" style="height: 30px; width: 400px;"></p>
+                            <p><input class="item-information" type="number" id="item_inventory" name="item_inventory"></p><br>
                             <div class="buttons">
                                 <button id="addBtn" style="background-color: #4CAF50" type="submit">추가</button>
                                 <button id="cancelBtn" type="button">취소</button>
