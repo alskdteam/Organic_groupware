@@ -107,7 +107,7 @@
                             <td><span th:text="${#dates.format(list.drafting_date, 'yyyy-MM-dd')}"></span></td>
                             <td th:text="${list.edoc_status}"></td>
                             <td>
-                                <button style="border-radius: 5px; background-color: aliceblue; border: 1px solid gray; padding: 2px" type="button" class="btn" th:attr="onclick='subpage(\'' + ${list.edoc_form_ct_no} + '\')'">상세보기</button>
+                                <button type="button" class="btn" th:attr="onclick='subpage(\'' + ${list.edoc_form_ct_no} + '\')'">상세보기</button>
                             </td>
                         </tr>
                         </tbody>
