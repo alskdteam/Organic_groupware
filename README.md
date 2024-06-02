@@ -60,7 +60,7 @@ organic 이란? organic 은 '유기농' 이라는 뜻으로 유기농 사과 생
 이 프로젝트는 Bootstrap 또는 다른 프론트엔드 프레임워크를 사용하지 않고 순수 HTML과 CSS로 구성되었습니다. 맞춤화된 디자인을 통해, 간결하고 가벼운 디자인을 유지하면서도 사용자 경험을 중시했습니다.
 
 ## 사용한 API
-Fullcalendar
+Fullcalendar, Address
 
 ## 로그인 자격 증명 목록
 - **관리자 계정**
