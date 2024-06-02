@@ -129,7 +129,6 @@ body {
     }
 }
 
-
 .calender{
     width: 60vw;
     height: 405px;
@@ -334,7 +333,6 @@ body {
     margin-left: -13px;
 }
 
-/* 차량 예약 alert*/
 
 /* 모달 스타일 */
 .modal {
@@ -382,7 +380,6 @@ body {
     margin-top: 60px;
     margin-left: 45px;
     overflow: hidden;
-
     background-image: url('/img/profile/profile2.jpeg'); /* 이미지 경로 설정 */
     background-size: cover; /* 이미지를 요소 크기에 맞춤 */
     background-position: center; /* 이미지를 중앙에 배치 */
@@ -1064,6 +1061,21 @@ body {
     max-width: 900px;
     margin: 0 auto;
     border-radius: 30px;
+}
+#addEventBtn {
+    position: relative;
+    right: 4vw;
+    width: 6vw;
+    height: 4vh;
+    display: flex;
+    font-size: 15px;
+    color: white;
+    background-color: #4CAF50;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .memo_table{
