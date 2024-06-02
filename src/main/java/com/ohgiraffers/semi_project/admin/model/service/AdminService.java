@@ -64,6 +64,11 @@ public class AdminService {
         adminMapper.deleteEmployee(userId);
     }
 
+    public void addNotice(NoticeDTO noticeDTO) {
+        adminMapper.addNotice(noticeDTO);
+    }
+
+
 }
 
 
