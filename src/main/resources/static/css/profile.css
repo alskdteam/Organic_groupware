@@ -487,18 +487,18 @@ body {
     width: 6vw;
     height: 30px;
     right: 3vw;
-
 }
-.memo_button {
 
+.memo_button {
     background-color: #aaa;
     width: 20vw;
     height: 50px;
-
 }
+
 .new_button {
 
     border: 2px solid #36D697;
+    border-radius: 4px;
     width: 20vw;
     height: 30px;
     background-color: white;
@@ -1057,6 +1057,8 @@ body {
 
 /*캘린뎌 */
 #calendar {
+
+    display: flex;
     background-color: #ccffcc;
     max-width: 900px;
     margin: 0 auto;
@@ -1164,7 +1166,7 @@ body {
 }
 
 .calender-header h3 {
-    margin: 30px;
+    padding: 20px;
 }
 
 .calender-header button {
@@ -1172,7 +1174,7 @@ body {
 }
 
 .fc .fc-toolbar.fc-header-toolbar {
-    padding: 20px;
+    padding: 10px;
 }
 
 .fc .fc-button-primary {
