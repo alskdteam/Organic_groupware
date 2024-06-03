@@ -46,6 +46,16 @@
             max-width: 300px;
             text-align: center;
         }
+        .modal-content2{
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            height: 15%;
+            max-width: 300px;
+            text-align: center;
+        }
         .close-btn {
             background-color: #4CAF50;
             color: white;
@@ -163,7 +173,7 @@
 
                 </form>
                 <div id="confirmModal" class="modal">
-                    <div class="modal-content">
+                    <div class="modal-content2">
                         <p>반납 하시겠습니까?</p>
                         <button class="close-btn" onclick="submitForm()">확인</button>
                         <button class="close-btn" onclick="closeConfirmModal()">취소</button>
@@ -172,7 +182,7 @@
 
                 <!-- 반납 완료 모달 -->
                 <div id="alertModal" class="modal">
-                    <div class="modal-content">
+                    <div class="modal-content2">
                         <p>반납이 완료 되었습니다!</p>
                         <button class="close-btn" onclick="closeAlertModal()">확인</button>
                     </div>
