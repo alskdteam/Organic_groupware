@@ -1153,7 +1153,7 @@ body {
     border-radius: 10px;
 }
 .calendar-inform {
-    width: 100%;
+    width: 80%;
 }
 
 #saveNewEvent {
@@ -1177,6 +1177,25 @@ body {
     width: 26vw;
     height: 5vh;
     margin: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.form-group1 {
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    width: 26vw;
+    height: 7vh;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+}
+#addEventDescription {
+    height: 80%;
+    width: 80%;
+    margin-left: 5px;
 }
 .eventplus {
     border: 5px solid gray;
