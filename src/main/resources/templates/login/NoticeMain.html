@@ -64,6 +64,38 @@
 
         }
 
+        .add_btn_notice3 {
+            position: relative;
+            margin-right: 3vw;
+
+            width: 5vw;
+            height: 35px;
+            border-radius: 3px;
+            background-color: #4CAF50;
+            color: white;
+            font-family: 'Pretendard-Regular';
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            margin-top: 150px;
+            left: 55vw;
+        }
+
+        .add_btn_notice3 a {
+
+            justify-content: center;
+            display: flex;
+            position: relative;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
 
     </style>
 </head>
@@ -82,7 +114,7 @@
             <form action="/login/NoticeMain" method="post" style="height: 600px">
                 <p th:text="${noticeDTO.notice_title}" class="notice_titletext"></p>
                 <div class="notice_inputtext" th:text="${noticeDTO.notice_content}"></div>
-                    <button type="button" class="btn_notice3" style="margin-left: 10vw">
+                    <button type="button" class="add_btn_notice3" style="margin-left: 10vw">
                         <a href="/login/main">back</a></button>
 
             </form>
