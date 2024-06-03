@@ -163,6 +163,22 @@ table{
     border-bottom: 1px solid #8d8d8d; /* th에만 하단 테두리를 적용합니다. */
 }
 
+.write {
+
+        width: 4vw;
+        height: 3vh;
+        display: flex;
+        font-size: 12px;
+        color: white;
+        background-color: #4CAF50;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #4CAF50;
+        border-radius: 4px;
+        cursor: pointer;
+
+}
+
 
 
 

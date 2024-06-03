@@ -46,10 +46,10 @@ public class UserController {
         int result = userService.regist(signupDTO);
         if (result > 0) {
             redirectAttributes.addFlashAttribute("message", "회원가입이 성공적으로 완료되었습니다!");
-            mv.setViewName("redirect:/user/signup"); // 회원가입 페이지로 리다이렉트
+            mv.setViewName("login/login"); // 회원가입 페이지로 리다이렉트
         } else {
             mv.addObject("message", "회원가입에 실패했습니다.");
-            mv.setViewName("user/signup"); // 회원가입 페이지로 이동
+            mv.setViewName("/user/signup"); // 회원가입 페이지로 이동
         }
 
         return mv;

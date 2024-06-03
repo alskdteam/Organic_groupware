@@ -153,13 +153,21 @@ body {
 
 /* 모달 내용 스타일 */
 .modal-content {
-    background-color: rgb(200, 245, 200);
-    margin: 15% auto; /* 중앙에 위치 */
+    position: relative;
+    background-color: white;
+    margin: 15% auto 25%;
     padding: 20px;
-    border: 1px solid #888;
-    width: 330px; /* 너비 조정 */
-    height: 110px;
-    border-radius: 15px;
+    border: 2px solid #4CAF50;
+    width: 27vw;
+    height: 80%;
+    border-radius: 10px;
+    bottom: 20%;
+}
+.item-information {
+    height: 30px;
+    width: 25vw;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
 }
 
 /* 닫기 버튼 스타일 */

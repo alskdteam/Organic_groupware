@@ -48,6 +48,54 @@
             z-index: 1;
         }
 
+        .notice_inputtext {
+
+            margin: 0;
+            position: relative;
+            height: 500px;
+            width: 70%;
+            top: 100px;
+            border: 2px solid #4CAF50;
+            left:11vw;
+            font-size: 30px;
+            border-radius: 10px;
+            padding: 30px;
+
+
+        }
+
+        .add_btn_notice3 {
+            position: relative;
+            margin-right: 3vw;
+
+            width: 5vw;
+            height: 35px;
+            border-radius: 3px;
+            background-color: #4CAF50;
+            color: white;
+            font-family: 'Pretendard-Regular';
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            margin-top: 150px;
+            left: 55vw;
+        }
+
+        .add_btn_notice3 a {
+
+            justify-content: center;
+            display: flex;
+            position: relative;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
 
     </style>
 </head>
@@ -65,33 +113,12 @@
             <h2 class="midtitle">제목 :</h2>
             <form action="/login/NoticeMain" method="post" style="height: 600px">
                 <p th:text="${noticeDTO.notice_title}" class="notice_titletext"></p>
-                <div class="notice-content" th:text="${noticeDTO.notice_content}" style="margin-top: 100px; margin-left: 16vw;"></div>
-                <div class="notice_button_all">
-                    <input type="file" id="attachmentInput" style="display: none;">
-                    <button type="button" class="btn_notice3"><a href="/login/main">back</a></button>
-                </div>
+                <div class="notice_inputtext" th:text="${noticeDTO.notice_content}"></div>
+                    <button type="button" class="add_btn_notice3" style="margin-left: 10vw">
+                        <a href="/login/main">back</a></button>
+
             </form>
         </div>
-
-<!--        <script>-->
-<!--            const attachmentInput = document.getElementById('attachmentInput');-->
-<!--            const fileContentTextarea = document.getElementById('fileContent');-->
-
-<!--            attachmentInput.addEventListener('change', function() {-->
-<!--                const selectedFile = attachmentInput.files[0]; // 선택된 파일 가져오기-->
-
-<!--                if (selectedFile) {-->
-<!--                    const reader = new FileReader();-->
-
-<!--                    reader.onload = function(event) {-->
-<!--                        const fileText = event.target.result; // 파일 내용을 문자열로 읽어옴-->
-<!--                        fileContentTextarea.value = fileText; // 텍스트 영역에 파일 내용 출력-->
-<!--                    };-->
-
-<!--                    reader.readAsText(selectedFile); // 파일을 텍스트로 읽어옴-->
-<!--                }-->
-<!--            });-->
-<!--        </script>-->
     </div>
 </div>
 </body>

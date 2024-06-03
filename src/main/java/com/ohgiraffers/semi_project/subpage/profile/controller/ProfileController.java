@@ -11,6 +11,7 @@ import com.ohgiraffers.semi_project.subpage.profile.model.service.ProfileService
 import com.ohgiraffers.semi_project.user.model.dto.LoginUserDTO;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -179,6 +180,19 @@ public class ProfileController {
     }
 
 
+@PostMapping("/insertCalender")
+    public String insertCalender(@RequestParam Map<String,Object> insetCalender){
+
+    Userdata userDate = new Userdata();
+    LoginUserDTO userDTO = userDate.getloginUserDTO();
+    int user_no = userDTO.getUserCode();
+    insetCalender.put("user_no",user_no);
+
+    System.out.println("insetCalender = " + insetCalender);
+    profileService.insetCalender(insetCalender);
+
+    return "redirect:/subpage/profile";
+}
 
 
 
