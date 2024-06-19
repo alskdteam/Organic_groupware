@@ -1,4 +1,4 @@
-<h1>🍏 Organic_groupware🍏</h1>
+<h1>🍏 organic_groupware🍏</h1>
 <br>
 <p align="center">
   <img style="width: 400px; height: auto;" src="https://github.com/alskdteam/semi_project_java/assets/158136952/42c16634-c9cd-41a4-a8f0-a21cdc907c4a" alt="Organic logo" />
