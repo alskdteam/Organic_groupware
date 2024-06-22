@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
 public class AuthDetails implements UserDetails {
 
@@ -91,5 +92,18 @@ public class AuthDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AuthDetails that = (AuthDetails) o;
+        return Objects.equals(loginUserDTO, that.loginUserDTO);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(loginUserDTO);
     }
 }

@@ -5,6 +5,7 @@ import com.ohgiraffers.semi_project.common.UserRole;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class LoginUserDTO {
 
@@ -85,5 +86,16 @@ public class LoginUserDTO {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LoginUserDTO that = (LoginUserDTO) o;
+        return userCode == that.userCode && Objects.equals(userId, that.userId) && Objects.equals(userName, that.userName) && Objects.equals(password, that.password) && userRole == that.userRole;
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(userCode, userId, userName, password, userRole);
+    }
 }
