@@ -15,14 +15,17 @@ import java.util.Objects;
 public class AuthService implements UserDetailsService {
 
     /* 필기.
-    *   security 에서 사용자의 아이디를 인증하기 위한 interface 이다.
-    *   loadUserByUsername 을 필수로 구현해야 하며, 로그인 인증 시 해당
-    *   메소드에 login 요청 시 전달 된 사용자의 id 를 매개변수로
-    *   DB 에서 조회를 한다.
-    *  */
-
-    @Autowired
+     *   security 에서 사용자의 아이디를 인증하기 위한 interface 이다.
+     *   loadUserByUsername 을 필수로 구현해야 하며, 로그인 인증 시 해당
+     *   메소드에 login 요청 시 전달 된 사용자의 id 를 매개변수로
+     *   DB 에서 조회를 한다.
+     *  */
     private UserService userService;
+
+    AuthService(UserService userService) {
+        this.userService = userService;
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
